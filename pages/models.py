@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.fields import IntegerField
 from django.urls import reverse
 
 # Create your models here.
@@ -37,6 +38,9 @@ class Record(models.Model):
 
 
 class Specimens_recieved(models.Model):
+    day_of_week = models.CharField(max_length=20,null=False)
+
+
     samples_carried_over_previous_week_never_tested_plasma = models.IntegerField()
     samples_carried_over_previous_week_never_tested_dbs = models.IntegerField()
 
@@ -164,6 +168,10 @@ class Specimens_recieved(models.Model):
 
 
 class Specimens_run(models.Model):
+    day_of_week = models.CharField(max_length=20,null=False)
+
+
+
 #Roche
     tests_done_roche_number_of_samples_received_this_week_plasma = models.IntegerField()
     tests_done_roche_number_of_samples_carried_over_previous_weeks_plasma = models.IntegerField()
@@ -249,3 +257,111 @@ class Specimens_run(models.Model):
 
     total_ncs_from_audit=models.TextField(max_length=5000,null=True)
     ncs_not_yet_closed=models.TextField(max_length=5000,null=True)
+
+
+
+class Electric_outage(models.Model):
+    day_of_week = models.CharField(max_length=20,null=False)
+
+
+    number_of_hours_with_no_electricity_per_day	= models.IntegerField()
+    number_of_hours_generator_was_on_per_day	= models.IntegerField()
+    litres_of_fuel_added_to_generator_per_day	= models.IntegerField()
+    number_of_hours_machines_was_not_being_used_due_to_power_cut_per_day	= models.IntegerField()
+    total_tests_done_per_day_using_generator	= models.IntegerField()
+
+
+
+
+
+
+
+
+
+
+
+class Reasons_for_failure(models.Model):
+    day_of_week = models.CharField(max_length=20,null=False)
+#roche
+    roche_plasma_number_of_failed_tests_due_to_sample_quality_issues = models.IntegerField()
+    roche_plasma_number_of_failed_tests_due_to_reagent_quality_issues = models.IntegerField()
+    roche_plasma_number_of_failed_tests_due_to_due_to_qc_failure = models.IntegerField()
+    roche_plasma_number_of_failed_tests_due_to_power_failure = models.IntegerField()
+    roche_plasma_number_of_failed_tests_due_to_mechanical_failure = models.IntegerField()
+    roche_plasma_number_of_failed_tests_due_to_processing_error = models.IntegerField()
+    roche_plasma_number_of_failed_tests_due_to_other = models.IntegerField()
+    dqa_check_plasma = models.IntegerField()
+
+    roche_dbs_number_of_failed_tests_due_to_sample_quality_issues = models.IntegerField()
+    roche_dbs_number_of_failed_tests_due_to_reagent_quality_issues = models.IntegerField()
+    roche_dbs_number_of_failed_tests_due_to_due_to_qc_failure = models.IntegerField()
+    roche_dbs_number_of_failed_tests_due_to_power_failure = models.IntegerField()
+    roche_dbs_number_of_failed_tests_due_to_mechanical_failure = models.IntegerField()
+    roche_dbs_number_of_failed_tests_due_to_processing_error = models.IntegerField()
+    roche_dbs_number_of_failed_tests_due_to_other = models.IntegerField()
+    roche_dqa_check_dbs = models.IntegerField()
+
+#bmx
+
+    bmx_plasma_number_of_failed_tests_due_to_sample_quality_issues = models.IntegerField()
+    bmx_plasma_number_of_failed_tests_due_to_reagent_quality_issues = models.IntegerField()
+    bmx_plasma_number_of_failed_tests_due_to_due_to_qc_failure = models.IntegerField()
+    bmx_plasma_number_of_failed_tests_due_to_power_failure = models.IntegerField()
+    bmx_plasma_number_of_failed_tests_due_to_mechanical_failure = models.IntegerField()
+    bmx_plasma_number_of_failed_tests_due_to_processing_error = models.IntegerField()
+    bmx_plasma_number_of_failed_tests_due_to_other = models.IntegerField()
+    bmx_dqa_check_plasma = models.IntegerField()
+
+    bmx_dbs_number_of_failed_tests_due_to_sample_quality_issues = models.IntegerField()
+    bmx_dbs_number_of_failed_tests_due_to_reagent_quality_issues = models.IntegerField()
+    bmx_dbs_number_of_failed_tests_due_to_due_to_qc_failure = models.IntegerField()
+    bmx_dbs_number_of_failed_tests_due_to_power_failure = models.IntegerField()
+    bmx_dbs_number_of_failed_tests_due_to_mechanical_failure = models.IntegerField()
+    bmx_dbs_number_of_failed_tests_due_to_processing_error = models.IntegerField()
+    bmx_dbs_number_of_failed_tests_due_to_other = models.IntegerField()
+    bmx_dqa_check_dbs = models.IntegerField()
+
+
+
+#abbott
+
+    abbott_plasma_number_of_failed_tests_due_to_sample_quality_issues = models.IntegerField()
+    abbott_plasma_number_of_failed_tests_due_to_reagent_quality_issues = models.IntegerField()
+    abbott_plasma_number_of_failed_tests_due_to_due_to_qc_failure = models.IntegerField()
+    abbott_plasma_number_of_failed_tests_due_to_power_failure = models.IntegerField()
+    abbott_plasma_number_of_failed_tests_due_to_mechanical_failure = models.IntegerField()
+    abbott_plasma_number_of_failed_tests_due_to_processing_error = models.IntegerField()
+    abbott_plasma_number_of_failed_tests_due_to_other = models.IntegerField()
+    abbott_dqa_check_plasma = models.IntegerField()
+
+    abbott_dbs_number_of_failed_tests_due_to_sample_quality_issues = models.IntegerField()
+    abbott_dbs_number_of_failed_tests_due_to_reagent_quality_issues = models.IntegerField()
+    abbott_dbs_number_of_failed_tests_due_to_due_to_qc_failure = models.IntegerField()
+    abbott_dbs_number_of_failed_tests_due_to_power_failure = models.IntegerField()
+    abbott_dbs_number_of_failed_tests_due_to_mechanical_failure = models.IntegerField()
+    abbott_dbs_number_of_failed_tests_due_to_processing_error = models.IntegerField()
+    abbott_dbs_number_of_failed_tests_due_to_other = models.IntegerField()
+    abbott_dqa_check_dbs = models.IntegerField()
+
+
+
+
+#Hologic Panther
+
+    hologic_panther_plasma_number_of_failed_tests_due_to_sample_quality_issues = models.IntegerField()
+    hologic_panther_plasma_number_of_failed_tests_due_to_reagent_quality_issues = models.IntegerField()
+    hologic_panther_plasma_number_of_failed_tests_due_to_due_to_qc_failure = models.IntegerField()
+    hologic_panther_plasma_number_of_failed_tests_due_to_power_failure = models.IntegerField()
+    hologic_panther_plasma_number_of_failed_tests_due_to_mechanical_failure = models.IntegerField()
+    hologic_panther_plasma_number_of_failed_tests_due_to_processing_error = models.IntegerField()
+    hologic_panther_plasma_number_of_failed_tests_due_to_other = models.IntegerField()
+    hologic_panther_dqa_check_plasma = models.IntegerField()
+
+    hologic_panther_dbs_number_of_failed_tests_due_to_sample_quality_issues = models.IntegerField()
+    hologic_panther_dbs_number_of_failed_tests_due_to_reagent_quality_issues = models.IntegerField()
+    hologic_panther_dbs_number_of_failed_tests_due_to_due_to_qc_failure = models.IntegerField()
+    hologic_panther_dbs_number_of_failed_tests_due_to_power_failure = models.IntegerField()
+    hologic_panther_dbs_number_of_failed_tests_due_to_mechanical_failure = models.IntegerField()
+    hologic_panther_dbs_number_of_failed_tests_due_to_processing_error = models.IntegerField()
+    hologic_panther_dbs_number_of_failed_tests_due_to_other = models.IntegerField()
+    hologic_panther_dqa_check_dbs = models.IntegerField()
