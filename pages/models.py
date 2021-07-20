@@ -75,8 +75,8 @@ class Specimens_recieved(models.Model):
 
     lab_samples_reffered_to = models.IntegerField()
 
-    percentage_rejection_rate_plasma = models.DecimalField()
-    percentage_rejection_rate_dbs = models.DecimalField()
+    percentage_rejection_rate_plasma = models.DecimalField(decimal_places=5,  max_digits=5)
+    percentage_rejection_rate_dbs = models.DecimalField(decimal_places=5,  max_digits=5)
 
 
     number_of_results_printed_from_lims_plasma = models.IntegerField()
@@ -239,20 +239,20 @@ class Specimens_run(models.Model):
     total_repeats = models.IntegerField()
     total_patients_run = models.IntegerField()
     targets_weekly = models.IntegerField()
-    percentage_targets_achievements = models.DecimalField()
+    percentage_targets_achievements = models.DecimalField(decimal_places=5,  max_digits=5)
 
 
-    percentage_error_rate_roche_plasma = models.DecimalField()
-    percentage_error_rate_roche_dbs = models.DecimalField()
+    percentage_error_rate_roche_plasma = models.DecimalField(decimal_places=5,  max_digits=5)
+    percentage_error_rate_roche_dbs = models.DecimalField(decimal_places=5,  max_digits=5)
 
-    percentage_error_rate_bmx_plasma = models.DecimalField()
-    percentage_error_rate_bmx_dbs = models.DecimalField() 
+    percentage_error_rate_bmx_plasma = models.DecimalField(decimal_places=5,  max_digits=5)
+    percentage_error_rate_bmx_dbs = models.DecimalField(decimal_places=5,  max_digits=5) 
 
-    percentage_error_rate_abbott_plasma = models.DecimalField()
-    percentage_error_rate_abbott_dbs = models.DecimalField() 
+    percentage_error_rate_abbott_plasma = models.DecimalField(decimal_places=5,  max_digits=5)
+    percentage_error_rate_abbott_dbs = models.DecimalField(decimal_places=5,  max_digits=5) 
 
-    percentage_error_rate_hologic_panther_plasma = models.DecimalField()
-    percentage_error_rate_hologic_panther_dbs = models.DecimalField() 
+    percentage_error_rate_hologic_panther_plasma = models.DecimalField(decimal_places=5,  max_digits=5)
+    percentage_error_rate_hologic_panther_dbs = models.DecimalField(decimal_places=5,  max_digits=5) 
 
 
     total_ncs_from_audit=models.TextField(max_length=5000,null=True)
