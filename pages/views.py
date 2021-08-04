@@ -19,6 +19,10 @@ def profile(request):
     context={}
     return render(request, 'brti_covid_19 _weekly_statistics _tool_may_week_4/Specimens_Run.html', context)
 
+# def prof(request):
+#     context={}
+#     return render(request, 'brti_vl_eid_weekly_statistics_tool_may_week_4/specimens_run.html', context)
+
 
 # @method_decorator([login_required], name='dispatch')
 # class RecordAddView(CreateView):
