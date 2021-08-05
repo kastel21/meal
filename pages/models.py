@@ -365,3 +365,126 @@ class Reasons_for_failure(models.Model):
     hologic_panther_dbs_number_of_failed_tests_due_to_processing_error = models.IntegerField()
     hologic_panther_dbs_number_of_failed_tests_due_to_other = models.IntegerField()
     hologic_panther_dqa_check_dbs = models.IntegerField()
+
+
+
+#General Info
+
+
+class General_info(models.Model):
+    general_comments_regarding_testing_and_challenges_faced_by_the_laboratory = models.CharField( max_length=5000, null=True)
+    number_of_staff_who_tested_positive_to_covid_19_at_vl_lab	= models.IntegerField()
+    number_of_staff_who_have_been_vaccinated	= models.IntegerField()
+    Comments =models.CharField( max_length=5000, null=True)
+    Request_to_brti_from_the_laboratory	= models.CharField( max_length=5000, null=True)
+
+
+
+
+class Specimens_received_covid19(models.Model):
+    samples_carried_over_previous_weeks	= models.IntegerField()
+
+    samples_received_current_week_nasopharyngeal_swab = models.IntegerField()
+    samples_received_current_week_nasal_swab = models.IntegerField()
+    samples_received_current_week_oropharyngeal_swab = models.IntegerField()
+    samples_received_current_week_midturbinate_swab = models.IntegerField()
+    samples_received_current_week_sputum = models.IntegerField()
+    samples_received_current_week_whole_blood_or_plasma_or_serum = models.IntegerField()
+    samples_received_current_week_other = models.IntegerField()
+
+
+    samples_rejected_current_week =	models.IntegerField()
+    total_samples_received_current_week	=	models.IntegerField()
+
+    number_of_samples_entered_into_lims =	models.IntegerField()
+    total_samples_current_plus_carryover	 =	models.IntegerField()
+    samples_referred	=	models.IntegerField()
+    rejection_rate_current_week = models.DecimalField(decimal_places=5,  max_digits=5)
+    number_of_results_printed_lims =	models.IntegerField()
+    total_results_dispatched_by_lab	=	models.IntegerField()
+    comment= models.CharField( max_length=5000, null=True)
+
+class Machine_downtime_Reagent_stock_out_tool_covid19(models.Model):
+    machine_breakdown_number_abbott	=	models.IntegerField()
+    machine_breakdown_number_bmx	=	models.IntegerField()
+    machine_breakdown_number_genexpert	=	models.IntegerField()
+    machine_breakdown_number_quant_studio_3	=	models.IntegerField()
+    machine_breakdown_number_hologic_panther	=	models.IntegerField()
+    machine_breakdown_number_comments	= models.CharField( max_length=5000, null=True)
+
+    machine_downtime_days_abbott = 	models.IntegerField()
+    machine_downtime_days_bmx = 	models.IntegerField()
+    machine_downtime_days_genexpert = 	models.IntegerField()
+    machine_downtime_days_quant_studio_3 = 	models.IntegerField()
+    machine_downtime_days_hologic_panther = 	models.IntegerField()
+    machine_downtime_days_comments = 	models.CharField( max_length=5000, null=True)
+
+    #reagent_stockout	
+
+    reagent_stockout_abbott = 	models.IntegerField()
+    reagent_stockout_bmx = 	models.IntegerField()
+    reagent_stockout_genexpert = 	models.IntegerField()
+    reagent_stockout_quant_studio_3 = 	models.IntegerField()
+    reagent_stockout_hologic_panther = 	models.IntegerField()
+    reagent_stockout_comments = 	models.CharField( max_length=5000, null=True)
+
+
+
+
+class Specimens_run_covid19(models.Model):
+    #Roche
+    tests_done_abbott_run = models.IntegerField()
+    tests_done_abbott_failed_but_eligibale_for_repeat= models.IntegerField()
+    tests_done_abbott_failed_but_not_eligibale_for_repeat= models.IntegerField()
+    tests_done_abbott_repeat= models.IntegerField()
+
+
+    tests_done_bmx_run = models.IntegerField()
+    tests_done_bmx_failed_but_eligibale_for_repeat= models.IntegerField()
+    tests_done_bmx_failed_but_not_eligibale_for_repeat= models.IntegerField()
+    tests_done_bmx_repeat= models.IntegerField()
+
+    # genexpert
+    tests_done_genexpert_run = models.IntegerField()
+    tests_done_genexpert_failed_but_eligibale_for_repeat= models.IntegerField()
+    tests_done_genexpert_failed_but_not_eligibale_for_repeat= models.IntegerField()
+    tests_done_genexpert_repeat= models.IntegerField()
+# quant_studio_3
+    tests_done_quant_studio_3_run = models.IntegerField()
+    tests_done_quant_studio_3_failed_but_eligibale_for_repeat= models.IntegerField()
+    tests_done_quant_studio_3_failed_but_not_eligibale_for_repeat= models.IntegerField()
+    tests_done_quant_studio_3_repeat= models.IntegerField()
+# hologic_panther	
+    tests_done_hologic_panther_run = models.IntegerField()
+    tests_done_hologic_panther_failed_but_eligibale_for_repeat= models.IntegerField()
+    tests_done_hologic_panther_failed_but_not_eligibale_for_repeat= models.IntegerField()
+    tests_done_hologic_panther_repeat= models.IntegerField()
+# RDT
+    tests_done_rdt_ab_run = models.IntegerField()
+    tests_done_rdt_ab_failed_but_eligibale_for_repeat= models.IntegerField()
+    tests_done_rdt_ab_failed_but_not_eligibale_for_repeat= models.IntegerField()
+    tests_done_rdt_ab_repeat= models.IntegerField()
+
+    tests_done_rdt_ag_run = models.IntegerField()
+    tests_done_rdt_ag_failed_but_eligibale_for_repeat= models.IntegerField()
+    tests_done_rdt_ag_failed_but_not_eligibale_for_repeat= models.IntegerField()
+    tests_done_rdt_ag_repeat= models.IntegerField()
+
+
+    total_tests_done = models.IntegerField()
+    total_repeats = models.IntegerField()
+    total_patients_run = models.IntegerField()
+
+
+    error_rates_abbott = models.IntegerField()
+    error_rates_bmx = models.IntegerField()
+    error_rates_genexpert = models.IntegerField()
+    error_rates_quant_studio_3 = models.IntegerField()
+    error_rates_hologic_panther = models.IntegerField()
+    error_rates_rdt_ab = models.IntegerField()
+    error_rates_rdt_ag = models.IntegerField()
+
+
+
+
+
