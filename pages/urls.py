@@ -4,5 +4,8 @@ from . import views
 
 urlpatterns = [
     path('', views.profile, name='profile'),
-    # path('brti_vl_eid_weekly_statistics_tool_may_week_4/specimens_run.html', views.prof, name='prof'),
+    path('profilecovid', views.profilecovid, name='profilecovid'),
+    path('profilecovid19', views.profilecovid19, name='profilecovid19'),
+    path('profilecovid19t', views.profilecovid19t, name='profilecovid19t'),
+    path('profilecovid19to', views.profilecovid19to, name='profilecovid19to')
 ]
