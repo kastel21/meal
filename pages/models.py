@@ -488,3 +488,95 @@ class Specimens_run_covid19(models.Model):
 
 
 
+#masving_brti_vl_weekly_statistics_tool_31-6_june_2021
+
+class Specimens_run(models.Model):
+    day_of_week = models.CharField(max_length=20,null=False)
+
+
+
+#Roche
+    tests_done_roche_number_of_samples_received_this_week_plasma = models.IntegerField()
+    tests_done_roche_number_of_samples_carried_over_previous_weeks_plasma = models.IntegerField()
+    tests_done_roche_failed_but_eligibale_for_repeat_plasma= models.IntegerField()
+    tests_done_roche_failed_but_not_eligibale_for_repeat_plasma= models.IntegerField()
+    tests_done_roche_repeat_plasma= models.IntegerField()
+    tests_done_roche_failed_after_repeat_testing_plasma = models.IntegerField()
+
+
+    tests_done_roche_number_of_samples_received_this_week_dbs = models.IntegerField()
+    tests_done_roche_number_of_samples_carried_over_previous_weeks_dbs = models.IntegerField()
+    tests_done_roche_failed_but_eligibale_for_repeat_dbs= models.IntegerField()
+    tests_done_roche_failed_but_not_eligibale_for_repeat_dbs= models.IntegerField()
+    tests_done_roche_repeat_dbs= models.IntegerField()
+    tests_done_roche_failed_after_repeat_testing_dbs = models.IntegerField()
+#BMX
+    tests_done_bmx_number_of_samples_received_this_week_plasma = models.IntegerField()
+    tests_done_bmx_number_of_samples_carried_over_previous_weeks_plasma = models.IntegerField()
+    tests_done_bmx_failed_but_eligibale_for_repeat_plasma= models.IntegerField()
+    tests_done_bmx_failed_but_not_eligibale_for_repeat_plasma= models.IntegerField()
+    tests_done_bmx_repeat_plasma= models.IntegerField()
+    tests_done_bmx_failed_after_repeat_testing_plasma = models.IntegerField()
+
+
+    tests_done_bmx_number_of_samples_received_this_week_dbs = models.IntegerField()
+    tests_done_bmx_number_of_samples_carried_over_previous_weeks_dbs = models.IntegerField()
+    tests_done_bmx_failed_but_eligibale_for_repeat_dbs= models.IntegerField()
+    tests_done_bmx_failed_but_not_eligibale_for_repeat_dbs= models.IntegerField()
+    tests_done_bmx_repeat_dbs= models.IntegerField()
+    tests_done_bmx_failed_after_repeat_testing_dbs = models.IntegerField()
+
+#Abbott
+    tests_done_abbott_number_of_samples_received_this_week_plasma = models.IntegerField()
+    tests_done_abbott_number_of_samples_carried_over_previous_weeks_plasma = models.IntegerField()
+    tests_done_abbott_failed_but_eligibale_for_repeat_plasma= models.IntegerField()
+    tests_done_abbott_failed_but_not_eligibale_for_repeat_plasma= models.IntegerField()
+    tests_done_abbott_repeat_plasma= models.IntegerField()
+    tests_done_abbott_failed_after_repeat_testing_plasma = models.IntegerField()
+
+
+    tests_done_abbott_number_of_samples_received_this_week_dbs = models.IntegerField()
+    tests_done_abbott_number_of_samples_carried_over_previous_weeks_dbs = models.IntegerField()
+    tests_done_abbott_failed_but_eligibale_for_repeat_dbs= models.IntegerField()
+    tests_done_abbott_failed_but_not_eligibale_for_repeat_dbs= models.IntegerField()
+    tests_done_abbott_repeat_dbs= models.IntegerField()
+    tests_done_abbott_failed_after_repeat_testing_dbs = models.IntegerField()
+
+#Hologic Panther
+    tests_done_hologic_panther_number_of_samples_received_this_week_plasma = models.IntegerField()
+    tests_done_hologic_panther_number_of_samples_carried_over_previous_weeks_plasma = models.IntegerField()
+    tests_done_hologic_panther_failed_but_eligibale_for_repeat_plasma= models.IntegerField()
+    tests_done_hologic_panther_failed_but_not_eligibale_for_repeat_plasma= models.IntegerField()
+    tests_done_hologic_panther_repeat_plasma= models.IntegerField()
+    tests_done_hologic_panther_failed_after_repeat_testing_plasma = models.IntegerField()
+
+
+    tests_done_hologic_panther_number_of_samples_received_this_week_dbs = models.IntegerField()
+    tests_done_hologic_panther_number_of_samples_carried_over_previous_weeks_dbs = models.IntegerField()
+    tests_done_hologic_panther_failed_but_eligibale_for_repeat_dbs= models.IntegerField()
+    tests_done_hologic_panther_failed_but_not_eligibale_for_repeat_dbs= models.IntegerField()
+    tests_done_hologic_panther_repeat_dbs= models.IntegerField()
+    tests_done_hologic_panther_failed_after_repeat_testing_dbs = models.IntegerField()
+
+    total_tests_done = models.IntegerField()
+    total_repeats = models.IntegerField()
+    total_patients_run = models.IntegerField()
+    targets_weekly = models.IntegerField()
+    percentage_targets_achievements = models.DecimalField(decimal_places=5,  max_digits=5)
+
+
+    percentage_error_rate_roche_plasma = models.DecimalField(decimal_places=5,  max_digits=5)
+    percentage_error_rate_roche_dbs = models.DecimalField(decimal_places=5,  max_digits=5)
+
+    percentage_error_rate_bmx_plasma = models.DecimalField(decimal_places=5,  max_digits=5)
+    percentage_error_rate_bmx_dbs = models.DecimalField(decimal_places=5,  max_digits=5) 
+
+    percentage_error_rate_abbott_plasma = models.DecimalField(decimal_places=5,  max_digits=5)
+    percentage_error_rate_abbott_dbs = models.DecimalField(decimal_places=5,  max_digits=5) 
+
+    percentage_error_rate_hologic_panther_plasma = models.DecimalField(decimal_places=5,  max_digits=5)
+    percentage_error_rate_hologic_panther_dbs = models.DecimalField(decimal_places=5,  max_digits=5) 
+
+
+    total_ncs_from_audit=models.TextField(max_length=5000,null=True)
+    ncs_not_yet_closed=models.TextField(max_length=5000,null=True)
