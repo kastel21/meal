@@ -5,7 +5,6 @@ from .models import *
 from django.shortcuts import get_object_or_404, redirect, render
 
 
-
 def index(request):
     return HttpResponse("Hello, world. You're at the pages index.")
 
@@ -52,7 +51,8 @@ def labcovidweekly(request):
     return render(request, 'masving_brti_vl_weekly_statistics_tool_31-6_june_2021/top.html', context)
 
 def labcovidweekly2(request):
-    context={}
+    form = Specimens_runForm()
+    context={'form': form}
     return render(request, 'masving_brti_vl_weekly_statistics_tool_31-6_june_2021/Specimensrun.html', context)
 
 def labcovidweekly3(request):
