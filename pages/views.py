@@ -162,15 +162,16 @@ def labeidweekly(request):
     context = {'form': form}
     return render(request, 'masvingo_brti_covid_19_weekly_statistics_tool_31-6_June_2021/top.html', context)
 
-# def labeidweekly2(request):
-#     if request.method == 'POST':
-#         form = ComplaintForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return render(request, 'success.html')
-#     form = ComplaintForm()
-#     context = {'form': form}
-#     return render(request, 'masvingo_brti_covid_19_weekly_statistics_tool_31-6_June_2021/Specimens_Run.html', context)
+def labeidweekly2(request):
+    form = Specimens_runForm()
+    if request.method == 'POST':
+        form = ComplaintForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'success.html')
+    form = ComplaintForm()
+    context = {'form': form}
+    return render(request, 'masvingo_brti_covid_19_weekly_statistics_tool_31-6_June_2021/Specimens_Run.html', context)
 
 def labeidweekly3(request):
     if request.method == 'POST':
