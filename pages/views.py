@@ -5,7 +5,6 @@ from .models import *
 from django.shortcuts import get_object_or_404, redirect, render
 
 
-
 def index(request):
     return HttpResponse("Hello, world. You're at the pages index.")
 
@@ -109,6 +108,7 @@ def labcovidweekly(request):
     return render(request, 'masving_brti_vl_weekly_statistics_tool_31-6_june_2021/top.html', context)
 
 def labcovidweekly2(request):
+<<<<<<< HEAD
     if request.method == 'POST':
         form = ComplaintForm(request.POST)
         if form.is_valid():
@@ -116,6 +116,10 @@ def labcovidweekly2(request):
             return render(request, 'success.html')
     form = ComplaintForm()
     context = {'form': form}
+=======
+    form = Specimens_runForm()
+    context={'form': form}
+>>>>>>> 8e1eac9fc2f670db33fdacfc7b71cece9d9cc711
     return render(request, 'masving_brti_vl_weekly_statistics_tool_31-6_june_2021/Specimensrun.html', context)
 
 def labcovidweekly3(request):
@@ -158,15 +162,15 @@ def labeidweekly(request):
     context = {'form': form}
     return render(request, 'masvingo_brti_covid_19_weekly_statistics_tool_31-6_June_2021/top.html', context)
 
-def labeidweekly2(request):
-    if request.method == 'POST':
-        form = ComplaintForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return render(request, 'success.html')
-    form = ComplaintForm()
-    context = {'form': form}
-    return render(request, 'masvingo_brti_covid_19_weekly_statistics_tool_31-6_June_2021/Specimens_Run.html', context)
+# def labeidweekly2(request):
+#     if request.method == 'POST':
+#         form = ComplaintForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return render(request, 'success.html')
+#     form = ComplaintForm()
+#     context = {'form': form}
+#     return render(request, 'masvingo_brti_covid_19_weekly_statistics_tool_31-6_June_2021/Specimens_Run.html', context)
 
 def labeidweekly3(request):
     if request.method == 'POST':

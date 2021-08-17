@@ -152,18 +152,18 @@ class Specimens_recieved_brti_vl_weekly(models.Model):
 
 
 
-    def __str__(self):
-        return self.courseTitle + " (" + self.courseTitle + ")"
+    # def __str__(self):
+    #     return self.courseTitle + " (" + self.courseTitle + ")"
 
-    def get_absolute_url(self):
-        return reverse('course_list', kwargs={'pk': self.pk})
+    # def get_absolute_url(self):
+    #     return reverse('course_list', kwargs={'pk': self.pk})
 
-    def get_total_unit(self):
-        t = 0
-        total = Course.objects.all()
-        for i in total:
-            t +=i
-        return i
+    # def get_total_unit(self):
+    #     t = 0
+    #     total = Course.objects.all()
+    #     for i in total:
+    #         t +=i
+    #     return i
 
 
 
@@ -493,7 +493,7 @@ class Specimens_run_covid_19(models.Model):
 
 
 
-
+ # ---------------------------------------------------------------------------------------------------------------------------------- 
 
 #masving_brti_weekly_statistics_tool_31-6_june_2021
 
