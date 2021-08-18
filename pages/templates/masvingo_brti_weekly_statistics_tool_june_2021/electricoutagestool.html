@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
  {% load humanize %}
 {% block title %} Elecrtic Outages Tool | Meal {% endblock title %}
 
@@ -41,33 +42,28 @@
   <table class="table table-striped table-dark table-sm">
   <tr>
     <td colspan="2"><b>Laboratory</b></td> 
-    <td>Total</td>
   </tr>
+
   <tr>
-    <td><b>Number of hours with no electricity per day</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.number_of_hours_with_no_electricity_per_day | as_crispy_field}}</th>
   </tr>
+
   <tr>
-    <td><b>Number of hours generator was on per day</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.number_of_hours_generator_was_on_per_day | as_crispy_field}}</th>
   </tr>
+
   <tr>
-    <td><b>Litres of Fuel added to generator per day</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.litres_of_fuel_added_to_generator_per_day | as_crispy_field}}</th>
   </tr>
+
   <tr>
-    <td><b>Number of hours machine/s was not being used due to power cut per day</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.number_of_hours_machines_was_not_being_used_due_to_power_cut_per_day | as_crispy_field}}</th>
   </tr>
+
   <tr>
-    <td><b>Total Tests done per day using generator</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.total_tests_done_per_day_using_generator | as_crispy_field}}</th>
   </tr>
+
 </table>
 <br><br>
 </body>

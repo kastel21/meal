@@ -677,13 +677,6 @@ class Specimens_received_brti_weekly(models.Model):
     reasons_for_sample_refferal_dqa_check_plasma= models.IntegerField()
     reasons_for_sample_refferal_dqa_check_dbs= models.IntegerField()
 
-   
-   
-   
-   
-
-   
-   
     comments=models.TextField("Please input any comments regarding sample carryover, samples received, samples rejected, rejection rate, TAT, machine breakdowns & down time, reagent stock out if applicable", max_length=5000, null=True)
 
 
@@ -776,7 +769,7 @@ class Reasons_for_failure_brti_weekly(models.Model):
 
 
 
-class Electric_outage_brti_vl_weekly(models.Model):
+class Electric_outage_brti_weekly(models.Model):
     day_of_week = models.CharField(max_length=20,null=False)
 
 
@@ -786,53 +779,12 @@ class Electric_outage_brti_vl_weekly(models.Model):
     number_of_hours_machines_was_not_being_used_due_to_power_cut_per_day	= models.IntegerField()
     total_tests_done_per_day_using_generator	= models.IntegerField()
 
-
-
-
-
-
-
-
-
-
-
-
-
+#top.html not done
 
 
 
 
 # masvingo_brti_covid_19_weekly_statistics_tool_31-6_June_2021
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
