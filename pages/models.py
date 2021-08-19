@@ -374,16 +374,10 @@ class Reasons_for_failure_brti_vl_weekly(models.Model):
 class General_info_covid_19(models.Model):
     general_comments_regarding_testing_and_challenges_faced_by_the_laboratory = models.CharField( max_length=5000, null=True)
     number_of_staff_who_tested_positive_to_covid_19_at_vl_lab	= models.IntegerField()
+    number_Of_Staff_who_tested_positive_to_COVID_19_at_Hubs= models.IntegerField()
     number_of_staff_who_have_been_vaccinated	= models.IntegerField()
-    Comments =models.CharField( max_length=5000, null=True)
+    Comments =models.TextField( max_length=5000, null=True, default='null')
     Request_to_brti_from_the_laboratory	= models.CharField( max_length=5000, null=True)
-
-
-
-
-
-
-
 
 #another 
 

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
  {% load humanize %}
+ {% load crispy_forms_tags %}
 {% block title %} General | Meal {% endblock title %}
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -40,9 +41,9 @@
 <br><br>
 
 	<table style="width:50%" align="center" class="table table-striped table-dark table-sm">
+
     <tr>
-      <th>General comments regarding testing and challenges (interruptions) faced by the laboratory</th>
-      <td><textarea></textarea></td>
+      <th>{{form.general_comments_regarding_testing_and_challenges_faced_by_the_laboratory | as_crispy_field}}</th>
     </tr>
   </table>
 
@@ -50,28 +51,27 @@
 
   <table style="width:50%" align="center" class="table table-striped table-dark table-sm">
     <tr>
-      <th># of staff who tested positive to Covid 19 at VL lab</th>
-      <td><input type="number" name=""></td>
+      <th>{{form.number_of_staff_who_tested_positive_to_covid_19_at_vl_lab | as_crispy_field}}</th>
     </tr>
-    <tr>
+
       <tr>
-        <th># Of Staff  who tested positive to COVID 19 at Hubs</th>
-        <td><input type="number" name=""></td>
+        <th>{{form.number_Of_Staff_who_tested_positive_to_COVID_19_at_Hubs | as_crispy_field}}</th>
       </tr>
-      <th># of staff who have been vaccinated</th>
-      <td><input type="number" name=""></td>
-    </tr>
+
     <tr>
-      <th>Comment (Please specify the occupation of the person  who has tested postive.Riders are also included )</th>
-      <td><textarea></textarea></td>
+      <th>{{form.number_of_staff_who_have_been_vaccinated | as_crispy_field}}</th>
     </tr>
+
+    <tr>
+      <th>{{form.Comments | as_crispy_field}}</th>
+    </tr>
+
   </table>
     <br><p></p>
 
     <table style="width:50%" align="center" class="table table-striped table-dark table-sm">
     <tr>
-      <th>Request to BRTI from the Laboratory</th>
-      <td><textarea></textarea></td>
+      <th>{{form.Request_to_brti_from_the_laboratory | as_crispy_field}}</th>
     </tr>
 </table>
 <br><br>
