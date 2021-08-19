@@ -673,7 +673,44 @@ class Electric_outage_brti_weeklyForm(forms.ModelForm):
             fields = '__all__'
 
  # ----------------------------------------------------------------------------------------------------------------------------------         
- #General Info masvingo brti_covid_19_weekly_statistics_tool
+ #masvingo brti_covid_19_weekly_statistics_tool
+
+class Specimens_received_covid_19Form(forms.ModelForm):
+
+    samples_carried_over_previous_weeks	= forms.IntegerField(label="Samples Carried Over (Previous Weeks(s))")
+    samples_received_current_week_nasopharyngeal_swab = forms.IntegerField(label="Nasopharyngeal Swab")
+    samples_received_current_week_nasal_swab = forms.IntegerField(label="Nasal Swab")
+    samples_received_current_week_oropharyngeal_swab = forms.IntegerField(label="Oropharyngeal Swab")
+    samples_received_current_week_midturbinate_swab = forms.IntegerField(label="Midturbinate Swab")
+    samples_received_current_week_sputum = forms.IntegerField(label="Sputum")
+    samples_received_current_week_whole_blood_or_plasma_or_serum = forms.IntegerField(label="Whole Blood/Plasma/Serum")
+    samples_received_current_week_other = forms.IntegerField(label="Other(specify)")
+
+
+    samples_rejected_current_week =	forms.IntegerField(label="Samples Rejected (Current Week)")
+    total_samples_received_current_week	=	forms.IntegerField(label="Total Samples Received (Current Week)")
+
+    number_of_samples_entered_into_lims =	forms.IntegerField(label="# of Samples entered into LIMS")
+    total_samples_current_plus_carryover	 =	forms.IntegerField(label="Total Samples Current + Carryover")
+    samples_referred	=	forms.IntegerField(label="Samples Referred")
+    samples_Referred_to_Name = forms.CharField(max_length=500, label="Samples Referred to (Name)")
+    rejection_rate_current_week = forms.DecimalField(label="% Rejection Rate (Current Week)", decimal_places=5,  max_digits=5)
+    number_of_results_printed_lims =	forms.IntegerField(label="Number of Results printed (LIMS)")
+    total_results_dispatched_by_lab	=	forms.IntegerField(label="Total Results dispatched by Lab")
+    comment= forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), label="Comment: [Please input any comment regarding  samples carryover; samples received; samples rejected; rejection rate; printing and dispatch of results and developments and policy changes if applicable]", max_length=5000)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_class = 'form-horizontal'
+        self.helper.field_class = 'col-sm-6'
+        self.helper.label_class = 'col-sm-6' 
+        self.helper.layout = Layout(
+        )
+        
+    class Meta:
+            model = Specimens_received_covid_19
+            fields = '__all__'
 
 
 class General_info_covid_19Form(forms.ModelForm):
