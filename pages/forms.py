@@ -707,9 +707,73 @@ class Specimens_received_covid_19Form(forms.ModelForm):
         self.helper.label_class = 'col-sm-6' 
         self.helper.layout = Layout(
         )
-        
+
     class Meta:
             model = Specimens_received_covid_19
+            fields = '__all__'
+
+
+class Specimens_run_covid_19Form(forms.ModelForm):
+    #Roche
+    tests_done_abbott_run = forms.IntegerField(label="run")
+    tests_done_abbott_failed_but_eligibale_for_repeat= forms.IntegerField(label="Failed but elible for repeat")
+    tests_done_abbott_failed_but_not_eligibale_for_repeat= forms.IntegerField(label="failed but not eligible for repeat")
+    tests_done_abbott_repeat= forms.IntegerField(label="Repeat")
+
+    tests_done_bmx_run = forms.IntegerField(label="run")
+    tests_done_bmx_failed_but_eligibale_for_repeat= forms.IntegerField(label="Failed but elible for repeat")
+    tests_done_bmx_failed_but_not_eligibale_for_repeat= forms.IntegerField(label="failed but not eligible for repeat")
+    tests_done_bmx_repeat= forms.IntegerField(label="Repeat")
+
+    # genexpert
+    tests_done_genexpert_run = forms.IntegerField(label="run")
+    tests_done_genexpert_failed_but_eligibale_for_repeat= forms.IntegerField(label="Failed but elible for repeat")
+    tests_done_genexpert_failed_but_not_eligibale_for_repeat= forms.IntegerField(label="failed but not eligible for repeat")
+    tests_done_genexpert_repeat= forms.IntegerField(label="Repeat")
+# quant_studio_3
+    tests_done_quant_studio_3_run = forms.IntegerField(label="run")
+    tests_done_quant_studio_3_failed_but_eligibale_for_repeat= forms.IntegerField(label="Failed but elible for repeat")
+    tests_done_quant_studio_3_failed_but_not_eligibale_for_repeat= forms.IntegerField(label="failed but not eligible for repeat")
+    tests_done_quant_studio_3_repeat= forms.IntegerField(label="Repeat")
+# hologic_panther	
+    tests_done_hologic_panther_run = forms.IntegerField(label="run")
+    tests_done_hologic_panther_failed_but_eligibale_for_repeat= forms.IntegerField(label="Failed but elible for repeat")
+    tests_done_hologic_panther_failed_but_not_eligibale_for_repeat= forms.IntegerField(label="failed but not eligible for repeat")
+    tests_done_hologic_panther_repeat= forms.IntegerField(label="Repeat")
+# RDT
+    tests_done_rdt_ab_run = forms.IntegerField(label="run")
+    tests_done_rdt_ab_failed_but_eligibale_for_repeat= forms.IntegerField(label="Failed but elible for repeat")
+    tests_done_rdt_ab_failed_but_not_eligibale_for_repeat= forms.IntegerField(label="failed but not eligible for repeat")
+    tests_done_rdt_ab_repeat= forms.IntegerField(label="Repeat")
+
+    tests_done_rdt_ag_run = forms.IntegerField(label="run")
+    tests_done_rdt_ag_failed_but_eligibale_for_repeat= forms.IntegerField(label="Failed but elible for repeat")
+    tests_done_rdt_ag_failed_but_not_eligibale_for_repeat= forms.IntegerField(label="failed but not eligible for repeat")
+    tests_done_rdt_ag_repeat= forms.IntegerField(label="Repeat")
+
+    total_tests_done = forms.IntegerField(label="Total Tests Done")
+    total_repeats = forms.IntegerField( label="Total Repeats")
+    total_patients_run = forms.IntegerField(label="Total Patients Run")
+
+    error_rates_abbott = forms.IntegerField(label="Abbot")
+    error_rates_bmx = forms.IntegerField(label="BMX")
+    error_rates_genexpert = forms.IntegerField(label="GeneXper")
+    error_rates_quant_studio_3 = forms.IntegerField(label="Quant Studio3")
+    error_rates_hologic_panther = forms.IntegerField(label="Hologic panther")
+    error_rates_rdt_ab = forms.IntegerField(label="RDT(Antibody")
+    error_rates_rdt_ag = forms.IntegerField(label="RDT(Antigen)")
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_class = 'form-horizontal'
+        self.helper.field_class = 'col-sm-6'
+        self.helper.label_class = 'col-sm-6' 
+        self.helper.layout = Layout(
+        )
+
+    class Meta:
+            model = Specimens_run_covid_19
             fields = '__all__'
 
 
