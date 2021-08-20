@@ -38,9 +38,19 @@ class Record(models.Model):
 
 # masving_brti_vl_weekly_statistics_tool_31-6_june_2021
 class Specimens_recieved_brti_vl_weekly(models.Model):
-    day_of_week = models.CharField(max_length=20,null=False)
 
 
+    days_choices=[
+        ('Monday','Monday'),
+        ('Tuesday','Tuesday'),
+        ('Wednesday','Wednesday'),
+        ('Thursday','Thursday'),
+        ('Friday','Friday'),
+        ('Saturday','Saturday'),
+        ('Sunday','Sunday'),
+    ]
+
+    day_of_week = models.CharField(max_length=200, choices=days_choices, default='Monday')
     samples_carried_over_previous_week_never_tested_plasma = models.IntegerField()
     samples_carried_over_previous_week_never_tested_dbs = models.IntegerField()
 
@@ -319,7 +329,17 @@ class Top_7_brti_vl_weekly(models.Model):
 
 
 class Specimens_run_brti_vl_weekly(models.Model):
-    day_of_week = models.CharField(max_length=20,null=False)
+    days_choices=[
+        ('Monday','Monday'),
+        ('Tuesday','Tuesday'),
+        ('Wednesday','Wednesday'),
+        ('Thursday','Thursday'),
+        ('Friday','Friday'),
+        ('Saturday','Saturday'),
+        ('Sunday','Sunday'),
+    ]
+
+    day_of_week = models.CharField(max_length=200, choices=days_choices, default='Monday')
 
 
 
@@ -412,7 +432,17 @@ class Specimens_run_brti_vl_weekly(models.Model):
 
 
 class Electric_outage_brti_vl_weekly(models.Model):
-    day_of_week = models.CharField(max_length=20,null=False)
+    days_choices=[
+        ('Monday','Monday'),
+        ('Tuesday','Tuesday'),
+        ('Wednesday','Wednesday'),
+        ('Thursday','Thursday'),
+        ('Friday','Friday'),
+        ('Saturday','Saturday'),
+        ('Sunday','Sunday'),
+    ]
+
+    day_of_week = models.CharField(max_length=200, choices=days_choices, default='Monday')
 
 
     number_of_hours_with_no_electricity_per_day	= models.IntegerField()
@@ -432,7 +462,19 @@ class Electric_outage_brti_vl_weekly(models.Model):
 
 
 class Reasons_for_failure_brti_vl_weekly(models.Model):
-    day_of_week = models.CharField(max_length=20,null=False)
+    days_choices=[
+        ('Monday','Monday'),
+        ('Tuesday','Tuesday'),
+        ('Wednesday','Wednesday'),
+        ('Thursday','Thursday'),
+        ('Friday','Friday'),
+        ('Saturday','Saturday'),
+        ('Sunday','Sunday'),
+    ]
+
+
+
+    day_of_week = models.CharField(max_length=200, choices=days_choices, default='Monday')
 #roche
     roche_plasma_number_of_failed_tests_due_to_sample_quality_issues = models.IntegerField()
     roche_plasma_number_of_failed_tests_due_to_reagent_quality_issues = models.IntegerField()
@@ -566,6 +608,17 @@ class Top_3_covid_19(models.Model):
 
 
 class General_covid_19(models.Model):
+    days_choices=[
+        ('Monday','Monday'),
+        ('Tuesday','Tuesday'),
+        ('Wednesday','Wednesday'),
+        ('Thursday','Thursday'),
+        ('Friday','Friday'),
+        ('Saturday','Saturday'),
+        ('Sunday','Sunday'),
+    ]
+
+    day_of_week = models.CharField(max_length=200, choices=days_choices, default='Monday')
     general_comments_regarding_testing_and_challenges_faced_by_the_laboratory = models.CharField( max_length=5000, null=True)
     number_of_staff_who_tested_positive_to_covid_19_at_vl_lab	= models.IntegerField()
     number_Of_Staff_who_tested_positive_to_covid_19_at_hubs= models.IntegerField()
@@ -577,6 +630,17 @@ class General_covid_19(models.Model):
 
 
 class Specimens_received_covid_19(models.Model):
+    days_choices=[
+        ('Monday','Monday'),
+        ('Tuesday','Tuesday'),
+        ('Wednesday','Wednesday'),
+        ('Thursday','Thursday'),
+        ('Friday','Friday'),
+        ('Saturday','Saturday'),
+        ('Sunday','Sunday'),
+    ]
+
+    day_of_week = models.CharField(max_length=200, choices=days_choices, default='Monday')
     samples_carried_over_previous_weeks	= models.IntegerField()
 
     samples_received_current_week_nasopharyngeal_swab = models.IntegerField()
@@ -628,6 +692,17 @@ class Specimens_received_covid_19(models.Model):
 
 
 class Specimens_run_covid_19(models.Model):
+    days_choices=[
+        ('Monday','Monday'),
+        ('Tuesday','Tuesday'),
+        ('Wednesday','Wednesday'),
+        ('Thursday','Thursday'),
+        ('Friday','Friday'),
+        ('Saturday','Saturday'),
+        ('Sunday','Sunday'),
+    ]
+
+    day_of_week = models.CharField(max_length=200, choices=days_choices, default='Monday')
     #Roche
     tests_done_abbott_run = models.IntegerField()
     tests_done_abbott_failed_but_eligibale_for_repeat= models.IntegerField()
@@ -845,7 +920,17 @@ class Top_7_brti_weekly(models.Model):
 
 
 class Specimens_run_brti_weekly(models.Model):
-    day_of_week = models.CharField(max_length=20,null=False)
+    days_choices=[
+        ('Monday','Monday'),
+        ('Tuesday','Tuesday'),
+        ('Wednesday','Wednesday'),
+        ('Thursday','Thursday'),
+        ('Friday','Friday'),
+        ('Saturday','Saturday'),
+        ('Sunday','Sunday'),
+    ]
+
+    day_of_week = models.CharField(max_length=200, choices=days_choices, default='Monday')
 
 
 
@@ -938,8 +1023,17 @@ class Specimens_run_brti_weekly(models.Model):
 
 
 class Specimens_received_brti_weekly(models.Model):
-    date_of_week= models.IntegerField()
+    days_choices=[
+        ('Monday','Monday'),
+        ('Tuesday','Tuesday'),
+        ('Wednesday','Wednesday'),
+        ('Thursday','Thursday'),
+        ('Friday','Friday'),
+        ('Saturday','Saturday'),
+        ('Sunday','Sunday'),
+    ]
 
+    day_of_week = models.CharField(max_length=200, choices=days_choices, default='Monday')
     samples_carried_over_previous_weeks_never_tested_plasma = models.IntegerField()
     samples_carried_over_previous_weeks_never_tested_dbs = models.IntegerField()
 
@@ -1028,7 +1122,17 @@ class Specimens_received_brti_weekly(models.Model):
 
 
 class Reasons_for_failure_brti_weekly(models.Model):
-    day_of_week = models.CharField(max_length=20,null=False)
+    days_choices=[
+        ('Monday','Monday'),
+        ('Tuesday','Tuesday'),
+        ('Wednesday','Wednesday'),
+        ('Thursday','Thursday'),
+        ('Friday','Friday'),
+        ('Saturday','Saturday'),
+        ('Sunday','Sunday'),
+    ]
+
+    day_of_week = models.CharField(max_length=200, choices=days_choices, default='Monday')
 #roche
     roche_plasma_number_of_failed_tests_due_to_sample_quality_issues = models.IntegerField()
     roche_plasma_number_of_failed_tests_due_to_reagent_quality_issues = models.IntegerField()
@@ -1117,7 +1221,17 @@ class Reasons_for_failure_brti_weekly(models.Model):
 
 
 class Electric_outage_brti_weekly(models.Model):
-    day_of_week = models.CharField(max_length=20,null=False)
+    days_choices=[
+        ('Monday','Monday'),
+        ('Tuesday','Tuesday'),
+        ('Wednesday','Wednesday'),
+        ('Thursday','Thursday'),
+        ('Friday','Friday'),
+        ('Saturday','Saturday'),
+        ('Sunday','Sunday'),
+    ]
+
+    day_of_week = models.CharField(max_length=200, choices=days_choices, default='Monday')
 
 
     number_of_hours_with_no_electricity_per_day	= models.IntegerField()

@@ -29,6 +29,8 @@
 <p></p>
 <br><br>
 
+<form action="" method="post" onsubmit="return alert('suck seed')" >
+	 {% csrf_token %}
 <table class="table table-striped table-dark table-sm">
   <tr>
     <td><b>Reporting Week:</b></td>
@@ -47,6 +49,8 @@
     <td><input type="text" name=""></td>
   </tr>
 </table>
+
+
 
 
   <p></p>
@@ -140,6 +144,11 @@
 <br><br>
 <br>
 </table>
+
+<input  type="submit" class="button5" >
+<a  href="#" class="button5" >Next</a>
+
+</form>
 </body>
 </html>
 {% endblock %}

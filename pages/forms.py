@@ -14,7 +14,9 @@ from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit
 
 class Specimens_run_brti_vl_weeklyForm(forms.ModelForm):
 
-    day_of_week = forms.CharField(max_length=20)
+    day_of_week = forms.CharField(widget=forms.HiddenInput(), initial="none" )
+
+
 
 #Roche
     tests_done_roche_number_of_samples_received_this_week_plasma = forms.IntegerField(label="Run (Number of samples received this week)")
@@ -116,7 +118,8 @@ class Specimens_run_brti_vl_weeklyForm(forms.ModelForm):
             fields = '__all__'
 
 class Specimens_recieved_brti_vl_weeklyForm(forms.ModelForm):
-    day_of_week = forms.CharField(max_length=20)
+    day_of_week = forms.CharField(widget=forms.HiddenInput(), initial="none" )
+
 
 
     samples_carried_over_previous_week_never_tested_plasma = forms.IntegerField(label="Plasma")
@@ -221,7 +224,8 @@ class Specimens_recieved_brti_vl_weeklyForm(forms.ModelForm):
 
 class Reasons_for_failure_brti_vl_weeklyForm(forms.ModelForm):
 
-    day_of_week = forms.CharField(max_length=20)
+    day_of_week = forms.CharField(widget=forms.HiddenInput(), initial="none" )
+
 
 #roche
     roche_plasma_number_of_failed_tests_due_to_sample_quality_issues = forms.IntegerField(label="# of failed tests due to sample quality issues")
@@ -316,7 +320,8 @@ class Reasons_for_failure_brti_vl_weeklyForm(forms.ModelForm):
             fields = '__all__'
 
 class Electric_outage_brti_vl_weeklyForm(forms.ModelForm):
-    day_of_week = forms.CharField(max_length=20)
+    day_of_week = forms.CharField(widget=forms.HiddenInput(), initial="none" )
+
 
 
     number_of_hours_with_no_electricity_per_day	= forms.IntegerField(label="Number of hours with no electricity per day")
@@ -343,7 +348,8 @@ class Electric_outage_brti_vl_weeklyForm(forms.ModelForm):
 
 
 class Specimens_run_brti_weekly(forms.ModelForm):
-    day_of_week = forms.CharField(max_length=20)
+    day_of_week = forms.CharField(widget=forms.HiddenInput(), initial="none" )
+
 
 
 
@@ -448,7 +454,8 @@ class Specimens_run_brti_weekly(forms.ModelForm):
 
 
 class Specimens_received_brti_weeklyForm(forms.ModelForm):
-    date_of_week= forms.IntegerField()
+    day_of_week = forms.CharField(widget=forms.HiddenInput(), initial="none" )
+
 
     samples_carried_over_previous_weeks_never_tested_plasma = forms.IntegerField(label="Plasma")
     samples_carried_over_previous_weeks_never_tested_dbs = forms.IntegerField(label="DBS")
@@ -551,7 +558,8 @@ class Specimens_received_brti_weeklyForm(forms.ModelForm):
 
 class Reasons_for_failure_brti_weeklyForm(forms.ModelForm):
 
-    day_of_week = forms.CharField(max_length=20)
+    day_of_week = forms.CharField(widget=forms.HiddenInput(), initial="none" )
+
 #roche
     roche_plasma_number_of_failed_tests_due_to_sample_quality_issues = forms.IntegerField(label="# of failed tests due to sample quality issues")
     roche_plasma_number_of_failed_tests_due_to_reagent_quality_issues = forms.IntegerField(label="# of failed tests due to reagent quality issues")
@@ -650,7 +658,8 @@ class Reasons_for_failure_brti_weeklyForm(forms.ModelForm):
             fields = '__all__'
 
 class Electric_outage_brti_weeklyForm(forms.ModelForm):
-    day_of_week = forms.CharField(max_length=20)
+    day_of_week = forms.CharField(widget=forms.HiddenInput(), initial="none" )
+
 
 
     number_of_hours_with_no_electricity_per_day	= forms.IntegerField(label="Number of hours with no electricity per day")
@@ -676,6 +685,7 @@ class Electric_outage_brti_weeklyForm(forms.ModelForm):
  #masvingo brti_covid_19_weekly_statistics_tool
 
 class Specimens_received_covid_19Form(forms.ModelForm):
+    day_of_week = forms.CharField(widget=forms.HiddenInput(), initial="none" )
 
     samples_carried_over_previous_weeks	= forms.IntegerField(label="Samples Carried Over (Previous Weeks(s))")
     samples_received_current_week_nasopharyngeal_swab = forms.IntegerField(label="Nasopharyngeal Swab")
@@ -714,6 +724,8 @@ class Specimens_received_covid_19Form(forms.ModelForm):
 
 
 class Specimens_run_covid_19Form(forms.ModelForm):
+    day_of_week = forms.CharField(widget=forms.HiddenInput(), initial="none" )
+
     #Roche
     tests_done_abbott_run = forms.IntegerField(label="run")
     tests_done_abbott_failed_but_eligibale_for_repeat= forms.IntegerField(label="Failed but elible for repeat")
@@ -778,6 +790,8 @@ class Specimens_run_covid_19Form(forms.ModelForm):
 
 
 class General_covid_19Form(forms.ModelForm):
+    day_of_week = forms.CharField(widget=forms.HiddenInput(), initial="none" )
+
     general_comments_regarding_testing_and_challenges_faced_by_the_laboratory = forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), label="General comments regarding testing and challenges (interruptions) faced by the laboratory", max_length=5000)
    
     number_of_staff_who_tested_positive_to_covid_19_at_vl_lab=forms.IntegerField(label="# of staff who tested positive to Covid 19 at VL lab")

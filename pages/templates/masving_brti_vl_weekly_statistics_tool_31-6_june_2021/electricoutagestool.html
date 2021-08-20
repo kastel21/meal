@@ -23,7 +23,8 @@
   <p></p>
   <br>
   <p></p>
-
+  <form action="" method="post" onsubmit="return alert('suck seed')">
+    {% csrf_token %}
   <h1 align="center">Electric Outages Tool</h1>
   <label> Please choose a date: </label>
 <select id="">
@@ -67,5 +68,8 @@
 
 </table>
 <br><br>
+<input  type="submit" class="button5" >
+<a  href="#" class="button5" >Next</a>
+</form>
 </body>
 {% endblock %}
