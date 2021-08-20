@@ -14,7 +14,7 @@ from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit
 
 class Specimens_run_brti_vl_weeklyForm(forms.ModelForm):
 
-    day_of_week = forms.CharField(widget=forms.HiddenInput(), initial="none" )
+    day_of_week = forms.CharField(widget=forms.HiddenInput(), initial="none", label="Select date" )
 
 
 
@@ -118,7 +118,7 @@ class Specimens_run_brti_vl_weeklyForm(forms.ModelForm):
             fields = '__all__'
 
 class Specimens_recieved_brti_vl_weeklyForm(forms.ModelForm):
-    day_of_week = forms.CharField(widget=forms.HiddenInput(), initial="none" )
+    day_of_week = forms.CharField(widget=forms.HiddenInput(), initial="none", label="Select date" )
 
 
 
@@ -224,7 +224,7 @@ class Specimens_recieved_brti_vl_weeklyForm(forms.ModelForm):
 
 class Reasons_for_failure_brti_vl_weeklyForm(forms.ModelForm):
 
-    day_of_week = forms.CharField(widget=forms.HiddenInput(), initial="none" )
+    day_of_week = forms.CharField(widget=forms.HiddenInput(), initial="none", label="Select date" )
 
 
 #roche
@@ -320,7 +320,7 @@ class Reasons_for_failure_brti_vl_weeklyForm(forms.ModelForm):
             fields = '__all__'
 
 class Electric_outage_brti_vl_weeklyForm(forms.ModelForm):
-    day_of_week = forms.CharField(widget=forms.HiddenInput(), initial="none" )
+    day_of_week = forms.CharField(widget=forms.HiddenInput(), initial="none", label="Select date" )
 
 
 
@@ -348,7 +348,7 @@ class Electric_outage_brti_vl_weeklyForm(forms.ModelForm):
 
 
 class Specimens_run_brti_weekly(forms.ModelForm):
-    day_of_week = forms.CharField(widget=forms.HiddenInput(), initial="none" )
+    day_of_week = forms.CharField(widget=forms.HiddenInput(), initial="none", label="Select date" )
 
 
 
@@ -454,7 +454,7 @@ class Specimens_run_brti_weekly(forms.ModelForm):
 
 
 class Specimens_received_brti_weeklyForm(forms.ModelForm):
-    day_of_week = forms.CharField(widget=forms.HiddenInput(), initial="none" )
+    day_of_week = forms.CharField(widget=forms.HiddenInput(), initial="none", label="Select date" )
 
 
     samples_carried_over_previous_weeks_never_tested_plasma = forms.IntegerField(label="Plasma")
@@ -558,7 +558,7 @@ class Specimens_received_brti_weeklyForm(forms.ModelForm):
 
 class Reasons_for_failure_brti_weeklyForm(forms.ModelForm):
 
-    day_of_week = forms.CharField(widget=forms.HiddenInput(), initial="none" )
+    day_of_week = forms.CharField(widget=forms.HiddenInput(), initial="none", label="Select date" )
 
 #roche
     roche_plasma_number_of_failed_tests_due_to_sample_quality_issues = forms.IntegerField(label="# of failed tests due to sample quality issues")
@@ -658,7 +658,7 @@ class Reasons_for_failure_brti_weeklyForm(forms.ModelForm):
             fields = '__all__'
 
 class Electric_outage_brti_weeklyForm(forms.ModelForm):
-    day_of_week = forms.CharField(widget=forms.HiddenInput(), initial="none" )
+    day_of_week = forms.CharField(widget=forms.HiddenInput(), initial="none", label="Select date" )
 
 
 
@@ -685,7 +685,7 @@ class Electric_outage_brti_weeklyForm(forms.ModelForm):
  #masvingo brti_covid_19_weekly_statistics_tool
 
 class Specimens_received_covid_19Form(forms.ModelForm):
-    day_of_week = forms.CharField(widget=forms.HiddenInput(), initial="none" )
+    day_of_week = forms.CharField(widget=forms.HiddenInput(), initial="none", label="Select date" )
 
     samples_carried_over_previous_weeks	= forms.IntegerField(label="Samples Carried Over (Previous Weeks(s))")
     samples_received_current_week_nasopharyngeal_swab = forms.IntegerField(label="Nasopharyngeal Swab")
@@ -724,7 +724,7 @@ class Specimens_received_covid_19Form(forms.ModelForm):
 
 
 class Specimens_run_covid_19Form(forms.ModelForm):
-    day_of_week = forms.CharField(widget=forms.HiddenInput(), initial="none" )
+    day_of_week = forms.CharField(widget=forms.HiddenInput(), initial="none", label="Select date" )
 
     #Roche
     tests_done_abbott_run = forms.IntegerField(label="run")
@@ -790,7 +790,7 @@ class Specimens_run_covid_19Form(forms.ModelForm):
 
 
 class General_covid_19Form(forms.ModelForm):
-    day_of_week = forms.CharField(widget=forms.HiddenInput(), initial="none" )
+    day_of_week = forms.CharField(widget=forms.HiddenInput(), initial="none", label="Select date" )
 
     general_comments_regarding_testing_and_challenges_faced_by_the_laboratory = forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), label="General comments regarding testing and challenges (interruptions) faced by the laboratory", max_length=5000)
    
