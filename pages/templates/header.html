@@ -33,6 +33,7 @@
   color: black;
 }
 
+
 .header a.active {
   background-color: dodgerblue;
   color: white;
@@ -52,10 +53,10 @@
 
         <div class="header">
             <div class="header-right">
-              <a href="{% url 'profilecovid19to' %}">Specimens Run</a>
-              <a href="{% url 'profilecovid' %}">Specimens Received</a>
-              <a href="{% url 'profilecovid19' %}">Machine Downtime & Reagent stock out tool</a>
-              <a href="{% url 'profilecovid19t' %}">General</a>
+              <a href="{% url 'profilecovid19to' %}" class="button2" style="margin: 6px;">Specimens Run</a>
+              <a href="{% url 'profilecovid' %}" class="button2" style="margin: 6px;">Specimens Received</a>
+              <a href="{% url 'profilecovid19' %}" class="button2" style="margin: 6px;">Machine Downtime & Reagent stock out tool</a>
+              <a href="{% url 'profilecovid19t' %}" class="button2" style="margin: 6px;">General</a>
             </div>
           </div>
     </header>

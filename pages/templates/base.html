@@ -35,7 +35,7 @@
 
                 <!-- Brand -->
                 <a class="navbar-brand waves-effect" href="/">
-                    <strong class="blue-text"> Meal System</strong>
+                    <strong class="blue-text"> Hydra System</strong>
                 </a>
 
                 <!-- Collapse -->
@@ -51,9 +51,9 @@
                     <ul class="navbar-nav nav-flex-icons">
                         <li class="nav-item">
                             <a href="{% if request.user.is_superuser %}#{% else %}#{% endif %}" class="nav-link border border-light grey-text rounded waves-effect">
-                                <i class="fa fa-cogs mr-3"></i>{{ current_semester }} Year
+                                <i class="fa fa-calendar mr-3"></i>{% now "jS F Y H:i" %} 
                             </a>
-                        </li>
+                        </li> &nbsp; &nbsp; &nbsp;
                         <!-- <li class="nav-item">
                             <a href="{% if request.user.is_superuser %}{% url 'manage_session' %}{% else %}#{% endif %}" class="nav-link border border-light green-text rounded waves-effect">
                                 <i class="fa fa-cogs mr-3"></i>{{ current_session }}
@@ -63,7 +63,7 @@
                             <a href="#" class="nav-link border border-light rounded waves-effect blue-text">
                                 <i  class="fa fa-user mr-3"></i>{{ user|capfirst }}
                             </a>
-                        </li>
+                        </li>&nbsp; &nbsp; &nbsp;
 
                          <li class="nav-item">
                             <a href="/accounts/logout/" class="nav-link border border-light rounded waves-effect red-text">
@@ -88,7 +88,7 @@
         }
         </style>
         <div class="sidebar-fixed position-fixed">
-                <p style="margin-left: 30px;" id="icon" class="logo"> Meal </p> 
+                <p style="margin-left: 30px;" id="icon" class="logo"> BRTI </p> 
                 {% if request.user.is_lecturer %}
                 <p><i class="fa fa-hand-o-right" aria-hidden="true"></i>
                     <span class="teal-text text-center"> Course Lecturer</span></p>
@@ -96,8 +96,8 @@
                 <p><i class="fa fa-hand-o-right" aria-hidden="true"></i>
                     <span class="teal-text text-center"> Student</span></p>
                 {% else %}
-                <p><i class="fa fa-hand-o-right" aria-hidden="true"></i>
-                    <span class="teal-text text-center"> System Admin</span></p>
+                <!-- <p><i class="fa fa-hand-o-right" aria-hidden="true"></i>
+                    <span class="teal-text text-center"> System Admin</span></p> -->
                 {% endif %}
             <div class="dashboard">
             {% block side_bar %}

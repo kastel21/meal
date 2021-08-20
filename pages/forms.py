@@ -777,12 +777,12 @@ class Specimens_run_covid_19Form(forms.ModelForm):
             fields = '__all__'
 
 
-class General_info_covid_19Form(forms.ModelForm):
+class General_covid_19Form(forms.ModelForm):
     general_comments_regarding_testing_and_challenges_faced_by_the_laboratory = forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), label="General comments regarding testing and challenges (interruptions) faced by the laboratory", max_length=5000)
    
     number_of_staff_who_tested_positive_to_covid_19_at_vl_lab=forms.IntegerField(label="# of staff who tested positive to Covid 19 at VL lab")
     number_of_staff_who_have_been_vaccinated	= forms.IntegerField( label="# of staff who have been vaccinated")
-    number_Of_Staff_who_tested_positive_to_COVID_19_at_Hubs=forms.IntegerField(label="# Of Staff  who tested positive to COVID 19 at Hubs")
+    number_Of_Staff_who_tested_positive_to_covid_19_at_hubs=forms.IntegerField(label="# Of Staff  who tested positive to COVID 19 at Hubs")
     Comments =forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), label="Comment (Please specify the occupation of the person  who has tested postive.Riders are also included )", max_length=5000)
    
     Request_to_brti_from_the_laboratory	= forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), label="Request to BRTI from the Laboratory", max_length=5000)
@@ -797,7 +797,7 @@ class General_info_covid_19Form(forms.ModelForm):
         )
         
     class Meta:
-            model = General_info_covid_19
+            model = General_covid_19
             fields = '__all__'
 
  # ---------------------------------------------------------------------------------------------------------------------------------- 

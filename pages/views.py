@@ -21,7 +21,7 @@ def profile(request):
         form = Specimens_run_brti_vl_weeklyForm(request.POST)
         if form.is_valid():
             form.save()
-            return render(request, 'success.html')
+            ##return render(request, 'success.html')
     form = Specimens_run_brti_vl_weeklyForm()
     context = {'form': form}
 
@@ -32,9 +32,9 @@ def profilecovid19to(request):
         form = Specimens_run_brti_vl_weeklyForm(request.POST)
         if form.is_valid():
             form.save()
-            return render(request, 'success.html')
-        form = Specimens_run_brti_vl_weeklyForm()
-        context = {'form': form}
+            #return render(request, 'success.html')
+    form = Specimens_run_brti_vl_weeklyForm()
+    context = {'form': form}
     return render(request, 'brti_covid_19_weekly_statistics_tool/Specimens_Run.html', context)
 
 def profilecovid(request):
@@ -42,7 +42,7 @@ def profilecovid(request):
         form = Specimens_run_brti_vl_weeklyForm(request.POST)
         if form.is_valid():
             form.save()
-            return render(request, 'success.html')
+            #return render(request, 'success.html')
     form = Specimens_run_brti_vl_weeklyForm()
     context = {'form': form}
     return render(request, 'brti_covid_19_weekly_statistics_tool/Specimens_Received.html', context)
@@ -52,7 +52,7 @@ def profilecovid19(request):
         form = Specimens_run_brti_vl_weeklyForm(request.POST)
         if form.is_valid():
             form.save()
-            return render(request, 'success.html')
+            #return render(request, 'success.html')
     form = Specimens_run_brti_vl_weeklyForm()
     context = {'form': form}
     return render(request, 'brti_covid_19_weekly_statistics_tool/Machine_Downtime_&_Reagent_stock_out_tool.html', context)
@@ -62,7 +62,7 @@ def profilecovid19t(request):
         form = Specimens_run_brti_vl_weeklyForm(request.POST)
         if form.is_valid():
             form.save()
-            return render(request, 'success.html')
+            #return render(request, 'success.html')
     form = Specimens_run_brti_vl_weeklyForm()
     context = {'form': form}
     return render(request, 'brti_covid_19_weekly_statistics_tool/general.html', context)
@@ -72,7 +72,7 @@ def vleid(request):
         form = Specimens_run_brti_vl_weeklyForm(request.POST)
         if form.is_valid():
             form.save()
-            return render(request, 'success.html')
+            #return render(request, 'success.html')
     form = Specimens_run_brti_vl_weeklyForm()
     context = {'form': form}
     return render(request, 'brti_vl_eid_weekly_statistics_tool/specimens_run.html', context)
@@ -82,7 +82,7 @@ def vleid2(request):
         form = Specimens_run_brti_vl_weeklyForm(request.POST)
         if form.is_valid():
             form.save()
-            return render(request, 'success.html')
+            #return render(request, 'success.html')
     form = Specimens_run_brti_vl_weeklyForm()
     context = {'form': form}
     return render(request, 'brti_vl_eid_weekly_statistics_tool/specimens_received.html', context)
@@ -92,7 +92,7 @@ def vleid3(request):
         form = Specimens_run_brti_vl_weeklyForm(request.POST)
         if form.is_valid():
             form.save()
-            return render(request, 'success.html')
+            #return render(request, 'success.html')
     form = Specimens_run_brti_vl_weeklyForm()
     context = {'form': form}
     return render(request, 'brti_vl_eid_weekly_statistics_tool/reasons_for_failure.html', context)
@@ -102,7 +102,7 @@ def labcovidweekly(request):
         form = Specimens_run_brti_vl_weeklyForm(request.POST)
         if form.is_valid():
             form.save()
-            return render(request, 'success.html')
+            #return render(request, 'success.html')
     form = Specimens_run_brti_vl_weeklyForm()
     context = {'form': form}
     return render(request, 'masving_brti_vl_weekly_statistics_tool_31-6_june_2021/top.html', context)
@@ -112,7 +112,7 @@ def labcovidweekly2(request):
         form = Specimens_run_brti_vl_weeklyForm(request.POST)
         if form.is_valid():
             form.save()
-            return render(request, 'success.html')
+            #return render(request, 'success.html')
     form = Specimens_run_brti_vl_weeklyForm()
     context = {'form': form}
     return render(request, 'masving_brti_vl_weekly_statistics_tool_31-6_june_2021/Specimensrun.html', context)
@@ -122,7 +122,7 @@ def labcovidweekly3(request):
         form = Specimens_recieved_brti_vl_weeklyForm(request.POST)
         if form.is_valid():
             form.save()
-            return render(request, 'success.html')
+            #return render(request, 'success.html')
     form = Specimens_recieved_brti_vl_weeklyForm()
     context = {'form': form}
     return render(request, 'masving_brti_vl_weekly_statistics_tool_31-6_june_2021/specimenreceived.html', context)
@@ -132,7 +132,7 @@ def labcovidweekly4(request):
         form = Reasons_for_failure_brti_vl_weeklyForm(request.POST)
         if form.is_valid():
             form.save()
-            return render(request, 'success.html')
+            #return render(request, 'success.html')
     form = Reasons_for_failure_brti_vl_weeklyForm()
     context = {'form': form}
     return render(request, 'masving_brti_vl_weekly_statistics_tool_31-6_june_2021/Reasonsforfailures.html', context)
@@ -142,7 +142,7 @@ def labcovidweekly5(request):
         form = Electric_outage_brti_vl_weeklyForm(request.POST)
         if form.is_valid():
             form.save()
-            return render(request, 'success.html')
+            #return render(request, 'success.html')
     form = Electric_outage_brti_vl_weeklyForm()
     context = {'form': form}
     return render(request, 'masving_brti_vl_weekly_statistics_tool_31-6_june_2021/electricoutagestool.html', context)
@@ -152,7 +152,7 @@ def labeidweekly(request):
         form = Specimens_run_brti_vl_weeklyForm(request.POST)
         if form.is_valid():
             form.save()
-            return render(request, 'success.html')
+            #return render(request, 'success.html')
     form = Specimens_run_brti_vl_weeklyForm()
     context = {'form': form}
     return render(request, 'masvingo_brti_covid_19_weekly_statistics_tool_31-6_June_2021/top.html', context)
@@ -163,7 +163,7 @@ def labeidweekly2(request):
         form = Specimens_run_covid_19Form(request.POST)
         if form.is_valid():
             form.save()
-            return render(request, 'success.html')
+            #return render(request, 'success.html')
     form = Specimens_run_covid_19Form()
     context = {'form': form}
     return render(request, 'masvingo_brti_covid_19_weekly_statistics_tool_31-6_June_2021/Specimens_Run.html', context)
@@ -173,18 +173,18 @@ def labeidweekly3(request):
         form = Specimens_received_covid_19Form(request.POST)
         if form.is_valid():
             form.save()
-            return render(request, 'success.html')
+            #return render(request, 'success.html')
     form = Specimens_received_covid_19Form()
     context = {'form': form}
     return render(request, 'masvingo_brti_covid_19_weekly_statistics_tool_31-6_June_2021/Specimens_Received.html', context)
 
 def labeidweekly4(request):
     if request.method == 'POST':
-        form = General_info_covid_19Form(request.POST)
+        form = General_covid_19Form(request.POST)
         if form.is_valid():
             form.save()
-            return render(request, 'success.html')
-    form = General_info_covid_19Form()
+            #return render(request, 'success.html')
+    form = General_covid_19Form()
     context = {'form': form}
     return render(request, 'masvingo_brti_covid_19_weekly_statistics_tool_31-6_June_2021/general.html', context)
 
@@ -193,7 +193,7 @@ def labbrtiweekly(request):
         form = Specimens_run_brti_vl_weeklyForm(request.POST)
         if form.is_valid():
             form.save()
-            return render(request, 'success.html')
+            #return render(request, 'success.html')
     form = Specimens_run_brti_vl_weeklyForm()
     context = {'form': form}
     return render(request, 'masvingo_brti_weekly_statistics_tool_june_2021/top.html', context)
@@ -203,7 +203,7 @@ def labbrtiweekly2(request):
         form = Specimens_run_brti_vl_weeklyForm(request.POST)
         if form.is_valid():
             form.save()
-            return render(request, 'success.html')
+            #return render(request, 'success.html')
     form = Specimens_run_brti_vl_weeklyForm()
     context = {'form': form}
     return render(request, 'masvingo_brti_weekly_statistics_tool_june_2021/Specimensrun.html', context)
@@ -213,7 +213,7 @@ def labbrtiweekly3(request):
         form = Specimens_received_brti_weeklyForm(request.POST)
         if form.is_valid():
             form.save()
-            return render(request, 'success.html')
+            #return render(request, 'success.html')
     form = Specimens_received_brti_weeklyForm()
     context = {'form': form}
     return render(request, 'masvingo_brti_weekly_statistics_tool_june_2021/specimenreceived.html', context)
@@ -223,7 +223,7 @@ def labbrtiweekly4(request):
         form = Reasons_for_failure_brti_weeklyForm(request.POST)
         if form.is_valid():
             form.save()
-            return render(request, 'success.html')
+            #return render(request, 'success.html')
     form = Reasons_for_failure_brti_weeklyForm()
     context = {'form': form}
     return render(request, 'masvingo_brti_weekly_statistics_tool_june_2021/Reasonsforfailures.html', context)
@@ -233,7 +233,7 @@ def labbrtiweekly5(request):
         form = Electric_outage_brti_weeklyForm(request.POST)
         if form.is_valid():
             form.save()
-            return render(request, 'success.html')
+            #return render(request, 'success.html')
     form = Electric_outage_brti_weeklyForm()
     context = {'form': form}
     return render(request, 'masvingo_brti_weekly_statistics_tool_june_2021/electricoutagestool.html', context)
