@@ -25,9 +25,11 @@
   <p></p>
   <form action="" method="post" onsubmit="return alert('suck seed')">
     {% csrf_token %}
-    
+
   <h1 align="center">Electric Outages Tool</h1>
-  <label> Please choose a date: </label>
+<!--   <label> Please choose a date: </label>
+ -->
+  {{form.day_of_week | as_crispy_field}}
 <!-- <select id="">
   <option value="Monday">Monday</option>
   <option value="Tuesday">Tuesday</option>

@@ -329,6 +329,7 @@ class Top_7_brti_vl_weekly(models.Model):
 
 
 class Specimens_run_brti_vl_weekly(models.Model):
+
     days_choices=[
         ('Monday','Monday'),
         ('Tuesday','Tuesday'),
@@ -432,17 +433,27 @@ class Specimens_run_brti_vl_weekly(models.Model):
 
 
 class Electric_outage_brti_vl_weekly(models.Model):
+    mon = 'Monday'
+    tues = 'Monday'
+    wed = 'Monday'
+    thur = 'Monday'
+    fri = 'Monday'
+    sat = 'Monday'
+    sun = 'Monday'
+    # Investigations_on_going = 'Investigations on going'
+    # Investigations_Complete = 'Investigations Complete'
+
     days_choices=[
-        ('Monday','Monday'),
-        ('Tuesday','Tuesday'),
-        ('Wednesday','Wednesday'),
-        ('Thursday','Thursday'),
-        ('Friday','Friday'),
-        ('Saturday','Saturday'),
-        ('Sunday','Sunday'),
+        (mon,'Monday'),
+        (tues,'Tuesday'),
+        (wed,'Wednesday'),
+        (thur,'Thursday'),
+        (fri,'Friday'),
+        (sat,'Saturday'),
+        (sun,'Sunday'),
     ]
 
-    day_of_week = models.CharField(max_length=200, choices=days_choices, default='Monday')
+    day_of_week = models.CharField(max_length=200, choices=days_choices, default='mon')
 
 
     number_of_hours_with_no_electricity_per_day	= models.IntegerField()
