@@ -166,6 +166,157 @@ class Specimens_recieved_brti_vl_weekly(models.Model):
     #     return i
 
 
+class Top_brti_vl_weekly(models.Model):
+    reporting_week = models.CharField(max_length=20,null=False)
+    month = models.CharField(max_length=20,null=False)
+    laboratory = models.CharField(max_length=20,null=False)
+
+class Top_age_sex_dissagregation_of_all_specimens_received_brti_vl_weekly(models.Model):
+    age_male_less_than_15 = models.CharField(max_length=20,null=False)
+    age_female_non_pbfw_less_than_15 = models.CharField(max_length=20,null=False)
+    age_female_pbfw_less_than_15 = models.CharField(max_length=20,null=False)
+    age_unknown_less_than_15 = models.CharField(max_length=20,null=False)
+    age_total_less_than_15 = models.CharField(max_length=20,null=False)
+
+
+    age_male_15_to_19 = models.CharField(max_length=20,null=False)
+    age_female_non_pbfw_15_to_19 = models.CharField(max_length=20,null=False)
+    age_female_pbfw_15_to_19 = models.CharField(max_length=20,null=False)
+    age_unknown_15_to_19 = models.CharField(max_length=20,null=False)
+    age_total_15_to_19 = models.CharField(max_length=20,null=False)
+
+    age_male_20_to_24 = models.CharField(max_length=20,null=False)
+    age_female_non_pbfw_20_to_24 = models.CharField(max_length=20,null=False)
+    age_female_pbfw_20_to_24 = models.CharField(max_length=20,null=False)
+    age_unknown_20_to_24 = models.CharField(max_length=20,null=False)
+    age_total_20_to_24 = models.CharField(max_length=20,null=False)
+
+
+    age_male_25_to_49 = models.CharField(max_length=20,null=False)
+    age_female_non_pbfw_25_to_49 = models.CharField(max_length=20,null=False)
+    age_female_pbfw_25_to_49 = models.CharField(max_length=20,null=False)
+    age_unknown_25_to_49 = models.CharField(max_length=20,null=False)
+    age_total_25_to_49 = models.CharField(max_length=20,null=False)
+
+    age_male_50_plus = models.CharField(max_length=20,null=False)
+    age_female_non_pbfw_50_plus = models.CharField(max_length=20,null=False)
+    age_female_pbfw_50_plus = models.CharField(max_length=20,null=False)
+    age_unknown_50_plus = models.CharField(max_length=20,null=False)
+    age_total_50_plus = models.CharField(max_length=20,null=False)
+
+
+    age_male_unknown = models.CharField(max_length=20,null=False)
+    age_female_non_pbfw_unknown = models.CharField(max_length=20,null=False)
+    age_female_pbfw_unknown = models.CharField(max_length=20,null=False)
+    age_unknown_unknown = models.CharField(max_length=20,null=False)
+    age_total_unknown = models.CharField(max_length=20,null=False)
+
+
+    age_male_totals = models.CharField(max_length=20,null=False)
+    age_female_non_pbfw_totals = models.CharField(max_length=20,null=False)
+    age_female_pbfw_totals = models.CharField(max_length=20,null=False)
+    age_unknown_totals= models.CharField(max_length=20,null=False)
+    age_total_totals = models.CharField(max_length=20,null=False)
+
+
+class Top_3_brti_vl_weekly(models.Model):
+    tat_median_collection_to_pickup_plasma_hrs = models.CharField(max_length=20,null=False)
+    tat_median_specimen_hub_to_vl_lab_plasma_days = models.CharField(max_length=20,null=False)
+    tat_median_intra_lab_plasma_days = models.CharField(max_length=20,null=False)
+    tat_median_results_vl_lab_to_hub_plasma_days = models.CharField(max_length=20,null=False)
+    tat_median_results_hub_to_clinic_plasma_days = models.CharField(max_length=20,null=False)
+
+    tat_median_collection_to_pickup_dbs_hrs = models.CharField(max_length=20,null=False)
+    tat_median_specimen_hub_to_vl_lab_dbs_days = models.CharField(max_length=20,null=False)
+    tat_median_intra_lab_dbs_days = models.CharField(max_length=20,null=False)
+    tat_median_results_vl_lab_to_hub_dbs_days = models.CharField(max_length=20,null=False)
+    tat_median_results_hub_to_clinic_dbs_days = models.CharField(max_length=20,null=False)
+
+
+class Top_4_brti_vl_weekly(models.Model):
+    machine_number_of_machine_breakdowns_roche = models.CharField(max_length=20,null=False)
+    machine_number_of_machine_breakdowns_abbott = models.CharField(max_length=20,null=False)
+    machine_number_of_machine_breakdowns_hologic_panther = models.CharField(max_length=20,null=False)
+    machine_number_of_machine_breakdowns_bmx = models.CharField(max_length=20,null=False)
+
+    machine_reasons_roche = models.CharField(max_length=20,null=False)
+    machine_reasons_abbott = models.CharField(max_length=20,null=False)
+    machine_reasons_hologic_panther = models.CharField(max_length=20,null=False)
+    machine_reasons_bmx = models.CharField(max_length=20,null=False)
+
+
+
+class Top_5_brti_vl_weekly(models.Model):
+    machine_downtime_days_roche = models.CharField(max_length=20,null=False)
+    machine_reasons_roche = models.CharField(max_length=20,null=False)
+    machine_time_taken_for_downtime_to_be_resolved_roche = models.CharField(max_length=20,null=False)
+
+    machine_downtime_days_abbott = models.CharField(max_length=20,null=False)
+    machine_reasons_abbott = models.CharField(max_length=20,null=False)
+    machine_time_taken_for_downtime_to_be_resolved_abbott = models.CharField(max_length=20,null=False)
+
+    machine_downtime_days_hologic_panther = models.CharField(max_length=20,null=False)
+    machine_reasons_hologic_panther = models.CharField(max_length=20,null=False)
+    machine_time_taken_for_downtime_to_be_resolved_hologic_panther = models.CharField(max_length=20,null=False)
+
+    machine_downtime_days_bmx = models.CharField(max_length=20,null=False)
+    machine_reasons_bmx = models.CharField(max_length=20,null=False)
+    machine_time_taken_for_downtime_to_be_resolved_bmx = models.CharField(max_length=20,null=False)
+
+class Top_6_brti_vl_weekly(models.Model):
+    machine_stockout_days_roche = models.CharField(max_length=20,null=False)
+    machine_reasons_roche = models.CharField(max_length=20,null=False)
+
+    machine_stockout_days_abbott = models.CharField(max_length=20,null=False)
+    machine_reasons_abbott = models.CharField(max_length=20,null=False)
+
+    machine_stockout_days_hologic_panther = models.CharField(max_length=20,null=False)
+    machine_reasons_hologic_panther = models.CharField(max_length=20,null=False)
+
+
+    machine_stockout_days_bmx = models.CharField(max_length=20,null=False)
+    machine_reasons_bmx = models.CharField(max_length=20,null=False)
+
+
+class Top_7_brti_vl_weekly(models.Model):
+    reagent_tests_loaned_out_to_other_labs_reagent_loaned_to_which_lab_roche = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_reagent_received_on_loan_from_other_labs_roche = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_reagent_received_on_loan_from_which_labs_roche = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_stock_on_hand_roche = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_tests_available_roche = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_months_of_stock_roche = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_tests_expired_this_month_before_use_roche = models.CharField(max_length=20,null=False)
+
+    reagent_tests_loaned_out_to_other_labs_reagent_loaned_to_which_lab_abbott = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_reagent_received_on_loan_from_other_labs_abbott = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_reagent_received_on_loan_from_which_labs_abbott = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_stock_on_hand_abbott = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_tests_available_abbott = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_months_of_stock_abbott = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_tests_expired_this_month_before_use_abbott = models.CharField(max_length=20,null=False)
+
+    reagent_tests_loaned_out_to_other_labs_reagent_loaned_to_which_lab_hologic_panther = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_reagent_received_on_loan_from_other_labs_hologic_panther = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_reagent_received_on_loan_from_which_labs_hologic_panther = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_stock_on_hand_hologic_panther = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_tests_available_hologic_panther = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_months_of_stock_hologic_panther = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_tests_expired_this_month_before_use_hologic_panther = models.CharField(max_length=20,null=False)
+
+    reagent_tests_loaned_out_to_other_labs_reagent_loaned_to_which_lab_bmx = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_reagent_received_on_loan_from_other_labs_bmx = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_reagent_received_on_loan_from_which_labs_bmx = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_stock_on_hand_bmx = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_tests_available_bmx = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_months_of_stock_bmx = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_tests_expired_this_month_before_use_bmx = models.CharField(max_length=20,null=False)
+
+
+
+
+
+
+
 
 class Specimens_run_brti_vl_weekly(models.Model):
     day_of_week = models.CharField(max_length=20,null=False)
@@ -369,6 +520,49 @@ class Reasons_for_failure_brti_vl_weekly(models.Model):
 
 
 #General Info masvingo brti_covid_19_weekly_statistics_tool
+class Top_age_sex_dissagregation_of_all_specimens_received_covid_19(models.Model):
+    machine_number_of_machine_breakdowns_abbott = models.CharField(max_length=10)
+    machine_reasons_abbott = models.CharField(max_length=10)
+    machine_downtime_days_abbott = models.CharField(max_length=10)
+    machine_reasons2_abbott = models.CharField(max_length=10)
+    machine_stockout_days_abbott = models.CharField(max_length=10)
+    machine_reasons3_abbott = models.CharField(max_length=10)
+
+    machine_number_of_machine_breakdowns_genexpert = models.CharField(max_length=10)
+    machine_reasons_genexpert = models.CharField(max_length=10)
+    machine_downtime_days_genexpert = models.CharField(max_length=10)
+    machine_reasons2_genexpert = models.CharField(max_length=10)
+    machine_stockout_days_genexpert = models.CharField(max_length=10)
+    machine_reasons3_genexpert = models.CharField(max_length=10)
+
+    machine_number_of_machine_breakdowns_roche = models.CharField(max_length=10)
+    machine_reasons_roche = models.CharField(max_length=10)
+    machine_downtime_days_roche = models.CharField(max_length=10)
+    machine_reasons2_roche = models.CharField(max_length=10)
+    machine_stockout_days_roche = models.CharField(max_length=10)
+    machine_reasons3_roche = models.CharField(max_length=10)
+
+    machine_number_of_machine_breakdowns_bmx = models.CharField(max_length=10)
+    machine_reasons_bmx = models.CharField(max_length=10)
+    machine_downtime_days_bmx = models.CharField(max_length=10)
+    machine_reasons2_bmx = models.CharField(max_length=10)
+    machine_stockout_days_bmx = models.CharField(max_length=10)
+    machine_reasons3_bmx = models.CharField(max_length=10)
+
+
+class Top_3_covid_19(models.Model):
+
+    number_of_days_tat1 = models.CharField(max_length=10)
+    number_of_days_tat2 = models.CharField(max_length=10)
+    number_of_days_tat3 = models.CharField(max_length=10)
+    number_of_days_tat_total = models.CharField(max_length=10)
+
+    number_of_completed_transmittal_sheet_received = models.CharField(max_length=10)
+
+
+
+
+
 
 
 class General_info_covid_19(models.Model):
@@ -491,6 +685,164 @@ class Specimens_run_covid_19(models.Model):
  # ---------------------------------------------------------------------------------------------------------------------------------- 
 
 #masving_brti_weekly_statistics_tool_31-6_june_2021
+
+
+class Top_brti_weekly(models.Model):
+    reporting_week = models.CharField(max_length=20,null=False)
+    month = models.CharField(max_length=20,null=False)
+    laboratory = models.CharField(max_length=20,null=False)
+
+class Top_age_sex_dissagregation_of_all_specimens_received_brti_weekly(models.Model):
+    age_male_less_than_15 = models.CharField(max_length=20,null=False)
+    age_female_non_pbfw_less_than_15 = models.CharField(max_length=20,null=False)
+    age_female_pbfw_less_than_15 = models.CharField(max_length=20,null=False)
+    age_unknown_less_than_15 = models.CharField(max_length=20,null=False)
+    age_total_less_than_15 = models.CharField(max_length=20,null=False)
+
+
+    age_male_15_to_19 = models.CharField(max_length=20,null=False)
+    age_female_non_pbfw_15_to_19 = models.CharField(max_length=20,null=False)
+    age_female_pbfw_15_to_19 = models.CharField(max_length=20,null=False)
+    age_unknown_15_to_19 = models.CharField(max_length=20,null=False)
+    age_total_15_to_19 = models.CharField(max_length=20,null=False)
+
+    age_male_20_to_24 = models.CharField(max_length=20,null=False)
+    age_female_non_pbfw_20_to_24 = models.CharField(max_length=20,null=False)
+    age_female_pbfw_20_to_24 = models.CharField(max_length=20,null=False)
+    age_unknown_20_to_24 = models.CharField(max_length=20,null=False)
+    age_total_20_to_24 = models.CharField(max_length=20,null=False)
+
+
+    age_male_25_to_49 = models.CharField(max_length=20,null=False)
+    age_female_non_pbfw_25_to_49 = models.CharField(max_length=20,null=False)
+    age_female_pbfw_25_to_49 = models.CharField(max_length=20,null=False)
+    age_unknown_25_to_49 = models.CharField(max_length=20,null=False)
+    age_total_25_to_49 = models.CharField(max_length=20,null=False)
+
+    age_male_50_plus = models.CharField(max_length=20,null=False)
+    age_female_non_pbfw_50_plus = models.CharField(max_length=20,null=False)
+    age_female_pbfw_50_plus = models.CharField(max_length=20,null=False)
+    age_unknown_50_plus = models.CharField(max_length=20,null=False)
+    age_total_50_plus = models.CharField(max_length=20,null=False)
+
+
+    age_male_unknown = models.CharField(max_length=20,null=False)
+    age_female_non_pbfw_unknown = models.CharField(max_length=20,null=False)
+    age_female_pbfw_unknown = models.CharField(max_length=20,null=False)
+    age_unknown_unknown = models.CharField(max_length=20,null=False)
+    age_total_unknown = models.CharField(max_length=20,null=False)
+
+
+    age_male_totals = models.CharField(max_length=20,null=False)
+    age_female_non_pbfw_totals = models.CharField(max_length=20,null=False)
+    age_female_pbfw_totals = models.CharField(max_length=20,null=False)
+    age_unknown_totals= models.CharField(max_length=20,null=False)
+    age_total_totals = models.CharField(max_length=20,null=False)
+
+
+class Top_3_brti_weekly(models.Model):
+    tat_median_collection_to_pickup_plasma_hrs = models.CharField(max_length=20,null=False)
+    tat_median_specimen_hub_to_vl_lab_plasma_days = models.CharField(max_length=20,null=False)
+    tat_median_intra_lab_plasma_days = models.CharField(max_length=20,null=False)
+    tat_median_results_vl_lab_to_hub_plasma_days = models.CharField(max_length=20,null=False)
+    tat_median_results_hub_to_clinic_plasma_days = models.CharField(max_length=20,null=False)
+
+    tat_median_collection_to_pickup_dbs_hrs = models.CharField(max_length=20,null=False)
+    tat_median_specimen_hub_to_vl_lab_dbs_days = models.CharField(max_length=20,null=False)
+    tat_median_intra_lab_dbs_days = models.CharField(max_length=20,null=False)
+    tat_median_results_vl_lab_to_hub_dbs_days = models.CharField(max_length=20,null=False)
+    tat_median_results_hub_to_clinic_dbs_days = models.CharField(max_length=20,null=False)
+
+
+class Top_4_brti_weekly(models.Model):
+    machine_number_of_machine_breakdowns_roche = models.CharField(max_length=20,null=False)
+    machine_number_of_machine_breakdowns_abbott = models.CharField(max_length=20,null=False)
+    machine_number_of_machine_breakdowns_hologic_panther = models.CharField(max_length=20,null=False)
+    machine_number_of_machine_breakdowns_bmx = models.CharField(max_length=20,null=False)
+
+    machine_reasons_roche = models.CharField(max_length=20,null=False)
+    machine_reasons_abbott = models.CharField(max_length=20,null=False)
+    machine_reasons_hologic_panther = models.CharField(max_length=20,null=False)
+    machine_reasons_bmx = models.CharField(max_length=20,null=False)
+
+
+
+class Top_5_brti_weekly(models.Model):
+    machine_downtime_days_roche = models.CharField(max_length=20,null=False)
+    machine_reasons_roche = models.CharField(max_length=20,null=False)
+    machine_time_taken_for_downtime_to_be_resolved_roche = models.CharField(max_length=20,null=False)
+
+    machine_downtime_days_abbott = models.CharField(max_length=20,null=False)
+    machine_reasons_abbott = models.CharField(max_length=20,null=False)
+    machine_time_taken_for_downtime_to_be_resolved_abbott = models.CharField(max_length=20,null=False)
+
+    machine_downtime_days_hologic_panther = models.CharField(max_length=20,null=False)
+    machine_reasons_hologic_panther = models.CharField(max_length=20,null=False)
+    machine_time_taken_for_downtime_to_be_resolved_hologic_panther = models.CharField(max_length=20,null=False)
+
+    machine_downtime_days_bmx = models.CharField(max_length=20,null=False)
+    machine_reasons_bmx = models.CharField(max_length=20,null=False)
+    machine_time_taken_for_downtime_to_be_resolved_bmx = models.CharField(max_length=20,null=False)
+
+class Top_6_brti_weekly(models.Model):
+    machine_stockout_days_roche = models.CharField(max_length=20,null=False)
+    machine_reasons_roche = models.CharField(max_length=20,null=False)
+
+    machine_stockout_days_abbott = models.CharField(max_length=20,null=False)
+    machine_reasons_abbott = models.CharField(max_length=20,null=False)
+
+    machine_stockout_days_hologic_panther = models.CharField(max_length=20,null=False)
+    machine_reasons_hologic_panther = models.CharField(max_length=20,null=False)
+
+
+    machine_stockout_days_bmx = models.CharField(max_length=20,null=False)
+    machine_reasons_bmx = models.CharField(max_length=20,null=False)
+
+class Top_6_1_brti_weekly(models.Model):
+    machine_amount_of_liquid_waste_roche = models.CharField(max_length=20,null=False)
+    machine_amount_of_liquid_waste_abbott = models.CharField(max_length=20,null=False)
+    machine_amount_of_liquid_waste_hologic_panther = models.CharField(max_length=20,null=False)
+    machine_amount_of_liquid_waste_bmx = models.CharField(max_length=20,null=False)
+
+
+class Top_7_brti_weekly(models.Model):
+    reagent_tests_loaned_out_to_other_labs_reagent_loaned_to_which_lab_roche = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_reagent_received_on_loan_from_other_labs_roche = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_reagent_received_on_loan_from_which_labs_roche = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_stock_on_hand_roche = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_tests_available_roche = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_months_of_stock_roche = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_tests_expired_this_month_before_use_roche = models.CharField(max_length=20,null=False)
+
+    reagent_tests_loaned_out_to_other_labs_reagent_loaned_to_which_lab_abbott = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_reagent_received_on_loan_from_other_labs_abbott = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_reagent_received_on_loan_from_which_labs_abbott = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_stock_on_hand_abbott = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_tests_available_abbott = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_months_of_stock_abbott = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_tests_expired_this_month_before_use_abbott = models.CharField(max_length=20,null=False)
+
+    reagent_tests_loaned_out_to_other_labs_reagent_loaned_to_which_lab_hologic_panther = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_reagent_received_on_loan_from_other_labs_hologic_panther = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_reagent_received_on_loan_from_which_labs_hologic_panther = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_stock_on_hand_hologic_panther = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_tests_available_hologic_panther = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_months_of_stock_hologic_panther = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_tests_expired_this_month_before_use_hologic_panther = models.CharField(max_length=20,null=False)
+
+    reagent_tests_loaned_out_to_other_labs_reagent_loaned_to_which_lab_bmx = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_reagent_received_on_loan_from_other_labs_bmx = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_reagent_received_on_loan_from_which_labs_bmx = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_stock_on_hand_bmx = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_tests_available_bmx = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_months_of_stock_bmx = models.CharField(max_length=20,null=False)
+    reagent_tests_loaned_out_to_other_labs_tests_expired_this_month_before_use_bmx = models.CharField(max_length=20,null=False)
+
+
+
+
+
+
 
 class Specimens_run_brti_weekly(models.Model):
     day_of_week = models.CharField(max_length=20,null=False)
