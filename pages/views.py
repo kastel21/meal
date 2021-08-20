@@ -190,11 +190,11 @@ def labeidweekly4(request):
 
 def labbrtiweekly(request):
     if request.method == 'POST':
-        form = Specimens_run_brti_vl_weeklyForm(request.POST)
+        form = Top_brti_weeklyForm(request.POST)
         if form.is_valid():
             form.save()
             #return render(request, 'success.html')
-    form = Specimens_run_brti_vl_weeklyForm()
+    form = Top_brti_weeklyForm()
     context = {'form': form}
     return render(request, 'masvingo_brti_weekly_statistics_tool_june_2021/top.html', context)
 

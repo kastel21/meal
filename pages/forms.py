@@ -816,3 +816,21 @@ class General_covid_19Form(forms.ModelForm):
 
  # ---------------------------------------------------------------------------------------------------------------------------------- 
 
+class Top_brti_weeklyForm(forms.ModelForm):
+    reporting_week = forms.CharField(label="Reporting week", max_length=20)
+    month = forms.CharField(label="Month", max_length=20)
+    laboratory = forms.CharField(label="laboratory", max_length=20)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_class = 'form-horizontal'
+        self.helper.field_class = 'col-sm-6'
+        self.helper.label_class = 'col-sm-6' 
+        self.helper.layout = Layout(
+        )
+        
+    class Meta:
+            model = Top_brti_weekly
+            fields = '__all__'
+
