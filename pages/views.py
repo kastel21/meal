@@ -39,11 +39,11 @@ def profilecovid19to(request):
 
 def profilecovid(request):
     if request.method == 'POST':
-        form = Specimens_run_brti_vl_weeklyForm(request.POST)
+        form = specimens_received_brti_covid_19Form(request.POST)
         if form.is_valid():
             form.save()
             #return render(request, 'success.html')
-    form = Specimens_run_brti_vl_weeklyForm()
+    form = specimens_received_brti_covid_19Form()
     context = {'form': form}
     return render(request, 'brti_covid_19_weekly_statistics_tool/Specimens_Received.html', context)
 
@@ -59,11 +59,11 @@ def profilecovid19(request):
 
 def profilecovid19t(request):
     if request.method == 'POST':
-        form = Specimens_run_brti_vl_weeklyForm(request.POST)
+        form = general_brti_covid_19Form(request.POST)
         if form.is_valid():
             form.save()
             #return render(request, 'success.html')
-    form = Specimens_run_brti_vl_weeklyForm()
+    form = general_brti_covid_19Form()
     context = {'form': form}
     return render(request, 'brti_covid_19_weekly_statistics_tool/general.html', context)
 

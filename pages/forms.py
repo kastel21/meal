@@ -2,9 +2,112 @@ from .models import *
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
-
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit
+
+# ------------------------------------------------------------------------------------------------------------------------------
+# brti_covid_19_weekly_statistics_tool
+
+class specimens_received_brti_covid_19Form(forms.ModelForm):
+
+    lab_choices=[
+        ('NMRL','NMRL'),
+        ('Mpilo','Mpilo'),
+        ('BRIDH','BRIDH'),
+        ('NTBRL','NTBRL'),
+        ('Gweru','Gweru'),
+        ('Chinhoyi','Chinhoyi'),
+        ('Masvingo','Masvingo'),
+        ('eid','eid'),
+        ('Victoria Falls', 'Victoria Falls'),
+        ('Bindura','Bindura'),
+        ('Kadoma','Kadoma'),
+        ('Marondera','Marondera'),
+        ('St Lukes', 'St Lukes'),
+        ('Gwanda','Gwanda'),
+        ('Total','Total'),
+    ]
+   
+    day_of_week = forms.ChoiceField(choices=lab_choices, initial="none", label="Select laboratory please" )
+
+    samples_carried_over_previous_weeks	= forms.IntegerField(label="Samples Carried Over (Previous Weeks(s))")
+
+    samples_received_current_week_nasopharyngeal_swab = forms.IntegerField(label="Nasopharyngeal Swab")
+    samples_received_current_week_nasal_swab = forms.IntegerField()
+    samples_received_current_week_oropharyngeal_swab = forms.IntegerField()
+    samples_received_current_week_midturbinate_swab = forms.IntegerField()
+    samples_received_current_week_sputum = forms.IntegerField()
+    samples_received_current_week_whole_blood_or_plasma_or_serum = forms.IntegerField()
+    samples_received_current_week_other = forms.IntegerField()
+
+    samples_rejected_current_week =	forms.IntegerField()
+    total_samples_received_current_week	=	forms.IntegerField()
+
+    number_of_samples_entered_into_lims =	forms.IntegerField()
+    total_samples_current_plus_carryover	 =	forms.IntegerField()
+    samples_referred	=	forms.IntegerField()
+    samples_referred_to_name	=	forms.IntegerField()
+    rejection_rate_current_week = forms.DecimalField(decimal_places=5,  max_digits=5)
+    number_of_results_printed_lims =	forms.IntegerField()
+    total_results_dispatched_by_lab	=	forms.IntegerField()
+    comment= forms.CharField(max_length=5000)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_class = 'form-horizontal'
+        self.helper.field_class = 'col-sm-6'
+        self.helper.label_class = 'col-sm-6' 
+        self.helper.layout = Layout(
+        )
+        
+    class Meta:
+            model = specimens_received_brti_covid_19
+            fields = '__all__'
+
+
+
+class general_brti_covid_19Form(forms.ModelForm):
+
+    lab_choices=[
+        ('NMRL','NMRL'),
+        ('Mpilo','Mpilo'),
+        ('BRIDH','BRIDH'),
+        ('NTBRL','NTBRL'),
+        ('Gweru','Gweru'),
+        ('Chinhoyi','Chinhoyi'),
+        ('Masvingo','Masvingo'),
+        ('eid','eid'),
+        ('Victoria Falls', 'Victoria Falls'),
+        ('Bindura','Bindura'),
+        ('Kadoma','Kadoma'),
+        ('Marondera','Marondera'),
+        ('St Lukes', 'St Lukes'),
+        ('Gwanda','Gwanda'),
+        ('Total','Total'),
+    ]
+   
+    day_of_week = forms.ChoiceField(choices=lab_choices, initial="none", label="Select laboratory please")
+
+    general_comments_regarding_testing_and_challenges_faced_by_the_laboratory = forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=5000, )
+    
+    number_of_staff_who_tested_positive_to_covid_19_at_vl_lab	= forms.IntegerField()
+    number_of_staff_who_have_been_vaccinated	= forms.IntegerField()
+    Comments =forms.CharField( max_length=5000)
+    Request_to_brti_from_the_laboratory	= forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=5000)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_class = 'form-horizontal'
+        self.helper.field_class = 'col-sm-6'
+        self.helper.label_class = 'col-sm-6' 
+        self.helper.layout = Layout(
+        )
+        
+    class Meta:
+            model = general_brti_covid_19
+            fields = '__all__'
 
 
 
@@ -13,8 +116,17 @@ from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit
 #masving_brti_vl_weekly_statistics_tool_31-6_june_2021
 
 class Specimens_run_brti_vl_weeklyForm(forms.ModelForm):
+    days_choices=[
+        ('Monday','Monday'),
+        ('Tuesday','Tuesday'),
+        ('Wednesday','Wednesday'),
+        ('Thursday','Thursday'),
+        ('Friday','Friday'),
+        ('Saturday','Saturday'),
+        ('Sunday','Sunday'),
+    ]
 
-    day_of_week = forms.CharField(widget=forms.HiddenInput(), initial="none", label="Select date" )
+    day_of_week = forms.ChoiceField(choices=days_choices, initial="none", label="Select laboratory please")
 
 
 

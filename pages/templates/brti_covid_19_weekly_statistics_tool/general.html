@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
  {% load humanize %}
+ {% load crispy_forms_tags %}
 {% block title %} General | Meal {% endblock title %}
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -23,8 +24,11 @@
   <br>
   <p></p>
 
+<form action="" method="post" onsubmit="return alert('suck seed')"> 
+  {% csrf_token %}
+
 	<h1 align="center">General Info</h1>
-	<label> Please choose a Laboratory: </label>
+	<label></label>
 <select id="">
   <option>NMRL</option>
   <option>NTBRL</option>
@@ -49,6 +53,7 @@
 
 	<table class="table table-striped table-dark table-sm">
     <tr>
+      <th></th>
       <th>General comments regarding testing and challenges (interruption) faced by the laboratory</th>
       <td><textarea></textarea></td>
     </tr>
@@ -79,5 +84,6 @@
     </tr>
 </table>
 <br><br>
+</form>
 </body>
 {% endblock %}

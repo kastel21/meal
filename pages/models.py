@@ -5,7 +5,7 @@ from django.urls import reverse
 # Create your models here.
 # ------------------------------------------------------------------------------------------------------------------------------
 # brti_covid_19_weekly_statistics_tool
-class specimens_run_brti_covid_19:
+class specimens_run_brti_covid_19(models.Model):
     lab_choices=[
         ('NMRL','NMRL'),
         ('Mpilo','Mpilo'),
@@ -79,7 +79,7 @@ class specimens_run_brti_covid_19:
     error_rates_rdt_ab = models.IntegerField()
     error_rates_rdt_ag = models.IntegerField()
 
-class specimens_received_brti_covid_19:
+class specimens_received_brti_covid_19(models.Model):
     lab_choices=[
         ('NMRL','NMRL'),
         ('Mpilo','Mpilo'),
@@ -123,7 +123,7 @@ class specimens_received_brti_covid_19:
     comment= models.CharField( max_length=5000, null=True)
     
 
-class machine_downtime_reagent_stockout_tool_brti_covid_19:
+class machine_downtime_reagent_stockout_tool_brti_covid_19(models.Model):
     lab_choices=[
         ('NMRL','NMRL'),
         ('Mpilo','Mpilo'),
@@ -166,7 +166,7 @@ class machine_downtime_reagent_stockout_tool_brti_covid_19:
     reagent_stockout_comments = models.TextField()
 
 
-class general_brti_covid_19:
+class general_brti_covid_19(models.Model):
     lab_choices=[
         ('NMRL','NMRL'),
         ('Mpilo','Mpilo'),
@@ -202,7 +202,7 @@ class general_brti_covid_19:
 # ------------------------------------------------------------------------------------------------------------------------------
 # brti_vl_eid_weekly_statistics_tool
 
-class specimens_run_brti_vl_eid:
+class specimens_run_brti_vl_eid(models.Model):
     lab_choices=[
         ('NMRL','NMRL'),
         ('Mpilo','Mpilo'),
@@ -317,7 +317,7 @@ class specimens_run_brti_vl_eid:
     ncs_closed_this_week1=models.TextField(max_length=5000,null=True)
 
 
-class specimens_received_brti_vl_eid:
+class specimens_received_brti_vl_eid(models.Model):
     lab_choices=[
             ('NMRL','NMRL'),
             ('Mpilo','Mpilo'),
@@ -415,7 +415,7 @@ class specimens_received_brti_vl_eid:
     comments=models.TextField("Please input any comments regarding sample carryover, samples received, samples rejected, rejection rate, TAT, machine breakdowns & down time, reagent stock out if applicable", max_length=5000, null=True)
 
 
-class reasons_for_failure_brti_vl_eid:
+class reasons_for_failure_brti_vl_eid(models.Model):
     lab_choices=[
         ('NMRL','NMRL'),
         ('Mpilo','Mpilo'),
