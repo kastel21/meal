@@ -2,9 +2,642 @@ from .models import *
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
-
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit
+
+# ------------------------------------------------------------------------------------------------------------------------------
+# brti_covid_19_weekly_statistics_tool
+
+class specimens_received_brti_covid_19Form(forms.ModelForm):
+
+    lab_choices=[
+        ('NMRL','NMRL'),
+        ('Mpilo','Mpilo'),
+        ('BRIDH','BRIDH'),
+        ('NTBRL','NTBRL'),
+        ('Gweru','Gweru'),
+        ('Chinhoyi','Chinhoyi'),
+        ('Masvingo','Masvingo'),
+        ('eid','eid'),
+        ('Victoria Falls', 'Victoria Falls'),
+        ('Bindura','Bindura'),
+        ('Kadoma','Kadoma'),
+        ('Marondera','Marondera'),
+        ('St Lukes', 'St Lukes'),
+        ('Gwanda','Gwanda'),
+        ('Total','Total'),
+    ]
+   
+    day_of_week = forms.ChoiceField(choices=lab_choices, initial="none", label="Select laboratory please" )
+
+    samples_carried_over_previous_weeks	= forms.IntegerField(label="Samples Carried Over (Previous Weeks(s))")
+
+    samples_received_current_week_nasopharyngeal_swab = forms.IntegerField(label="Nasopharyngeal Swab")
+    samples_received_current_week_nasal_swab = forms.IntegerField()
+    samples_received_current_week_oropharyngeal_swab = forms.IntegerField()
+    samples_received_current_week_midturbinate_swab = forms.IntegerField()
+    samples_received_current_week_sputum = forms.IntegerField()
+    samples_received_current_week_whole_blood_or_plasma_or_serum = forms.IntegerField()
+    samples_received_current_week_other = forms.IntegerField()
+
+    samples_rejected_current_week =	forms.IntegerField()
+    total_samples_received_current_week	=	forms.IntegerField()
+
+    number_of_samples_entered_into_lims =	forms.IntegerField()
+    total_samples_current_plus_carryover	 =	forms.IntegerField()
+    samples_referred	=	forms.IntegerField()
+    samples_referred_to_name	=	forms.IntegerField()
+    rejection_rate_current_week = forms.DecimalField(decimal_places=5,  max_digits=5)
+    number_of_results_printed_lims =	forms.IntegerField()
+    total_results_dispatched_by_lab	=	forms.IntegerField()
+    comment= forms.CharField(max_length=5000)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_class = 'form-horizontal'
+        self.helper.field_class = 'col-sm-6'
+        self.helper.label_class = 'col-sm-6' 
+        self.helper.layout = Layout(
+        )
+        
+    class Meta:
+            model = specimens_received_brti_covid_19
+            fields = '__all__'
+
+class specimens_run_brti_covid_19Form(forms.ModelForm):
+
+    lab_choices=[
+        ('NMRL','NMRL'),
+        ('Mpilo','Mpilo'),
+        ('BRIDH','BRIDH'),
+        ('NTBRL','NTBRL'),
+        ('Gweru','Gweru'),
+        ('Chinhoyi','Chinhoyi'),
+        ('Masvingo','Masvingo'),
+        ('eid','eid'),
+        ('Victoria Falls', 'Victoria Falls'),
+        ('Bindura','Bindura'),
+        ('Kadoma','Kadoma'),
+        ('Marondera','Marondera'),
+        ('St Lukes', 'St Lukes'),
+        ('Gwanda','Gwanda'),
+        ('Total','Total'),
+    ]
+   
+    day_of_week = forms.ChoiceField(choices=lab_choices, initial="none", label="Select laboratory please" )
+
+    tests_done_abbott_run = forms.IntegerField(label="Run")
+    tests_done_abbott_failed_but_eligible_for_repeat = forms.IntegerField(label="Failed but eligible for repeat	")
+    tests_done_abbott_failed_but_not_eligible_for_repeat = forms.IntegerField(label="Failed but not eligible for repeat	")
+    tests_done_abbott_repeat = forms.IntegerField(label="Repeat")
+
+
+    tests_done_bmx_run = forms.IntegerField(label="Run")
+    tests_done_bmx_failed_but_eligible_for_repeat = forms.IntegerField(label="Failed but eligible for repeat	")
+    tests_done_bmx_failed_but_not_eligible_for_repeat = forms.IntegerField(label="Failed but not eligible for repeat	")
+    tests_done_bmx_repeat = forms.IntegerField(label="Repeat")
+
+
+    tests_done_genexpert_run = forms.IntegerField(label="Run")
+    tests_done_genexpert_failed_but_eligible_for_repeat = forms.IntegerField(label="Failed but eligible for repeat	")
+    tests_done_genexpert_failed_but_not_eligible_for_repeat = forms.IntegerField(label="Failed but not eligible for repeat	")
+    tests_done_genexpert_repeat = forms.IntegerField(label="Repeat")
+
+
+
+    tests_done_quant_studio3_run = forms.IntegerField(label="Run")
+    tests_done_quant_studio3_failed_but_eligible_for_repeat = forms.IntegerField(label="Failed but eligible for repeat	")
+    tests_done_quant_studio3_failed_but_not_eligible_for_repeat = forms.IntegerField(label="Failed but not eligible for repeat	")
+    tests_done_quant_studio3_repeat = forms.IntegerField(label="Repeat")
+
+
+    tests_done_hologic_panther_run = forms.IntegerField(label="Run")
+    tests_done_hologic_panther_failed_but_eligible_for_repeat = forms.IntegerField(label="Failed but eligible for repeat	")
+    tests_done_hologic_panther_failed_but_not_eligible_for_repeat = forms.IntegerField(label="Failed but not eligible for repeat	")
+    tests_done_hologic_panther_repeat = forms.IntegerField(label="Repeat")
+
+
+    tests_done_rdt_antibody_run = forms.IntegerField(label="Run")
+    tests_done_rdt_antibody_failed_but_eligible_for_repeat = forms.IntegerField(label="Failed but eligible for repeat	")
+    tests_done_rdt_antibody_failed_but_not_eligible_for_repeat = forms.IntegerField(label="Failed but not eligible for repeat	")
+    tests_done_rdt_antibody_repeat = forms.IntegerField(label="Repeat")
+
+
+    tests_done_rdt_antigen_run = forms.IntegerField(label="Run")
+    tests_done_rdt_antigen_failed_but_eligible_for_repeat = forms.IntegerField(label="Failed but eligible for repeat	")
+    tests_done_rdt_antigen_failed_but_not_eligible_for_repeat = forms.IntegerField(label="Failed but not eligible for repeat	")
+    tests_done_rdt_antigen_repeat = forms.IntegerField(label="Repeat")
+
+
+    total_tests_done = forms.IntegerField(label="Total Tests Done")
+    total_tests_done_total_repeats = forms.IntegerField(label="Total Repeats	")
+
+    total_tests_done_total_patients_run = forms.IntegerField(label="Total Repeats	")
+
+
+
+    error_rates_abbott = forms.IntegerField(label="Abbott")
+
+    error_rates_abbott = forms.DecimalField(decimal_places=5,  max_digits=5, label="BMX")
+    error_rates_abbott = forms.DecimalField(decimal_places=5,  max_digits=5, label="GeneXpert")
+    error_rates_abbott = forms.DecimalField(decimal_places=5,  max_digits=5,label="Quant Studio3	")
+    error_rates_abbott = forms.DecimalField(decimal_places=5,  max_digits=5,label="Hologic Panther	")
+    error_rates_abbott = forms.DecimalField(decimal_places=5,  max_digits=5,label="RDT (Antibody)	")
+    error_rates_abbott = forms.DecimalField(decimal_places=5,  max_digits=5,label="RDT(Antigen)	")
+
+
+
+
+
+
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_class = 'form-horizontal'
+        self.helper.field_class = 'col-sm-6'
+        self.helper.label_class = 'col-sm-6' 
+        self.helper.layout = Layout(
+        )
+        
+    class Meta:
+            model = specimens_run_brti_covid_19
+            fields = '__all__'
+
+
+
+
+class machine_downtime_reagent_stockout_tool_brti_covid_19Form(forms.ModelForm):
+    lab_choices=[
+        ('NMRL','NMRL'),
+        ('Mpilo','Mpilo'),
+        ('BRIDH','BRIDH'),
+        ('NTBRL','NTBRL'),
+        ('Gweru','Gweru'),
+        ('Chinhoyi','Chinhoyi'),
+        ('Masvingo','Masvingo'),
+        ('eid','eid'),
+        ('Victoria Falls', 'Victoria Falls'),
+        ('Bindura','Bindura'),
+        ('Kadoma','Kadoma'),
+        ('Marondera','Marondera'),
+        ('St Lukes', 'St Lukes'),
+        ('Gwanda','Gwanda'),
+        ('Total','Total'),
+    ]
+
+    day_of_week = forms.ChoiceField(choices=lab_choices, initial="none", label="Select laboratory please" )
+
+    number_of_machine_breakdowns_abbott = forms.IntegerField()
+    number_of_machine_breakdowns_bmx = forms.IntegerField()
+    number_of_machine_breakdowns_genexpert = forms.IntegerField()
+    number_of_machine_breakdowns_quant_studio_3 = forms.IntegerField()
+    number_of_machine_breakdowns_hologic_panther = forms.IntegerField()
+    number_of_machine_breakdowns_comments = forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=5000, )
+    
+
+    machine_downtime_days_abbott = forms.IntegerField()
+    machine_downtime_days_bmx = forms.IntegerField()
+    machine_downtime_days_genexpert = forms.IntegerField()
+    machine_downtime_days_quant_studio_3 = forms.IntegerField()
+    machine_downtime_days_hologic_panther = forms.IntegerField()
+    machine_downtime_days_comments = forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=5000, )
+    
+
+    reagent_stockout_abbort = forms.IntegerField()
+    reagent_stockout_bms = forms.IntegerField()
+    reagent_stockout_genexpert = forms.IntegerField()
+    reagent_stockout_quant_studio_3 = forms.IntegerField()
+    reagent_stockout_hologic_panther = forms.IntegerField()
+    reagent_stockout_comments = forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=5000, )
+        
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_class = 'form-horizontal'
+        self.helper.field_class = 'col-sm-6'
+        self.helper.label_class = 'col-sm-6' 
+        self.helper.layout = Layout(
+        )
+        
+    class Meta:
+            model = machine_downtime_reagent_stockout_tool_brti_covid_19
+            fields = '__all__'
+
+
+
+
+class general_brti_covid_19Form(forms.ModelForm):
+
+    lab_choices=[
+        ('NMRL','NMRL'),
+        ('Mpilo','Mpilo'),
+        ('BRIDH','BRIDH'),
+        ('NTBRL','NTBRL'),
+        ('Gweru','Gweru'),
+        ('Chinhoyi','Chinhoyi'),
+        ('Masvingo','Masvingo'),
+        ('eid','eid'),
+        ('Victoria Falls', 'Victoria Falls'),
+        ('Bindura','Bindura'),
+        ('Kadoma','Kadoma'),
+        ('Marondera','Marondera'),
+        ('St Lukes', 'St Lukes'),
+        ('Gwanda','Gwanda'),
+        ('Total','Total'),
+    ]
+   
+    day_of_week = forms.ChoiceField(choices=lab_choices, initial="none", label="Select laboratory please")
+
+    general_comments_regarding_testing_and_challenges_faced_by_the_laboratory = forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=5000, )
+    
+    number_of_staff_who_tested_positive_to_covid_19_at_vl_lab	= forms.IntegerField()
+    number_of_staff_who_have_been_vaccinated	= forms.IntegerField()
+    Comments =forms.CharField( max_length=5000)
+    Request_to_brti_from_the_laboratory	= forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=5000)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_class = 'form-horizontal'
+        self.helper.field_class = 'col-sm-6'
+        self.helper.label_class = 'col-sm-6' 
+        self.helper.layout = Layout(
+        )
+        
+    class Meta:
+            model = general_brti_covid_19
+            fields = '__all__'
+
+
+
+ # --------------------brti_vl_eid_weekly_statistics_tool-------------------------------------------------------------------------------------------------------------- 
+
+class specimens_run_brti_vl_eidForm(forms.ModelForm):
+
+    lab_choices=[
+        ('NMRL','NMRL'),
+        ('Mpilo','Mpilo'),
+        ('BRIDH','BRIDH'),
+        ('NTBRL','NTBRL'),
+        ('Gweru','Gweru'),
+        ('Chinhoyi','Chinhoyi'),
+        ('Masvingo','Masvingo'),
+        ('EID','EID'),
+        ('Victoria Falls', 'Victoria Falls'),
+        ('Bindura','Bindura'),
+        ('Kadoma','Kadoma'),
+        ('Marondera','Marondera'),
+        ('St Lukes', 'St Lukes'),
+        ('Gwanda','Gwanda'),
+        ('Total','Total'),
+    ]
+
+    day_of_week = forms.ChoiceField(choices=lab_choices, initial="none", label="Select laboratory please")
+
+
+
+#Roche
+    tests_done_roche_number_of_samples_received_this_week_plasma = forms.IntegerField()
+    tests_done_roche_number_of_samples_carried_over_previous_weeks_plasma = forms.IntegerField()
+    tests_done_roche_failed_but_eligibale_for_repeat_plasma= forms.IntegerField()
+    tests_done_roche_failed_but_not_eligibale_for_repeat_plasma= forms.IntegerField()
+    tests_done_roche_repeat_plasma= forms.IntegerField()
+    tests_done_roche_failed_after_repeat_testing_plasma = forms.IntegerField()
+
+
+    tests_done_roche_number_of_samples_received_this_week_dbs = forms.IntegerField()
+    tests_done_roche_number_of_samples_carried_over_previous_weeks_dbs = forms.IntegerField()
+    tests_done_roche_failed_but_eligibale_for_repeat_dbs= forms.IntegerField()
+    tests_done_roche_failed_but_not_eligibale_for_repeat_dbs= forms.IntegerField()
+    tests_done_roche_repeat_dbs= forms.IntegerField()
+    tests_done_roche_failed_after_repeat_testing_dbs = forms.IntegerField()
+#BMX
+    tests_done_bmx_number_of_samples_received_this_week_plasma = forms.IntegerField()
+    tests_done_bmx_number_of_samples_carried_over_previous_weeks_plasma = forms.IntegerField()
+    tests_done_bmx_failed_but_eligibale_for_repeat_plasma= forms.IntegerField()
+    tests_done_bmx_failed_but_not_eligibale_for_repeat_plasma= forms.IntegerField()
+    tests_done_bmx_repeat_plasma= forms.IntegerField()
+    tests_done_bmx_failed_after_repeat_testing_plasma = forms.IntegerField()
+
+
+    tests_done_bmx_number_of_samples_received_this_week_dbs = forms.IntegerField()
+    tests_done_bmx_number_of_samples_carried_over_previous_weeks_dbs = forms.IntegerField()
+    tests_done_bmx_failed_but_eligibale_for_repeat_dbs= forms.IntegerField()
+    tests_done_bmx_failed_but_not_eligibale_for_repeat_dbs= forms.IntegerField()
+    tests_done_bmx_repeat_dbs= forms.IntegerField()
+    tests_done_bmx_failed_after_repeat_testing_dbs = forms.IntegerField()
+
+#Abbott
+    tests_done_abbott_number_of_samples_received_this_week_plasma = forms.IntegerField()
+    tests_done_abbott_number_of_samples_carried_over_previous_weeks_plasma = forms.IntegerField()
+    tests_done_abbott_failed_but_eligibale_for_repeat_plasma= forms.IntegerField()
+    tests_done_abbott_failed_but_not_eligibale_for_repeat_plasma= forms.IntegerField()
+    tests_done_abbott_repeat_plasma= forms.IntegerField()
+    tests_done_abbott_failed_after_repeat_testing_plasma = forms.IntegerField()
+
+
+    tests_done_abbott_number_of_samples_received_this_week_dbs = forms.IntegerField()
+    tests_done_abbott_number_of_samples_carried_over_previous_weeks_dbs = forms.IntegerField()
+    tests_done_abbott_failed_but_eligibale_for_repeat_dbs= forms.IntegerField()
+    tests_done_abbott_failed_but_not_eligibale_for_repeat_dbs= forms.IntegerField()
+    tests_done_abbott_repeat_dbs= forms.IntegerField()
+    tests_done_abbott_failed_after_repeat_testing_dbs = forms.IntegerField()
+
+#Hologic Panther
+    tests_done_hologic_panther_number_of_samples_received_this_week_plasma = forms.IntegerField()
+    tests_done_hologic_panther_number_of_samples_carried_over_previous_weeks_plasma = forms.IntegerField()
+    tests_done_hologic_panther_failed_but_eligibale_for_repeat_plasma= forms.IntegerField()
+    tests_done_hologic_panther_failed_but_not_eligibale_for_repeat_plasma= forms.IntegerField()
+    tests_done_hologic_panther_repeat_plasma= forms.IntegerField()
+    tests_done_hologic_panther_failed_after_repeat_testing_plasma = forms.IntegerField()
+
+
+    tests_done_hologic_panther_number_of_samples_received_this_week_dbs = forms.IntegerField()
+    tests_done_hologic_panther_number_of_samples_carried_over_previous_weeks_dbs = forms.IntegerField()
+    tests_done_hologic_panther_failed_but_eligibale_for_repeat_dbs= forms.IntegerField()
+    tests_done_hologic_panther_failed_but_not_eligibale_for_repeat_dbs= forms.IntegerField()
+    tests_done_hologic_panther_repeat_dbs= forms.IntegerField()
+    tests_done_hologic_panther_failed_after_repeat_testing_dbs = forms.IntegerField()
+
+    total_tests_done = forms.IntegerField()
+    total_repeats = forms.IntegerField()
+    total_patients_run = forms.IntegerField()
+    targets_weekly = forms.IntegerField()
+    percentage_targets_achievements = forms.DecimalField(decimal_places=5,  max_digits=5)
+
+
+    percentage_error_rate_roche_plasma = forms.DecimalField(decimal_places=5,  max_digits=5)
+    percentage_error_rate_roche_dbs = forms.DecimalField(decimal_places=5,  max_digits=5)
+
+    percentage_error_rate_bmx_plasma = forms.DecimalField(decimal_places=5,  max_digits=5)
+    percentage_error_rate_bmx_dbs = forms.DecimalField(decimal_places=5,  max_digits=5) 
+
+    percentage_error_rate_abbott_plasma = forms.DecimalField(decimal_places=5,  max_digits=5)
+    percentage_error_rate_abbott_dbs = forms.DecimalField(decimal_places=5,  max_digits=5) 
+
+    percentage_error_rate_hologic_panther_plasma = forms.DecimalField(decimal_places=5,  max_digits=5)
+    percentage_error_rate_hologic_panther_dbs = forms.DecimalField(decimal_places=5,  max_digits=5) 
+
+
+
+    total_ncs_from_audit=forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=5000)
+    ncs_not_yet_closed=forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=5000)
+    ncs_closed_this_week=forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=5000)
+    total_ncs_from_audit1=forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=5000)
+    ncs_not_yet_closed1=forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=5000)
+    ncs_closed_this_week1=forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=5000)
+
+
+
+
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_class = 'form-horizontal'
+        self.helper.field_class = 'col-sm-6'
+        self.helper.label_class = 'col-sm-6' 
+        self.helper.layout = Layout(
+        )
+        
+    class Meta:
+            model = specimens_run_brti_vl_eid
+            fields = '__all__'
+
+
+
+class specimens_received_brti_vl_eidForm(forms.ModelForm):
+    lab_choices=[
+            ('NMRL','NMRL'),
+            ('Mpilo','Mpilo'),
+            ('BRIDH','BRIDH'),
+            ('NTBRL','NTBRL'),
+            ('Gweru','Gweru'),
+            ('Chinhoyi','Chinhoyi'),
+            ('Masvingo','Masvingo'),
+            ('eid','eid'),
+            ('Victoria Falls', 'Victoria Falls'),
+            ('Bindura','Bindura'),
+            ('Kadoma','Kadoma'),
+            ('Marondera','Marondera'),
+            ('St Lukes', 'St Lukes'),
+            ('Gwanda','Gwanda'),
+            ('Total','Total'),
+        ]
+
+    day_of_week = forms.ChoiceField(choices=lab_choices, initial="none", label="Select laboratory please")
+
+    samples_carried_over_previous_week_never_tested_plasma = forms.IntegerField()
+    samples_carried_over_previous_week_never_tested_dbs = forms.IntegerField()
+
+    samples_carried_over_previous_previous_failed_samples_plasma = forms.IntegerField()
+    samples_carried_over_previous_previous_failed_samples_dbs = forms.IntegerField()
+
+    samples_received_current_week_plasma = forms.IntegerField()
+    samples_received_current_week_dbs = forms.IntegerField()
+
+    samples_rejected_current_week_plasma = forms.IntegerField()
+    samples_rejected_current_week_dbs = forms.IntegerField()
+
+    total_samples_received_current_week_plasma = forms.IntegerField()
+    total_samples_received_current_week_dbs = forms.IntegerField()
+
+    number_of_samples_entered_into_lims_on_day_of_arrival_plasma = forms.IntegerField()
+    number_of_samples_entered_into_lims_on_day_of_arrival_dbs = forms.IntegerField()
+
+    number_of_samples_entered_into_lims_after_day_of_arrival_plasma = forms.IntegerField()
+    number_of_samples_entered_into_lims_after_day_of_arrival_dbs = forms.IntegerField()
+
+    number_of_hours_lims_was_functional = forms.IntegerField()
+
+    total_samples_current_and_carryover_plasma = forms.IntegerField()
+    total_samples_current_and_carryover_dbs = forms.IntegerField()
+
+    samples_reffered_plasma = forms.IntegerField()
+    samples_reffered_dbs = forms.IntegerField()
+
+    lab_samples_reffered_to = forms.IntegerField()
+
+    percentage_rejection_rate_plasma = forms.DecimalField(decimal_places=5,  max_digits=5)
+    percentage_rejection_rate_dbs = forms.DecimalField(decimal_places=5,  max_digits=5)
+
+    number_of_results_printed_from_lims_plasma = forms.IntegerField()
+    number_of_results_printed_from_lims_dbs = forms.IntegerField()
+
+    total_results_dispatched_by_lab_plasma	= forms.IntegerField()
+    total_results_dispatched_by_lab_dbs	= forms.IntegerField()
+
+    total_results_dispatched_by_lab_via_sms_plasma	= forms.IntegerField()
+    total_results_dispatched_by_lab_via_sms_dbs	= forms.IntegerField()
+
+    reasons_for_rejections_sample_quality_compromised_plasma = forms.IntegerField()
+    reasons_for_rejections_sample_quality_compromised_dbs = forms.IntegerField()
+
+    reasons_for_rejections_sample_quality_compromised_sample_quality_insufficient_plasma = forms.IntegerField()
+    reasons_for_rejections_sample_quality_compromised_sample_quality_insufficient_dbs = forms.IntegerField()
+
+    reasons_for_rejections_sample_quality_compromised_sample_information_mismatch_plasma = forms.IntegerField()
+    reasons_for_rejections_sample_quality_compromised_sample_information_mismatch_dbs = forms.IntegerField()
+
+    reasons_for_rejections_sample_quality_compromised_sample_or_request_form_missing_plasma = forms.IntegerField()
+    reasons_for_rejections_sample_quality_compromised_sample_or_request_form_missing_dbs = forms.IntegerField()
+
+    reasons_for_rejections_sample_quality_compromised_qda_check_plasma = forms.IntegerField()
+    reasons_for_rejections_sample_quality_compromised_qda_check_dbs = forms.IntegerField()
+
+    reasons_for_sample_refferal_reagent_or_kit_stockout_plasma= forms.IntegerField()
+    reasons_for_sample_refferal_reagent_or_kit_stockout_dbs= forms.IntegerField()
+
+
+    reasons_for_sample_refferal_instrument_mechanical_failure_plasma= forms.IntegerField()
+    reasons_for_sample_refferal_instrument_mechanical_failure_dbs= forms.IntegerField()
+
+    reasons_for_sample_refferal_insufficient_instrument_capacity_plasma= forms.IntegerField()
+    reasons_for_sample_refferal_insufficient_instrument_capacity_dbs= forms.IntegerField()
+
+    reasons_for_sample_refferal_insufficient_hr_capacity_plasma= forms.IntegerField()
+    reasons_for_sample_refferal_insufficient_hr_capacity_dbs= forms.IntegerField()
+
+    reasons_for_sample_refferal_dqa_check_plasma= forms.IntegerField()
+    reasons_for_sample_refferal_dqa_check_dbs= forms.IntegerField()
+
+    comments=forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=5000)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_class = 'form-horizontal'
+        self.helper.field_class = 'col-sm-6'
+        self.helper.label_class = 'col-sm-6' 
+        self.helper.layout = Layout(
+        )
+        
+    class Meta:
+            model = specimens_received_brti_vl_eid
+            fields = '__all__'
+
+
+
+
+class reasons_for_failure_brti_vl_eidForm(forms.ModelForm):
+    lab_choices=[
+        ('NMRL','NMRL'),
+        ('Mpilo','Mpilo'),
+        ('BRIDH','BRIDH'),
+        ('NTBRL','NTBRL'),
+        ('Gweru','Gweru'),
+        ('Chinhoyi','Chinhoyi'),
+        ('Masvingo','Masvingo'),
+        ('eid','eid'),
+        ('Victoria Falls', 'Victoria Falls'),
+        ('Bindura','Bindura'),
+        ('Kadoma','Kadoma'),
+        ('Marondera','Marondera'),
+        ('St Lukes', 'St Lukes'),
+        ('Gwanda','Gwanda'),
+        ('Total','Total'),
+    ]
+
+    day_of_week = forms.ChoiceField(choices=lab_choices, initial="none", label="Select laboratory please")
+
+    #roche
+
+    roche_plasma_number_of_failed_tests_due_to_sample_quality_issues = forms.IntegerField()
+    roche_plasma_number_of_failed_tests_due_to_reagent_quality_issues = forms.IntegerField()
+    roche_plasma_number_of_failed_tests_due_to_due_to_qc_failure = forms.IntegerField()
+    roche_plasma_number_of_failed_tests_due_to_power_failure = forms.IntegerField()
+    roche_plasma_number_of_failed_tests_due_to_mechanical_failure = forms.IntegerField()
+    roche_plasma_number_of_failed_tests_due_to_processing_error = forms.IntegerField()
+    roche_plasma_number_of_failed_tests_due_to_other = forms.IntegerField()
+    roche_dqa_check_plasma = forms.IntegerField()
+
+    roche_dbs_number_of_failed_tests_due_to_sample_quality_issues = forms.IntegerField()
+    roche_dbs_number_of_failed_tests_due_to_reagent_quality_issues = forms.IntegerField()
+    roche_dbs_number_of_failed_tests_due_to_due_to_qc_failure = forms.IntegerField()
+    roche_dbs_number_of_failed_tests_due_to_power_failure = forms.IntegerField()
+    roche_dbs_number_of_failed_tests_due_to_mechanical_failure = forms.IntegerField()
+    roche_dbs_number_of_failed_tests_due_to_processing_error = forms.IntegerField()
+    roche_dbs_number_of_failed_tests_due_to_other = forms.IntegerField()
+    roche_dqa_check_dbs = forms.IntegerField()
+
+#bmx
+
+    bmx_plasma_number_of_failed_tests_due_to_sample_quality_issues = forms.IntegerField()
+    bmx_plasma_number_of_failed_tests_due_to_reagent_quality_issues = forms.IntegerField()
+    bmx_plasma_number_of_failed_tests_due_to_due_to_qc_failure = forms.IntegerField()
+    bmx_plasma_number_of_failed_tests_due_to_power_failure = forms.IntegerField()
+    bmx_plasma_number_of_failed_tests_due_to_mechanical_failure = forms.IntegerField()
+    bmx_plasma_number_of_failed_tests_due_to_processing_error = forms.IntegerField()
+    bmx_plasma_number_of_failed_tests_due_to_other = forms.IntegerField()
+    bmx_dqa_check_plasma = forms.IntegerField()
+
+    bmx_dbs_number_of_failed_tests_due_to_sample_quality_issues = forms.IntegerField()
+    bmx_dbs_number_of_failed_tests_due_to_reagent_quality_issues = forms.IntegerField()
+    bmx_dbs_number_of_failed_tests_due_to_due_to_qc_failure = forms.IntegerField()
+    bmx_dbs_number_of_failed_tests_due_to_power_failure = forms.IntegerField()
+    bmx_dbs_number_of_failed_tests_due_to_mechanical_failure = forms.IntegerField()
+    bmx_dbs_number_of_failed_tests_due_to_processing_error = forms.IntegerField()
+    bmx_dbs_number_of_failed_tests_due_to_other = forms.IntegerField()
+    bmx_dqa_check_dbs = forms.IntegerField()
+
+#abbott
+
+    abbott_plasma_number_of_failed_tests_due_to_sample_quality_issues = forms.IntegerField()
+    abbott_plasma_number_of_failed_tests_due_to_reagent_quality_issues = forms.IntegerField()
+    abbott_plasma_number_of_failed_tests_due_to_due_to_qc_failure = forms.IntegerField()
+    abbott_plasma_number_of_failed_tests_due_to_power_failure = forms.IntegerField()
+    abbott_plasma_number_of_failed_tests_due_to_mechanical_failure = forms.IntegerField()
+    abbott_plasma_number_of_failed_tests_due_to_processing_error = forms.IntegerField()
+    abbott_plasma_number_of_failed_tests_due_to_other = forms.IntegerField()
+    abbott_dqa_check_plasma = forms.IntegerField()
+
+    abbott_dbs_number_of_failed_tests_due_to_sample_quality_issues = forms.IntegerField()
+    abbott_dbs_number_of_failed_tests_due_to_reagent_quality_issues = forms.IntegerField()
+    abbott_dbs_number_of_failed_tests_due_to_due_to_qc_failure = forms.IntegerField()
+    abbott_dbs_number_of_failed_tests_due_to_power_failure = forms.IntegerField()
+    abbott_dbs_number_of_failed_tests_due_to_mechanical_failure = forms.IntegerField()
+    abbott_dbs_number_of_failed_tests_due_to_processing_error = forms.IntegerField()
+    abbott_dbs_number_of_failed_tests_due_to_other = forms.IntegerField()
+    abbott_dqa_check_dbs = forms.IntegerField()
+
+#Hologic Panther
+
+    hologic_panther_plasma_number_of_failed_tests_due_to_sample_quality_issues = forms.IntegerField()
+    hologic_panther_plasma_number_of_failed_tests_due_to_reagent_quality_issues = forms.IntegerField()
+    hologic_panther_plasma_number_of_failed_tests_due_to_due_to_qc_failure = forms.IntegerField()
+    hologic_panther_plasma_number_of_failed_tests_due_to_power_failure = forms.IntegerField()
+    hologic_panther_plasma_number_of_failed_tests_due_to_mechanical_failure = forms.IntegerField()
+    hologic_panther_plasma_number_of_failed_tests_due_to_processing_error = forms.IntegerField()
+    hologic_panther_plasma_number_of_failed_tests_due_to_other = forms.IntegerField()
+    hologic_panther_dqa_check_plasma = forms.IntegerField()
+
+    hologic_panther_dbs_number_of_failed_tests_due_to_sample_quality_issues = forms.IntegerField()
+    hologic_panther_dbs_number_of_failed_tests_due_to_reagent_quality_issues = forms.IntegerField()
+    hologic_panther_dbs_number_of_failed_tests_due_to_due_to_qc_failure = forms.IntegerField()
+    hologic_panther_dbs_number_of_failed_tests_due_to_power_failure = forms.IntegerField()
+    hologic_panther_dbs_number_of_failed_tests_due_to_mechanical_failure = forms.IntegerField()
+    hologic_panther_dbs_number_of_failed_tests_due_to_processing_error = forms.IntegerField()
+    hologic_panther_dbs_number_of_failed_tests_due_to_other = forms.IntegerField()
+    hologic_panther_dqa_check_dbs = forms.IntegerField()
+
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_class = 'form-horizontal'
+        self.helper.field_class = 'col-sm-6'
+        self.helper.label_class = 'col-sm-6' 
+        self.helper.layout = Layout(
+        )
+        
+    class Meta:
+            model = reasons_for_failure_brti_vl_eid
+            fields = '__all__'
+
+
 
 
 
@@ -13,8 +646,17 @@ from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit
 #masving_brti_vl_weekly_statistics_tool_31-6_june_2021
 
 class Specimens_run_brti_vl_weeklyForm(forms.ModelForm):
+    days_choices=[
+        ('Monday','Monday'),
+        ('Tuesday','Tuesday'),
+        ('Wednesday','Wednesday'),
+        ('Thursday','Thursday'),
+        ('Friday','Friday'),
+        ('Saturday','Saturday'),
+        ('Sunday','Sunday'),
+    ]
 
-    day_of_week = forms.CharField(widget=forms.HiddenInput(), initial="none", label="Select date" )
+    day_of_week = forms.ChoiceField(choices=days_choices, initial="none", label="Select laboratory please")
 
 
 
@@ -815,4 +1457,22 @@ class General_covid_19Form(forms.ModelForm):
             fields = '__all__'
 
  # ---------------------------------------------------------------------------------------------------------------------------------- 
+
+class Top_brti_weeklyForm(forms.ModelForm):
+    reporting_week = forms.CharField(label="Reporting week", max_length=20)
+    month = forms.CharField(label="Month", max_length=20)
+    laboratory = forms.CharField(label="laboratory", max_length=20)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_class = 'form-horizontal'
+        self.helper.field_class = 'col-sm-6'
+        self.helper.label_class = 'col-sm-6' 
+        self.helper.layout = Layout(
+        )
+        
+    class Meta:
+            model = Top_brti_weekly
+            fields = '__all__'
 

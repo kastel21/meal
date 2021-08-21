@@ -16,14 +16,14 @@ def home(request):
 
 def profile(request):
     # Create your views here.
-
+    
     if request.method == 'POST':
-        form = Specimens_run_brti_vl_weeklyForm(request.POST)
+        form = general_brti_covid_19Form(request.POST)
         if form.is_valid():
             form.save()
             ##return render(request, 'success.html')
-    form = Specimens_run_brti_vl_weeklyForm()
-    context = {'form': form}
+    form = general_brti_covid_19Form()
+    context = {'form': form }
 
     return render(request, 'brti_covid_19_weekly_statistics_tool/general.html', context)
 
@@ -39,31 +39,31 @@ def profilecovid19to(request):
 
 def profilecovid(request):
     if request.method == 'POST':
-        form = Specimens_run_brti_vl_weeklyForm(request.POST)
+        form = specimens_received_brti_covid_19Form(request.POST)
         if form.is_valid():
             form.save()
             #return render(request, 'success.html')
-    form = Specimens_run_brti_vl_weeklyForm()
+    form = specimens_received_brti_covid_19Form()
     context = {'form': form}
     return render(request, 'brti_covid_19_weekly_statistics_tool/Specimens_Received.html', context)
 
 def profilecovid19(request):
     if request.method == 'POST':
-        form = Specimens_run_brti_vl_weeklyForm(request.POST)
+        form = machine_downtime_reagent_stockout_tool_brti_covid_19Form(request.POST)
         if form.is_valid():
             form.save()
             #return render(request, 'success.html')
-    form = Specimens_run_brti_vl_weeklyForm()
+    form = machine_downtime_reagent_stockout_tool_brti_covid_19Form()
     context = {'form': form}
     return render(request, 'brti_covid_19_weekly_statistics_tool/Machine_Downtime_&_Reagent_stock_out_tool.html', context)
 
 def profilecovid19t(request):
     if request.method == 'POST':
-        form = Specimens_run_brti_vl_weeklyForm(request.POST)
+        form = general_brti_covid_19Form(request.POST)
         if form.is_valid():
             form.save()
             #return render(request, 'success.html')
-    form = Specimens_run_brti_vl_weeklyForm()
+    form = general_brti_covid_19Form()
     context = {'form': form}
     return render(request, 'brti_covid_19_weekly_statistics_tool/general.html', context)
 
@@ -190,11 +190,11 @@ def labeidweekly4(request):
 
 def labbrtiweekly(request):
     if request.method == 'POST':
-        form = Specimens_run_brti_vl_weeklyForm(request.POST)
+        form = Top_brti_weeklyForm(request.POST)
         if form.is_valid():
             form.save()
             #return render(request, 'success.html')
-    form = Specimens_run_brti_vl_weeklyForm()
+    form = Top_brti_weeklyForm()
     context = {'form': form}
     return render(request, 'masvingo_brti_weekly_statistics_tool_june_2021/top.html', context)
 

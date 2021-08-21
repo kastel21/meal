@@ -1,6 +1,5 @@
 <div class="list-group list-group-flush">
-    <a href="/" class="list-group-item 
-        {% if active == 'BRTI COVID-19 WEEKLY STATISTICS TOOL' %} active {% endif %} waves-effect">
+    <a href="/" class="list-group-item {% ifequal active 'profile' %} active {% endifequal %} waves-effect">
         <i class="fa fa-pie-chart mr-3" aria-hidden="true"></i>BRTI COVID-19WEEKLY STATISTICS TOOL</a>
     
      <a href="{% url 'vleid' %}" class="list-group-item 

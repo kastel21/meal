@@ -22,7 +22,8 @@
   <p></p>
   <br>
   <p></p>
-
+<form action="" method="post" onsubmit="return alert('suck seed')"> 
+  {% csrf_token %}
   <h1 align="center">Specimen Received</h1>
   <label> Please choose a Laboratory: </label>
 <select id="">
@@ -325,7 +326,9 @@
   <tr>
   </tr>
 </table>
-
+  <input  type="submit" class="button5" >
+<a  href="#" class="button5" >Next</a>
+</form>
 <br><br>
 </body>
 {% endblock %}
