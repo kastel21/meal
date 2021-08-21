@@ -144,6 +144,27 @@ class machine_downtime_reagent_stockout_tool_brti_covid_19:
 
     day_of_week = models.CharField(max_length=200, choices=lab_choices, default='NMRL')
 
+    number_of_machine_breakdowns_abbott = models.IntegerField()
+    number_of_machine_breakdowns_bmx = models.IntegerField()
+    number_of_machine_breakdowns_genexpert = models.IntegerField()
+    number_of_machine_breakdowns_quant_studio_3 = models.IntegerField()
+    number_of_machine_breakdowns_hologic_panther = models.IntegerField()
+    number_of_machine_breakdowns_comments = models.TextField()
+
+    machine_downtime_days_abbott = models.IntegerField()
+    machine_downtime_days_bmx = models.IntegerField()
+    machine_downtime_days_genexpert = models.IntegerField()
+    machine_downtime_days_quant_studio_3 = models.IntegerField()
+    machine_downtime_days_hologic_panther = models.IntegerField()
+    machine_downtime_days_comments = models.TextField()
+
+    reagent_stockout_abbort = models.IntegerField()
+    reagent_stockout_bms = models.IntegerField()
+    reagent_stockout_genexpert = models.IntegerField()
+    reagent_stockout_quant_studio_3 = models.IntegerField()
+    reagent_stockout_hologic_panther = models.IntegerField()
+    reagent_stockout_comments = models.TextField()
+
 
 class general_brti_covid_19:
     lab_choices=[
