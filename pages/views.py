@@ -3,6 +3,9 @@ from django.http import HttpResponse
 from .forms import *
 from .models import *
 from django.shortcuts import get_object_or_404, redirect, render
+import csv
+import datetime
+from django.http import JsonResponse
 
 
 def index(request):
@@ -238,8 +241,30 @@ def labbrtiweekly5(request):
     context = {'form': form}
     return render(request, 'masvingo_brti_weekly_statistics_tool_june_2021/electricoutagestool.html', context)
 
+def export_csv(request):
+
+    response=HttpResponse(content_type='text/csv')
+    
+
+    writer=csv.writer(response)
+    writer.writerow(['Day of the week','Number of hours with no electricity per day','Number of hours generator was on per day'])
+    
+
+    # electric=Electric_outage_brti_vl_weekly.objects.all()
+
+    for electric in Electric_outage_brti_vl_weekly.objects.all().values_list('day_of_week', 'number_of_hours_with_no_electricity_per_day','number_of_hours_generator_was_on_per_day'):
+        
+        writer.writerow(electric)
 
 
+    for reasons in Reasons_for_failure_brti_vl_weekly.objects.all().values_list('roche_plasma_number_of_failed_tests_due_to_sample_quality_issues', 'roche_plasma_number_of_failed_tests_due_to_reagent_quality_issues'):
+        
+            writer.writerow(reasons)
+
+    response['Content-Disposition']='attachment; filename=Testing' + \
+        str(datetime.datetime.now()) + '.csv'
+
+    return response 
 
 # @method_decorator([login_required], name='dispatch')
 # class RecordAddView(CreateView):

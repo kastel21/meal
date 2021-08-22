@@ -969,7 +969,7 @@ class Electric_outage_brti_vl_weeklyForm(forms.ModelForm):
     number_of_hours_with_no_electricity_per_day	= forms.IntegerField(label="Number of hours with no electricity per day")
     number_of_hours_generator_was_on_per_day	= forms.IntegerField(label="Number of hours generator was on per day")
     litres_of_fuel_added_to_generator_per_day	= forms.IntegerField(label="Litres of Fuel added to generator per day")
-    number_of_hours_machines_was_not_being_used_due_to_power_cut_per_day	= forms.IntegerField(label="Number of hours machine/s was not being used due to power cut per day<")
+    number_of_hours_machines_was_not_being_used_due_to_power_cut_per_day	= forms.IntegerField(label="Number of hours machine/s was not being used due to power cut per day")
     total_tests_done_per_day_using_generator	= forms.IntegerField(label="Total Tests done per day using generator")
 
     def __init__(self, *args, **kwargs):
