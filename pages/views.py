@@ -93,11 +93,11 @@ def vleid2(request):
 
 def vleid3(request):
     if request.method == 'POST':
-        form = Specimens_run_brti_vl_weeklyForm(request.POST)
+        form = reasons_for_failure_brti_vl_eidForm(request.POST)
         if form.is_valid():
             form.save()
             #return render(request, 'success.html')
-    form = Specimens_run_brti_vl_weeklyForm()
+    form = reasons_for_failure_brti_vl_eidForm()
     context = {'form': form}
     return render(request, 'brti_vl_eid_weekly_statistics_tool/reasons_for_failure.html', context)
 
