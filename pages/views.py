@@ -4,6 +4,7 @@ from .forms import *
 from .models import *
 from django.shortcuts import get_object_or_404, redirect, render
 import csv
+import xlwt
 import datetime
 from django.http import JsonResponse
 
@@ -32,11 +33,11 @@ def profile(request):
 
 def profilecovid19to(request):
     if request.method == 'POST':
-        form = Specimens_run_brti_vl_weeklyForm(request.POST)
+        form = specimens_run_brti_covid_19Form(request.POST)
         if form.is_valid():
             form.save()
             #return render(request, 'success.html')
-    form = Specimens_run_brti_vl_weeklyForm()
+    form = specimens_run_brti_covid_19Form()
     context = {'form': form}
     return render(request, 'brti_covid_19_weekly_statistics_tool/Specimens_Run.html', context)
 
@@ -243,26 +244,58 @@ def labbrtiweekly5(request):
 
 def export_csv(request):
 
-    response=HttpResponse(content_type='text/csv')
-    
+    response=HttpResponse(content_type='application/ms-excel')
+    response['Content-Disposition']='attachment; filename=users' + '.xls'
 
-    writer=csv.writer(response)
-    writer.writerow(['Day of the week','Number of hours with no electricity per day','Number of hours generator was on per day'])
+    wb = xlwt.Workbook(encoding='utf-8')
+    ws = wb.add_sheet('Users Data') # this will make a sheet named Users Data
+
+    # Sheet header, first row
+    row_num = 0
+
+    font_style = xlwt.XFStyle()
+    font_style.font.bold = True
+
+    columns = ['Day of the week','Number of hours with no electricity per day','Number of hours generator was on per day', 'number of hours generator was on per day', 'litres of fuel added to generator per day', 'number of hours machine was not being used due to power cut per day', 'total tests done per day using generator']
+
+    for col_num in range(len(columns)):
+        ws.write(row_num, col_num, columns[col_num], font_style) # at 0 row 0 column 
+
+     # Sheet body, remaining rows
+    font_style = xlwt.XFStyle()
+
+    rows = Electric_outage_brti_vl_weekly.objects.all().values_list('day_of_week', 'number_of_hours_with_no_electricity_per_day','number_of_hours_generator_was_on_per_day', 'litres_of_fuel_added_to_generator_per_day', 'number_of_hours_machines_was_not_being_used_due_to_power_cut_per_day', 'total_tests_done_per_day_using_generator')
+    for row in rows:
+        row_num += 1
+        for col_num in range(len(row)):
+            ws.write(row_num, col_num, row[col_num], font_style)
+
+    wb.save(response)
+
+    # ro = Reasons_for_failure_brti_vl_weekly.objects.all().values_list('roche_plasma_number_of_failed_tests_due_to_sample_quality_issues', 'number_of_hours_with_no_electricity_per_day','number_of_hours_generator_was_on_per_day', 'litres_of_fuel_added_to_generator_per_day', 'number_of_hours_machines_was_not_being_used_due_to_power_cut_per_day', 'total_tests_done_per_day_using_generator')
+    # for row in ro:
+    #     row_num += 1
+    #     for col_num in range(len(row)):
+    #         ws.write(row_num, col_num, row[col_num], font_style)
+
+    # wb.save(response)
+
+    # writer=csv.writer(response)
+    # writer.writerow(['Day of the week','Number of hours with no electricity per day','Number of hours generator was on per day'])
     
 
     # electric=Electric_outage_brti_vl_weekly.objects.all()
 
-    for electric in Electric_outage_brti_vl_weekly.objects.all().values_list('day_of_week', 'number_of_hours_with_no_electricity_per_day','number_of_hours_generator_was_on_per_day'):
+    # for electric in Electric_outage_brti_vl_weekly.objects.all().values_list('day_of_week', 'number_of_hours_with_no_electricity_per_day','number_of_hours_generator_was_on_per_day'):
         
-        writer.writerow(electric)
+    #     writer.writerow(electric)
 
 
-    for reasons in Reasons_for_failure_brti_vl_weekly.objects.all().values_list('roche_plasma_number_of_failed_tests_due_to_sample_quality_issues', 'roche_plasma_number_of_failed_tests_due_to_reagent_quality_issues'):
+    # for reasons in Reasons_for_failure_brti_vl_weekly.objects.all().values_list('roche_plasma_number_of_failed_tests_due_to_sample_quality_issues', 'roche_plasma_number_of_failed_tests_due_to_reagent_quality_issues'):
         
-            writer.writerow(reasons)
+    #         writer.writerow(reasons)
 
-    response['Content-Disposition']='attachment; filename=Testing' + \
-        str(datetime.datetime.now()) + '.csv'
+   
 
     return response 
 

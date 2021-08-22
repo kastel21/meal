@@ -33,24 +33,24 @@ class specimens_received_brti_covid_19Form(forms.ModelForm):
     samples_carried_over_previous_weeks	= forms.IntegerField(label="Samples Carried Over (Previous Weeks(s))")
 
     samples_received_current_week_nasopharyngeal_swab = forms.IntegerField(label="Nasopharyngeal Swab")
-    samples_received_current_week_nasal_swab = forms.IntegerField()
-    samples_received_current_week_oropharyngeal_swab = forms.IntegerField()
-    samples_received_current_week_midturbinate_swab = forms.IntegerField()
-    samples_received_current_week_sputum = forms.IntegerField()
-    samples_received_current_week_whole_blood_or_plasma_or_serum = forms.IntegerField()
-    samples_received_current_week_other = forms.IntegerField()
+    samples_received_current_week_nasal_swab = forms.IntegerField(label="Nasal Swab")
+    samples_received_current_week_oropharyngeal_swab = forms.IntegerField(label="Oropharyngeal Swab")
+    samples_received_current_week_midturbinate_swab = forms.IntegerField(label="Midturbinate Swab")
+    samples_received_current_week_sputum = forms.IntegerField(label="Sputum")
+    samples_received_current_week_whole_blood_or_plasma_or_serum = forms.IntegerField(label="Whole Blood/Plasma/Serum")
+    samples_received_current_week_other = forms.IntegerField(label="Other(specify)")
 
-    samples_rejected_current_week =	forms.IntegerField()
-    total_samples_received_current_week	=	forms.IntegerField()
+    samples_rejected_current_week =	forms.IntegerField(label="Samples Rejected (Current Week)")
+    total_samples_received_current_week	=	forms.IntegerField(label="Total Samples Received (Current Week)")
 
-    number_of_samples_entered_into_lims =	forms.IntegerField()
-    total_samples_current_plus_carryover	 =	forms.IntegerField()
-    samples_referred	=	forms.IntegerField()
-    samples_referred_to_name	=	forms.IntegerField()
-    rejection_rate_current_week = forms.DecimalField(decimal_places=5,  max_digits=5)
-    number_of_results_printed_lims =	forms.IntegerField()
-    total_results_dispatched_by_lab	=	forms.IntegerField()
-    comment= forms.CharField(max_length=5000)
+    number_of_samples_entered_into_lims =	forms.IntegerField(label="# of Samples entered into LIMS")
+    total_samples_current_plus_carryover	 =	forms.IntegerField(label="Total Samples Current + Carryover")
+    samples_referred	=	forms.IntegerField(label="Samples Referred")
+    samples_referred_to_name	=	forms.IntegerField(label="Samples Referred to (Name)")
+    rejection_rate_current_week = forms.DecimalField(label="% Rejection Rate (Current Week)", decimal_places=5,  max_digits=5)
+    number_of_results_printed_lims =	forms.IntegerField(label="Number of Results printed (LIMS)")
+    total_results_dispatched_by_lab	=	forms.IntegerField(label="Total Results dispatched by Lab")
+    comment= forms.CharField(label="Comment: [Please input any comment regarding  samples carryover; samples received; samples rejected; rejection rate; printing and dispatch of results and developments and policy changes if applicable]", max_length=5000)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -139,12 +139,12 @@ class specimens_run_brti_covid_19Form(forms.ModelForm):
 
     error_rates_abbott = forms.IntegerField(label="Abbott")
 
-    error_rates_abbott = forms.DecimalField(decimal_places=5,  max_digits=5, label="BMX")
-    error_rates_abbott = forms.DecimalField(decimal_places=5,  max_digits=5, label="GeneXpert")
-    error_rates_abbott = forms.DecimalField(decimal_places=5,  max_digits=5,label="Quant Studio3	")
-    error_rates_abbott = forms.DecimalField(decimal_places=5,  max_digits=5,label="Hologic Panther	")
-    error_rates_abbott = forms.DecimalField(decimal_places=5,  max_digits=5,label="RDT (Antibody)	")
-    error_rates_abbott = forms.DecimalField(decimal_places=5,  max_digits=5,label="RDT(Antigen)	")
+    error_rates_bmx = forms.DecimalField(decimal_places=5,  max_digits=5, label="BMX")
+    error_rates_genexpert = forms.DecimalField(decimal_places=5,  max_digits=5, label="GeneXpert")
+    error_rates_quant_studio_3 = forms.DecimalField(decimal_places=5,  max_digits=5,label="Quant Studio3	")
+    error_rates_hologic_panther = forms.DecimalField(decimal_places=5,  max_digits=5,label="Hologic Panther	")
+    error_rates_rdt_antibody = forms.DecimalField(decimal_places=5,  max_digits=5,label="RDT (Antibody)	")
+    error_rates_rdt_antigen = forms.DecimalField(decimal_places=5,  max_digits=5,label="RDT(Antigen)	")
 
 
 
@@ -189,28 +189,28 @@ class machine_downtime_reagent_stockout_tool_brti_covid_19Form(forms.ModelForm):
 
     day_of_week = forms.ChoiceField(choices=lab_choices, initial="none", label="Select laboratory please" )
 
-    number_of_machine_breakdowns_abbott = forms.IntegerField()
-    number_of_machine_breakdowns_bmx = forms.IntegerField()
-    number_of_machine_breakdowns_genexpert = forms.IntegerField()
-    number_of_machine_breakdowns_quant_studio_3 = forms.IntegerField()
-    number_of_machine_breakdowns_hologic_panther = forms.IntegerField()
-    number_of_machine_breakdowns_comments = forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=5000, )
+    number_of_machine_breakdowns_abbott = forms.IntegerField(label="Abbott")
+    number_of_machine_breakdowns_bmx = forms.IntegerField(label="BMX")
+    number_of_machine_breakdowns_genexpert = forms.IntegerField(label="GeneXpert")
+    number_of_machine_breakdowns_quant_studio_3 = forms.IntegerField(label="Quant Studio 3")
+    number_of_machine_breakdowns_hologic_panther = forms.IntegerField(label="Hologic Panther")
+    number_of_machine_breakdowns_comments = forms.CharField(label="comments", widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=5000, )
     
 
-    machine_downtime_days_abbott = forms.IntegerField()
-    machine_downtime_days_bmx = forms.IntegerField()
-    machine_downtime_days_genexpert = forms.IntegerField()
-    machine_downtime_days_quant_studio_3 = forms.IntegerField()
-    machine_downtime_days_hologic_panther = forms.IntegerField()
-    machine_downtime_days_comments = forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=5000, )
+    machine_downtime_days_abbott = forms.IntegerField(label="Abbott")
+    machine_downtime_days_bmx = forms.IntegerField(label="BMX")
+    machine_downtime_days_genexpert = forms.IntegerField(label="GeneXpert")
+    machine_downtime_days_quant_studio_3 = forms.IntegerField(label="Quant Studio 3")
+    machine_downtime_days_hologic_panther = forms.IntegerField(label="Hologic Panther")
+    machine_downtime_days_comments = forms.CharField(label="comments", widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=5000, )
     
 
-    reagent_stockout_abbort = forms.IntegerField()
-    reagent_stockout_bms = forms.IntegerField()
-    reagent_stockout_genexpert = forms.IntegerField()
-    reagent_stockout_quant_studio_3 = forms.IntegerField()
-    reagent_stockout_hologic_panther = forms.IntegerField()
-    reagent_stockout_comments = forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=5000, )
+    reagent_stockout_abbort = forms.IntegerField(label="Abbott")
+    reagent_stockout_bms = forms.IntegerField(label="BMX")
+    reagent_stockout_genexpert = forms.IntegerField(label="GeneXpert")
+    reagent_stockout_quant_studio_3 = forms.IntegerField(label="Quant Studio 3")
+    reagent_stockout_hologic_panther = forms.IntegerField(label="Hologic Panther")
+    reagent_stockout_comments = forms.CharField(label="comments", widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=5000, )
         
 
     def __init__(self, *args, **kwargs):
