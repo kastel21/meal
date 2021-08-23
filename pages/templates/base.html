@@ -49,10 +49,13 @@
 
                     <ul class="navbar-nav mr-auto"></ul>
                     <ul class="navbar-nav nav-flex-icons">
+                        <li>
+                            <a href="{% url 'exp' %}"  class="nav-link border border-light rounded waves-effect blue-text">view</a>
+                        </li> &nbsp; &nbsp; &nbsp;
 
                         <li>
                             <a href="{% url 'export-csv' %}" class="nav-link border border-light rounded waves-effect blue-text">Export CSV</a>
-                        </li>
+                        </li>  &nbsp; &nbsp; &nbsp;
 
                         <li class="nav-item">
                             <a href="{% if request.user.is_superuser %}#{% else %}#{% endif %}" class="nav-link border border-light grey-text rounded waves-effect">

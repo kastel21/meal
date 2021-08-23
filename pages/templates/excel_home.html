@@ -1,3 +1,8 @@
+
+<!-- {% extends 'base.html' %} -->
+{% load humanize %}
+
+{% block title %} Reasons for failures | Meal {% endblock title %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,11 +12,43 @@
     <title>Meal excel sheet</title>
 </head>
 <body>
+    {% block content %}
+
+    <p></p>
+  <br>
+  <p></p>
+  <p></p>
+  <br>
+  <p></p>
+  <p></p>
+
+  <p></p>
     <h3>HYDRA System</h3>
-    <ul>
-        <li>
-            <
-        </li>
-    </ul>
+    <br>
+    <p><h4>Electric_outage_brti_vl_weekly</h4></p>
+            <table class="table table-sm">
+                <tr>
+                    <th>ID</th>
+                    <th>Day of the week</th>
+                    <th>number of hours with no electricity per day</th>
+                    <th>Number of hours generator was on per day</th>
+                    <th>Litres of Fuel added to generator per day</th>
+                    <th>Number of hours machine/s was not being used due to power cut per day</th>
+                    <th>Total Tests done per day using generator</th>
+                </tr>
+
+                {% for kas in record %}
+					<tr>
+                        <!-- {% for lolo in kas %} -->
+						<td>{{lolo}}</td>
+                        
+						<!-- <td>{{complaint.complaint_lastname}}</td>
+						<td>{{complaint.date_of_complaint_submission}}</td>
+						<td>{{complaint.complaint_adress}}</td> -->
+                        <!-- {% endfor %} -->
+				</tr>
+				{% endfor %}
+            </table>
 </body>
 </html>
+{% endblock %}
