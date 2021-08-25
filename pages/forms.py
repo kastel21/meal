@@ -430,78 +430,78 @@ class specimens_received_brti_vl_eidForm(forms.ModelForm):
 
     day_of_week = forms.ChoiceField(choices=lab_choices, initial="none", label="Select laboratory please")
 
-    samples_carried_over_previous_week_never_tested_plasma = forms.IntegerField()
-    samples_carried_over_previous_week_never_tested_dbs = forms.IntegerField()
+    samples_carried_over_previous_week_never_tested_plasma = forms.IntegerField(label="Plasma")
+    samples_carried_over_previous_week_never_tested_dbs = forms.IntegerField(label="DBS")
 
-    samples_carried_over_previous_previous_failed_samples_plasma = forms.IntegerField()
+    samples_carried_over_previous_previous_failed_samples_plasma = forms.IntegerField(label="Plasma")
     samples_carried_over_previous_previous_failed_samples_dbs = forms.IntegerField()
 
-    samples_received_current_week_plasma = forms.IntegerField()
+    samples_received_current_week_plasma = forms.IntegerField(label="Plasma")
     samples_received_current_week_dbs = forms.IntegerField()
 
-    samples_rejected_current_week_plasma = forms.IntegerField()
+    samples_rejected_current_week_plasma = forms.IntegerField(label="Plasma")
     samples_rejected_current_week_dbs = forms.IntegerField()
 
-    total_samples_received_current_week_plasma = forms.IntegerField()
+    total_samples_received_current_week_plasma = forms.IntegerField(label="Plasma")
     total_samples_received_current_week_dbs = forms.IntegerField()
 
-    number_of_samples_entered_into_lims_on_day_of_arrival_plasma = forms.IntegerField()
+    number_of_samples_entered_into_lims_on_day_of_arrival_plasma = forms.IntegerField(label="Plasma")
     number_of_samples_entered_into_lims_on_day_of_arrival_dbs = forms.IntegerField()
 
-    number_of_samples_entered_into_lims_after_day_of_arrival_plasma = forms.IntegerField()
+    number_of_samples_entered_into_lims_after_day_of_arrival_plasma = forms.IntegerField(label="Plasma")
     number_of_samples_entered_into_lims_after_day_of_arrival_dbs = forms.IntegerField()
 
     number_of_hours_lims_was_functional = forms.IntegerField()
 
-    total_samples_current_and_carryover_plasma = forms.IntegerField()
+    total_samples_current_and_carryover_plasma = forms.IntegerField(label="Plasma")
     total_samples_current_and_carryover_dbs = forms.IntegerField()
 
-    samples_reffered_plasma = forms.IntegerField()
+    samples_reffered_plasma = forms.IntegerField(label="Plasma")
     samples_reffered_dbs = forms.IntegerField()
 
     lab_samples_reffered_to = forms.IntegerField()
 
-    percentage_rejection_rate_plasma = forms.DecimalField(decimal_places=5,  max_digits=5)
+    percentage_rejection_rate_plasma = forms.DecimalField(label="Plasma", decimal_places=5,  max_digits=5)
     percentage_rejection_rate_dbs = forms.DecimalField(decimal_places=5,  max_digits=5)
 
-    number_of_results_printed_from_lims_plasma = forms.IntegerField()
+    number_of_results_printed_from_lims_plasma = forms.IntegerField(label="Plasma")
     number_of_results_printed_from_lims_dbs = forms.IntegerField()
 
-    total_results_dispatched_by_lab_plasma	= forms.IntegerField()
+    total_results_dispatched_by_lab_plasma	= forms.IntegerField(label="Plasma")
     total_results_dispatched_by_lab_dbs	= forms.IntegerField()
 
-    total_results_dispatched_by_lab_via_sms_plasma	= forms.IntegerField()
+    total_results_dispatched_by_lab_via_sms_plasma	= forms.IntegerField(label="Plasma")
     total_results_dispatched_by_lab_via_sms_dbs	= forms.IntegerField()
 
-    reasons_for_rejections_sample_quality_compromised_plasma = forms.IntegerField()
+    reasons_for_rejections_sample_quality_compromised_plasma = forms.IntegerField(label="Plasma")
     reasons_for_rejections_sample_quality_compromised_dbs = forms.IntegerField()
 
-    reasons_for_rejections_sample_quality_compromised_sample_quality_insufficient_plasma = forms.IntegerField()
+    reasons_for_rejections_sample_quality_compromised_sample_quality_insufficient_plasma = forms.IntegerField(label="Plasma")
     reasons_for_rejections_sample_quality_compromised_sample_quality_insufficient_dbs = forms.IntegerField()
 
-    reasons_for_rejections_sample_quality_compromised_sample_information_mismatch_plasma = forms.IntegerField()
+    reasons_for_rejections_sample_quality_compromised_sample_information_mismatch_plasma = forms.IntegerField(label="Plasma")
     reasons_for_rejections_sample_quality_compromised_sample_information_mismatch_dbs = forms.IntegerField()
 
-    reasons_for_rejections_sample_quality_compromised_sample_or_request_form_missing_plasma = forms.IntegerField()
+    reasons_for_rejections_sample_quality_compromised_sample_or_request_form_missing_plasma = forms.IntegerField(label="Plasma")
     reasons_for_rejections_sample_quality_compromised_sample_or_request_form_missing_dbs = forms.IntegerField()
 
-    reasons_for_rejections_sample_quality_compromised_qda_check_plasma = forms.IntegerField()
+    reasons_for_rejections_sample_quality_compromised_qda_check_plasma = forms.IntegerField(label="Plasma")
     reasons_for_rejections_sample_quality_compromised_qda_check_dbs = forms.IntegerField()
 
-    reasons_for_sample_refferal_reagent_or_kit_stockout_plasma= forms.IntegerField()
+    reasons_for_sample_refferal_reagent_or_kit_stockout_plasma= forms.IntegerField(label="Plasma")
     reasons_for_sample_refferal_reagent_or_kit_stockout_dbs= forms.IntegerField()
 
 
-    reasons_for_sample_refferal_instrument_mechanical_failure_plasma= forms.IntegerField()
+    reasons_for_sample_refferal_instrument_mechanical_failure_plasma= forms.IntegerField(label="Plasma")
     reasons_for_sample_refferal_instrument_mechanical_failure_dbs= forms.IntegerField()
 
-    reasons_for_sample_refferal_insufficient_instrument_capacity_plasma= forms.IntegerField()
+    reasons_for_sample_refferal_insufficient_instrument_capacity_plasma= forms.IntegerField(label="Plasma")
     reasons_for_sample_refferal_insufficient_instrument_capacity_dbs= forms.IntegerField()
 
-    reasons_for_sample_refferal_insufficient_hr_capacity_plasma= forms.IntegerField()
+    reasons_for_sample_refferal_insufficient_hr_capacity_plasma= forms.IntegerField(label="Plasma")
     reasons_for_sample_refferal_insufficient_hr_capacity_dbs= forms.IntegerField()
 
-    reasons_for_sample_refferal_dqa_check_plasma= forms.IntegerField()
+    reasons_for_sample_refferal_dqa_check_plasma= forms.IntegerField(label="Plasma")
     reasons_for_sample_refferal_dqa_check_dbs= forms.IntegerField()
 
     comments=forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=5000)
