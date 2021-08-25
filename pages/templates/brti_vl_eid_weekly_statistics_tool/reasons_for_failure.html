@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
  {% load humanize %}
+ {% load crispy_forms_tags %}
 {% block title %} Reasons for failures | Meal {% endblock title %}
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -24,364 +25,283 @@
 <form action="" method="post" onsubmit="return alert('suck seed')"> 
   {% csrf_token %}
 	<h1 align="center">Reasons for failures</h1>
-<label> Please choose a Laboratory: </label>
-<select id="">
-  <option>NMRL</option>
-  <option>NTBRL</option>
-  <option>Mutare</option>
-  <option>Wilkins</option>
-  <option>BRIDH</option>
-  <option>Gweru</option>
-  <option>Chinhoyi</option>
-  <option>Masvingo </option>
-  <option>Beitbridge</option>
-  <option>Victoria Falls</option>
-  <option>Bindura</option>
-  <option>Kadoma</option>
-  <option>Marondera</option>
-  <option>St Lukes</option>
-  <option>Gwanda</option>
-  <option>Total</option>
-</select>
+<label> {{ form.day_of_week | as_crispy_field }} </label>
+
 <p></p>
 <p></p>
 <br><br>
+
 	<table class="table table-striped table-dark table-sm">
+
   <tr>
-    <td colspan="4"><b>Laboratory</b></td> 
-    <td>Total</td>
+    <td colspan="3"><b>Laboratory</b></td> 
   </tr>
+
   <tr>
   	<td rowspan="16"><b>Roche</b></td>
   	<td rowspan="8"><b>Plasma</b></td>
-  	<td><b># of failed tests due to sample quality issues</b></td>
-    <td><input type="number" name=""></td>
-  	<td>0</td>
+    <th>{{form.roche_plasma_number_of_failed_tests_due_to_sample_quality_issues | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b># of failed tests due to reagent quality issues</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.roche_plasma_number_of_failed_tests_due_to_reagent_quality_issues | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b># of failed tests due to QC failure</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.roche_plasma_number_of_failed_tests_due_to_due_to_qc_failure | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b># of failed tests due to power failure</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.roche_plasma_number_of_failed_tests_due_to_power_failure | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b># of failed tests due to mechanical failure</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.roche_plasma_number_of_failed_tests_due_to_mechanical_failure | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b>Processing Error</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.roche_plasma_number_of_failed_tests_due_to_processing_error | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b>Other Specify</b></td>
-    <td><input type="text" name=""></td>
-    <td>0</td>
+    <th>{{form.roche_plasma_number_of_failed_tests_due_to_other | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b>DQA check</b></td>
-    <td><input type="text" name=""></td>
-    <td>0</td>
+    <th>{{form.roche_dqa_check_plasma | as_crispy_field }}</th>
   </tr>
-    <tr>
+
+   <tr>
     <td rowspan="8"><b>DBS<b></td>
-    <td><b># of failed tests due to sample quality issues</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+      <th>{{form.roche_dbs_number_of_failed_tests_due_to_sample_quality_issues | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b># of failed tests due to reagent quality issues</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.roche_dbs_number_of_failed_tests_due_to_reagent_quality_issues | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b># of failed tests due to QC failure</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.roche_dbs_number_of_failed_tests_due_to_due_to_qc_failure | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b># of failed tests due to power failure</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.roche_dbs_number_of_failed_tests_due_to_power_failure | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b># of failed tests due to mechanical failure</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.roche_dbs_number_of_failed_tests_due_to_mechanical_failure | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b>Processing Error</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.roche_dbs_number_of_failed_tests_due_to_processing_error | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b>Other Specify</b></td>
-    <td><input type="text" name=""></td>
-    <td>0</td>
+    <th>{{form.roche_dbs_number_of_failed_tests_due_to_other | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b>DQA check</b></td>
-    <td><input type="text" name=""></td>
-    <td>0</td>
+    <th>{{form.roche_dqa_check_dbs | as_crispy_field }}</th>
   </tr>
+
   <tr>
     <td rowspan="16"><b>BMX</b></td>
     <td rowspan="8"><b>Plasma</b></td>
-    <td><b># of failed tests due to sample quality issues</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.bmx_plasma_number_of_failed_tests_due_to_sample_quality_issues | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b># of failed tests due to reagent quality issues</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.bmx_plasma_number_of_failed_tests_due_to_reagent_quality_issues | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b># of failed tests due to QC failure</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.bmx_plasma_number_of_failed_tests_due_to_due_to_qc_failure | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b># of failed tests due to power failure</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.bmx_plasma_number_of_failed_tests_due_to_power_failure | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b># of failed tests due to mechanical failure</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.bmx_plasma_number_of_failed_tests_due_to_mechanical_failure | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b>Processing Error</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.bmx_plasma_number_of_failed_tests_due_to_processing_error | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b>Other Specify</b></td>
-    <td><input type="text" name=""></td>
-    <td>0</td>
+    <th>{{form.bmx_plasma_number_of_failed_tests_due_to_other | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b>DQA check</b></td>
-    <td><input type="text" name=""></td>
-    <td>0</td>
+    <th>{{form.bmx_dqa_check_plasma | as_crispy_field }}</th>
   </tr>
-    <tr>
+
+  <tr>
     <td rowspan="8"><b>DBS<b></td>
-    <td><b># of failed tests due to sample quality issues</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.bmx_dbs_number_of_failed_tests_due_to_sample_quality_issues | as_crispy_field }}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.bmx_dbs_number_of_failed_tests_due_to_reagent_quality_issues | as_crispy_field }}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.bmx_dbs_number_of_failed_tests_due_to_due_to_qc_failure | as_crispy_field }}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.bmx_dbs_number_of_failed_tests_due_to_power_failure | as_crispy_field }}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.bmx_dbs_number_of_failed_tests_due_to_mechanical_failure | as_crispy_field }}</th>
   </tr>
   <tr>
-    <td><b># of failed tests due to reagent quality issues</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.bmx_dbs_number_of_failed_tests_due_to_processing_error | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b># of failed tests due to QC failure</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.bmx_dbs_number_of_failed_tests_due_to_other | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b># of failed tests due to power failure</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.bmx_dqa_check_dbs | as_crispy_field }}</th>
   </tr>
-  <tr>
-    <td><b># of failed tests due to mechanical failure</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
-  </tr>
-  <tr>
-    <td><b>Processing Error</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
-  </tr>
-  <tr>
-    <td><b>Other Specify</b></td>
-    <td><input type="text" name=""></td>
-    <td>0</td>
-  </tr>
-  <tr>
-    <td><b>DQA check</b></td>
-    <td><input type="text" name=""></td>
-    <td>0</td>
-  </tr>
+
   <tr>
     <td rowspan="16"><b>Abbott</b></td>
     <td rowspan="8"><b>Plasma</b></td>
-    <td><b># of failed tests due to sample quality issues</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.abbott_plasma_number_of_failed_tests_due_to_sample_quality_issues | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b># of failed tests due to reagent quality issues</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.abbott_plasma_number_of_failed_tests_due_to_reagent_quality_issues | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b># of failed tests due to QC failure</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.abbott_plasma_number_of_failed_tests_due_to_due_to_qc_failure | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b># of failed tests due to power failure</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.abbott_plasma_number_of_failed_tests_due_to_power_failure | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b># of failed tests due to mechanical failure</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.abbott_plasma_number_of_failed_tests_due_to_mechanical_failure | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b>Processing Error</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.abbott_plasma_number_of_failed_tests_due_to_processing_error | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b>Other Specify</b></td>
-    <td><input type="text" name=""></td>
-    <td>0</td>
+    <th>{{form.abbott_plasma_number_of_failed_tests_due_to_other | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b>DQA check</b></td>
-    <td><input type="text" name=""></td>
-    <td>0</td>
+    <th>{{form.abbott_dqa_check_plasma | as_crispy_field }}</th>
   </tr>
+
     <tr>
     <td rowspan="8"><b>DBS<b></td>
-    <td><b># of failed tests due to sample quality issues</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+      <th>{{form.abbott_dbs_number_of_failed_tests_due_to_sample_quality_issues | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b># of failed tests due to reagent quality issues</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.abbott_dbs_number_of_failed_tests_due_to_reagent_quality_issues | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b># of failed tests due to QC failure</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.abbott_dbs_number_of_failed_tests_due_to_due_to_qc_failure | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b># of failed tests due to power failure</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.abbott_dbs_number_of_failed_tests_due_to_power_failure | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b># of failed tests due to mechanical failure</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.abbott_dbs_number_of_failed_tests_due_to_mechanical_failure | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b>Processing Error</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.abbott_dbs_number_of_failed_tests_due_to_processing_error | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b>Other Specify</b></td>
-    <td><input type="text" name=""></td>
-    <td>0</td>
+    <th>{{form.abbott_dbs_number_of_failed_tests_due_to_other | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b>DQA check</b></td>
-    <td><input type="text" name=""></td>
-    <td>0</td>
+    <th>{{form.abbott_dqa_check_dbs | as_crispy_field }}</th>
   </tr>
+
   <tr>
     <td rowspan="16"><b>Hologic Panther</b></td>
     <td rowspan="8"><b>Plasma</b></td>
-    <td><b># of failed tests due to sample quality issues</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.hologic_panther_plasma_number_of_failed_tests_due_to_sample_quality_issues | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b># of failed tests due to reagent quality issues</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.hologic_panther_plasma_number_of_failed_tests_due_to_reagent_quality_issues | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b># of failed tests due to QC failure</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.hologic_panther_plasma_number_of_failed_tests_due_to_due_to_qc_failure | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b># of failed tests due to power failure</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.hologic_panther_plasma_number_of_failed_tests_due_to_power_failure | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b># of failed tests due to mechanical failure</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.hologic_panther_plasma_number_of_failed_tests_due_to_mechanical_failure | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b>Processing Error</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.hologic_panther_plasma_number_of_failed_tests_due_to_processing_error | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b>Other Specify</b></td>
-    <td><input type="text" name=""></td>
-    <td>0</td>
+    <th>{{form.hologic_panther_plasma_number_of_failed_tests_due_to_other | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b>DQA check</b></td>
-    <td><input type="text" name=""></td>
-    <td>0</td>
+    <th>{{form.hologic_panther_dqa_check_plasma | as_crispy_field }}</th>
   </tr>
+
     <tr>
     <td rowspan="8"><b>DBS<b></td>
-    <td><b># of failed tests due to sample quality issues</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+      <th>{{form.hologic_panther_dbs_number_of_failed_tests_due_to_sample_quality_issues | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b># of failed tests due to reagent quality issues</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.hologic_panther_dbs_number_of_failed_tests_due_to_reagent_quality_issues | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b># of failed tests due to QC failure</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.hologic_panther_dbs_number_of_failed_tests_due_to_due_to_qc_failure | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b># of failed tests due to power failure</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.hologic_panther_dbs_number_of_failed_tests_due_to_power_failure | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b># of failed tests due to mechanical failure</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.hologic_panther_dbs_number_of_failed_tests_due_to_mechanical_failure | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b>Processing Error</b></td>
-    <td><input type="number" name=""></td>
-    <td>0</td>
+    <th>{{form.hologic_panther_dbs_number_of_failed_tests_due_to_processing_error | as_crispy_field }}</th>
   </tr>
+
   <tr>
-    <td><b>Other Specify</b></td>
-    <td><input type="text" name=""></td>
-    <td>0</td>
+    <th>{{form.hologic_panther_dbs_number_of_failed_tests_due_to_other | as_crispy_field }}</th>
   </tr>
+  
   <tr>
-    <td><b>DQA check</b></td>
-    <td><input type="text" name=""></td>
-    <td>0</td>
+    <th>{{form.hologic_panther_dqa_check_dbs | as_crispy_field }}</th>
   </tr>
 </table>
 <br><br>

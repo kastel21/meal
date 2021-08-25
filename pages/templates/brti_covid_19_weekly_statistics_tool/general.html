@@ -28,7 +28,7 @@
   {% csrf_token %}
 
 	<h1 align="center">General Info</h1>
-  {{ form.day_of_week | as_crispy_field }}
+  <label>{{ form.day_of_week | as_crispy_field }}</label>
 
 <p></p>
 <p></p>
@@ -37,31 +37,35 @@
 	<table class="table table-striped table-dark table-sm">
 		
     <tr>
-      {{ form.general_comments_regarding_testing_and_challenges_faced_by_the_laboratory | as_crispy_field }}
+      <th>{{ form.general_comments_regarding_testing_and_challenges_faced_by_the_laboratory | as_crispy_field }}</th>
     </tr>
+
+    
     <tr>
-      {{ form.number_of_staff_who_tested_positive_to_covid_19_at_vl_lab | as_crispy_field }}
+      <th>{{ form.number_of_staff_who_tested_positive_to_covid_19_at_vl_lab | as_crispy_field }}</th>
     </tr>
+
   </table>
 
 <br><p></p>
 
   <table class="table table-striped table-dark table-sm">
-    <tr>
-      {{ form.number_of_staff_who_have_been_vaccinated | as_crispy_field }}
-    </tr>
-    <tr>
-    </tr>
-    <tr>
-      {{ form.Comments | as_crispy_field }}
 
+    <tr>
+      <th>{{ form.number_of_staff_who_have_been_vaccinated | as_crispy_field }}</th>
     </tr>
+
+    <tr>
+      <th>{{ form.Comments | as_crispy_field }}</th>
+    </tr>
+
   </table>
+
     <br><p></p>
 
     <table class="table table-striped table-dark table-sm">
     <tr>
-      {{ form.Request_to_brti_from_the_laboratory | as_crispy_field }}
+      <th>{{ form.Request_to_brti_from_the_laboratory | as_crispy_field }}</th>
     </tr>
 </table>
 <br><br>

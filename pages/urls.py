@@ -26,4 +26,6 @@ urlpatterns = [
     path('labbrtiweekly4', views.labbrtiweekly4, name='labbrtiweekly4'),
     path('labbrtiweekly5', views.labbrtiweekly5, name='labbrtiweekly5'),
 
+    path('export_csv', views.export_csv, name='export-csv'),
+
 ]
