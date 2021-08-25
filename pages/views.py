@@ -7,6 +7,60 @@ import csv
 import xlwt
 import datetime
 from django.http import JsonResponse
+import sqlite3
+
+
+def exp(request):
+    context = {}
+    columns=[]
+    record=[]
+
+    try:
+        sqliteConnection = sqlite3.connect('db.sqlite3')
+        cursorC = sqliteConnection.cursor()
+        cursorR = sqliteConnection.cursor()
+        print("Database success")
+
+
+        f = open("tables.txt",'r')
+        tables=f.readlines()
+        i=0
+        for table in tables:
+            # sql_select_Query = "select name from sqlite_master where type='table' and name like 'pages_%';"
+            sql_select_Query = "PRAGMA table_info( "+table.strip()+" );"
+            cursorC.execute(sql_select_Query)
+            columns.append(cursorC.fetchall())
+            #print(columns)
+
+            sql_select_Query1 = "select * from "+table+";"
+            cursorR.execute(sql_select_Query1)
+            record.append(cursorR.fetchall())
+            #print(record)
+
+            i=i+1
+
+            context={'columns': columns,
+                    'record':record
+            }
+
+            # f=open('columns.txt', 'w')
+            
+            # for table in record:
+            #     f.write(str(table) + '\n')
+
+            # f.close()
+
+    except sqlite3.Error as error:
+        print("ndatadza sha", error)
+
+    # finally:
+    #     if sqliteConnection:
+    #         sqliteConnection.close()
+    #         print("ndavhara")
+    #     cursor.close()
+
+
+    return render(request, 'excel_home.html', context)
 
 
 def index(request):
