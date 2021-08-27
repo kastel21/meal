@@ -323,6 +323,8 @@ def export_csv(request):
         row_num += 1
         for col_num in range(len(row)):
             ws.write(row_num, col_num, row[col_num], font_style)
+            ws.write(13, col_num, 5, font_style)
+            
 
     wb.save(response)
 

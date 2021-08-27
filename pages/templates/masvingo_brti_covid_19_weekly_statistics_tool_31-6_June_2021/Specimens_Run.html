@@ -218,4 +218,221 @@
 </form>
 <br><br>
 </body>
+{%block js%}
+<script>
+ var num=0;
+ var total_runs =0;
+ var total_patients_run = 0;
+
+$(':input[name$=tests_done_abbott_run]').on('change', function() {
+   num = parseInt($(':input[name$=tests_done_abbott_run]').val());
+   total_runs = parseInt($(':input[name$=tests_done_abbott_run]').val());
+   $(':input[name$=total_tests_done]').val(total_runs);
+
+   
+});
+
+$(':input[name$=tests_done_abbott_failed_but_eligibale_for_repeat]').on('change', function() {
+  total_patients_run= total_patients_run + parseInt( $(':input[name$=tests_done_abbott_failed_but_eligibale_for_repeat]').val());
+
+   $(':input[name$=total_patients_run]').val(total_runs-total_patients_run);
+   
+});
+
+$(':input[name$=tests_done_abbott_failed_but_not_eligibale_for_repeat]').on('change', function() {
+  total_patients_run= total_patients_run + parseInt( $(':input[name$=tests_done_abbott_failed_but_not_eligibale_for_repeat]').val());
+
+   $(':input[name$=total_patients_run]').val(total_runs-total_patients_run);
+   
+});
+
+$(':input[name$=tests_done_abbott_repeat]').on('change', function() {
+   num= num + parseInt( $(':input[name$=tests_done_abbott_repeat]').val());
+
+   //$(':input[name$=total_tests_done]').val(num);
+   
+});
+
+$(':input[name$=tests_done_bmx_run]').on('change', function() {
+   num= num + parseInt( $(':input[name$=tests_done_bmx_run]').val());
+   total_runs = total_runs + parseInt( $(':input[name$=tests_done_bmx_run]').val());
+   $(':input[name$=total_tests_done]').val(total_runs);
+   
+});
+
+$(':input[name$=tests_done_bmx_failed_but_eligibale_for_repeat]').on('change', function() {
+  total_patients_run= total_patients_run + parseInt( $(':input[name$=tests_done_bmx_failed_but_eligibale_for_repeat]').val());
+
+   $(':input[name$=total_patients_run]').val(total_runs-total_patients_run);
+   
+});
+
+$(':input[name$=tests_done_bmx_failed_but_not_eligibale_for_repeat]').on('change', function() {
+  total_patients_run= total_patients_run + parseInt( $(':input[name$=tests_done_bmx_failed_but_not_eligibale_for_repeat]').val());
+
+   $(':input[name$=total_patients_run]').val(total_runs-total_patients_run);
+   
+});
+$(':input[name$=tests_done_bmx_repeat]').on('change', function() {
+   num= num + parseInt( $(':input[name$=tests_done_bmx_repeat]').val());
+
+   //$(':input[name$=total_tests_done]').val(num);
+   
+});
+
+
+$(':input[name$=tests_done_genexpert_run]').on('change', function() {
+   num= num + parseInt($(':input[name$=tests_done_genexpert_run]').val());
+   total_runs = total_runs + parseInt( $(':input[name$=tests_done_bmx_run]').val());
+
+   $(':input[name$=total_tests_done]').val(total_runs);
+   
+});
+
+$(':input[name$=tests_done_genexpert_failed_but_eligibale_for_repeat]').on('change', function() {
+  total_patients_run= total_patients_run + parseInt( $(':input[name$=tests_done_genexpert_failed_but_eligibale_for_repeat]').val());
+
+   $(':input[name$=total_patients_run]').val(total_runs-total_patients_run);
+   
+});
+
+$(':input[name$=tests_done_genexpert_failed_but_not_eligibale_for_repeat]').on('change', function() {
+  total_patients_run= total_patients_run + parseInt( $(':input[name$=tests_done_genexpert_failed_but_not_eligibale_for_repeat]').val());
+
+   $(':input[name$=total_patients_run]').val(total_runs-total_patients_run);
+   
+});
+
+$(':input[name$=tests_done_genexpert_repeat]').on('change', function() {
+   num= num + parseInt( $(':input[name$=tests_done_genexpert_repeat]').val());
+
+   //$(':input[name$=total_tests_done]').val(num);
+   
+});
+
+$(':input[name$=tests_done_quant_studio_3_run]').on('change', function() {
+   num= num + parseInt ($(':input[name$=tests_done_quant_studio_3_run]').val());
+   total_runs = total_runs + parseInt( $(':input[name$=tests_done_bmx_run]').val());
+
+   $(':input[name$=total_tests_done]').val(total_runs);
+   
+});
+
+$(':input[name$=tests_done_quant_studio_3_failed_but_eligibale_for_repeat]').on('change', function() {
+  total_patients_run= total_patients_run + parseInt( $(':input[name$=tests_done_quant_studio_3_failed_but_eligibale_for_repeat]').val());
+
+   $(':input[name$=total_patients_run]').val(total_runs-total_patients_run);
+   
+});
+
+$(':input[name$=tests_done_quant_studio_3_failed_but_not_eligibale_for_repeat]').on('change', function() {
+  total_patients_run= total_patients_run + parseInt( $(':input[name$=tests_done_quant_studio_3_failed_but_not_eligibale_for_repeat]').val());
+
+   $(':input[name$=total_patients_run]').val(total_runs-total_patients_run);
+   
+});
+
+$(':input[name$=tests_done_quant_studio_3_repeat]').on('change', function() {
+   num= num + parseInt( $(':input[name$=tests_done_quant_studio_3_repeat]').val());
+
+   //$(':input[name$=total_tests_done]').val(num);
+   
+});
+
+$(':input[name$=tests_done_hologic_panther_run]').on('change', function() {
+   num=num + parseInt( $(':input[name$=tests_done_hologic_panther_run]').val());
+   total_runs = total_runs + parseInt( $(':input[name$=tests_done_bmx_run]').val());
+
+   $(':input[name$=total_tests_done]').val(total_runs);
+   
+});
+
+$(':input[name$=tests_done_hologic_panther_failed_but_eligibale_for_repeat]').on('change', function() {
+  total_patients_run= total_patients_run + parseInt( $(':input[name$=tests_done_hologic_panther_failed_but_eligibale_for_repeat]').val());
+
+  $(':input[name$=total_patients_run]').val(total_runs-total_patients_run);
+   
+});
+
+$(':input[name$=tests_done_hologic_panther_failed_but_not_eligibale_for_repeat]').on('change', function() {
+  total_patients_run= total_patients_run + parseInt( $(':input[name$=tests_done_hologic_panther_failed_but_not_eligibale_for_repeat]').val());
+
+   $(':input[name$=total_tests_done]').val(total_runs-total_patients_run);
+   
+});
+
+$(':input[name$=tests_done_hologic_panther_repeat]').on('change', function() {
+   num= num + parseInt( $(':input[name$=tests_done_hologic_panther_repeat]').val());
+   $(':input[name$=total_patients_run]').val(total_runs-total_patients_run);
+
+   //$(':input[name$=total_tests_done]').val(num);
+   
+});
+
+$(':input[name$=tests_done_rdt_ab_run]').on('change', function() {
+   num=num + parseInt($(':input[name$=tests_done_rdt_ab_run]').val());
+     total_runs = total_runs + parseInt( $(':input[name$=tests_done_bmx_run]').val());
+
+   $(':input[name$=total_tests_done]').val(total_runs);
+   
+});
+
+$(':input[name$=tests_done_rdt_ab_failed_but_eligibale_for_repeat]').on('change', function() {
+  total_patients_run= total_patients_run + parseInt( $(':input[name$=tests_done_rdt_ab_failed_but_eligibale_for_repeat]').val());
+
+   $(':input[name$=total_tests_done]').val(total_runs-total_patients_run);
+   
+});
+
+$(':input[name$=tests_done_rdt_ab_failed_but_not_eligibale_for_repeat]').on('change', function() {
+  total_patients_run= total_patients_run + parseInt( $(':input[name$=tests_done_rdt_ab_failed_but_not_eligibale_for_repeat]').val());
+
+   $(':input[name$=total_tests_done]').val(total_runs-total_patients_run);
+   
+});
+
+$(':input[name$=tests_done_rdt_ab_repeat]').on('change', function() {
+   num= num + parseInt( $(':input[name$=tests_done_rdt_ab_repeat]').val());
+
+   //$(':input[name$=total_tests_done]').val(num);
+   
+});
+
+
+$(':input[name$=tests_done_rdt_ag_run]').on('change', function() {
+   num= num + parseInt($(':input[name$=tests_done_rdt_ag_run]').val());
+   total_runs = total_runs + parseInt( $(':input[name$=tests_done_bmx_run]').val());
+
+   $(':input[name$=total_tests_done]').val(total_runs);
+   
+});
+
+$(':input[name$=tests_done_rdt_ag_failed_but_eligibale_for_repeat]').on('change', function() {
+  total_patients_run= total_patients_run + parseInt( $(':input[name$=tests_done_rdt_ag_failed_but_eligibale_for_repeat]').val());
+
+   $(':input[name$=total_tests_done]').val(total_runs-total_patients_run);
+   
+});
+
+$(':input[name$=tests_done_rdt_ag_failed_but_not_eligibale_for_repeat]').on('change', function() {
+  total_patients_run= total_patients_run + parseInt( $(':input[name$=tests_done_rdt_ag_failed_but_not_eligibale_for_repeat]').val());
+
+   $(':input[name$=total_tests_done]').val(total_runs-total_patients_run);
+   
+});
+
+$(':input[name$=tests_done_rdt_ag_repeat]').on('change', function() {
+   num= num + parseInt( $(':input[name$=tests_done_rdt_ag_repeat]').val());
+
+   //$(':input[name$=total_tests_done]').val(num);
+   
+});
+
+
+
+
+
+</script>
+
+{%endblock js%}
 {% endblock%}
