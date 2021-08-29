@@ -1,0 +1,114 @@
+<div class="list-group list-group-flush">
+    <a href="/" class="list-group-item {% ifequal active 'profile' %} active {% endifequal %} waves-effect">
+        <i class="fa fa-pie-chart mr-3" aria-hidden="true"></i>BRTI COVID-19WEEKLY STATISTICS TOOL</a>
+    
+     <a href="{% url 'vleid' %}" class="list-group-item 
+        {% if active == 'BRTI VL-EID  WEEKLY STATISTICS TOOL' %} active {% endif %} waves-effect">
+        <i class="fa fa-pie-chart mr-3" aria-hidden="true"></i>BRTI VL-EID  WEEKLY STATISTICS TOOL</a>
+
+    <!-- {% if request.user.is_superuser %}
+    <a href="#" class="list-group-item 
+        {% if active == 'students' %} active {% endif %} waves-effect">
+        <i class="fa fa-users mr-3" aria-hidden="true"></i> Students</a>
+        {% endif %}
+
+        {% if request.user.is_lecturer %}
+        <a href="#" class="list-group-item 
+        {% if active == 'students' %} active {% endif %} waves-effect">
+        <i class="fa fa-graduation-cap mr-3" aria-hidden="true"></i>View Students</a>
+    {% endif %} -->
+
+    <!-- {% if request.user.is_superuser %}
+    <a href="{% url 'staff_list' %}" class="list-group-item 
+        {% if active == 'staff' %} active {% endif %} waves-effect">
+        <i class="fa  fa-users mr-3" aria-hidden="true"></i> Staff</a>
+        {% endif %} -->
+
+    {% if  1 %}
+        <a href="{% url 'labeidweekly2' %}" class="list-group-item 
+        {% if active == 'LAB BRTI COVID 19 WEEKLY STATICS TOOL' %} active {% endif %} waves-effect">
+        <i class="fa fa-pie-chart mr-3" aria-hidden="true"></i>LAB BRTI COVID 19 WEEKLY STATICS TOOL</a>
+    {% endif %}
+
+    {% if 1 %}
+    <a href="{% url 'labbrtiweekly' %}" class="list-group-item 
+        {% if active == 'LAB BRTI WEEKLY STATICS' %} active {% endif %} waves-effect">
+        <i class="fa fa-pie-chart mr-3" aria-hidden="true"></i> LAB BRTI WEEKLY STATISTICS  TOOL</a> 
+
+    <!-- {% elif request.user.is_student %}
+        <a href="{% url 'course_list' %}" class="list-group-item 
+        {% if active == 'course_list' %} active {% endif %} waves-effect">
+        <i class="fa fa-book mr-3" aria-hidden="true"></i>View Courses</a>
+    {% endif %} -->
+
+    <!-- {% if request.user.is_superuser %}
+    <a href="{% url 'course_allocation' %}" class="list-group-item 
+        {% if active == 'course_allocation' %} active {% endif %} waves-effect">
+        <i class="fa fa-book mr-3" aria-hidden="true"></i>Course Allocation</a>
+    {% endif %} -->
+
+    <!-- {% if request.user.is_superuser or request.user.is_lecturer %}
+    <a href="{% url 'course_allocation_view' %}" class="list-group-item 
+        {% if active == 'course_allocation_view' %} active {% endif %} waves-effect">
+        <i class="fa fa-book mr-3" aria-hidden="true"></i>Allocation List</a>
+    {% endif %} -->
+
+    <!-- {% if request.user.is_student %}
+    <a href="{% url 'course_registration' %}" class="list-group-item 
+        {% if active == 'course_registration' %} active {% endif %} waves-effect">
+        <i class="fa fa-book mr-3" aria-hidden="true"></i>Course Resgistration</a>
+    {% endif %} -->
+
+    <!-- {% if request.user.is_lecturer %}
+    <a href="{% url 'add_score' %}" class="list-group-item 
+        {% if active == 'Add_Score' %} active {% endif %} waves-effect">
+        <i class="fa fa-book mr-3" aria-hidden="true"></i>
+        Manage Score
+    </a>
+    {% endif %} -->
+    
+    <!-- {% if request.user.is_student %}
+    <a href="{% url 'view_results' %}" class="list-group-item 
+        {% if active == 'view_results' %} active {% endif %} waves-effect">
+        <i class="fa fa-eye mr-3" aria-hidden="true"></i>     
+             View Assessment</a>
+    {% endif %} -->
+
+
+    {% if 1 %}
+    <a href="labcovidweekly" class="list-group-item 
+        {% if active == 'LAB BRTI VL WEEKLY STATISTICS TOOL' %} active {% endif %} waves-effect">
+        <i class="fa fa-pie-chart mr-3" aria-hidden="true"></i>     
+             LAB BRTI VL WEEKLY STATISTICS TOOL</a>
+    {% endif %}
+
+
+
+    <!-- <a href="#" class="list-group-item 
+        {% if active == 'change_password' %} active {% endif %} waves-effect">
+    <i class="fa  fa-key mr-3" aria-hidden="true"></i>Change Password</a> -->
+
+    <!-- {% if request.user.is_superuser %}
+    <a href="{% url 'manage_session' %}" class="list-group-item 
+        {% if active == 'manage_session' %} active {% endif %} waves-effect">
+        <i class="fa  fa-cogs mr-3" aria-hidden="true"></i>Session Setting</a>
+    {% endif %} -->
+
+    <!-- {% if request.user.is_superuser %}
+    <a href="{% url 'manage_semester' %}" class="list-group-item 
+        {% if active == 'manage_semester' %} active {% endif %} waves-effect">
+        <i class="fa  fa-gear mr-3" aria-hidden="true"></i>Semester Setting</a>
+    {% endif %} -->
+
+    <!-- {% if request.user.is_student %}
+    <a href="#" class="list-group-item 
+        {% if active == 'payment' %} active {% endif %} waves-effect">
+        <i class="fa  fa-cc-mastercard mr-3" aria-hidden="true"></i>Pay Departmental</a>
+    {% endif %} -->
+
+    <!-- {% if request.user.is_superuser %}
+    <a href="#" class="list-group-item 
+        {% if active == 'system_setting' %} active {% endif %} waves-effect">
+        <i class="fa  fa-gear mr-3" aria-hidden="true"></i>System setting</a>
+    {% endif %} -->
+</div>

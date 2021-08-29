@@ -1,0 +1,120 @@
+
+ {% extends 'base.html' %}
+ {% load humanize %}
+ {% load crispy_forms_tags %}
+{% block title %} Machine, Downtime & Reagent Stock Out Tool | Meal {% endblock title %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Machine, Downtime & Reagent Stock Out Tool</title>
+<link href="bitnami.css" media="all" rel="Stylesheet" type="text/css" />
+  <link href="/dashboard/stylesheets/all.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="../stylesheet/custom.css">
+</head>
+
+{% block content %}
+<body>
+
+  {% include "header.html"%}
+
+  <p></p>
+  <br>
+  <p></p>
+
+<form action="" method="post" onsubmit="return alert('suck seed')">
+  {% csrf_token %}
+	<h1 align="center">Machine, Downtime & Reagent Stock Out Tool</h1>
+
+  <p></p>
+
+	<label> <th>{{ form.dayofweek | as_crispy_field }}</th> </label>
+
+<p></p>
+<p></p>
+<br><br>
+
+	<table class="table table-striped table-dark table-sm">
+
+    <tr>
+      <th rowspan="6">Machine Breakdown (Number)</th>
+      <th>{{ form.numberofmachinebreakdownsabbott | as_crispy_field }}</th>
+    </tr>
+
+    <tr>
+      <th>{{ form.numberofmachinebreakdownsbmx | as_crispy_field }}</th>
+    </tr>
+
+    <tr>
+      <th>{{ form.numberofmachinebreakdownsgenexpert | as_crispy_field }}</th>
+    </tr>
+
+    <tr>
+      <th>{{ form.numberofmachinebreakdownsquantstudio3 | as_crispy_field }}</th>
+    </tr>
+
+    <tr>
+      <th>{{ form.numberofmachinebreakdownshologicpanther | as_crispy_field }}</th>
+    </tr>
+
+    <tr>
+      <th>{{ form.numberofmachinebreakdownscomments | as_crispy_field }}</th>
+    </tr>
+
+    <tr>
+      <th rowspan="6">Machine Downtime (Days)</th>
+      <th>{{ form.machinedowntimedaysabbott | as_crispy_field }}</th>
+    </tr>
+
+    <tr>
+      <th>{{ form.machinedowntimedaysbmx | as_crispy_field }}</th>
+    </tr>
+
+    <tr>
+      <th>{{ form.machinedowntimedaysgenexpert | as_crispy_field }}</th>
+    </tr>
+
+    <tr>
+      <th>{{ form.machinedowntimedaysquantstudio3 | as_crispy_field }}</th>
+    </tr>
+
+    <tr>
+      <th>{{ form.machinedowntimedayshologicpanther | as_crispy_field }}</th>
+    </tr>
+
+    <tr>
+      <th>{{ form.machinedowntimedayscomments | as_crispy_field }}</th>
+    </tr>
+
+    <tr>
+      <th rowspan="6">Reagent Stockout</th>
+      <th>{{ form.reagentstockoutabbort | as_crispy_field }}</th>
+    </tr>
+
+    <tr>
+      <th>{{ form.reagentstockoutbms | as_crispy_field }}</th>
+    </tr>
+
+    <tr>
+      <th>{{ form.reagentstockoutgenexpert | as_crispy_field }}</th>
+    </tr>
+
+    <tr>
+      <th>{{ form.reagentstockoutquantstudio3 | as_crispy_field }}</th>
+    </tr>
+
+    <tr>
+      <th>{{ form.reagentstockouthologicpanther | as_crispy_field }}</th>
+    </tr>
+
+    <tr>
+      <th>{{ form.reagentstockoutcomments | as_crispy_field }}</th>
+    </tr>
+  </table>
+  <input  type="submit" class="button5" >
+<a  href="#" class="button5" >Next</a>
+</form>
+</body>
+{% endblock %}

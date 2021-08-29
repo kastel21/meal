@@ -1,0 +1,349 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+ {% load humanize %}
+{% block title %} Specimens Run | Meal {% endblock title %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Specimens Run</title>
+  <link href="bitnami.css" media="all" rel="Stylesheet" type="text/css" />
+  <link href="/dashboard/stylesheets/all.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="../stylesheet/custom.css">
+</head>
+
+{% block content %}
+
+<body>
+
+  {% include "header3.html"%}
+
+  <p></p>
+  <br>
+  <p></p>
+
+  <form action="" method="post" onsubmit="return alert('suck seed')">
+    {% csrf_token %}
+
+    <h1 align="center">Specimens Run</h1>
+	<label> <th>{{form.dayofweek | as_crispy_field}}</th></label>
+<p></p>
+<p></p>
+<br><br>
+	 <table class="table table-striped table-dark table-sm">
+
+  <tr>
+    <td colspan="4"><b>Laboratory</b></td>
+  </tr>
+
+  <tr>
+  	<td rowspan="54"><b>Tests Done</b></td>
+  	<td rowspan="12"><b>Roche</b></td>
+  	<td rowspan="6"><b>Plasma</b></td>
+  	 <td><b>{{form.testsdonerochenumberofsamplesreceivedthisweekplasma | as_crispy_field}}</b></td>
+  </tr>
+
+  <tr>
+    <th>{{form.testsdonerochenumberofsamplescarriedoverpreviousweeksplasma | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.testsdonerochefailedbuteligibaleforrepeatplasma | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.testsdonerochefailedbutnoteligibaleforrepeatplasma | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.testsdonerocherepeatplasma | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.testsdonerochefailedafterrepeattestingplasma | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <td rowspan="6"><b>DBS<b></td>
+      <th>{{form.testsdonerochenumberofsamplesreceivedthisweekdbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.testsdonerochenumberofsamplescarriedoverpreviousweeksdbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.testsdonerochefailedbuteligibaleforrepeatdbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.testsdonerochefailedbutnoteligibaleforrepeatdbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.testsdonerocherepeatdbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.testsdonerochefailedafterrepeattestingdbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <td rowspan="14"><b>BMX</b></td>
+  </tr>
+
+  <tr>
+    <td rowspan="7"><b>Plasma</b></td>
+  </tr>
+
+  <tr>
+    <th>{{form.testsdonebmxnumberofsamplesreceivedthisweekplasma | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.testsdonebmxnumberofsamplescarriedoverpreviousweeksplasma | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.testsdonebmxfailedbuteligibaleforrepeatplasma | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.testsdonebmxfailedbutnoteligibaleforrepeatplasma | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.testsdonebmxrepeatplasma | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.testsdonebmxfailedafterrepeattestingplasma | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <td rowspan="6"><b>DBS<b></td>
+    <th>{{form.testsdonebmxnumberofsamplesreceivedthisweekdbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.testsdonebmxnumberofsamplescarriedoverpreviousweeksdbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.testsdonebmxfailedbuteligibaleforrepeatdbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.testsdonebmxfailedbutnoteligibaleforrepeatdbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.testsdonebmxrepeatdbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.testsdonebmxfailedafterrepeattestingdbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <td rowspan="14"><b>Abbott</b></td>
+  </tr>
+
+  <tr>
+    <td rowspan="7"><b>Plasma</b></td>
+  </tr>
+
+  <tr>
+    <th>{{form.testsdoneabbottnumberofsamplesreceivedthisweekplasma | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.testsdoneabbottnumberofsamplescarriedoverpreviousweeksplasma | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.testsdoneabbottfailedbuteligibaleforrepeatplasma | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.testsdoneabbottfailedbutnoteligibaleforrepeatplasma | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.testsdoneabbottrepeatplasma | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.testsdoneabbottfailedafterrepeattestingplasma | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <td rowspan="6"><b>DBS<b></td>
+    <th>{{form.testsdoneabbottnumberofsamplesreceivedthisweekdbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.testsdoneabbottnumberofsamplescarriedoverpreviousweeksdbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.testsdoneabbottfailedbuteligibaleforrepeatdbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.testsdoneabbottfailedbutnoteligibaleforrepeatdbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.testsdoneabbottrepeatdbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.testsdoneabbottfailedafterrepeattestingdbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <td rowspan="14"><b>Hologic Panther</b></td>
+  </tr>
+
+  <tr>
+    <td rowspan="7"><b>Plasma</b></td>
+  </tr>
+
+  <tr>
+    <th>{{form.testsdonehologicpanthernumberofsamplesreceivedthisweekplasma | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.testsdonehologicpanthernumberofsamplescarriedoverpreviousweeksplasma | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.testsdonehologicpantherfailedbuteligibaleforrepeatplasma | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.testsdonehologicpantherfailedbutnoteligibaleforrepeatplasma | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.testsdonehologicpantherrepeatplasma | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.testsdonehologicpantherfailedafterrepeattestingplasma | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <td rowspan="6"><b>DBS<b></td>
+    <th>{{form.testsdonehologicpanthernumberofsamplesreceivedthisweekdbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.testsdonehologicpanthernumberofsamplescarriedoverpreviousweeksdbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.testsdonehologicpantherfailedbuteligibaleforrepeatdbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.testsdonehologicpantherfailedbutnoteligibaleforrepeatdbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.testsdonehologicpantherrepeatdbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.testsdonehologicpantherfailedafterrepeattestingdbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th colspan="4">{{form.totaltestsdone | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th colspan="4">{{form.totalrepeats | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th colspan="4">{{form.totalpatientsrun | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th colspan="4">{{form.targetsweekly | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th colspan="4">{{form.percentagetargetsachievements | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <td rowspan="13" colspan="2"><b>%Error Rate</b></td>
+  </tr>
+
+  <tr>
+    <td rowspan="3"><b>Roche</b></td>
+  </tr>
+
+  <tr>
+    <th>{{form.percentageerrorraterocheplasma | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.percentageerrorraterochedbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <td rowspan="3"><b>BMX</b></td>
+  </tr>
+
+  <tr>
+    <th>{{form.percentageerrorratebmxplasma | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.percentageerrorratebmxdbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <td rowspan="3"><b>Abbott</b></td>
+  </tr>
+
+  <tr>
+    <th>{{form.percentageerrorrateabbottplasma | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.percentageerrorrateabbottdbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <td rowspan="3"><b>Hologic Panther</b></td>
+  </tr>
+
+  <tr>
+    <th>{{form.percentageerrorratehologicpantherplasma | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.percentageerrorratehologicpantherdbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th colspan="4">{{form.totalncsfromaudit | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th colspan="4">{{form.ncsnotyetclosed | as_crispy_field}}</th>
+  </tr>
+
+</table>
+<input  type="submit" class="button5" >
+<a  href="#" class="button5" >Next</a>
+</form>
+</body>
+{% endblock %}

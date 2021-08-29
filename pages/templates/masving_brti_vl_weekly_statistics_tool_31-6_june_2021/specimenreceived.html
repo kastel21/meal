@@ -1,0 +1,283 @@
+{% extends 'base.html' %}
+ {% load humanize %}
+ {% load crispy_forms_tags %}
+{% block title %} Specimens Received | Meal {% endblock title %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Specimen Received</title>
+  <link href="bitnami.css" media="all" rel="Stylesheet" type="text/css" />
+  <link href="/dashboard/stylesheets/all.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="../stylesheet/custom.css">
+</head>
+
+{% block content %}
+
+<body>
+
+  {% include "header3.html"%}
+
+  <p></p>
+  <br>
+  <p></p>
+
+  <form action="" method="post" onsubmit="return alert('suck seed')">
+    {% csrf_token %}
+
+	<h1 align="center">Specimen Received</h1>
+	<label> Please choose a date: </label>
+<select id="">
+  <option value="Monday">Monday</option>
+  <option value="Tuesday">Tuesday</option>
+  <option value="Wednesday">Wednesday</option>
+  <option value="Thursday">Thursday</option>
+  <option value="Friday">Friday</option>
+  <option value="Saturday">Saturday</option>
+  <option value="Sunday">Sunday</option>
+  <option value="Sunday">Total</option>
+</select>
+<p></p>
+<p></p>
+<br><br>
+	<table class="table table-striped table-dark table-sm">
+
+  <tr>
+    <td colspan="3"><b>Laboratory</b></td>
+  </tr>
+
+  <tr>
+  	<td rowspan="4"><b>Samples Carried Over</b></td>
+  	<td rowspan="2"><b>Previous weeks never (tested)</b></td>
+	<th>{{form.samplescarriedoverpreviousweeknevertestedplasma | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+	<th>{{form.samplescarriedoverpreviousweeknevertesteddbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+  	<td rowspan="2"><b>Previous Failed Samples</b></td>
+	<th>{{form.samplescarriedoverpreviouspreviousfailedsamplesplasma | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+	<th>{{form.samplescarriedoverpreviouspreviousfailedsamplesdbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+  	<td rowspan="2"><b>Samples Received</b></td>
+  	<td rowspan="4"><b>Current week</b></td>
+	<th>{{form.samplesreceivedcurrentweekplasma | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+	<th>{{form.samplesreceivedcurrentweekdbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+  	<td rowspan="2"><b>Sample Rejected</b></td>
+  	<th>{{form.samplesrejectedcurrentweekplasma | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+	<th>{{form.samplesrejectedcurrentweekdbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+  	<td rowspan="2"><b>Total Samples Received</b></td>
+  	<td rowspan="2"><b>Current week</b></td>
+	<th>{{form.totalsamplesreceivedcurrentweekplasma | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+	<th>{{form.totalsamplesreceivedcurrentweekdbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+  	<td rowspan="2" colspan="2"><b># of samples Entered into LIMS on Day of Arrival</b></td>
+	<th>{{form.numberofsamplesenteredintolimsondayofarrivalplasma | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+	<th>{{form.numberofsamplesenteredintolimsondayofarrivaldbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+  	<td rowspan="2" colspan="2"><b># of Samples Entered into LIMS After Day of Arrival</b></td>
+  	<th>{{form.numberofsamplesenteredintolimsafterdayofarrivalplasma | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+	<th>{{form.numberofsamplesenteredintolimsafterdayofarrivaldbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+	<th colspan="3">{{form.numberofhourslimswasfunctional | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+  	<td rowspan="2"><b>Total Samples</b></td>
+  	<td rowspan="2"><b>Current + Carryover</b></td>
+	<th>{{form.totalsamplescurrentandcarryoverplasma | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+	<th>{{form.totalsamplescurrentandcarryoverdbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+  	<td rowspan="2" colspan="2"><b>Samples Referred</b></td>
+  	<th>{{form.samplesrefferedplasma | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+	<th>{{form.samplesreffereddbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+	<th colspan="3">{{form.labsamplesrefferedto | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+  	<td rowspan="2" colspan="2"><b>% Rejection Rate</b></td>
+	<th>{{form.percentagerejectionrateplasma | as_crispy_field}}</th>
+ </tr>
+
+  <tr>
+	<th>{{form.percentagerejectionratedbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+  	<td rowspan="2" colspan="2"><b>Number of Results Printed From LIMS</b></td>
+	<th>{{form.numberofresultsprintedfromlimsplasma | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+	<th>{{form.numberofresultsprintedfromlimsdbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+  	<td rowspan="2" colspan="2"><b>Total Results Dispatched by Lab</b></td>
+	<th>{{form.totalresultsdispatchedbylabplasma | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+	<th>{{form.totalresultsdispatchedbylabdbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+  	<td rowspan="2" colspan="2"><b>Total Results Dispatched by/Via SMS</b></td>
+	<th>{{form.totalresultsdispatchedbylabviasmsplasma | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+	<th>{{form.totalresultsdispatchedbylabviasmsdbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+  	<td rowspan="10"><b>Reasons of Rejections</b></td>
+  	<td rowspan="2"><b>Sample Quality Compromised</b></td>
+	<th>{{form.reasonsforrejectionssamplequalitycompromisedplasma | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+	<th>{{form.reasonsforrejectionssamplequalitycompromiseddbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+  	<td rowspan="2"><b>Sample Quantity Insufficient</b></td>
+	<th>{{form.reason6 | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+	<th>{{form.reasons5 | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+  	<td rowspan="2"><b>Sample Information Inconsistent/Mismatch</b></td>
+	<th>{{form.reasons2 | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+	<th>{{form.reasons1 | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+	<td rowspan="2"><b>Sample/Request form missing</b></td>
+	<th>{{form.reasons4 | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+	<th>{{form.reasons3 | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+  	<td rowspan="2"><b>DQA Check</b></td>
+  	<th>{{form.reasonsforrejectionssamplequalitycompromisedqdacheckplasma | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+	<th>{{form.reasonsforrejectionssamplequalitycompromisedqdacheckdbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+  	<td rowspan="10"><b>Reasons for Sample Refferal</b></td>
+  	<td rowspan="2"><b>Reagent/Kit Stockout</b></td>
+  	<th>{{form.reasonsforsamplerefferalreagentorkitstockoutplasma | as_crispy_field}}</th>
+ </tr>
+
+  <tr>
+	<th>{{form.reasonsforsamplerefferalreagentorkitstockoutdbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+  	<td rowspan="2"><b>Instrument Mechanical Failure</b></td>
+  	<th>{{form.reasonsforsamplerefferalinstrumentmechanicalfailureplasma | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+	<th>{{form.reasonsforsamplerefferalinstrumentmechanicalfailuredbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+  	<td rowspan="2"><b>Insufficient Instrument Capacity</b></td>
+  	<th>{{form.reasonsforsamplerefferalinsufficientinstrumentcapacityplasma | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+	<th>{{form.reasonsforsamplerefferalinsufficientinstrumentcapacitydbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+  	<td rowspan="2"><b>Insufficient HR Capacity</b></td>
+  	<th>{{form.reasonsforsamplerefferalinsufficienthrcapacityplasma | as_crispy_field}}</th>
+   </tr>
+
+   <tr>
+	<th>{{form.reasonsforsamplerefferalinsufficienthrcapacitydbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+  	<td rowspan="2"><b>DQA Check</b></td>
+  	<th>{{form.reasonsforsamplerefferaldqacheckplasma | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+	<th>{{form.reasonsforsamplerefferaldqacheckdbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+	<th colspan="3">{{form.comments | as_crispy_field}}</th>
+  </tr>
+
+</table>
+
+<br><br>
+<input  type="submit" class="button5" >
+<a  href="#" class="button5" >Next</a>
+</form>
+</body>
+{% endblock %}

@@ -1,0 +1,442 @@
+{% extends 'base.html' %}
+ {% load humanize %}
+ {% load crispy_forms_tags %}
+{% block title %} Specimens Run | Meal {% endblock title %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Specimens Run</title>
+  <link href="bitnami.css" media="all" rel="Stylesheet" type="text/css" />
+  <link href="/dashboard/stylesheets/all.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="../stylesheet/custom.css">
+</head>
+
+{% block content %}
+
+<body>
+
+  {% include "header4.html"%}
+
+  <p></p>
+  <br>
+  <p></p>
+
+<form action="" method="post" onsubmit="return alert('suck seed')" >
+   {% csrf_token %}
+
+	<h1 align="center">Specimens Run</h1>
+	<label> Please choose a date: </label>
+<select id="">
+  <option value="Monday">Monday</option>
+  <option value="Tuesday">Tuesday</option>
+  <option value="Wednesday">Wednesday</option>
+  <option value="Thursday">Thursday</option>
+  <option value="Friday">Friday</option>
+  <option value="Saturday">Saturday</option>
+  <option value="Sunday">Sunday</option>
+  <option value="Sunday">Total</option>
+</select>
+<p></p>
+<p></p>
+<br><br>
+
+	<table class="table table-striped table-dark table-sm">
+
+    <tr>
+      <th rowspan="29">Tests Done</th>
+    </tr>
+
+    <tr>
+      <th rowspan="4">Abbott</th>
+      <th>{{form.testsdoneabbottrun | as_crispy_field}}</th>
+    </tr>
+
+    <tr>
+      <th>{{form.testsdoneabbottfailedbuteligibaleforrepeat | as_crispy_field}}</th>
+    </tr>
+
+    <tr>
+      <th>{{form.testsdoneabbottfailedbutnoteligibaleforrepeat | as_crispy_field}}</th>
+    </tr>
+
+    <tr>
+      <th>{{form.testsdoneabbottrepeat | as_crispy_field}}</th>
+    </tr>
+
+    <tr>
+      <th rowspan="4">BMX</th>
+      <th>{{form.testsdonebmxrun | as_crispy_field}}</th>
+    </tr>
+
+    <tr>
+      <th>{{form.testsdonebmxfailedbuteligibaleforrepeat | as_crispy_field}}</th>
+    </tr>
+
+    <tr>
+      <th>{{form.testsdonebmxfailedbutnoteligibaleforrepeat | as_crispy_field}}</th>
+    </tr>
+
+    <tr>
+      <th>{{form.testsdonebmxrepeat | as_crispy_field}}</th>
+    </tr>
+
+    <tr>
+      <th rowspan="4">GeneXpert</th>
+      <th>{{form.testsdonegenexpertrun | as_crispy_field}}</th>
+    </tr>
+
+    <tr>
+      <th>{{form.testsdonegenexpertfailedbuteligibaleforrepeat | as_crispy_field}}</th>
+    </tr>
+
+    <tr>
+      <th>{{form.testsdonegenexpertfailedbutnoteligibaleforrepeat | as_crispy_field}}</th>
+    </tr>
+
+    <tr>
+      <th>{{form.testsdonegenexpertrepeat | as_crispy_field}}</th>
+    </tr>
+
+    <tr>
+      <th rowspan="4">Quant Studio3</th>
+      <th>{{form.testsdonequantstudio3run | as_crispy_field}}</th>
+    </tr>
+
+    <tr>
+      <th>{{form.testsdonequantstudio3failedbuteligibaleforrepeat | as_crispy_field}}</th>
+    </tr>
+
+    <tr>
+      <th>{{form.testsdonequantstudio3failedbutnoteligibaleforrepeat | as_crispy_field}}</th>
+    </tr>
+
+    <tr>
+      <th>{{form.testsdonequantstudio3repeat | as_crispy_field}}</th>
+    </tr>
+
+    <tr>
+      <th rowspan="4">Hologic Panther</th>
+      <th>{{form.testsdonehologicpantherrun | as_crispy_field}}</th>
+    </tr>
+
+    <tr>
+      <th>{{form.testsdonehologicpantherfailedbuteligibaleforrepeat | as_crispy_field}}</th>
+
+    </tr>
+
+    <tr>
+      <th>{{form.testsdonehologicpantherfailedbutnoteligibaleforrepeat | as_crispy_field}}</th>
+    </tr>
+
+    <tr>
+      <th>{{form.testsdonehologicpantherrepeat | as_crispy_field}}</th>
+    </tr>
+
+    <tr>
+      <th rowspan="4">RDT (Antibody)</th>
+      <th>{{form.testsdonerdtabrun | as_crispy_field}}</th>
+    </tr>
+
+    <tr>
+      <th>{{form.testsdonerdtabfailedbuteligibaleforrepeat | as_crispy_field}}</th>
+    </tr>
+
+    <tr>
+      <th>{{form.testsdonerdtabfailedbutnoteligibaleforrepeat | as_crispy_field}}</th>
+    </tr>
+
+    <tr>
+      <th>{{form.testsdonerdtabrepeat | as_crispy_field}}</th>
+    </tr>
+
+    <tr>
+
+      <th rowspan="4">RDT (Antigen)</th>
+      <th>{{form.testsdonerdtagrun | as_crispy_field}}</th>
+    </tr>
+
+    <tr>
+      <th>{{form.testsdonerdtagfailedbuteligibaleforrepeat | as_crispy_field}}</th>
+    </tr>
+
+    <tr>
+      <th>{{form.testsdonerdtagfailedbutnoteligibaleforrepeat | as_crispy_field}}</th>
+    </tr>
+
+    <tr>
+      <th>{{form.testsdonerdtagrepeat | as_crispy_field}}</th>
+    </tr>
+
+    <tr>
+      <th rowspan="3" colspan="2">Total Tests Done</th>
+      <th>{{form.totaltestsdone | as_crispy_field}}</th>
+    </tr>
+
+    <tr>
+      <th>{{form.totalrepeats | as_crispy_field}}</th>
+    </tr>
+
+    <tr>
+      <th>{{form.totalpatientsrun | as_crispy_field}}</th>
+    </tr>
+
+    <tr>
+      <th rowspan="7" colspan="2">Error Rates</th>
+      <th>{{form.errorratesabbott | as_crispy_field}}</th>
+    </tr>
+
+    <tr>
+      <th>{{form.errorratesbmx | as_crispy_field}}</th>
+    </tr>
+
+    <tr>
+      <th>{{form.errorratesgenexpert | as_crispy_field}}</th>
+    </tr>
+
+    <tr>
+      <th>{{form.errorratesquantstudio3 | as_crispy_field}}</th>
+    </tr>
+
+    <tr>
+      <th>{{form.errorrateshologicpanther | as_crispy_field}}</th>
+    </tr>
+
+    <tr>
+      <th>{{form.errorratesrdtab | as_crispy_field}}</th>
+    </tr>
+
+    <tr>
+      <th>{{form.errorratesrdtag | as_crispy_field}}</th>
+    </tr>
+
+</table>
+<input  type="submit" class="button5" >
+<a  href="#" class="button5" >Next</a>
+</form>
+<br><br>
+</body>
+{%block js%}
+<script>
+ var num=0;
+ var totalruns =0;
+ var totalpatientsrun = 0;
+
+$(':input[name$=testsdoneabbottrun]').on('change', function() {
+   num = parseInt($(':input[name$=testsdoneabbottrun]').val());
+   totalruns = parseInt($(':input[name$=testsdoneabbottrun]').val());
+   $(':input[name$=totaltestsdone]').val(totalruns);
+
+
+});
+
+$(':input[name$=testsdoneabbottfailedbuteligibaleforrepeat]').on('change', function() {
+  totalpatientsrun= totalpatientsrun + parseInt( $(':input[name$=testsdoneabbottfailedbuteligibaleforrepeat]').val());
+
+   $(':input[name$=totalpatientsrun]').val(totalruns-totalpatientsrun);
+
+});
+
+$(':input[name$=testsdoneabbottfailedbutnoteligibaleforrepeat]').on('change', function() {
+  totalpatientsrun= totalpatientsrun + parseInt( $(':input[name$=testsdoneabbottfailedbutnoteligibaleforrepeat]').val());
+
+   $(':input[name$=totalpatientsrun]').val(totalruns-totalpatientsrun);
+
+});
+
+$(':input[name$=testsdoneabbottrepeat]').on('change', function() {
+   num= num + parseInt( $(':input[name$=testsdoneabbottrepeat]').val());
+
+   //$(':input[name$=totaltestsdone]').val(num);
+
+});
+
+$(':input[name$=testsdonebmxrun]').on('change', function() {
+   num= num + parseInt( $(':input[name$=testsdonebmxrun]').val());
+   totalruns = totalruns + parseInt( $(':input[name$=testsdonebmxrun]').val());
+   $(':input[name$=totaltestsdone]').val(totalruns);
+
+});
+
+$(':input[name$=testsdonebmxfailedbuteligibaleforrepeat]').on('change', function() {
+  totalpatientsrun= totalpatientsrun + parseInt( $(':input[name$=testsdonebmxfailedbuteligibaleforrepeat]').val());
+
+   $(':input[name$=totalpatientsrun]').val(totalruns-totalpatientsrun);
+
+});
+
+$(':input[name$=testsdonebmxfailedbutnoteligibaleforrepeat]').on('change', function() {
+  totalpatientsrun= totalpatientsrun + parseInt( $(':input[name$=testsdonebmxfailedbutnoteligibaleforrepeat]').val());
+
+   $(':input[name$=totalpatientsrun]').val(totalruns-totalpatientsrun);
+
+});
+$(':input[name$=testsdonebmxrepeat]').on('change', function() {
+   num= num + parseInt( $(':input[name$=testsdonebmxrepeat]').val());
+
+   //$(':input[name$=totaltestsdone]').val(num);
+
+});
+
+
+$(':input[name$=testsdonegenexpertrun]').on('change', function() {
+   num= num + parseInt($(':input[name$=testsdonegenexpertrun]').val());
+   totalruns = totalruns + parseInt( $(':input[name$=testsdonebmxrun]').val());
+
+   $(':input[name$=totaltestsdone]').val(totalruns);
+
+});
+
+$(':input[name$=testsdonegenexpertfailedbuteligibaleforrepeat]').on('change', function() {
+  totalpatientsrun= totalpatientsrun + parseInt( $(':input[name$=testsdonegenexpertfailedbuteligibaleforrepeat]').val());
+
+   $(':input[name$=totalpatientsrun]').val(totalruns-totalpatientsrun);
+
+});
+
+$(':input[name$=testsdonegenexpertfailedbutnoteligibaleforrepeat]').on('change', function() {
+  totalpatientsrun= totalpatientsrun + parseInt( $(':input[name$=testsdonegenexpertfailedbutnoteligibaleforrepeat]').val());
+
+   $(':input[name$=totalpatientsrun]').val(totalruns-totalpatientsrun);
+
+});
+
+$(':input[name$=testsdonegenexpertrepeat]').on('change', function() {
+   num= num + parseInt( $(':input[name$=testsdonegenexpertrepeat]').val());
+
+   //$(':input[name$=totaltestsdone]').val(num);
+
+});
+
+$(':input[name$=testsdonequantstudio3run]').on('change', function() {
+   num= num + parseInt ($(':input[name$=testsdonequantstudio3run]').val());
+   totalruns = totalruns + parseInt( $(':input[name$=testsdonebmxrun]').val());
+
+   $(':input[name$=totaltestsdone]').val(totalruns);
+
+});
+
+$(':input[name$=testsdonequantstudio3failedbuteligibaleforrepeat]').on('change', function() {
+  totalpatientsrun= totalpatientsrun + parseInt( $(':input[name$=testsdonequantstudio3failedbuteligibaleforrepeat]').val());
+
+   $(':input[name$=totalpatientsrun]').val(totalruns-totalpatientsrun);
+
+});
+
+$(':input[name$=testsdonequantstudio3failedbutnoteligibaleforrepeat]').on('change', function() {
+  totalpatientsrun= totalpatientsrun + parseInt( $(':input[name$=testsdonequantstudio3failedbutnoteligibaleforrepeat]').val());
+
+   $(':input[name$=totalpatientsrun]').val(totalruns-totalpatientsrun);
+
+});
+
+$(':input[name$=testsdonequantstudio3repeat]').on('change', function() {
+   num= num + parseInt( $(':input[name$=testsdonequantstudio3repeat]').val());
+
+   //$(':input[name$=totaltestsdone]').val(num);
+
+});
+
+$(':input[name$=testsdonehologicpantherrun]').on('change', function() {
+   num=num + parseInt( $(':input[name$=testsdonehologicpantherrun]').val());
+   totalruns = totalruns + parseInt( $(':input[name$=testsdonebmxrun]').val());
+
+   $(':input[name$=totaltestsdone]').val(totalruns);
+
+});
+
+$(':input[name$=testsdonehologicpantherfailedbuteligibaleforrepeat]').on('change', function() {
+  totalpatientsrun= totalpatientsrun + parseInt( $(':input[name$=testsdonehologicpantherfailedbuteligibaleforrepeat]').val());
+
+  $(':input[name$=totalpatientsrun]').val(totalruns-totalpatientsrun);
+
+});
+
+$(':input[name$=testsdonehologicpantherfailedbutnoteligibaleforrepeat]').on('change', function() {
+  totalpatientsrun= totalpatientsrun + parseInt( $(':input[name$=testsdonehologicpantherfailedbutnoteligibaleforrepeat]').val());
+
+   $(':input[name$=totaltestsdone]').val(totalruns-totalpatientsrun);
+
+});
+
+$(':input[name$=testsdonehologicpantherrepeat]').on('change', function() {
+   num= num + parseInt( $(':input[name$=testsdonehologicpantherrepeat]').val());
+   $(':input[name$=totalpatientsrun]').val(totalruns-totalpatientsrun);
+
+   //$(':input[name$=totaltestsdone]').val(num);
+
+});
+
+$(':input[name$=testsdonerdtabrun]').on('change', function() {
+   num=num + parseInt($(':input[name$=testsdonerdtabrun]').val());
+     totalruns = totalruns + parseInt( $(':input[name$=testsdonebmxrun]').val());
+
+   $(':input[name$=totaltestsdone]').val(totalruns);
+
+});
+
+$(':input[name$=testsdonerdtabfailedbuteligibaleforrepeat]').on('change', function() {
+  totalpatientsrun= totalpatientsrun + parseInt( $(':input[name$=testsdonerdtabfailedbuteligibaleforrepeat]').val());
+
+   $(':input[name$=totaltestsdone]').val(totalruns-totalpatientsrun);
+
+});
+
+$(':input[name$=testsdonerdtabfailedbutnoteligibaleforrepeat]').on('change', function() {
+  totalpatientsrun= totalpatientsrun + parseInt( $(':input[name$=testsdonerdtabfailedbutnoteligibaleforrepeat]').val());
+
+   $(':input[name$=totaltestsdone]').val(totalruns-totalpatientsrun);
+
+});
+
+$(':input[name$=testsdonerdtabrepeat]').on('change', function() {
+   num= num + parseInt( $(':input[name$=testsdonerdtabrepeat]').val());
+
+   //$(':input[name$=totaltestsdone]').val(num);
+
+});
+
+
+$(':input[name$=testsdonerdtagrun]').on('change', function() {
+   num= num + parseInt($(':input[name$=testsdonerdtagrun]').val());
+   totalruns = totalruns + parseInt( $(':input[name$=testsdonebmxrun]').val());
+
+   $(':input[name$=totaltestsdone]').val(totalruns);
+
+});
+
+$(':input[name$=testsdonerdtagfailedbuteligibaleforrepeat]').on('change', function() {
+  totalpatientsrun= totalpatientsrun + parseInt( $(':input[name$=testsdonerdtagfailedbuteligibaleforrepeat]').val());
+
+   $(':input[name$=totaltestsdone]').val(totalruns-totalpatientsrun);
+
+});
+
+$(':input[name$=testsdonerdtagfailedbutnoteligibaleforrepeat]').on('change', function() {
+  totalpatientsrun= totalpatientsrun + parseInt( $(':input[name$=testsdonerdtagfailedbutnoteligibaleforrepeat]').val());
+
+   $(':input[name$=totaltestsdone]').val(totalruns-totalpatientsrun);
+
+});
+
+$(':input[name$=testsdonerdtagrepeat]').on('change', function() {
+   num= num + parseInt( $(':input[name$=testsdonerdtagrepeat]').val());
+
+   //$(':input[name$=totaltestsdone]').val(num);
+
+});
+
+
+
+
+
+</script>
+
+{%endblock js%}
+{% endblock%}
+
+
+
+
