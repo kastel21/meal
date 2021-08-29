@@ -17,7 +17,6 @@
 {% block content %}
 
 <body>
-
   {% include "header3.html"%}
 
   <p></p>
@@ -28,17 +27,8 @@
     {% csrf_token %}
 
 	<h1 align="center">Specimen Received</h1>
-	<label> Please choose a date: </label>
-<select id="">
-  <option value="Monday">Monday</option>
-  <option value="Tuesday">Tuesday</option>
-  <option value="Wednesday">Wednesday</option>
-  <option value="Thursday">Thursday</option>
-  <option value="Friday">Friday</option>
-  <option value="Saturday">Saturday</option>
-  <option value="Sunday">Sunday</option>
-  <option value="Sunday">Total</option>
-</select>
+
+	<label> <th>{{form.dayofweek | as_crispy_field}}</th></label>
 <p></p>
 <p></p>
 <br><br>
@@ -189,7 +179,7 @@
 
   <tr>
   	<td rowspan="2"><b>Sample Quantity Insufficient</b></td>
-	<th>{{form.reason6 | as_crispy_field}}</th>
+	<th>{{form.reasons6 | as_crispy_field}}</th>
   </tr>
 
   <tr>
@@ -277,7 +267,7 @@
 
 <br><br>
 <input  type="submit" class="button5" >
-<a  href="#" class="button5" >Next</a>
+<a  href=" {%  url 'labvlfailure' %}  " class="button5" >Next</a>
 </form>
 </body>
 {% endblock %}

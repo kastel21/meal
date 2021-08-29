@@ -40,11 +40,11 @@ def exp(request):
             i=i+1
 
             context={'columns': columns,
-                    'record': record
+                    'record':record
             }
 
             # f=open('columns.txt', 'w')
-
+            
             # for table in record:
             #     f.write(str(table) + '\n')
 
@@ -83,20 +83,20 @@ def home(request):
 
     return render(request, 'base.html', context)
 
-def profile(request):
-    # Create your views here.
+# def profile(request):
+#     # Create your views here.
 
-    if request.method == 'POST':
-        form = generalbrticovid19Form(request.POST)
-        if form.is_valid():
-            form.save()
-            ##return render(request, 'success.html')
-    form = generalbrticovid19Form()
-    context = {'form': form }
+#     if request.method == 'POST':
+#         form = generalbrticovid19Form(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             ##return render(request, 'success.html')
+#     form = generalbrticovid19Form()
+#     context = {'form': form }
 
-    return render(request, 'brti_covid_19_weekly_statistics_tool/general.html', context)
+#     return render(request, 'brti_covid_19_weekly_statistics_tool/general.html', context)
 
-def profilecovid19to(request):
+def labcovid19run(request):
     if request.method == 'POST':
         form = specimensrunbrticovid19Form(request.POST)
         if form.is_valid():
@@ -104,7 +104,7 @@ def profilecovid19to(request):
             #return render(request, 'success.html')
     form = specimensrunbrticovid19Form()
     context = {'form': form}
-    return render(request, 'brti_covid_19_weekly_statistics_tool/Specimens_Run.html', context)
+    return render(request, 'masvingo_brti_covid_19_weekly_statistics_tool/Specimens_Run.html', context)
 
 def profilecovid(request):
     if request.method == 'POST':
@@ -114,59 +114,59 @@ def profilecovid(request):
             #return render(request, 'success.html')
     form = specimensreceivedbrticovid19Form()
     context = {'form': form}
-    return render(request, 'brti_covid_19_weekly_statistics_tool/Specimens_Received.html', context)
+    return render(request, 'masvingo_brti_covid_19_weekly_statistics_tool/Specimens_Received.html', context)
 
-def profilecovid19(request):
-    if request.method == 'POST':
-        form = machinedowntimereagentstockouttoolbrticovid19Form(request.POST)
-        if form.is_valid():
-            form.save()
-            #return render(request, 'success.html')
-    form = machinedowntimereagentstockouttoolbrticovid19Form()
-    context = {'form': form}
-    return render(request, 'brti_covid_19_weekly_statistics_tool/Machine_Downtime_&_Reagent_stock_out_tool.html', context)
+# def profilecovid19(request):
+#     if request.method == 'POST':
+#         form = machinedowntimereagentstockouttoolbrticovid19Form(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             #return render(request, 'success.html')
+#     form = machinedowntimereagentstockouttoolbrticovid19Form()
+#     context = {'form': form}
+#     return render(request, 'brti_covid_19_weekly_statistics_tool/Machine_Downtime_&_Reagent_stock_out_tool.html', context)
 
-def profilecovid19t(request):
-    if request.method == 'POST':
-        form = generalbrticovid19Form(request.POST)
-        if form.is_valid():
-            form.save()
-            #return render(request, 'success.html')
-    form = generalbrticovid19Form()
-    context = {'form': form}
-    return render(request, 'brti_covid_19_weekly_statistics_tool/general.html', context)
+# def profilecovid19t(request):
+#     if request.method == 'POST':
+#         form = generalbrticovid19Form(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             #return render(request, 'success.html')
+#     form = generalbrticovid19Form()
+#     context = {'form': form}
+#     return render(request, 'brti_covid_19_weekly_statistics_tool/general.html', context)
 
-def vleid(request):
-    if request.method == 'POST':
-        form = SpecimensrunbrtivlweeklyForm(request.POST)
-        if form.is_valid():
-            form.save()
-            #return render(request, 'success.html')
-    form = SpecimensrunbrtivlweeklyForm()
-    context = {'form': form}
-    return render(request, 'brti_vl_eid_weekly_statistics_tool/specimens_run.html', context)
+# def vleid(request):
+#     if request.method == 'POST':
+#         form = SpecimensrunbrtivlweeklyForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             #return render(request, 'success.html')
+#     form = SpecimensrunbrtivlweeklyForm()
+#     context = {'form': form}
+#     return render(request, 'brti_vl_eid_weekly_statistics_tool/specimens_run.html', context)
 
-def vleid2(request):
-    if request.method == 'POST':
-        form = SpecimensrunbrtivlweeklyForm(request.POST)
-        if form.is_valid():
-            form.save()
-            #return render(request, 'success.html')
-    form = SpecimensrunbrtivlweeklyForm()
-    context = {'form': form}
-    return render(request, 'brti_vl_eid_weekly_statistics_tool/specimens_received.html', context)
+# def vleid2(request):
+#     if request.method == 'POST':
+#         form = SpecimensrunbrtivlweeklyForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             #return render(request, 'success.html')
+#     form = SpecimensrunbrtivlweeklyForm()
+#     context = {'form': form}
+#     return render(request, 'brti_vl_eid_weekly_statistics_tool/specimens_received.html', context)
 
-def vleid3(request):
-    if request.method == 'POST':
-        form = reasonsforfailurebrtivleidForm(request.POST)
-        if form.is_valid():
-            form.save()
-            #return render(request, 'success.html')
-    form = reasonsforfailurebrtivleidForm()
-    context = {'form': form}
-    return render(request, 'brti_vl_eid_weekly_statistics_tool/reasons_for_failure.html', context)
+# def vleid3(request):
+#     if request.method == 'POST':
+#         form = reasonsforfailurebrtivleidForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             #return render(request, 'success.html')
+#     form = reasonsforfailurebrtivleidForm()
+#     context = {'form': form}
+#     return render(request, 'brti_vl_eid_weekly_statistics_tool/reasons_for_failure.html', context)
 
-def labcovidweekly(request):
+def labvltop(request):
     if request.method == 'POST':
         form = SpecimensrunbrtivlweeklyForm(request.POST)
         if form.is_valid():
@@ -176,7 +176,7 @@ def labcovidweekly(request):
     context = {'form': form}
     return render(request, 'masving_brti_vl_weekly_statistics_tool_31-6_june_2021/top.html', context)
 
-def labcovidweekly2(request):
+def labvlrun(request):
     if request.method == 'POST':
         form = SpecimensrunbrtivlweeklyForm(request.POST)
         if form.is_valid():
@@ -186,7 +186,7 @@ def labcovidweekly2(request):
     context = {'form': form}
     return render(request, 'masving_brti_vl_weekly_statistics_tool_31-6_june_2021/Specimensrun.html', context)
 
-def labcovidweekly3(request):
+def labvlrecieved(request):
     if request.method == 'POST':
         form = SpecimensrecievedbrtivlweeklyForm(request.POST)
         if form.is_valid():
@@ -196,7 +196,7 @@ def labcovidweekly3(request):
     context = {'form': form}
     return render(request, 'masving_brti_vl_weekly_statistics_tool_31-6_june_2021/specimenreceived.html', context)
 
-def labcovidweekly4(request):
+def labvlfailure(request):
     if request.method == 'POST':
         form = ReasonsforfailurebrtivlweeklyForm(request.POST)
         if form.is_valid():
@@ -206,7 +206,7 @@ def labcovidweekly4(request):
     context = {'form': form}
     return render(request, 'masving_brti_vl_weekly_statistics_tool_31-6_june_2021/Reasonsforfailures.html', context)
 
-def labcovidweekly5(request):
+def labvlelectric(request):
     if request.method == 'POST':
         form = ElectricoutagebrtivlweeklyForm(request.POST)
         if form.is_valid():
@@ -216,7 +216,11 @@ def labcovidweekly5(request):
     context = {'form': form}
     return render(request, 'masving_brti_vl_weekly_statistics_tool_31-6_june_2021/electricoutagestool.html', context)
 
-def labeidweekly(request):
+
+
+
+
+def labcov19top(request):
 
     #before save create or update the unique row called total to be sent over as an entry to brti cov 19 table
     if request.method == 'POST':
@@ -231,7 +235,8 @@ def labeidweekly(request):
     context = {'form': form}
     return render(request, 'masvingo_brti_covid_19_weekly_statistics_tool_31-6_June_2021/top.html', context)
 
-def labeidweekly2(request):
+
+def labcov19run(request):
         #before save create or update the unique row called total to be sent over as an entry to brti cov 19 table
     # updateTotal = Specimensruncovid19.objects.get(dayofweek="Total")
     # for row in updateTotal.__dict__:
@@ -308,7 +313,7 @@ def labeidweekly2(request):
     context = {'form': form}
     return render(request, 'masvingo_brti_covid_19_weekly_statistics_tool_31-6_June_2021/Specimens_Run.html', context)
 
-def labeidweekly3(request):
+def labcov19recieved(request):
     # updateTotal = Specimensreceivedcovid19.objects.get(dayofweek="Total")
     # for row in updateTotal.__dict__:
     #         print(updateTotal.__dict__[row].)
@@ -354,7 +359,7 @@ def labeidweekly3(request):
     context = {'form': form}
     return render(request, 'masvingo_brti_covid_19_weekly_statistics_tool_31-6_June_2021/Specimens_Received.html', context)
 
-def labeidweekly4(request):
+def labcov19general(request):
     if request.method == 'POST':
         form = Generalcovid19Form(request.POST)
         if form.is_valid():
@@ -373,7 +378,7 @@ def labeidweekly4(request):
     context = {'form': form}
     return render(request, 'masvingo_brti_covid_19_weekly_statistics_tool_31-6_June_2021/general.html', context)
 
-def labcov19weekly5(request):
+def labcov19machine(request):
     if request.method == 'POST':
         form = machinedowntimere
         agentstockouttoolcovid19Form(request.POST)
@@ -413,7 +418,7 @@ def labcov19weekly5(request):
     return render(request, 'masvingo_brti_covid_19_weekly_statistics_tool_31-6_June_2021/Machine_Downtime_&_Reagent_stock_out_tool.html', context)
 
 
-def labbrtiweekly(request):
+def labeidtop(request):
     if request.method == 'POST':
         form = TopbrtiweeklyForm(request.POST)
         if form.is_valid():
@@ -423,7 +428,7 @@ def labbrtiweekly(request):
     context = {'form': form}
     return render(request, 'masvingo_brti_weekly_statistics_tool_june_2021/top.html', context)
 
-def labbrtiweekly2(request):
+def labeidrun(request):
     if request.method == 'POST':
         form = SpecimensrunbrtivlweeklyForm(request.POST)
         if form.is_valid():
@@ -433,7 +438,7 @@ def labbrtiweekly2(request):
     context = {'form': form}
     return render(request, 'masvingo_brti_weekly_statistics_tool_june_2021/Specimensrun.html', context)
 
-def labbrtiweekly3(request):
+def labeidrecieved(request):
     if request.method == 'POST':
         form = SpecimensreceivedbrtiweeklyForm(request.POST)
         if form.is_valid():
@@ -443,7 +448,7 @@ def labbrtiweekly3(request):
     context = {'form': form}
     return render(request, 'masvingo_brti_weekly_statistics_tool_june_2021/specimenreceived.html', context)
 
-def labbrtiweekly4(request):
+def labeidfailure(request):
     if request.method == 'POST':
         form = ReasonsforfailurebrtiweeklyForm(request.POST)
         if form.is_valid():
@@ -453,7 +458,7 @@ def labbrtiweekly4(request):
     context = {'form': form}
     return render(request, 'masvingo_brti_weekly_statistics_tool_june_2021/Reasonsforfailures.html', context)
 
-def labbrtiweekly5(request):
+def labeidelectric(request):
     if request.method == 'POST':
         form = ElectricoutagebrtiweeklyForm(request.POST)
         if form.is_valid():
@@ -506,11 +511,9 @@ def export_csv(request):
     # writer=csv.writer(response)
     # writer.writerow(['Day of the week','Number of hours with no electricity per day','Number of hours generator was on per day'])
 
-
     # electric=Electric_outage_brti_vl_weekly.objects.all()
 
     # for electric in Electric_outage_brti_vl_weekly.objects.all().values_list('day_of_week', 'number_of_hours_with_no_electricity_per_day','number_of_hours_generator_was_on_per_day'):
-
     #     writer.writerow(electric)
 
 

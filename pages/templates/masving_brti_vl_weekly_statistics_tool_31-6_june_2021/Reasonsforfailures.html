@@ -17,26 +17,18 @@
 {% block content %}
 
 <body>
-
   {% include "header3.html"%}
 
   <p></p>
   <br>
   <p></p>
   <form action="" method="post" onsubmit="return alert('suck seed')">
-    {% csrftoken %}
+    {% csrf_token %}
+
 	<h1 align="center">Reasons for failures</h1>
-	<label> Please choose a date: </label>
-<select id="">
-  <option value="Monday">Monday</option>
-  <option value="Tuesday">Tuesday</option>
-  <option value="Wednesday">Wednesday</option>
-  <option value="Thursday">Thursday</option>
-  <option value="Friday">Friday</option>
-  <option value="Saturday">Saturday</option>
-  <option value="Sunday">Sunday</option>
-  <option value="Sunday">Total</option>
-</select>
+	<label> <th>{{form.dayofweek | as_crispy_field}}</th></label>
+
+
 <p></p>
 <p></p>
 <br><br>
@@ -318,7 +310,7 @@
 </table>
 
 <input  type="submit" class="button5" >
-<a  href="#" class="button5" >Next</a>
+<a  href=" {% url 'labvlelectric' %} " class="button5" >Next</a>
 </form>
 <br><br>
 </body>
