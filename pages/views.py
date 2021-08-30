@@ -374,7 +374,7 @@ def labcov19run(request):
             updateTotal.errorratesrdtag = updateTotal.errorratesrdtag + form.cleaned_data.get('errorratesrdtag')
 
            
-            updateTotal.save()
+            # updateTotal.save()
 
             #updateTotal.save()
 
@@ -392,6 +392,8 @@ def labcov19recieved(request):
     if request.method == 'POST':
         form = Specimensreceivedcovid19Form(request.POST)
         if form.is_valid():
+            print('e=nter tge rhtiung')
+            updateTotal = specimensreceivedbrticovid19.objects.get(dayofweek="Total",lab='brti',reportingweek='1')
 
             updateTotal = specimensreceivedbrticovid19.objects.get(dayofweek="Total",lab='brti',reportingweek='1')
             updateTotal.samplescarriedoverpreviousweeks = updateTotal.samplescarriedoverpreviousweeks + form.cleaned_data.get('samplescarriedoverpreviousweeks')

@@ -61,9 +61,9 @@ class specimensreceivedbrticovid19Form(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.formclass = 'form-horizontal'
-        self.helper.fieldclass = 'col-sm-6'
-        self.helper.labelclass = 'col-sm-6'
+        self.helper.form_class = 'form-horizontal'
+        self.helper.field_class = 'col-sm-6'
+        self.helper.label_class = 'col-sm-6' 
         self.helper.layout = Layout(
         )
 
@@ -162,9 +162,9 @@ class specimensrunbrticovid19Form(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.formclass = 'form-horizontal'
-        self.helper.fieldclass = 'col-sm-6'
-        self.helper.labelclass = 'col-sm-6'
+        self.helper.form_class = 'form-horizontal'
+        self.helper.field_class = 'col-sm-6'
+        self.helper.label_class = 'col-sm-6' 
         self.helper.layout = Layout(
         )
 
@@ -224,9 +224,9 @@ class machinedowntimereagentstockouttoolbrticovid19Form(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.formclass = 'form-horizontal'
-        self.helper.fieldclass = 'col-sm-6'
-        self.helper.labelclass = 'col-sm-6'
+        self.helper.form_class = 'form-horizontal'
+        self.helper.field_class = 'col-sm-6'
+        self.helper.label_class = 'col-sm-6' 
         self.helper.layout = Layout(
         )
 
@@ -270,9 +270,9 @@ class generalbrticovid19Form(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.formclass = 'form-horizontal'
-        self.helper.fieldclass = 'col-sm-6'
-        self.helper.labelclass = 'col-sm-6'
+        self.helper.form_class = 'form-horizontal'
+        self.helper.field_class = 'col-sm-6'
+        self.helper.label_class = 'col-sm-6' 
         self.helper.layout = Layout(
         )
 
@@ -413,9 +413,9 @@ class specimensrunbrtivleidForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.formclass = 'form-horizontal'
-        self.helper.fieldclass = 'col-sm-6'
-        self.helper.labelclass = 'col-sm-6'
+        self.helper.form_class = 'form-horizontal'
+        self.helper.field_class = 'col-sm-6'
+        self.helper.label_class = 'col-sm-6' 
         self.helper.layout = Layout(
         )
 
@@ -541,9 +541,9 @@ class specimensreceivedbrtivleidForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.formclass = 'form-horizontal'
-        self.helper.fieldclass = 'col-sm-6'
-        self.helper.labelclass = 'col-sm-6'
+        self.helper.form_class = 'form-horizontal'
+        self.helper.field_class = 'col-sm-6'
+        self.helper.label_class = 'col-sm-6' 
         self.helper.layout = Layout(
         )
 
@@ -783,9 +783,9 @@ class SpecimensrunbrtivlweeklyForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.formclass = 'form-horizontal'
-        self.helper.fieldclass = 'col-sm-6'
-        self.helper.labelclass = 'col-sm-6'
+        self.helper.form_class = 'form-horizontal'
+        self.helper.field_class = 'col-sm-6'
+        self.helper.label_class = 'col-sm-6' 
         self.helper.layout = Layout(
         )
 
@@ -912,9 +912,9 @@ class SpecimensrecievedbrtivlweeklyForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.formclass = 'form-horizontal'
-        self.helper.fieldclass = 'col-sm-6'
-        self.helper.labelclass = 'col-sm-6'
+        self.helper.form_class = 'form-horizontal'
+        self.helper.field_class = 'col-sm-6'
+        self.helper.label_class = 'col-sm-6' 
         self.helper.layout = Layout(
         )
 
@@ -1020,9 +1020,9 @@ class ReasonsforfailurebrtivlweeklyForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.formclass = 'form-horizontal'
-        self.helper.fieldclass = 'col-sm-6'
-        self.helper.labelclass = 'col-sm-6'
+        self.helper.form_class = 'form-horizontal'
+        self.helper.field_class = 'col-sm-6'
+        self.helper.label_class = 'col-sm-6' 
         self.helper.layout = Layout(
         )
 
@@ -1054,9 +1054,9 @@ class ElectricoutagebrtivlweeklyForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.formclass = 'form-horizontal'
-        self.helper.fieldclass = 'col-sm-6'
-        self.helper.labelclass = 'col-sm-6'
+        self.helper.form_class = 'form-horizontal'
+        self.helper.field_class = 'col-sm-6'
+        self.helper.label_class = 'col-sm-6' 
         self.helper.layout = Layout(
         )
 
@@ -1169,9 +1169,9 @@ class Specimensrunbrtiweekly(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.formclass = 'form-horizontal'
-        self.helper.fieldclass = 'col-sm-6'
-        self.helper.labelclass = 'col-sm-6'
+        self.helper.form_class = 'form-horizontal'
+        self.helper.field_class = 'col-sm-6'
+        self.helper.label_class = 'col-sm-6' 
         self.helper.layout = Layout(
         )
 
@@ -1283,9 +1283,9 @@ class SpecimensreceivedbrtiweeklyForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.formclass = 'form-horizontal'
-        self.helper.fieldclass = 'col-sm-6'
-        self.helper.labelclass = 'col-sm-6'
+        self.helper.form_class = 'form-horizontal'
+        self.helper.field_class = 'col-sm-6'
+        self.helper.label_class = 'col-sm-6' 
         self.helper.layout = Layout(
         )
 
@@ -1386,9 +1386,9 @@ class ReasonsforfailurebrtiweeklyForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.formclass = 'form-horizontal'
-        self.helper.fieldclass = 'col-sm-6'
-        self.helper.labelclass = 'col-sm-6'
+        self.helper.form_class = 'form-horizontal'
+        self.helper.field_class = 'col-sm-6'
+        self.helper.label_class = 'col-sm-6' 
         self.helper.layout = Layout(
         )
 
@@ -1420,9 +1420,9 @@ class ElectricoutagebrtiweeklyForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.formclass = 'form-horizontal'
-        self.helper.fieldclass = 'col-sm-6'
-        self.helper.labelclass = 'col-sm-6'
+        self.helper.form_class = 'form-horizontal'
+        self.helper.field_class = 'col-sm-6'
+        self.helper.label_class = 'col-sm-6' 
         self.helper.layout = Layout(
         )
 
@@ -1471,9 +1471,9 @@ class Specimensreceivedcovid19Form(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.formclass = 'form-horizontal'
-        self.helper.fieldclass = 'col-sm-6'
-        self.helper.labelclass = 'col-sm-6'
+        self.helper.form_class = 'form-horizontal'
+        self.helper.field_class = 'col-sm-6'
+        self.helper.label_class = 'col-sm-6' 
         self.helper.layout = Layout(
         )
 
@@ -1675,9 +1675,9 @@ class Generalcovid19Form(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.formclass = 'form-horizontal'
-        self.helper.fieldclass = 'col-sm-6'
-        self.helper.labelclass = 'col-sm-6'
+        self.helper.form_class = 'form-horizontal'
+        self.helper.field_class = 'col-sm-6'
+        self.helper.label_class = 'col-sm-6' 
         self.helper.layout = Layout(
         )
 
