@@ -1666,7 +1666,7 @@ class Top7brtiweekly(models.Model):
 
 
 
-
+# -----------------------eid---------------------------------------
 class Specimensrunbrtiweekly(models.Model):
     dayschoices=[
         ('Monday','Monday'),
