@@ -70,7 +70,6 @@ def index(request):
 
 def home(request):
     context={}
-    print(request.user , request.user.lab)
     return render(request, 'base.html', context)
 
 
@@ -102,7 +101,7 @@ def getReportingWeek():
         
     # ]
 
-    return "1:30 august - 5 september"
+    return "1"
 
 
 
@@ -156,84 +155,84 @@ def labvlrun(request):
             
             updateTotal = specimensrunbrtivleid.objects.get(key="vl", lab=request.user.lab,reportingweek=getReportingWeek() )
 
-            updateTotal.testsdonerochenumberofsamplesreceivedthisweekplasma = updateTotal.testsdonerochenumberofsamplesreceivedthisweekplasma + form.testsdonerochenumberofsamplesreceivedthisweekplasma
-            updateTotal.testsdonerochenumberofsamplescarriedoverpreviousweeksplasma = updateTotal.testsdonerochenumberofsamplescarriedoverpreviousweeksplasma + form.testsdoneabbottrun
+            updateTotal.testsdonerochenumberofsamplesreceivedthisweekplasma = updateTotal.testsdonerochenumberofsamplesreceivedthisweekplasma + form.cleaned_data.get('testsdonerochenumberofsamplesreceivedthisweekplasma')
+            updateTotal.testsdonerochenumberofsamplescarriedoverpreviousweeksplasma = updateTotal.testsdonerochenumberofsamplescarriedoverpreviousweeksplasma + form.cleaned_data.get('testsdonerochenumberofsamplescarriedoverpreviousweeksplasma')
             
-            updateTotal.testsdonerochefailedbuteligibaleforrepeatplasma += form.testsdonerochefailedbuteligibaleforrepeatplasma
-            updateTotal.testsdonerochefailedbutnoteligibaleforrepeatplasma += form.testsdonerochefailedbutnoteligibaleforrepeatplasma
-            updateTotal.testsdonerocherepeatplasma += form.testsdonerocherepeatplasma
-            updateTotal.testsdonerochefailedafterrepeattestingplasma += form.testsdonerochefailedafterrepeattestingplasma
-            updateTotal.testsdonerochenumberofsamplesreceivedthisweekdbs += form.testsdonerochenumberofsamplesreceivedthisweekdbs
+            updateTotal.testsdonerochefailedbuteligibaleforrepeatplasma += form.cleaned_data.get('testsdonerochefailedbuteligibaleforrepeatplasma')
+            updateTotal.testsdonerochefailedbutnoteligibaleforrepeatplasma += form.cleaned_data.get('testsdonerochefailedbutnoteligibaleforrepeatplasma')
+            updateTotal.testsdonerocherepeatplasma += form.cleaned_data.get('testsdonerocherepeatplasma')
+            updateTotal.testsdonerochefailedafterrepeattestingplasma += form.cleaned_data.get('testsdonerochefailedafterrepeattestingplasma')
+            updateTotal.testsdonerochenumberofsamplesreceivedthisweekdbs += form.cleaned_data.get('testsdonerochenumberofsamplesreceivedthisweekdbs')
 
-            updateTotal.testsdonerochenumberofsamplescarriedoverpreviousweeksdbs += form.testsdonerochenumberofsamplescarriedoverpreviousweeksdbs
-            updateTotal.testsdonerochefailedbuteligibaleforrepeatdbs += form.testsdonerochefailedbuteligibaleforrepeatdbs
-            updateTotal.testsdonerochefailedbutnoteligibaleforrepeatdbs += form.testsdonerochefailedbutnoteligibaleforrepeatdbs
-            updateTotal.testsdonerocherepeatdbs += form.testsdonerocherepeatdbs
-            updateTotal.testsdonerochefailedafterrepeattestingdbs += form.testsdonerochefailedafterrepeattestingdbs
-            updateTotal.testsdonebmxnumberofsamplesreceivedthisweekplasma += form.testsdonebmxnumberofsamplesreceivedthisweekplasma
+            updateTotal.testsdonerochenumberofsamplescarriedoverpreviousweeksdbs += form.cleaned_data.get('testsdonerochenumberofsamplescarriedoverpreviousweeksdbs')
+            updateTotal.testsdonerochefailedbuteligibaleforrepeatdbs += form.cleaned_data.get('testsdonerochefailedbuteligibaleforrepeatdbs')
+            updateTotal.testsdonerochefailedbutnoteligibaleforrepeatdbs += form.cleaned_data.get('testsdonerochefailedbutnoteligibaleforrepeatdbs')
+            updateTotal.testsdonerocherepeatdbs += form.cleaned_data.get('testsdonerocherepeatdbs')
+            updateTotal.testsdonerochefailedafterrepeattestingdbs += form.cleaned_data.get('testsdonerochefailedafterrepeattestingdbs')
+            updateTotal.testsdonebmxnumberofsamplesreceivedthisweekplasma += form.cleaned_data.get('testsdonebmxnumberofsamplesreceivedthisweekplasma')
 
-            updateTotal.testsdonebmxnumberofsamplescarriedoverpreviousweeksplasma += form.testsdonebmxnumberofsamplescarriedoverpreviousweeksplasma
-            updateTotal.testsdonebmxfailedbuteligibaleforrepeatplasma += form.testsdonebmxfailedbuteligibaleforrepeatplasma
-            updateTotal.testsdonebmxfailedbutnoteligibaleforrepeatplasma += form.testsdonebmxfailedbutnoteligibaleforrepeatplasma
-            updateTotal.testsdonebmxrepeatplasma += form.testsdonebmxrepeatplasma
-            updateTotal.testsdonebmxfailedafterrepeattestingplasma += form.testsdonebmxfailedafterrepeattestingplasma
-            updateTotal.testsdonebmxnumberofsamplesreceivedthisweekdbs += form.testsdonebmxnumberofsamplesreceivedthisweekdbs
+            updateTotal.testsdonebmxnumberofsamplescarriedoverpreviousweeksplasma += form.cleaned_data.get('testsdonebmxnumberofsamplescarriedoverpreviousweeksplasma')
+            updateTotal.testsdonebmxfailedbuteligibaleforrepeatplasma += form.cleaned_data.get('testsdonebmxfailedbuteligibaleforrepeatplasma')
+            updateTotal.testsdonebmxfailedbutnoteligibaleforrepeatplasma += form.cleaned_data.get('testsdonebmxfailedbutnoteligibaleforrepeatplasma')
+            updateTotal.testsdonebmxrepeatplasma += form.cleaned_data.get('testsdonebmxrepeatplasma')
+            updateTotal.testsdonebmxfailedafterrepeattestingplasma += form.cleaned_data.get('testsdonebmxfailedafterrepeattestingplasma')
+            updateTotal.testsdonebmxnumberofsamplesreceivedthisweekdbs += form.cleaned_data.get('testsdonebmxnumberofsamplesreceivedthisweekdbs')
 
-            updateTotal.testsdonebmxnumberofsamplescarriedoverpreviousweeksdbs += form.testsdonebmxnumberofsamplescarriedoverpreviousweeksdbs
-            updateTotal.testsdonebmxfailedbuteligibaleforrepeatdbs += form.testsdonebmxfailedbuteligibaleforrepeatdbs
-            updateTotal.testsdonebmxfailedbutnoteligibaleforrepeatdbs += form.testsdonebmxfailedbutnoteligibaleforrepeatdbs
-            updateTotal.testsdonebmxrepeatdbs += form.testsdonebmxrepeatdbs
-            updateTotal.testsdonebmxfailedafterrepeattestingdbs += form.testsdonebmxfailedafterrepeattestingdbs
-            updateTotal.testsdoneabbottnumberofsamplesreceivedthisweekplasma += form.testsdoneabbottnumberofsamplesreceivedthisweekplasma
+            updateTotal.testsdonebmxnumberofsamplescarriedoverpreviousweeksdbs += form.cleaned_data.get('testsdonebmxnumberofsamplescarriedoverpreviousweeksdbs')
+            updateTotal.testsdonebmxfailedbuteligibaleforrepeatdbs += form.cleaned_data.get('testsdonebmxfailedbuteligibaleforrepeatdbs')
+            updateTotal.testsdonebmxfailedbutnoteligibaleforrepeatdbs += form.cleaned_data.get('testsdonebmxfailedbutnoteligibaleforrepeatdbs')
+            updateTotal.testsdonebmxrepeatdbs += form.cleaned_data.get('testsdonebmxrepeatdbs')
+            updateTotal.testsdonebmxfailedafterrepeattestingdbs += form.cleaned_data.get('testsdonebmxfailedafterrepeattestingdbs')
+            updateTotal.testsdoneabbottnumberofsamplesreceivedthisweekplasma += form.cleaned_data.get('testsdoneabbottnumberofsamplesreceivedthisweekplasma')
 
-            updateTotal.testsdoneabbottnumberofsamplescarriedoverpreviousweeksplasma += form.testsdoneabbottnumberofsamplescarriedoverpreviousweeksplasma
-            updateTotal.testsdoneabbottfailedbuteligibaleforrepeatplasma += form.testsdoneabbottfailedbuteligibaleforrepeatplasma
-            updateTotal.testsdoneabbottfailedbutnoteligibaleforrepeatplasma += form.testsdoneabbottfailedbutnoteligibaleforrepeatplasma
-            updateTotal.testsdoneabbottrepeatplasma += form.testsdoneabbottrepeatplasma
-            updateTotal.testsdoneabbottfailedafterrepeattestingplasma += form.testsdoneabbottfailedafterrepeattestingplasma
-            updateTotal.testsdoneabbottnumberofsamplesreceivedthisweekdbs += form.testsdoneabbottnumberofsamplesreceivedthisweekdbs
+            updateTotal.testsdoneabbottnumberofsamplescarriedoverpreviousweeksplasma += form.cleaned_data.get('testsdoneabbottnumberofsamplescarriedoverpreviousweeksplasma')
+            updateTotal.testsdoneabbottfailedbuteligibaleforrepeatplasma += form.cleaned_data.get('testsdoneabbottfailedbuteligibaleforrepeatplasma')
+            updateTotal.testsdoneabbottfailedbutnoteligibaleforrepeatplasma += form.cleaned_data.get('testsdoneabbottfailedbutnoteligibaleforrepeatplasma')
+            updateTotal.testsdoneabbottrepeatplasma += form.cleaned_data.get('testsdoneabbottrepeatplasma')
+            updateTotal.testsdoneabbottfailedafterrepeattestingplasma += form.cleaned_data.get('testsdoneabbottfailedafterrepeattestingplasma')
+            updateTotal.testsdoneabbottnumberofsamplesreceivedthisweekdbs += form.cleaned_data.get('testsdoneabbottnumberofsamplesreceivedthisweekdbs')
 
-            updateTotal.testsdoneabbottnumberofsamplescarriedoverpreviousweeksdbs += form.testsdoneabbottnumberofsamplescarriedoverpreviousweeksdbs
-            updateTotal.testsdoneabbottfailedbuteligibaleforrepeatdbs += form.testsdoneabbottfailedbuteligibaleforrepeatdbs
-            updateTotal.testsdoneabbottfailedbutnoteligibaleforrepeatdbs += form.testsdoneabbottfailedbutnoteligibaleforrepeatdbs
-            updateTotal.testsdoneabbottrepeatdbs += form.testsdoneabbottrepeatdbs
-            updateTotal.testsdoneabbottfailedafterrepeattestingdbs += form.testsdoneabbottfailedafterrepeattestingdbs
-            updateTotal.testsdonehologicpanthernumberofsamplesreceivedthisweekplasma += form.testsdonehologicpanthernumberofsamplesreceivedthisweekplasma
+            updateTotal.testsdoneabbottnumberofsamplescarriedoverpreviousweeksdbs += form.cleaned_data.get('testsdoneabbottnumberofsamplescarriedoverpreviousweeksdbs')
+            updateTotal.testsdoneabbottfailedbuteligibaleforrepeatdbs += form.cleaned_data.get('testsdoneabbottfailedbuteligibaleforrepeatdbs')
+            updateTotal.testsdoneabbottfailedbutnoteligibaleforrepeatdbs += form.cleaned_data.get('testsdoneabbottfailedbutnoteligibaleforrepeatdbs')
+            updateTotal.testsdoneabbottrepeatdbs += form.cleaned_data.get('testsdoneabbottrepeatdbs')
+            updateTotal.testsdoneabbottfailedafterrepeattestingdbs += form.cleaned_data.get('testsdoneabbottfailedafterrepeattestingdbs')
+            updateTotal.testsdonehologicpanthernumberofsamplesreceivedthisweekplasma += form.cleaned_data.get('testsdonehologicpanthernumberofsamplesreceivedthisweekplasma')
 
-            updateTotal.tests2 += form.tests2
-            updateTotal.testsdonehologicpantherfailedbuteligibaleforrepeatplasma += form.testsdonehologicpantherfailedbuteligibaleforrepeatplasma
-            updateTotal.testsdonehologicpantherfailedbutnoteligibaleforrepeatplasma += form.testsdonehologicpantherfailedbutnoteligibaleforrepeatplasma
-            updateTotal.testsdonehologicpantherrepeatplasma += form.testsdonehologicpantherrepeatplasma
-            updateTotal.testsdonehologicpantherfailedafterrepeattestingplasma += form.testsdonehologicpantherfailedafterrepeattestingplasma
-            updateTotal.testsdonehologicpanthernumberofsamplesreceivedthisweekdbs += form.testsdonehologicpanthernumberofsamplesreceivedthisweekdbs
+            updateTotal.tests2 += form.cleaned_data.get('tests2')
+            updateTotal.testsdonehologicpantherfailedbuteligibaleforrepeatplasma += form.cleaned_data.get('testsdonehologicpantherfailedbuteligibaleforrepeatplasma')
+            updateTotal.testsdonehologicpantherfailedbutnoteligibaleforrepeatplasma += form.cleaned_data.get('testsdonehologicpantherfailedbutnoteligibaleforrepeatplasma')
+            updateTotal.testsdonehologicpantherrepeatplasma += form.cleaned_data.get('testsdonehologicpantherrepeatplasma')
+            updateTotal.testsdonehologicpantherfailedafterrepeattestingplasma += form.cleaned_data.get('testsdonehologicpantherfailedafterrepeattestingplasma')
+            updateTotal.testsdonehologicpanthernumberofsamplesreceivedthisweekdbs += form.cleaned_data.get('testsdonehologicpanthernumberofsamplesreceivedthisweekdbs')
 
-            updateTotal.tests1 += form.tests1
-            updateTotal.testsdonehologicpantherfailedbuteligibaleforrepeatdbs += form.testsdonehologicpantherfailedbuteligibaleforrepeatdbs
-            updateTotal.testsdonehologicpantherfailedbutnoteligibaleforrepeatdbs += form.testsdonehologicpantherfailedbutnoteligibaleforrepeatdbs
-            updateTotal.testsdonehologicpantherrepeatdbs += form.testsdonehologicpantherrepeatdbs
-            updateTotal.testsdonehologicpantherfailedafterrepeattestingdbs += form.testsdonehologicpantherfailedafterrepeattestingdbs
-            updateTotal.totaltestsdone += form.totaltestsdone
+            updateTotal.tests1 += form.cleaned_data.get('tests1')
+            updateTotal.testsdonehologicpantherfailedbuteligibaleforrepeatdbs += form.cleaned_data.get('testsdonehologicpantherfailedbuteligibaleforrepeatdbs')
+            updateTotal.testsdonehologicpantherfailedbutnoteligibaleforrepeatdbs += form.cleaned_data.get('testsdonehologicpantherfailedbutnoteligibaleforrepeatdbs')
+            updateTotal.testsdonehologicpantherrepeatdbs += form.cleaned_data.get('testsdonehologicpantherrepeatdbs')
+            updateTotal.testsdonehologicpantherfailedafterrepeattestingdbs += form.cleaned_data.get('testsdonehologicpantherfailedafterrepeattestingdbs')
+            updateTotal.totaltestsdone += form.cleaned_data.get('totaltestsdone')
 
-            updateTotal.totalrepeats += form.totalrepeats
-            updateTotal.totalpatientsrun += form.totalpatientsrun
-            updateTotal.targetsweekly += form.targetsweekly
-            updateTotal.percentagetargetsachievements += form.percentagetargetsachievements
-            updateTotal.percentageerrorraterocheplasma += form.percentageerrorraterocheplasma
-            updateTotal.percentageerrorraterochedbs += form.percentageerrorraterochedbs
+            updateTotal.totalrepeats += form.cleaned_data.get('totalrepeats')
+            updateTotal.totalpatientsrun += form.cleaned_data.get('totalpatientsrun')
+            updateTotal.targetsweekly += form.cleaned_data.get('targetsweekly')
+            updateTotal.percentagetargetsachievements += form.cleaned_data.get('percentagetargetsachievements')
+            updateTotal.percentageerrorraterocheplasma += form.cleaned_data.get('percentageerrorraterocheplasma')
+            updateTotal.percentageerrorraterochedbs += form.cleaned_data.get('percentageerrorraterochedbs')
 
-            updateTotal.percentageerrorratebmxplasma += form.percentageerrorratebmxplasma
-            updateTotal.percentageerrorratebmxdbs += form.percentageerrorratebmxdbs
-            updateTotal.percentageerrorrateabbottplasma += form.percentageerrorrateabbottplasma
-            updateTotal.percentageerrorrateabbottdbs += form.percentageerrorrateabbottdbs
-            updateTotal.percentageerrorratehologicpantherplasma += form.percentageerrorratehologicpantherplasma
-            updateTotal.percentageerrorratehologicpantherdbs += form.percentageerrorratehologicpantherdbs
+            updateTotal.percentageerrorratebmxplasma += form.cleaned_data.get('percentageerrorratebmxplasma')
+            updateTotal.percentageerrorratebmxdbs += form.cleaned_data.get('percentageerrorratebmxdbs')
+            updateTotal.percentageerrorrateabbottplasma += form.cleaned_data.get('percentageerrorrateabbottplasma')
+            updateTotal.percentageerrorrateabbottdbs += form.cleaned_data.get('percentageerrorrateabbottdbs')
+            updateTotal.percentageerrorratehologicpantherplasma += form.cleaned_data.get('percentageerrorratehologicpantherplasma')
+            updateTotal.percentageerrorratehologicpantherdbs += form.cleaned_data.get('percentageerrorratehologicpantherdbs')
 
-            updateTotal.totalncsfromaudit += form.totalncsfromaudit
-            updateTotal.ncsnotyetclosed += form.ncsnotyetclosed
+            updateTotal.totalncsfromaudit += form.cleaned_data.get('totalncsfromaudit')
+            updateTotal.ncsnotyetclosed += form.cleaned_data.get('ncsnotyetclosed')
             updateTotal.lab = request.user.lab
             updateTotal.key = "vl"
-            updateTotal.testsdoneabbottrun += form.testsdoneabbottrun
-            updateTotal.testsdoneabbottrun += form.testsdoneabbottrun
+            updateTotal.testsdoneabbottrun += form.cleaned_data.get('testsdoneabbottrun')
+            updateTotal.testsdoneabbottrun += form.cleaned_data.get('testsdoneabbottrun')
 
 
 
@@ -250,7 +249,7 @@ def labvlrecieved(request):
         if form.is_valid():
             updateTotal = specimensreceivedbrtivleid.objects.get(key="vl", lab=request.user.lab,reportingweek=getReportingWeek() )
 
-            updateTotal.totalncsfromaudit += form.totalncsfromaudit
+            updateTotal.totalncsfromaudit += form.cleaned_data.get('totalncsfromaudit')
 
 
             form.save()
@@ -312,61 +311,67 @@ def labcov19run(request):
     if request.method == 'POST':
         form = Specimensruncovid19Form(request.POST)
         if form.is_valid():
+            print('hello there mate')
             #get the object for brti cov19 and disect the form object and assign or update the total entry and save
-            updateTotal = Specimensruncovid19.objects.get(dayofweek="Total", lab=request.user.lab,reportingweek=getReportingWeek() )
+            updateTotal = specimensrunbrticovid19.objects.get(dayofweek="Total", lab='brti',reportingweek=getReportingWeek() )
             
 
             
-            updateTotal.testsdoneabbottrun = updateTotal.testsdoneabbottrun + form.testsdoneabbottrun
-            updateTotal.testsdoneabbottfailedbuteligibaleforrepeat = updateTotal.testsdoneabbottfailedbuteligibaleforrepeat + form.testsdoneabbottfailedbuteligibaleforrepeat
-            updateTotal.testsdoneabbottfailedbutnoteligibaleforrepeat = updateTotal.testsdoneabbottfailedbutnoteligibaleforrepeat + form.testsdoneabbottfailedbutnoteligibaleforrepeat
-            updateTotal.testsdoneabbottrepeat = updateTotal.testsdoneabbottrepeat + form.testsdoneabbottrepeat
+            updateTotal.testsdoneabbottrun +=   form.cleaned_data.get('testsdoneabbottrun')
 
 
-            updateTotal.testsdonebmxrun = updateTotal.testsdonebmxrun + form.testsdonebmxrun
-            updateTotal.testsdonebmxfailedbuteligibaleforrepeat = updateTotal.testsdonebmxfailedbuteligibaleforrepeat + form.testsdonebmxfailedbuteligibaleforrepeat
-            updateTotal.testsdonebmxfailedbutnoteligibaleforrepeat = updateTotal.testsdonebmxfailedbutnoteligibaleforrepeat + form.testsdonebmxfailedbutnoteligibaleforrepeat
-            updateTotal.testsdonebmxrepeat = updateTotal.testsdonebmxrepeat + form.testsdonebmxrepeat
-            updateTotal.testsdonegenexpertrun = updateTotal.testsdonegenexpertrun + form.testsdonegenexpertrun
-            updateTotal.testsdonegenexpertfailedbuteligibaleforrepeat = updateTotal.testsdonegenexpertfailedbuteligibaleforrepeat + form.testsdonegenexpertfailedbuteligibaleforrepeat
-            updateTotal.testsdonegenexpertfailedbutnoteligibaleforrepeat = updateTotal.testsdonegenexpertfailedbutnoteligibaleforrepeat + form.testsdonegenexpertfailedbutnoteligibaleforrepeat
-            updateTotal.testsdonegenexpertrepeat = updateTotal.testsdonegenexpertrepeat + form.testsdonegenexpertrepeat
 
 
-            updateTotal.testsdonequantstudio3run = updateTotal.testsdonequantstudio3run + form.testsdonequantstudio3run
-            updateTotal.testsdonequantstudio3failedbuteligibaleforrepeat = updateTotal.testsdonequantstudio3failedbuteligibaleforrepeat + form.testsdonequantstudio3failedbuteligibaleforrepeat
-            updateTotal.testsdonequantstudio3failedbutnoteligibaleforrepeat = updateTotal.testsdonequantstudio3failedbutnoteligibaleforrepeat + form.testsdonequantstudio3failedbutnoteligibaleforrepeat
-            updateTotal.testsdonequantstudio3repeat = updateTotal.testsdonequantstudio3repeat + form.testsdonequantstudio3repeat
+
+            updateTotal.testsdoneabbottfailedbuteligibaleforrepeat = updateTotal.testsdoneabbottfailedbuteligibaleforrepeat + form.cleaned_data.get('testsdoneabbottfailedbuteligibaleforrepeat')
+            updateTotal.testsdoneabbottfailedbutnoteligibaleforrepeat = updateTotal.testsdoneabbottfailedbutnoteligibaleforrepeat + form.cleaned_data.get('testsdoneabbottfailedbutnoteligibaleforrepeat')
+            updateTotal.testsdoneabbottrepeat = updateTotal.testsdoneabbottrepeat + form.cleaned_data.get('testsdoneabbottrepeat')
 
 
-            updateTotal.testsdonehologicpantherrun = updateTotal.testsdonehologicpantherrun + form.testsdonehologicpantherrun
-            updateTotal.testsdonehologicpantherfailedbuteligibaleforrepeat = updateTotal.testsdonehologicpantherfailedbuteligibaleforrepeat + form.testsdonehologicpantherfailedbuteligibaleforrepeat
-            updateTotal.testsdonehologicpantherfailedbutnoteligibaleforrepeat = updateTotal.testsdonehologicpantherfailedbutnoteligibaleforrepeat + form.testsdonehologicpantherfailedbutnoteligibaleforrepeat
-            updateTotal.testsdonehologicpantherrepeat = updateTotal.testsdonehologicpantherrepeat + form.testsdonehologicpantherrepeat
-            updateTotal.testsdonerdtabrun = updateTotal.testsdonerdtabrun + form.testsdonerdtabrun
+            updateTotal.testsdonebmxrun = updateTotal.testsdonebmxrun + form.cleaned_data.get('testsdonebmxrun')
+            updateTotal.testsdonebmxfailedbuteligibaleforrepeat = updateTotal.testsdonebmxfailedbuteligibaleforrepeat + form.cleaned_data.get('testsdonebmxfailedbuteligibaleforrepeat')
+            updateTotal.testsdonebmxfailedbutnoteligibaleforrepeat = updateTotal.testsdonebmxfailedbutnoteligibaleforrepeat + form.cleaned_data.get('testsdonebmxfailedbutnoteligibaleforrepeat')
+            updateTotal.testsdonebmxrepeat = updateTotal.testsdonebmxrepeat + form.cleaned_data.get('testsdonebmxrepeat')
+            updateTotal.testsdonegenexpertrun = updateTotal.testsdonegenexpertrun + form.cleaned_data.get('testsdonegenexpertrun')
+            updateTotal.testsdonegenexpertfailedbuteligibaleforrepeat = updateTotal.testsdonegenexpertfailedbuteligibaleforrepeat + form.cleaned_data.get('testsdonegenexpertfailedbuteligibaleforrepeat')
+            updateTotal.testsdonegenexpertfailedbutnoteligibaleforrepeat = updateTotal.testsdonegenexpertfailedbutnoteligibaleforrepeat + form.cleaned_data.get('testsdonegenexpertfailedbutnoteligibaleforrepeat')
+            updateTotal.testsdonegenexpertrepeat = updateTotal.testsdonegenexpertrepeat + form.cleaned_data.get('testsdonegenexpertrepeat')
 
 
-            updateTotal.testsdonerdtabfailedbuteligibaleforrepeat = updateTotal.testsdonerdtabfailedbuteligibaleforrepeat + form.testsdonerdtabfailedbuteligibaleforrepeat
-            updateTotal.testsdonerdtabfailedbutnoteligibaleforrepeat = updateTotal.testsdonerdtabfailedbutnoteligibaleforrepeat + form.testsdonerdtabfailedbutnoteligibaleforrepeat
-            updateTotal.testsdonerdtabrepeat = updateTotal.testsdonerdtabrepeat + form.testsdonerdtabrepeat
+            updateTotal.testsdonequantstudio3run = updateTotal.testsdonequantstudio3run + form.cleaned_data.get('testsdonequantstudio3run')
+            updateTotal.testsdonequantstudio3failedbuteligibaleforrepeat = updateTotal.testsdonequantstudio3failedbuteligibaleforrepeat + form.cleaned_data.get('testsdonequantstudio3failedbuteligibaleforrepeat')
+            updateTotal.testsdonequantstudio3failedbutnoteligibaleforrepeat = updateTotal.testsdonequantstudio3failedbutnoteligibaleforrepeat + form.cleaned_data.get('testsdonequantstudio3failedbutnoteligibaleforrepeat')
+            updateTotal.testsdonequantstudio3repeat = updateTotal.testsdonequantstudio3repeat + form.cleaned_data.get('testsdonequantstudio3repeat')
 
 
-            updateTotal.testsdonerdtagrun = updateTotal.testsdonerdtagrun + form.testsdonerdtagrun
-            updateTotal.testsdonerdtagfailedbuteligibaleforrepeat = updateTotal.testsdonerdtagfailedbuteligibaleforrepeat + form.testsdonerdtagfailedbuteligibaleforrepeat
-            updateTotal.testsdonerdtagfailedbutnoteligibaleforrepeat = updateTotal.testsdonerdtagfailedbutnoteligibaleforrepeat + form.testsdonerdtagfailedbutnoteligibaleforrepeat
+            updateTotal.testsdonehologicpantherrun = updateTotal.testsdonehologicpantherrun + form.cleaned_data.get('testsdonehologicpantherrun')
+            updateTotal.testsdonehologicpantherfailedbuteligibaleforrepeat = updateTotal.testsdonehologicpantherfailedbuteligibaleforrepeat + form.cleaned_data.get('testsdonehologicpantherfailedbuteligibaleforrepeat')
+            updateTotal.testsdonehologicpantherfailedbutnoteligibaleforrepeat = updateTotal.testsdonehologicpantherfailedbutnoteligibaleforrepeat + form.cleaned_data.get('testsdonehologicpantherfailedbutnoteligibaleforrepeat')
+            updateTotal.testsdonehologicpantherrepeat = updateTotal.testsdonehologicpantherrepeat + form.cleaned_data.get('testsdonehologicpantherrepeat')
+            updateTotal.testsdonerdtabrun = updateTotal.testsdonerdtabrun + form.cleaned_data.get('testsdonerdtabrun')
+
+
+            updateTotal.testsdonerdtabfailedbuteligibaleforrepeat = updateTotal.testsdonerdtabfailedbuteligibaleforrepeat + form.cleaned_data.get('testsdonerdtabfailedbuteligibaleforrepeat')
+            updateTotal.testsdonerdtabfailedbutnoteligibaleforrepeat = updateTotal.testsdonerdtabfailedbutnoteligibaleforrepeat + form.cleaned_data.get('testsdonerdtabfailedbutnoteligibaleforrepeat')
+            updateTotal.testsdonerdtabrepeat = updateTotal.testsdonerdtabrepeat + form.cleaned_data.get('testsdonerdtabrepeat')
+
+
+            updateTotal.testsdonerdtagrun = updateTotal.testsdonerdtagrun + form.cleaned_data.get('testsdonerdtagrun')
+            updateTotal.testsdonerdtagfailedbuteligibaleforrepeat = updateTotal.testsdonerdtagfailedbuteligibaleforrepeat + form.cleaned_data.get('testsdonerdtagfailedbuteligibaleforrepeat')
+            updateTotal.testsdonerdtagfailedbutnoteligibaleforrepeat = updateTotal.testsdonerdtagfailedbutnoteligibaleforrepeat + form.cleaned_data.get('testsdonerdtagfailedbutnoteligibaleforrepeat')
             
-            updateTotal.testsdonerdtagrepeat = updateTotal.testsdonerdtagrepeat + form.testsdonerdtagrepeat
-            updateTotal.totaltestsdone = updateTotal.totaltestsdone + form.totaltestsdone
-            updateTotal.totalrepeats = updateTotal.totalrepeats + form.totalrepeats
-            updateTotal.totalpatientsrun = updateTotal.totalpatientsrun + form.totalpatientsrun
+            updateTotal.testsdonerdtagrepeat = updateTotal.testsdonerdtagrepeat + form.cleaned_data.get('testsdonerdtagrepeat')
+            updateTotal.totaltestsdone = updateTotal.totaltestsdone + form.cleaned_data.get('totaltestsdone')
+            updateTotal.totalrepeats = updateTotal.totalrepeats + form.cleaned_data.get('totalrepeats')
+            updateTotal.totalpatientsrun = updateTotal.totalpatientsrun + form.cleaned_data.get('totalpatientsrun')
 
-            updateTotal.errorratesabbott = updateTotal.errorratesabbott + form.errorratesabbott
-            updateTotal.errorratesbmx = updateTotal.errorratesbmx + form.errorratesbmx
-            updateTotal.errorratesgenexpert = updateTotal.errorratesgenexpert + form.errorratesgenexpert
-            updateTotal.errorratesquantstudio3 = updateTotal.errorratesquantstudio3 + form.errorratesquantstudio3
-            updateTotal.errorrateshologicpanther = updateTotal.errorrateshologicpanther + form.errorrateshologicpanther
-            updateTotal.errorratesrdtab = updateTotal.errorratesrdtab + form.errorratesrdtab
-            updateTotal.errorratesrdtag = updateTotal.errorratesrdtag + form.errorratesrdtag
+            updateTotal.errorratesabbott = updateTotal.errorratesabbott + form.cleaned_data.get('errorratesabbott')
+            updateTotal.errorratesbmx = updateTotal.errorratesbmx + form.cleaned_data.get('errorratesbmx')
+            updateTotal.errorratesgenexpert = updateTotal.errorratesgenexpert + form.cleaned_data.get('errorratesgenexpert')
+            updateTotal.errorratesquantstudio3 = updateTotal.errorratesquantstudio3 + form.cleaned_data.get('errorratesquantstudio3')
+            updateTotal.errorrateshologicpanther = updateTotal.errorrateshologicpanther + form.cleaned_data.get('errorrateshologicpanther')
+            updateTotal.errorratesrdtab = updateTotal.errorratesrdtab + form.cleaned_data.get('errorratesrdtab')
+            updateTotal.errorratesrdtag = updateTotal.errorratesrdtag + form.cleaned_data.get('errorratesrdtag')
 
            
             updateTotal.save()
@@ -388,31 +393,32 @@ def labcov19recieved(request):
         form = Specimensreceivedcovid19Form(request.POST)
         if form.is_valid():
 
-            updateTotal = Specimensruncovid19.objects.get(dayofweek="Total",lab=request.user.lab,reportingweek=getReportingWeek())
-            updateTotal.samplescarriedoverpreviousweeks = updateTotal.samplescarriedoverpreviousweeks + form.samplescarriedoverpreviousweeks
-            updateTotal.samplesreceivedcurrentweeknasopharyngealswab = updateTotal.samplesreceivedcurrentweeknasopharyngealswab + form.samplesreceivedcurrentweeknasopharyngealswab
-            updateTotal.samplesreceivedcurrentweeknasalswab = updateTotal.samplesreceivedcurrentweeknasalswab + form.samplesreceivedcurrentweeknasalswab
-            updateTotal.samplesreceivedcurrentweekoropharyngealswab = updateTotal.samplesreceivedcurrentweekoropharyngealswab + form.samplesreceivedcurrentweekoropharyngealswab
+            updateTotal = specimensreceivedbrticovid19.objects.get(dayofweek="Total",lab='brti',reportingweek='1')
+            updateTotal.samplescarriedoverpreviousweeks = updateTotal.samplescarriedoverpreviousweeks + form.cleaned_data.get('samplescarriedoverpreviousweeks')
+            updateTotal.samplesreceivedcurrentweeknasopharyngealswab = updateTotal.samplesreceivedcurrentweeknasopharyngealswab + form.cleaned_data.get('samplesreceivedcurrentweeknasopharyngealswab')
+            updateTotal.samplesreceivedcurrentweeknasalswab = updateTotal.samplesreceivedcurrentweeknasalswab + form.cleaned_data.get('samplesreceivedcurrentweeknasalswab')
+            updateTotal.samplesreceivedcurrentweekoropharyngealswab = updateTotal.samplesreceivedcurrentweekoropharyngealswab + form.cleaned_data.get('samplesreceivedcurrentweekoropharyngealswab')
 
-            updateTotal.samplesreceivedcurrentweekmidturbinateswab = updateTotal.samplesreceivedcurrentweekmidturbinateswab + form.samplesreceivedcurrentweekmidturbinateswab
-            updateTotal.samplesreceivedcurrentweeksputum = updateTotal.samplesreceivedcurrentweeksputum + form.samplesreceivedcurrentweeksputum
-            updateTotal.samplesreceivedcurrentweekwholebloodorplasmaorserum = updateTotal.samplesreceivedcurrentweekwholebloodorplasmaorserum + form.samplesreceivedcurrentweekwholebloodorplasmaorserum
-            updateTotal.samplesreceivedcurrentweekother = updateTotal.samplesreceivedcurrentweekother + form.samplesreceivedcurrentweekother
+            updateTotal.samplesreceivedcurrentweekmidturbinateswab = updateTotal.samplesreceivedcurrentweekmidturbinateswab + form.cleaned_data.get('samplesreceivedcurrentweekmidturbinateswab')
+            updateTotal.samplesreceivedcurrentweeksputum = updateTotal.samplesreceivedcurrentweeksputum + form.cleaned_data.get('samplesreceivedcurrentweeksputum')
+            updateTotal.samplesreceivedcurrentweekwholebloodorplasmaorserum = updateTotal.samplesreceivedcurrentweekwholebloodorplasmaorserum + form.cleaned_data.get('samplesreceivedcurrentweekwholebloodorplasmaorserum')
+            updateTotal.samplesreceivedcurrentweekother = updateTotal.samplesreceivedcurrentweekother + form.cleaned_data.get('samplesreceivedcurrentweekother')
 
-            updateTotal.samplesrejectedcurrentweek = updateTotal.samplesrejectedcurrentweek + form.samplesrejectedcurrentweek
-            updateTotal.totalsamplesreceivedcurrentweek = updateTotal.totalsamplesreceivedcurrentweek + form.totalsamplesreceivedcurrentweek
-            updateTotal.numberofsamplesenteredintolims = updateTotal.numberofsamplesenteredintolims + form.numberofsamplesenteredintolims
-            updateTotal.totalsamplescurrentpluscarryover = updateTotal.totalsamplescurrentpluscarryover + form.totalsamplescurrentpluscarryover
+            updateTotal.samplesrejectedcurrentweek = updateTotal.samplesrejectedcurrentweek + form.cleaned_data.get('samplesrejectedcurrentweek')
+            updateTotal.totalsamplesreceivedcurrentweek = updateTotal.totalsamplesreceivedcurrentweek + form.cleaned_data.get('totalsamplesreceivedcurrentweek')
+            updateTotal.numberofsamplesenteredintolims = updateTotal.numberofsamplesenteredintolims + form.cleaned_data.get('numberofsamplesenteredintolims')
+            updateTotal.totalsamplescurrentpluscarryover = updateTotal.totalsamplescurrentpluscarryover + form.cleaned_data.get('totalsamplescurrentpluscarryover')
 
-            updateTotal.samplesreferred = updateTotal.samplesreferred + form.samplesreferred
-            updateTotal.rejectionratecurrentweek = updateTotal.rejectionratecurrentweek + form.rejectionratecurrentweek
-            updateTotal.numberofresultsprintedlims = updateTotal.numberofresultsprintedlims + form.numberofresultsprintedlims
-            updateTotal.totalresultsdispatchedbylab = updateTotal.totalresultsdispatchedbylab + form.totalresultsdispatchedbylab
+            updateTotal.samplesreferred = updateTotal.samplesreferred + form.cleaned_data.get('samplesreferred')
+            updateTotal.rejectionratecurrentweek = updateTotal.rejectionratecurrentweek + form.cleaned_data.get('rejectionratecurrentweek')
+            updateTotal.numberofresultsprintedlims = updateTotal.numberofresultsprintedlims + form.cleaned_data.get('numberofresultsprintedlims')
+            updateTotal.totalresultsdispatchedbylab = updateTotal.totalresultsdispatchedbylab + form.cleaned_data.get('totalresultsdispatchedbylab')
+
 #mostt likely to crush if we keep on joining comments 
-            updateTotal.comment = updateTotal.comment + form.comment
-            updateTotal.samplesReferredtoName = updateTotal.samplesReferredtoName + form.samplesReferredtoName
-            updateTotal.errorratesabbott = updateTotal.errorratesabbott + form.errorratesabbott
-            updateTotal.errorratesabbott = updateTotal.errorratesabbott + form.errorratesabbott
+            updateTotal.comment = updateTotal.comment + form.cleaned_data.get('comment')
+            updateTotal.samplesReferredtoName = updateTotal.samplesReferredtoName + form.cleaned_data.get('samplesReferredtoName')
+            updateTotal.errorratesabbott = updateTotal.errorratesabbott + form.cleaned_data.get('errorratesabbott')
+            updateTotal.errorratesabbott = updateTotal.errorratesabbott + form.cleaned_data.get('errorratesabbott')
 
 
 
@@ -430,13 +436,13 @@ def labcov19general(request):
         form = Generalcovid19Form(request.POST)
         if form.is_valid():
             updateTotal = generalbrticovid19.objects.get(dayofweek="Total",lab=request.user.lab,reportingweek=getReportingWeek())
-            updateTotal.commentsregardingtestingandchallengesfacedbythelaboratory = updateTotal.commentsregardingtestingandchallengesfacedbythelaboratory + form.commentsregardingtestingandchallengesfacedbythelaboratory
-            updateTotal.numberofstaffwhotestedpositivetocovid19atvllab = updateTotal.numberofstaffwhotestedpositivetocovid19atvllab + form.numberofstaffwhotestedpositivetocovid19atvllab
-            updateTotal.numberOfStaffwhotestedpositivetocovid19athubs = updateTotal.numberOfStaffwhotestedpositivetocovid19athubs + form.numberOfStaffwhotestedpositivetocovid19athubs
-            updateTotal.numberofstaffwhohavebeenvaccinated = updateTotal.numberofstaffwhohavebeenvaccinated + form.numberofstaffwhohavebeenvaccinated
-            updateTotal.Comments = updateTotal.Comments + form.Comments
-            # updateTotal.Requesttobrtifromthelaboratory = updateTotal.Requesttobrtifromthelaboratory + form.Requesttobrtifromthelaboratory
-            # updateTotal.numberofstaffwhohavebeenvaccinated = updateTotal.numberofstaffwhohavebeenvaccinated + form.numberofstaffwhohavebeenvaccinated
+            updateTotal.commentsregardingtestingandchallengesfacedbythelaboratory = updateTotal.commentsregardingtestingandchallengesfacedbythelaboratory + form.cleaned_data.get('commentsregardingtestingandchallengesfacedbythelaboratory')
+            updateTotal.numberofstaffwhotestedpositivetocovid19atvllab = updateTotal.numberofstaffwhotestedpositivetocovid19atvllab + form.cleaned_data.get('numberofstaffwhotestedpositivetocovid19atvllab')
+            updateTotal.numberOfStaffwhotestedpositivetocovid19athubs = updateTotal.numberOfStaffwhotestedpositivetocovid19athubs + form.cleaned_data.get('numberOfStaffwhotestedpositivetocovid19athubs')
+            updateTotal.numberofstaffwhohavebeenvaccinated = updateTotal.numberofstaffwhohavebeenvaccinated + form.cleaned_data.get('numberofstaffwhohavebeenvaccinated')
+            updateTotal.Comments = updateTotal.Comments + form.cleaned_data.get('Comments')
+            # updateTotal.Requesttobrtifromthelaboratory = updateTotal.Requesttobrtifromthelaboratory + form.cleaned_data.get('Requesttobrtifromthelaboratory
+            # updateTotal.numberofstaffwhohavebeenvaccinated = updateTotal.numberofstaffwhohavebeenvaccinated + form.cleaned_data.get('numberofstaffwhohavebeenvaccinated
             updateTotal.save()
             form.save()
             #return render(request, 'success.html')
@@ -450,32 +456,32 @@ def labcov19machine(request):
         agentstockouttoolcovid19Form(request.POST)
         if form.is_valid():
             updateTotal = machinedowntimereagentstockouttoolcovid19.objects.get(dayofweek="Total", lab=request.user.lab,reportingweek=getReportingWeek())
-            updateTotal.numberofmachinebreakdownsabbott = updateTotal.numberofmachinebreakdownsabbott + form.numberofmachinebreakdownsabbott
-            updateTotal.numberofmachinebreakdownsbmx = updateTotal.numberofmachinebreakdownsbmx + form.numberofmachinebreakdownsbmx
-            updateTotal.numberofmachinebreakdownsgenexpert = updateTotal.numberofmachinebreakdownsgenexpert + form.numberofmachinebreakdownsgenexpert
-            updateTotal.numberofmachinebreakdownsquantstudio3 = updateTotal.numberofmachinebreakdownsquantstudio3 + form.numberofmachinebreakdownsquantstudio3
+            updateTotal.numberofmachinebreakdownsabbott = updateTotal.numberofmachinebreakdownsabbott + form.cleaned_data.get('numberofmachinebreakdownsabbott')
+            updateTotal.numberofmachinebreakdownsbmx = updateTotal.numberofmachinebreakdownsbmx + form.cleaned_data.get('numberofmachinebreakdownsbmx')
+            updateTotal.numberofmachinebreakdownsgenexpert = updateTotal.numberofmachinebreakdownsgenexpert + form.cleaned_data.get('numberofmachinebreakdownsgenexpert')
+            updateTotal.numberofmachinebreakdownsquantstudio3 = updateTotal.numberofmachinebreakdownsquantstudio3 + form.cleaned_data.get('numberofmachinebreakdownsquantstudio3')
            
-            updateTotal.numberofmachinebreakdownshologicpanther = updateTotal.numberofmachinebreakdownshologicpanther + form.numberofmachinebreakdownshologicpanther
-            updateTotal.numberofmachinebreakdownscomments = updateTotal.numberofmachinebreakdownscomments + form.numberofmachinebreakdownscomments
-            updateTotal.machinedowntimedaysabbott = updateTotal.machinedowntimedaysabbott + form.machinedowntimedaysabbott
-            updateTotal.machinedowntimedaysbmx = updateTotal.machinedowntimedaysbmx + form.machinedowntimedaysbmx
+            updateTotal.numberofmachinebreakdownshologicpanther = updateTotal.numberofmachinebreakdownshologicpanther + form.cleaned_data.get('numberofmachinebreakdownshologicpanther')
+            updateTotal.numberofmachinebreakdownscomments = updateTotal.numberofmachinebreakdownscomments + form.cleaned_data.get('numberofmachinebreakdownscomments')
+            updateTotal.machinedowntimedaysabbott = updateTotal.machinedowntimedaysabbott + form.cleaned_data.get('machinedowntimedaysabbott')
+            updateTotal.machinedowntimedaysbmx = updateTotal.machinedowntimedaysbmx + form.cleaned_data.get('machinedowntimedaysbmx')
            
-            updateTotal.machinedowntimedaysgenexpert = updateTotal.machinedowntimedaysgenexpert + form.machinedowntimedaysgenexpert
-            updateTotal.machinedowntimedaysquantstudio3 = updateTotal.machinedowntimedaysquantstudio3 + form.machinedowntimedaysquantstudio3
-            updateTotal.machinedowntimedayshologicpanther = updateTotal.machinedowntimedayshologicpanther + form.machinedowntimedayshologicpanther
-            updateTotal.machinedowntimedayscomments = updateTotal.machinedowntimedayscomments + form.machinedowntimedayscomments
+            updateTotal.machinedowntimedaysgenexpert = updateTotal.machinedowntimedaysgenexpert + form.cleaned_data.get('machinedowntimedaysgenexpert')
+            updateTotal.machinedowntimedaysquantstudio3 = updateTotal.machinedowntimedaysquantstudio3 + form.cleaned_data.get('machinedowntimedaysquantstudio3')
+            updateTotal.machinedowntimedayshologicpanther = updateTotal.machinedowntimedayshologicpanther + form.cleaned_data.get('machinedowntimedayshologicpanther')
+            updateTotal.machinedowntimedayscomments = updateTotal.machinedowntimedayscomments + form.cleaned_data.get('machinedowntimedayscomments')
            
-            updateTotal.reagentstockoutabbort = updateTotal.reagentstockoutabbort + form.reagentstockoutabbort
-            updateTotal.reagentstockoutbms = updateTotal.reagentstockoutbms + form.reagentstockoutbms
-            updateTotal.reagentstockoutgenexpert = updateTotal.reagentstockoutgenexpert + form.reagentstockoutgenexpert
+            updateTotal.reagentstockoutabbort = updateTotal.reagentstockoutabbort + form.cleaned_data.get('reagentstockoutabbort')
+            updateTotal.reagentstockoutbms = updateTotal.reagentstockoutbms + form.cleaned_data.get('reagentstockoutbms')
+            updateTotal.reagentstockoutgenexpert = updateTotal.reagentstockoutgenexpert + form.cleaned_data.get('reagentstockoutgenexpert')
             
-            updateTotal.reagentstockoutquantstudio3 = updateTotal.reagentstockoutquantstudio3 + form.reagentstockoutquantstudio3
-            updateTotal.reagentstockouthologicpanther = updateTotal.reagentstockouthologicpanther + form.reagentstockouthologicpanther
-            updateTotal.reagentstockoutcomments = updateTotal.reagentstockoutcomments + form.reagentstockoutcomments
-            updateTotal.reagentstockoutcomments = updateTotal.reagentstockoutcomments + form.reagentstockoutcomments
+            updateTotal.reagentstockoutquantstudio3 = updateTotal.reagentstockoutquantstudio3 + form.cleaned_data.get('reagentstockoutquantstudio3')
+            updateTotal.reagentstockouthologicpanther = updateTotal.reagentstockouthologicpanther + form.cleaned_data.get('reagentstockouthologicpanther')
+            updateTotal.reagentstockoutcomments = updateTotal.reagentstockoutcomments + form.cleaned_data.get('reagentstockoutcomments')
+            updateTotal.reagentstockoutcomments = updateTotal.reagentstockoutcomments + form.cleaned_data.get('reagentstockoutcomments')
 
-            # updateTotal.Requesttobrtifromthelaboratory = updateTotal.Requesttobrtifromthelaboratory + form.Requesttobrtifromthelaboratory
-            # updateTotal.numberofstaffwhohavebeenvaccinated = updateTotal.numberofstaffwhohavebeenvaccinated + form.numberofstaffwhohavebeenvaccinated
+            # updateTotal.Requesttobrtifromthelaboratory = updateTotal.Requesttobrtifromthelaboratory + form.cleaned_data.get('Requesttobrtifromthelaboratory
+            # updateTotal.numberofstaffwhohavebeenvaccinated = updateTotal.numberofstaffwhohavebeenvaccinated + form.cleaned_data.get('numberofstaffwhohavebeenvaccinated
             updateTotal.save()
             form.save()
             #return render(request, 'success.html')
@@ -609,8 +615,8 @@ def export_csv(request):
 #     def form_valid(self, form):
 #         print("===============try try=====================================",self.request.user)
 
-#         #form.owner = str(self.request.user)
-#         obj = form.save(commit=False)
+#         #form.cleaned_data.get('owner = str(self.request.user)
+#         obj = form.cleaned_data.get('save(commit=False)
 #         obj.owner = str(self.request.user)
 #         obj.save()
 #         #form.save()

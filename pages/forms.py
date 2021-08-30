@@ -1493,7 +1493,8 @@ class Specimensruncovid19Form(forms.ModelForm):
         ('Sunday','Sunday'),
     ]
 
-    dayofweek = forms.ChoiceField(choices=dayschoices, initial="none", label="Select Day please")    #reportingweek = forms.CharField(label="Reporting week in the format  1:3-10")
+    dayofweek = forms.ChoiceField(choices=dayschoices, initial="none", label="Select Day please")    
+    #reportingweek = forms.CharField(label="Reporting week in the format  1:3-10")
 
     #Roche
     testsdoneabbottrun = forms.IntegerField(label="run")

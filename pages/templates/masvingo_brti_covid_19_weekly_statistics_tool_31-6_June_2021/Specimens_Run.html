@@ -27,17 +27,9 @@
    {% csrf_token %}
 
 	<h1 align="center">Specimens Run</h1>
-	<label> Please choose a date: </label>
-<select id="">
-  <option value="Monday">Monday</option>
-  <option value="Tuesday">Tuesday</option>
-  <option value="Wednesday">Wednesday</option>
-  <option value="Thursday">Thursday</option>
-  <option value="Friday">Friday</option>
-  <option value="Saturday">Saturday</option>
-  <option value="Sunday">Sunday</option>
-  <option value="Sunday">Total</option>
-</select>
+	<label>       <th>{{form.dayofweek | as_crispy_field}}</th>
+  </label>
+
 <p></p>
 <p></p>
 <br><br>

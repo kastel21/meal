@@ -540,8 +540,8 @@ class reasonsforfailurebrtivleid(models.Model):
     hologicpantherdbsnumberoffailedtestsduetoprocessingerror = models.IntegerField(default=0,)
     hologicpantherdbsnumberoffailedtestsduetoother = models.IntegerField(default=0,)
     hologicpantherdqacheckdbs = models.IntegerField(default=0,)
-    user= models.TextField(max_length=25,default="root")
-    lab= models.TextField(max_length=30,default="brti")
+    # user= models.TextField(max_length=25,default="root")
+    # lab= models.TextField(max_length=30,default="brti")
 
 
 # ------------------------------------------------------------------------------------------------------------------------------
@@ -1341,8 +1341,9 @@ class Specimensreceivedcovid19(models.Model):
     totalresultsdispatchedbylab	=	models.IntegerField(default=0,)
     comment= models.TextField(default='.',max_length=300, null=True)
     samplesReferredtoName = models.TextField(max_length=300, default="null")
-    user= models.TextField(max_length=25,default="root")
-    lab= models.TextField(max_length=30,default="brti")
+
+    # user= models.TextField(max_length=25,default="root")
+    # lab= models.TextField(max_length=30,default="brti")
 
 
 
@@ -1361,8 +1362,8 @@ class Specimensruncovid19(models.Model):
     ]
 
     dayofweek = models.TextField(max_length=30, choices=dayschoices, default='Monday')
-    reportingweek = models.TextField(default='.',max_length=30,null=False)
-    dateofrecord = models.DateField(auto_now=True)
+    #reportingweek = models.TextField(default='.',max_length=30,null=False)
+    #dateofrecord = models.DateField(auto_now=True)
 
     testsdoneabbottrun = models.IntegerField(default=0,)
     testsdoneabbottfailedbuteligibaleforrepeat= models.IntegerField(default=0,)
@@ -1415,8 +1416,8 @@ class Specimensruncovid19(models.Model):
     errorratesrdtab = models.IntegerField(default=0,)
     errorratesrdtag = models.IntegerField(default=0,)
 
-    user= models.TextField(max_length=25,default="root")
-    lab= models.TextField(max_length=30,default="brti")
+    # user= models.TextField(max_length=25,default="root")
+    # lab= models.TextField(max_length=30,default="brti")
 
  # ----------------------------------------------------------------------------------------------------------------------------------
 
