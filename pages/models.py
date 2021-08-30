@@ -1,8 +1,21 @@
 from django.db import models
 from django.db.models.fields import IntegerField
 from django.urls import reverse
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
+
+
+class CustomUser(AbstractUser):
+    Victoria_Falls= 'Victoria Falls'
+    Bindura = 'Bindura'
+    status_choices =[
+            (Victoria_Falls, 'Victoria_Falls'),
+            (Bindura,'Bindura')
+            ]
+    lab = models.CharField(max_length=200, choices=status_choices,  blank=True)
+
+
 # ------------------------------------------------------------------------------------------------------------------------------
 # brticovid19weeklystatisticstool
 class specimensrunbrticovid19(models.Model):

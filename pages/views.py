@@ -70,7 +70,7 @@ def index(request):
 
 def home(request):
     context={}
-
+    print(request.user , request.user.lab)
     return render(request, 'base.html', context)
 
 

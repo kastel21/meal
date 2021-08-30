@@ -5,6 +5,11 @@ from django.db import transaction
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit
 
+
+
+
+
+
 # ------------------------------------------------------------------------------------------------------------------------------
 # brticovid19weeklystatisticstool
 
@@ -1641,9 +1646,9 @@ class machinedowntimereagentstockouttoolcovid19Form(forms.ModelForm):
 #         self.helper.layout = Layout(
 #         )
 
-#     class Meta:
-#             model = Topbrtiweekly
-#             fields = '__all__'
+    class Meta:
+            # model = Topbrtiweekly
+            fields = '__all__'
 
 class Generalcovid19Form(forms.ModelForm):
     dayschoices=[
