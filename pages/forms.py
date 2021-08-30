@@ -495,7 +495,7 @@ class specimensreceivedbrtivleidForm(forms.ModelForm):
 
     #reasonsforrejectionssamplequalitycompromisedsamplequalityinsufficientplasma = forms.IntegerField()
 
-    reasons6= forms.IntegerField()
+    reasons6= forms.IntegerField(label="plasma")
 
 
     #reasonsforrejectionssamplequalitycompromisedsamplequalityinsufficientdbs = forms.IntegerField()
@@ -1064,7 +1064,7 @@ class ElectricoutagebrtivlweeklyForm(forms.ModelForm):
             model = Electricoutagebrtivlweekly
             fields = '__all__'
  # ----------------------------------------------------------------------------------------------------------------------------------
-
+# ---------------------------eid---------------------------------
 #masvingbrtiweeklystatisticstool31-6june2021
 
 
@@ -1181,7 +1181,19 @@ class Specimensrunbrtiweekly(forms.ModelForm):
 
 
 class SpecimensreceivedbrtiweeklyForm(forms.ModelForm):
-    dayofweek = forms.CharField(widget=forms.HiddenInput(), initial="none", label="Select date" )
+    
+    dayschoices=[
+        ('Monday','Monday'),
+        ('Tuesday','Tuesday'),
+        ('Wednesday','Wednesday'),
+        ('Thursday','Thursday'),
+        ('Friday','Friday'),
+        ('Saturday','Saturday'),
+        ('Sunday','Sunday'),
+    ]
+
+    dayofweek = forms.ChoiceField(choices=dayschoices, initial="none", label="Select Day please")
+
     #reportingweek = forms.CharField(label="Reporting week in the format  1:3-10")
 
 
