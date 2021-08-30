@@ -70,7 +70,7 @@ def index(request):
 
 def home(request):
     context={}
-    print(request.user , request.user.lab)
+    # print(request.user , request.user.lab)
     return render(request, 'base.html', context)
 
 
@@ -312,64 +312,65 @@ def labcov19run(request):
     if request.method == 'POST':
         form = Specimensruncovid19Form(request.POST)
         if form.is_valid():
+            print('in here')
             #get the object for brti cov19 and disect the form object and assign or update the total entry and save
-            updateTotal = Specimensruncovid19.objects.get(dayofweek="Total", lab=request.user.lab,reportingweek=getReportingWeek() )
+            # updateTotal = Specimensruncovid19.objects.get(dayofweek="Total", lab='brti',reportingweek='1' )
             
 
             
-            updateTotal.testsdoneabbottrun = updateTotal.testsdoneabbottrun + form.testsdoneabbottrun
-            updateTotal.testsdoneabbottfailedbuteligibaleforrepeat = updateTotal.testsdoneabbottfailedbuteligibaleforrepeat + form.testsdoneabbottfailedbuteligibaleforrepeat
-            updateTotal.testsdoneabbottfailedbutnoteligibaleforrepeat = updateTotal.testsdoneabbottfailedbutnoteligibaleforrepeat + form.testsdoneabbottfailedbutnoteligibaleforrepeat
-            updateTotal.testsdoneabbottrepeat = updateTotal.testsdoneabbottrepeat + form.testsdoneabbottrepeat
+            # updateTotal.testsdoneabbottrun = updateTotal.testsdoneabbottrun + form.testsdoneabbottrun
+            # updateTotal.testsdoneabbottfailedbuteligibaleforrepeat = updateTotal.testsdoneabbottfailedbuteligibaleforrepeat + form.testsdoneabbottfailedbuteligibaleforrepeat
+            # updateTotal.testsdoneabbottfailedbutnoteligibaleforrepeat = updateTotal.testsdoneabbottfailedbutnoteligibaleforrepeat + form.testsdoneabbottfailedbutnoteligibaleforrepeat
+            # updateTotal.testsdoneabbottrepeat = updateTotal.testsdoneabbottrepeat + form.testsdoneabbottrepeat
 
 
-            updateTotal.testsdonebmxrun = updateTotal.testsdonebmxrun + form.testsdonebmxrun
-            updateTotal.testsdonebmxfailedbuteligibaleforrepeat = updateTotal.testsdonebmxfailedbuteligibaleforrepeat + form.testsdonebmxfailedbuteligibaleforrepeat
-            updateTotal.testsdonebmxfailedbutnoteligibaleforrepeat = updateTotal.testsdonebmxfailedbutnoteligibaleforrepeat + form.testsdonebmxfailedbutnoteligibaleforrepeat
-            updateTotal.testsdonebmxrepeat = updateTotal.testsdonebmxrepeat + form.testsdonebmxrepeat
-            updateTotal.testsdonegenexpertrun = updateTotal.testsdonegenexpertrun + form.testsdonegenexpertrun
-            updateTotal.testsdonegenexpertfailedbuteligibaleforrepeat = updateTotal.testsdonegenexpertfailedbuteligibaleforrepeat + form.testsdonegenexpertfailedbuteligibaleforrepeat
-            updateTotal.testsdonegenexpertfailedbutnoteligibaleforrepeat = updateTotal.testsdonegenexpertfailedbutnoteligibaleforrepeat + form.testsdonegenexpertfailedbutnoteligibaleforrepeat
-            updateTotal.testsdonegenexpertrepeat = updateTotal.testsdonegenexpertrepeat + form.testsdonegenexpertrepeat
+            # updateTotal.testsdonebmxrun = updateTotal.testsdonebmxrun + form.testsdonebmxrun
+            # updateTotal.testsdonebmxfailedbuteligibaleforrepeat = updateTotal.testsdonebmxfailedbuteligibaleforrepeat + form.testsdonebmxfailedbuteligibaleforrepeat
+            # updateTotal.testsdonebmxfailedbutnoteligibaleforrepeat = updateTotal.testsdonebmxfailedbutnoteligibaleforrepeat + form.testsdonebmxfailedbutnoteligibaleforrepeat
+            # updateTotal.testsdonebmxrepeat = updateTotal.testsdonebmxrepeat + form.testsdonebmxrepeat
+            # updateTotal.testsdonegenexpertrun = updateTotal.testsdonegenexpertrun + form.testsdonegenexpertrun
+            # updateTotal.testsdonegenexpertfailedbuteligibaleforrepeat = updateTotal.testsdonegenexpertfailedbuteligibaleforrepeat + form.testsdonegenexpertfailedbuteligibaleforrepeat
+            # updateTotal.testsdonegenexpertfailedbutnoteligibaleforrepeat = updateTotal.testsdonegenexpertfailedbutnoteligibaleforrepeat + form.testsdonegenexpertfailedbutnoteligibaleforrepeat
+            # updateTotal.testsdonegenexpertrepeat = updateTotal.testsdonegenexpertrepeat + form.testsdonegenexpertrepeat
 
 
-            updateTotal.testsdonequantstudio3run = updateTotal.testsdonequantstudio3run + form.testsdonequantstudio3run
-            updateTotal.testsdonequantstudio3failedbuteligibaleforrepeat = updateTotal.testsdonequantstudio3failedbuteligibaleforrepeat + form.testsdonequantstudio3failedbuteligibaleforrepeat
-            updateTotal.testsdonequantstudio3failedbutnoteligibaleforrepeat = updateTotal.testsdonequantstudio3failedbutnoteligibaleforrepeat + form.testsdonequantstudio3failedbutnoteligibaleforrepeat
-            updateTotal.testsdonequantstudio3repeat = updateTotal.testsdonequantstudio3repeat + form.testsdonequantstudio3repeat
+            # updateTotal.testsdonequantstudio3run = updateTotal.testsdonequantstudio3run + form.testsdonequantstudio3run
+            # updateTotal.testsdonequantstudio3failedbuteligibaleforrepeat = updateTotal.testsdonequantstudio3failedbuteligibaleforrepeat + form.testsdonequantstudio3failedbuteligibaleforrepeat
+            # updateTotal.testsdonequantstudio3failedbutnoteligibaleforrepeat = updateTotal.testsdonequantstudio3failedbutnoteligibaleforrepeat + form.testsdonequantstudio3failedbutnoteligibaleforrepeat
+            # updateTotal.testsdonequantstudio3repeat = updateTotal.testsdonequantstudio3repeat + form.testsdonequantstudio3repeat
 
 
-            updateTotal.testsdonehologicpantherrun = updateTotal.testsdonehologicpantherrun + form.testsdonehologicpantherrun
-            updateTotal.testsdonehologicpantherfailedbuteligibaleforrepeat = updateTotal.testsdonehologicpantherfailedbuteligibaleforrepeat + form.testsdonehologicpantherfailedbuteligibaleforrepeat
-            updateTotal.testsdonehologicpantherfailedbutnoteligibaleforrepeat = updateTotal.testsdonehologicpantherfailedbutnoteligibaleforrepeat + form.testsdonehologicpantherfailedbutnoteligibaleforrepeat
-            updateTotal.testsdonehologicpantherrepeat = updateTotal.testsdonehologicpantherrepeat + form.testsdonehologicpantherrepeat
-            updateTotal.testsdonerdtabrun = updateTotal.testsdonerdtabrun + form.testsdonerdtabrun
+            # updateTotal.testsdonehologicpantherrun = updateTotal.testsdonehologicpantherrun + form.testsdonehologicpantherrun
+            # updateTotal.testsdonehologicpantherfailedbuteligibaleforrepeat = updateTotal.testsdonehologicpantherfailedbuteligibaleforrepeat + form.testsdonehologicpantherfailedbuteligibaleforrepeat
+            # updateTotal.testsdonehologicpantherfailedbutnoteligibaleforrepeat = updateTotal.testsdonehologicpantherfailedbutnoteligibaleforrepeat + form.testsdonehologicpantherfailedbutnoteligibaleforrepeat
+            # updateTotal.testsdonehologicpantherrepeat = updateTotal.testsdonehologicpantherrepeat + form.testsdonehologicpantherrepeat
+            # updateTotal.testsdonerdtabrun = updateTotal.testsdonerdtabrun + form.testsdonerdtabrun
 
 
-            updateTotal.testsdonerdtabfailedbuteligibaleforrepeat = updateTotal.testsdonerdtabfailedbuteligibaleforrepeat + form.testsdonerdtabfailedbuteligibaleforrepeat
-            updateTotal.testsdonerdtabfailedbutnoteligibaleforrepeat = updateTotal.testsdonerdtabfailedbutnoteligibaleforrepeat + form.testsdonerdtabfailedbutnoteligibaleforrepeat
-            updateTotal.testsdonerdtabrepeat = updateTotal.testsdonerdtabrepeat + form.testsdonerdtabrepeat
+            # updateTotal.testsdonerdtabfailedbuteligibaleforrepeat = updateTotal.testsdonerdtabfailedbuteligibaleforrepeat + form.testsdonerdtabfailedbuteligibaleforrepeat
+            # updateTotal.testsdonerdtabfailedbutnoteligibaleforrepeat = updateTotal.testsdonerdtabfailedbutnoteligibaleforrepeat + form.testsdonerdtabfailedbutnoteligibaleforrepeat
+            # updateTotal.testsdonerdtabrepeat = updateTotal.testsdonerdtabrepeat + form.testsdonerdtabrepeat
 
 
-            updateTotal.testsdonerdtagrun = updateTotal.testsdonerdtagrun + form.testsdonerdtagrun
-            updateTotal.testsdonerdtagfailedbuteligibaleforrepeat = updateTotal.testsdonerdtagfailedbuteligibaleforrepeat + form.testsdonerdtagfailedbuteligibaleforrepeat
-            updateTotal.testsdonerdtagfailedbutnoteligibaleforrepeat = updateTotal.testsdonerdtagfailedbutnoteligibaleforrepeat + form.testsdonerdtagfailedbutnoteligibaleforrepeat
+            # updateTotal.testsdonerdtagrun = updateTotal.testsdonerdtagrun + form.testsdonerdtagrun
+            # updateTotal.testsdonerdtagfailedbuteligibaleforrepeat = updateTotal.testsdonerdtagfailedbuteligibaleforrepeat + form.testsdonerdtagfailedbuteligibaleforrepeat
+            # updateTotal.testsdonerdtagfailedbutnoteligibaleforrepeat = updateTotal.testsdonerdtagfailedbutnoteligibaleforrepeat + form.testsdonerdtagfailedbutnoteligibaleforrepeat
             
-            updateTotal.testsdonerdtagrepeat = updateTotal.testsdonerdtagrepeat + form.testsdonerdtagrepeat
-            updateTotal.totaltestsdone = updateTotal.totaltestsdone + form.totaltestsdone
-            updateTotal.totalrepeats = updateTotal.totalrepeats + form.totalrepeats
-            updateTotal.totalpatientsrun = updateTotal.totalpatientsrun + form.totalpatientsrun
+            # updateTotal.testsdonerdtagrepeat = updateTotal.testsdonerdtagrepeat + form.testsdonerdtagrepeat
+            # updateTotal.totaltestsdone = updateTotal.totaltestsdone + form.totaltestsdone
+            # updateTotal.totalrepeats = updateTotal.totalrepeats + form.totalrepeats
+            # updateTotal.totalpatientsrun = updateTotal.totalpatientsrun + form.totalpatientsrun
 
-            updateTotal.errorratesabbott = updateTotal.errorratesabbott + form.errorratesabbott
-            updateTotal.errorratesbmx = updateTotal.errorratesbmx + form.errorratesbmx
-            updateTotal.errorratesgenexpert = updateTotal.errorratesgenexpert + form.errorratesgenexpert
-            updateTotal.errorratesquantstudio3 = updateTotal.errorratesquantstudio3 + form.errorratesquantstudio3
-            updateTotal.errorrateshologicpanther = updateTotal.errorrateshologicpanther + form.errorrateshologicpanther
-            updateTotal.errorratesrdtab = updateTotal.errorratesrdtab + form.errorratesrdtab
-            updateTotal.errorratesrdtag = updateTotal.errorratesrdtag + form.errorratesrdtag
+            # updateTotal.errorratesabbott = updateTotal.errorratesabbott + form.errorratesabbott
+            # updateTotal.errorratesbmx = updateTotal.errorratesbmx + form.errorratesbmx
+            # updateTotal.errorratesgenexpert = updateTotal.errorratesgenexpert + form.errorratesgenexpert
+            # updateTotal.errorratesquantstudio3 = updateTotal.errorratesquantstudio3 + form.errorratesquantstudio3
+            # updateTotal.errorrateshologicpanther = updateTotal.errorrateshologicpanther + form.errorrateshologicpanther
+            # updateTotal.errorratesrdtab = updateTotal.errorratesrdtab + form.errorratesrdtab
+            # updateTotal.errorratesrdtag = updateTotal.errorratesrdtag + form.errorratesrdtag
 
            
-            updateTotal.save()
+            # updateTotal.save()
 
             #updateTotal.save()
 
@@ -387,8 +388,9 @@ def labcov19recieved(request):
     if request.method == 'POST':
         form = Specimensreceivedcovid19Form(request.POST)
         if form.is_valid():
+            print('e=nter tge rhtiung')
+            updateTotal = specimensreceivedbrticovid19.objects.get(dayofweek="Total",lab='brti',reportingweek='1')
 
-            updateTotal = Specimensruncovid19.objects.get(dayofweek="Total",lab=request.user.lab,reportingweek=getReportingWeek())
             updateTotal.samplescarriedoverpreviousweeks = updateTotal.samplescarriedoverpreviousweeks + form.samplescarriedoverpreviousweeks
             updateTotal.samplesreceivedcurrentweeknasopharyngealswab = updateTotal.samplesreceivedcurrentweeknasopharyngealswab + form.samplesreceivedcurrentweeknasopharyngealswab
             updateTotal.samplesreceivedcurrentweeknasalswab = updateTotal.samplesreceivedcurrentweeknasalswab + form.samplesreceivedcurrentweeknasalswab
