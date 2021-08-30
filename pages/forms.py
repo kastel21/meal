@@ -1608,7 +1608,7 @@ class machinedowntimereagentstockouttoolcovid19Form(forms.ModelForm):
         )
         
     class Meta:
-            model = Generalcovid19
+            model = machinedowntimereagentstockouttoolcovid19
             fields = '__all__'
 
  # ---------------------------------------------------------------------------------------------------------------------------------- 

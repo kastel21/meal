@@ -454,8 +454,7 @@ def labcov19general(request):
 
 def labcov19machine(request):
     if request.method == 'POST':
-        form = machinedowntimere
-        agentstockouttoolcovid19Form(request.POST)
+        form = machinedowntimereagentstockouttoolcovid19Form(request.POST)
         if form.is_valid():
             updateTotal = machinedowntimereagentstockouttoolcovid19.objects.get(dayofweek="Total", lab=request.user.lab,reportingweek=getReportingWeek())
             updateTotal.numberofmachinebreakdownsabbott = updateTotal.numberofmachinebreakdownsabbott + form.cleaned_data.get('numberofmachinebreakdownsabbott')
