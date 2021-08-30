@@ -66,105 +66,74 @@ def exp(request):
 def index(request):
     return HttpResponse("Hello, world. You're at the pages index.")
 
-def populateBrtiCov19table(request):
-    covRecordsSpecimenRecieved = Specimensreceivedcovid19.objects.all()
-    covRecordsSpecimenRun = Specimensruncovid19.objects.all()
 
-# get entries from lab cov 19 and insert into the brti cov 19 table
-    pass
-
-def populateBrtivleidtable(request):
-    
-# get entries from lab vl and eid and insert into the brti vl eid table
-    pass
 
 def home(request):
     context={}
 
     return render(request, 'base.html', context)
 
-# def profile(request):
-#     # Create your views here.
 
-#     if request.method == 'POST':
-#         form = generalbrticovid19Form(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             ##return render(request, 'success.html')
-#     form = generalbrticovid19Form()
-#     context = {'form': form }
 
-#     return render(request, 'brti_covid_19_weekly_statistics_tool/general.html', context)
 
-def labcovid19run(request):
-    if request.method == 'POST':
-        form = specimensrunbrticovid19Form(request.POST)
-        if form.is_valid():
-            form.save()
-            #return render(request, 'success.html')
-    form = specimensrunbrticovid19Form()
-    context = {'form': form}
-    return render(request, 'masvingo_brti_covid_19_weekly_statistics_tool/Specimens_Run.html', context)
+#function to get current reporting week
 
-def profilecovid(request):
-    if request.method == 'POST':
-        form = specimensreceivedbrticovid19Form(request.POST)
-        if form.is_valid():
-            form.save()
-            #return render(request, 'success.html')
-    form = specimensreceivedbrticovid19Form()
-    context = {'form': form}
-    return render(request, 'masvingo_brti_covid_19_weekly_statistics_tool/Specimens_Received.html', context)
+def getReportingWeek():
+    #do calcs
 
-# def profilecovid19(request):
-#     if request.method == 'POST':
-#         form = machinedowntimereagentstockouttoolbrticovid19Form(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             #return render(request, 'success.html')
-#     form = machinedowntimereagentstockouttoolbrticovid19Form()
-#     context = {'form': form}
-#     return render(request, 'brti_covid_19_weekly_statistics_tool/Machine_Downtime_&_Reagent_stock_out_tool.html', context)
+    #for every new reporting week we nned to create new empty total records for that week to be used that week
+    #ie for every lab total create an total for that lab to be updated by incomming records
 
-# def profilecovid19t(request):
-#     if request.method == 'POST':
-#         form = generalbrticovid19Form(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             #return render(request, 'success.html')
-#     form = generalbrticovid19Form()
-#     context = {'form': form}
-#     return render(request, 'brti_covid_19_weekly_statistics_tool/general.html', context)
+    #     labchoices=[
+    #     ('NMRL','NMRL'),
+    #     ('Mpilo','Mpilo'),
+    #     ('BRIDH','BRIDH'),
+    #     ('NTBRL','NTBRL'),
+    #     ('Gweru','Gweru'),
+    #     ('Chinhoyi','Chinhoyi'),
+    #     ('Masvingo','Masvingo'),
+    #     ('eid','eid'),
+    #     ('Victoria Falls', 'Victoria Falls'),
+    #     ('Bindura','Bindura'),
+    #     ('Kadoma','Kadoma'),
+    #     ('Marondera','Marondera'),
+    #     ('St Lukes', 'St Lukes'),
+    #     ('Gwanda','Gwanda'),
+        
+    # ]
 
-# def vleid(request):
-#     if request.method == 'POST':
-#         form = SpecimensrunbrtivlweeklyForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             #return render(request, 'success.html')
-#     form = SpecimensrunbrtivlweeklyForm()
-#     context = {'form': form}
-#     return render(request, 'brti_vl_eid_weekly_statistics_tool/specimens_run.html', context)
+    return "1:30 august - 5 september"
 
-# def vleid2(request):
-#     if request.method == 'POST':
-#         form = SpecimensrunbrtivlweeklyForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             #return render(request, 'success.html')
-#     form = SpecimensrunbrtivlweeklyForm()
-#     context = {'form': form}
-#     return render(request, 'brti_vl_eid_weekly_statistics_tool/specimens_received.html', context)
 
-# def vleid3(request):
-#     if request.method == 'POST':
-#         form = reasonsforfailurebrtivleidForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             #return render(request, 'success.html')
-#     form = reasonsforfailurebrtivleidForm()
-#     context = {'form': form}
-#     return render(request, 'brti_vl_eid_weekly_statistics_tool/reasons_for_failure.html', context)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#------------------------------lab vl--------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
 
 def labvltop(request):
     if request.method == 'POST':
@@ -176,10 +145,99 @@ def labvltop(request):
     context = {'form': form}
     return render(request, 'masving_brti_vl_weekly_statistics_tool_31-6_june_2021/top.html', context)
 
+
+
+
+
 def labvlrun(request):
     if request.method == 'POST':
         form = SpecimensrunbrtivlweeklyForm(request.POST)
         if form.is_valid():
+            
+            updateTotal = specimensrunbrtivleid.objects.get(key="vl", lab=request.user.lab,reportingweek=getReportingWeek() )
+
+            updateTotal.testsdonerochenumberofsamplesreceivedthisweekplasma = updateTotal.testsdonerochenumberofsamplesreceivedthisweekplasma + form.testsdonerochenumberofsamplesreceivedthisweekplasma
+            updateTotal.testsdonerochenumberofsamplescarriedoverpreviousweeksplasma = updateTotal.testsdonerochenumberofsamplescarriedoverpreviousweeksplasma + form.testsdoneabbottrun
+            
+            updateTotal.testsdonerochefailedbuteligibaleforrepeatplasma += form.testsdonerochefailedbuteligibaleforrepeatplasma
+            updateTotal.testsdonerochefailedbutnoteligibaleforrepeatplasma += form.testsdonerochefailedbutnoteligibaleforrepeatplasma
+            updateTotal.testsdonerocherepeatplasma += form.testsdonerocherepeatplasma
+            updateTotal.testsdonerochefailedafterrepeattestingplasma += form.testsdonerochefailedafterrepeattestingplasma
+            updateTotal.testsdonerochenumberofsamplesreceivedthisweekdbs += form.testsdonerochenumberofsamplesreceivedthisweekdbs
+
+            updateTotal.testsdonerochenumberofsamplescarriedoverpreviousweeksdbs += form.testsdonerochenumberofsamplescarriedoverpreviousweeksdbs
+            updateTotal.testsdonerochefailedbuteligibaleforrepeatdbs += form.testsdonerochefailedbuteligibaleforrepeatdbs
+            updateTotal.testsdonerochefailedbutnoteligibaleforrepeatdbs += form.testsdonerochefailedbutnoteligibaleforrepeatdbs
+            updateTotal.testsdonerocherepeatdbs += form.testsdonerocherepeatdbs
+            updateTotal.testsdonerochefailedafterrepeattestingdbs += form.testsdonerochefailedafterrepeattestingdbs
+            updateTotal.testsdonebmxnumberofsamplesreceivedthisweekplasma += form.testsdonebmxnumberofsamplesreceivedthisweekplasma
+
+            updateTotal.testsdonebmxnumberofsamplescarriedoverpreviousweeksplasma += form.testsdonebmxnumberofsamplescarriedoverpreviousweeksplasma
+            updateTotal.testsdonebmxfailedbuteligibaleforrepeatplasma += form.testsdonebmxfailedbuteligibaleforrepeatplasma
+            updateTotal.testsdonebmxfailedbutnoteligibaleforrepeatplasma += form.testsdonebmxfailedbutnoteligibaleforrepeatplasma
+            updateTotal.testsdonebmxrepeatplasma += form.testsdonebmxrepeatplasma
+            updateTotal.testsdonebmxfailedafterrepeattestingplasma += form.testsdonebmxfailedafterrepeattestingplasma
+            updateTotal.testsdonebmxnumberofsamplesreceivedthisweekdbs += form.testsdonebmxnumberofsamplesreceivedthisweekdbs
+
+            updateTotal.testsdonebmxnumberofsamplescarriedoverpreviousweeksdbs += form.testsdonebmxnumberofsamplescarriedoverpreviousweeksdbs
+            updateTotal.testsdonebmxfailedbuteligibaleforrepeatdbs += form.testsdonebmxfailedbuteligibaleforrepeatdbs
+            updateTotal.testsdonebmxfailedbutnoteligibaleforrepeatdbs += form.testsdonebmxfailedbutnoteligibaleforrepeatdbs
+            updateTotal.testsdonebmxrepeatdbs += form.testsdonebmxrepeatdbs
+            updateTotal.testsdonebmxfailedafterrepeattestingdbs += form.testsdonebmxfailedafterrepeattestingdbs
+            updateTotal.testsdoneabbottnumberofsamplesreceivedthisweekplasma += form.testsdoneabbottnumberofsamplesreceivedthisweekplasma
+
+            updateTotal.testsdoneabbottnumberofsamplescarriedoverpreviousweeksplasma += form.testsdoneabbottnumberofsamplescarriedoverpreviousweeksplasma
+            updateTotal.testsdoneabbottfailedbuteligibaleforrepeatplasma += form.testsdoneabbottfailedbuteligibaleforrepeatplasma
+            updateTotal.testsdoneabbottfailedbutnoteligibaleforrepeatplasma += form.testsdoneabbottfailedbutnoteligibaleforrepeatplasma
+            updateTotal.testsdoneabbottrepeatplasma += form.testsdoneabbottrepeatplasma
+            updateTotal.testsdoneabbottfailedafterrepeattestingplasma += form.testsdoneabbottfailedafterrepeattestingplasma
+            updateTotal.testsdoneabbottnumberofsamplesreceivedthisweekdbs += form.testsdoneabbottnumberofsamplesreceivedthisweekdbs
+
+            updateTotal.testsdoneabbottnumberofsamplescarriedoverpreviousweeksdbs += form.testsdoneabbottnumberofsamplescarriedoverpreviousweeksdbs
+            updateTotal.testsdoneabbottfailedbuteligibaleforrepeatdbs += form.testsdoneabbottfailedbuteligibaleforrepeatdbs
+            updateTotal.testsdoneabbottfailedbutnoteligibaleforrepeatdbs += form.testsdoneabbottfailedbutnoteligibaleforrepeatdbs
+            updateTotal.testsdoneabbottrepeatdbs += form.testsdoneabbottrepeatdbs
+            updateTotal.testsdoneabbottfailedafterrepeattestingdbs += form.testsdoneabbottfailedafterrepeattestingdbs
+            updateTotal.testsdonehologicpanthernumberofsamplesreceivedthisweekplasma += form.testsdonehologicpanthernumberofsamplesreceivedthisweekplasma
+
+            updateTotal.tests2 += form.tests2
+            updateTotal.testsdonehologicpantherfailedbuteligibaleforrepeatplasma += form.testsdonehologicpantherfailedbuteligibaleforrepeatplasma
+            updateTotal.testsdonehologicpantherfailedbutnoteligibaleforrepeatplasma += form.testsdonehologicpantherfailedbutnoteligibaleforrepeatplasma
+            updateTotal.testsdonehologicpantherrepeatplasma += form.testsdonehologicpantherrepeatplasma
+            updateTotal.testsdonehologicpantherfailedafterrepeattestingplasma += form.testsdonehologicpantherfailedafterrepeattestingplasma
+            updateTotal.testsdonehologicpanthernumberofsamplesreceivedthisweekdbs += form.testsdonehologicpanthernumberofsamplesreceivedthisweekdbs
+
+            updateTotal.tests1 += form.tests1
+            updateTotal.testsdonehologicpantherfailedbuteligibaleforrepeatdbs += form.testsdonehologicpantherfailedbuteligibaleforrepeatdbs
+            updateTotal.testsdonehologicpantherfailedbutnoteligibaleforrepeatdbs += form.testsdonehologicpantherfailedbutnoteligibaleforrepeatdbs
+            updateTotal.testsdonehologicpantherrepeatdbs += form.testsdonehologicpantherrepeatdbs
+            updateTotal.testsdonehologicpantherfailedafterrepeattestingdbs += form.testsdonehologicpantherfailedafterrepeattestingdbs
+            updateTotal.totaltestsdone += form.totaltestsdone
+
+            updateTotal.totalrepeats += form.totalrepeats
+            updateTotal.totalpatientsrun += form.totalpatientsrun
+            updateTotal.targetsweekly += form.targetsweekly
+            updateTotal.percentagetargetsachievements += form.percentagetargetsachievements
+            updateTotal.percentageerrorraterocheplasma += form.percentageerrorraterocheplasma
+            updateTotal.percentageerrorraterochedbs += form.percentageerrorraterochedbs
+
+            updateTotal.percentageerrorratebmxplasma += form.percentageerrorratebmxplasma
+            updateTotal.percentageerrorratebmxdbs += form.percentageerrorratebmxdbs
+            updateTotal.percentageerrorrateabbottplasma += form.percentageerrorrateabbottplasma
+            updateTotal.percentageerrorrateabbottdbs += form.percentageerrorrateabbottdbs
+            updateTotal.percentageerrorratehologicpantherplasma += form.percentageerrorratehologicpantherplasma
+            updateTotal.percentageerrorratehologicpantherdbs += form.percentageerrorratehologicpantherdbs
+
+            updateTotal.totalncsfromaudit += form.totalncsfromaudit
+            updateTotal.ncsnotyetclosed += form.ncsnotyetclosed
+            updateTotal.lab = request.user.lab
+            updateTotal.key = "vl"
+            updateTotal.testsdoneabbottrun += form.testsdoneabbottrun
+            updateTotal.testsdoneabbottrun += form.testsdoneabbottrun
+
+
+
+            updateTotal.save()
             form.save()
             #return render(request, 'success.html')
     form = SpecimensrunbrtivlweeklyForm()
@@ -190,6 +248,11 @@ def labvlrecieved(request):
     if request.method == 'POST':
         form = SpecimensrecievedbrtivlweeklyForm(request.POST)
         if form.is_valid():
+            updateTotal = specimensreceivedbrtivleid.objects.get(key="vl", lab=request.user.lab,reportingweek=getReportingWeek() )
+
+            updateTotal.totalncsfromaudit += form.totalncsfromaudit
+
+
             form.save()
             #return render(request, 'success.html')
     form = SpecimensrecievedbrtivlweeklyForm()
@@ -216,6 +279,9 @@ def labvlelectric(request):
     context = {'form': form}
     return render(request, 'masving_brti_vl_weekly_statistics_tool_31-6_june_2021/electricoutagestool.html', context)
 
+
+
+#-------------------------lab cov 19-------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -247,7 +313,7 @@ def labcov19run(request):
         form = Specimensruncovid19Form(request.POST)
         if form.is_valid():
             #get the object for brti cov19 and disect the form object and assign or update the total entry and save
-            updateTotal = Specimensruncovid19.objects.get(dayofweek="Total")
+            updateTotal = Specimensruncovid19.objects.get(dayofweek="Total", lab=request.user.lab,reportingweek=getReportingWeek() )
             
 
             
@@ -322,7 +388,7 @@ def labcov19recieved(request):
         form = Specimensreceivedcovid19Form(request.POST)
         if form.is_valid():
 
-            updateTotal = Specimensruncovid19.objects.get(dayofweek="Total")
+            updateTotal = Specimensruncovid19.objects.get(dayofweek="Total",lab=request.user.lab,reportingweek=getReportingWeek())
             updateTotal.samplescarriedoverpreviousweeks = updateTotal.samplescarriedoverpreviousweeks + form.samplescarriedoverpreviousweeks
             updateTotal.samplesreceivedcurrentweeknasopharyngealswab = updateTotal.samplesreceivedcurrentweeknasopharyngealswab + form.samplesreceivedcurrentweeknasopharyngealswab
             updateTotal.samplesreceivedcurrentweeknasalswab = updateTotal.samplesreceivedcurrentweeknasalswab + form.samplesreceivedcurrentweeknasalswab
@@ -363,7 +429,7 @@ def labcov19general(request):
     if request.method == 'POST':
         form = Generalcovid19Form(request.POST)
         if form.is_valid():
-            updateTotal = Generalcovid19.objects.get(dayofweek="Total")
+            updateTotal = generalbrticovid19.objects.get(dayofweek="Total",lab=request.user.lab,reportingweek=getReportingWeek())
             updateTotal.commentsregardingtestingandchallengesfacedbythelaboratory = updateTotal.commentsregardingtestingandchallengesfacedbythelaboratory + form.commentsregardingtestingandchallengesfacedbythelaboratory
             updateTotal.numberofstaffwhotestedpositivetocovid19atvllab = updateTotal.numberofstaffwhotestedpositivetocovid19atvllab + form.numberofstaffwhotestedpositivetocovid19atvllab
             updateTotal.numberOfStaffwhotestedpositivetocovid19athubs = updateTotal.numberOfStaffwhotestedpositivetocovid19athubs + form.numberOfStaffwhotestedpositivetocovid19athubs
@@ -383,7 +449,7 @@ def labcov19machine(request):
         form = machinedowntimere
         agentstockouttoolcovid19Form(request.POST)
         if form.is_valid():
-            updateTotal = machinedowntimereagentstockouttoolcovid19.objects.get(dayofweek="Total")
+            updateTotal = machinedowntimereagentstockouttoolcovid19.objects.get(dayofweek="Total", lab=request.user.lab,reportingweek=getReportingWeek())
             updateTotal.numberofmachinebreakdownsabbott = updateTotal.numberofmachinebreakdownsabbott + form.numberofmachinebreakdownsabbott
             updateTotal.numberofmachinebreakdownsbmx = updateTotal.numberofmachinebreakdownsbmx + form.numberofmachinebreakdownsbmx
             updateTotal.numberofmachinebreakdownsgenexpert = updateTotal.numberofmachinebreakdownsgenexpert + form.numberofmachinebreakdownsgenexpert
@@ -418,6 +484,11 @@ def labcov19machine(request):
     return render(request, 'masvingo_brti_covid_19_weekly_statistics_tool_31-6_June_2021/Machine_Downtime_&_Reagent_stock_out_tool.html', context)
 
 
+
+
+
+#-------------------------------------------lab eid-----------------------------------------------------------------------------------------
+
 def labeidtop(request):
     if request.method == 'POST':
         form = TopbrtiweeklyForm(request.POST)
@@ -432,6 +503,8 @@ def labeidrun(request):
     if request.method == 'POST':
         form = SpecimensrunbrtivlweeklyForm(request.POST)
         if form.is_valid():
+
+
             form.save()
             #return render(request, 'success.html')
     form = SpecimensrunbrtivlweeklyForm()

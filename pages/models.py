@@ -178,25 +178,9 @@ class machinedowntimereagentstockouttoolbrticovid19(models.Model):
     lab= models.TextField(max_length=30,default="brti")
 
 class generalbrticovid19(models.Model):
-    labchoices=[
-        ('NMRL','NMRL'),
-        ('Mpilo','Mpilo'),
-        ('BRIDH','BRIDH'),
-        ('NTBRL','NTBRL'),
-        ('Gweru','Gweru'),
-        ('Chinhoyi','Chinhoyi'),
-        ('Masvingo','Masvingo'),
-        ('eid','eid'),
-        ('Victoria Falls', 'Victoria Falls'),
-        ('Bindura','Bindura'),
-        ('Kadoma','Kadoma'),
-        ('Marondera','Marondera'),
-        ('St Lukes', 'St Lukes'),
-        ('Gwanda','Gwanda'),
-        ('Total','Total'),
-    ]
 
-    dayofweek = models.TextField(max_length=30, choices=labchoices, default='NMRL')
+
+    dayofweek = models.TextField(max_length=30, default='brti')
     reportingweek = models.TextField(default='.',max_length=30,null=False)
     dateofrecord = models.DateField(auto_now=True)
 
@@ -217,25 +201,9 @@ class generalbrticovid19(models.Model):
 # brtivleidweeklystatisticstool
 
 class specimensrunbrtivleid(models.Model):
-    labchoices=[
-        ('NMRL','NMRL'),
-        ('Mpilo','Mpilo'),
-        ('BRIDH','BRIDH'),
-        ('NTBRL','NTBRL'),
-        ('Gweru','Gweru'),
-        ('Chinhoyi','Chinhoyi'),
-        ('Masvingo','Masvingo'),
-        ('EID','EID'),
-        ('Victoria Falls', 'Victoria Falls'),
-        ('Bindura','Bindura'),
-        ('Kadoma','Kadoma'),
-        ('Marondera','Marondera'),
-        ('St Lukes', 'St Lukes'),
-        ('Gwanda','Gwanda'),
-        ('Total','Total'),
-    ]
 
-    dayofweek = models.TextField(max_length=30, choices=labchoices, default='NMRL')
+
+    dayofweek = models.TextField(max_length=30, default='Total')
     reportingweek = models.TextField(default='.',max_length=30,null=False)
     dateofrecord = models.DateField(auto_now=True)
 
@@ -341,6 +309,10 @@ class specimensrunbrtivleid(models.Model):
     ncsclosedthisweek1=models.TextField(max_length=30,null=True)
     user= models.TextField(max_length=25,default="root")
     lab= models.TextField(max_length=30,default="brti")
+    key= models.TextField(max_length=5,default="vl")
+
+
+
 
 class specimensreceivedbrtivleid(models.Model):
     labchoices=[
@@ -1035,6 +1007,7 @@ class Specimensrunbrtivlweekly(models.Model):
     ncsnotyetclosed=models.TextField(max_length=30,null=True)
     user= models.TextField(max_length=25,default="root")
     lab= models.TextField(max_length=30,default="brti")
+    key= models.TextField(max_length=30,default="vl")
 
 
 

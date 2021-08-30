@@ -1627,23 +1627,23 @@ class machinedowntimereagentstockouttoolcovid19Form(forms.ModelForm):
 
  # ----------------------------------------------------------------------------------------------------------------------------------
 
-class TopbrtiweeklyForm(forms.ModelForm):
-    #reportingweek = forms.CharField(label="Reporting week", max_length=20)
-    month = forms.CharField(label="Month", max_length=20)
-    laboratory = forms.CharField(label="laboratory", max_length=20)
+# class TopbrtiweeklyForm(forms.ModelForm):
+#     #reportingweek = forms.CharField(label="Reporting week", max_length=20)
+#     month = forms.CharField(label="Month", max_length=20)
+#     laboratory = forms.CharField(label="laboratory", max_length=20)
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.formclass = 'form-horizontal'
-        self.helper.fieldclass = 'col-sm-6'
-        self.helper.labelclass = 'col-sm-6'
-        self.helper.layout = Layout(
-        )
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(*args, **kwargs)
+#         self.helper = FormHelper()
+#         self.helper.formclass = 'form-horizontal'
+#         self.helper.fieldclass = 'col-sm-6'
+#         self.helper.labelclass = 'col-sm-6'
+#         self.helper.layout = Layout(
+#         )
 
-    class Meta:
-            model = Topbrtiweekly
-            fields = '__all__'
+#     class Meta:
+#             model = Topbrtiweekly
+#             fields = '__all__'
 
 class Generalcovid19Form(forms.ModelForm):
     dayschoices=[
