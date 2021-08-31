@@ -1850,7 +1850,7 @@ class Specimensreceivedbrtiweekly(models.Model):
 
 
     # reasonsforrejectionssamplequalitycompromisedsamplequalityinsufficientplasma = models.IntegerField(default=0,)
-    reasons6 = models.IntegerField(default=0,)
+    reasons6 = models.IntegerField('Plasma',default=0)
 
 
 

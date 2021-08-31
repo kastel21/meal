@@ -1623,6 +1623,64 @@ class machinedowntimereagentstockouttoolcovid19Form(forms.ModelForm):
             model = machinedowntimereagentstockouttoolcovid19
             fields = '__all__'
 
+
+
+
+#not being used ryt now
+class machinecovid19Form(forms.ModelForm):
+
+
+    dayschoices=[
+        ('Monday','Monday'),
+        ('Tuesday','Tuesday'),
+        ('Wednesday','Wednesday'),
+        ('Thursday','Thursday'),
+        ('Friday','Friday'),
+        ('Saturday','Saturday'),
+        ('Sunday','Sunday'),
+    ]
+
+    dayofweek = forms.ChoiceField(choices=dayschoices, initial="none", label="Select Day please")    #reportingweek = forms.CharField(label="Reporting week in the format  1:3-10")
+
+    numberofmachinebreakdownsabbott = forms.IntegerField(label="Abbott")
+    numberofmachinebreakdownsbmx = forms.IntegerField(label="BMX")
+    numberofmachinebreakdownsgenexpert = forms.IntegerField(label="GeneXpert")
+    numberofmachinebreakdownsquantstudio3 = forms.IntegerField(label="Quant Studio 3")
+    numberofmachinebreakdownshologicpanther = forms.IntegerField(label="Hologic Panther")
+    numberofmachinebreakdownscomments = forms.CharField(label="comments", widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=5000, )
+
+
+    machinedowntimedaysabbott = forms.IntegerField(label="Abbott")
+    machinedowntimedaysbmx = forms.IntegerField(label="BMX")
+    machinedowntimedaysgenexpert = forms.IntegerField(label="GeneXpert")
+    machinedowntimedaysquantstudio3 = forms.IntegerField(label="Quant Studio 3")
+    machinedowntimedayshologicpanther = forms.IntegerField(label="Hologic Panther")
+    machinedowntimedayscomments = forms.CharField(label="comments", widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=5000, )
+
+
+    reagentstockoutabbort = forms.IntegerField(label="Abbott")
+    reagentstockoutbms = forms.IntegerField(label="BMX")
+    reagentstockoutgenexpert = forms.IntegerField(label="GeneXpert")
+    reagentstockoutquantstudio3 = forms.IntegerField(label="Quant Studio 3")
+    reagentstockouthologicpanther = forms.IntegerField(label="Hologic Panther")
+    reagentstockoutcomments = forms.CharField(label="comments", widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=5000, )
+
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_class = 'form-horizontal'
+        self.helper.field_class = 'col-sm-6'
+        self.helper.label_class = 'col-sm-6' 
+        self.helper.layout = Layout(
+        )
+        
+    class Meta:
+            model = machinedowntimereagentstockouttoolcovid19
+            fields = '__all__'
+
+
+
  # ---------------------------------------------------------------------------------------------------------------------------------- 
 
 # class Top_brti_weeklyForm(forms.ModelForm):
