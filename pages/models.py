@@ -544,9 +544,44 @@ class reasonsforfailurebrtivleid(models.Model):
     # lab= models.TextField(max_length=30,default="brti")
 
 
+
+
+class Electricoutagebrtivleid(models.Model):
+
+    dayschoices=[
+        ('Monday','Monday'),
+        ('Tuesday','Tuesday'),
+        ('Wednesday','Wednesday'),
+        ('Thursday','Thursday'),
+        ('Friday','Friday'),
+        ('Saturday','Saturday'),
+        ('Sunday','Sunday'),
+    ]
+
+    dayofweek = models.TextField(max_length=30, choices=dayschoices, default='Monday')
+    reportingweek = models.TextField(default='.',max_length=30,null=False)
+
+
+
+    numberofhourswithnoelectricityperday	= models.IntegerField(default=0,)
+    numberofhoursgeneratorwasonperday	= models.IntegerField(default=0,)
+    litresoffueladdedtogeneratorperday	= models.IntegerField(default=0,)
+    numberofhoursmachineswasnotbeingusedduetopowercutperday	= models.IntegerField(default=0,)
+    totaltestsdoneperdayusinggenerator	= models.IntegerField(default=0,)
+
+    user= models.TextField(max_length=25,default="root")
+    lab= models.TextField(max_length=30,default="brti")
+
+
+
+
+
+
+
+
+
 # ------------------------------------------------------------------------------------------------------------------------------
 
-#skip masvingo brti covid weekly
 
 
 
