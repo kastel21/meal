@@ -794,9 +794,7 @@ class SpecimensrunbrtivlweeklyForm(forms.ModelForm):
             fields = '__all__'
 
 class SpecimensrecievedbrtivlweeklyForm(forms.ModelForm):
-
-
-
+    
     dayschoices=[
         ('Monday','Monday'),
         ('Tuesday','Tuesday'),
@@ -1308,6 +1306,18 @@ class SpecimensreceivedbrtiweeklyForm(forms.ModelForm):
 
 class ReasonsforfailurebrtiweeklyForm(forms.ModelForm):
 
+    dayschoices=[
+        ('Monday','Monday'),
+        ('Tuesday','Tuesday'),
+        ('Wednesday','Wednesday'),
+        ('Thursday','Thursday'),
+        ('Friday','Friday'),
+        ('Saturday','Saturday'),
+        ('Sunday','Sunday'),
+    ]
+
+    dayofweek = forms.ChoiceField(choices=dayschoices, initial="none", label="Select Day please")
+
     dayofweek = forms.CharField(widget=forms.HiddenInput(), initial="none", label="Select date" )
     #reportingweek = forms.CharField(label="Reporting week in the format  1:3-10")
 
@@ -1371,10 +1381,6 @@ class ReasonsforfailurebrtiweeklyForm(forms.ModelForm):
     abbottdbsnumberoffailedtestsduetoprocessingerror = forms.IntegerField(label="Processing Error")
     abbottdbsnumberoffailedtestsduetoother = forms.IntegerField(label="Other Specify")
     abbottdqacheckdbs = forms.IntegerField(label="DQA check")
-
-
-
-
 #Hologic Panther
 
     hologicpantherplasmanumberoffailedtestsduetosamplequalityissues = forms.IntegerField(label="# of failed tests due to sample quality issues")
