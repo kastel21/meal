@@ -1,10 +1,13 @@
 from django.urls import path
-
+from django.views.generic.base import TemplateView
 from . import views
 
 urlpatterns = [
     path('exp', views.exp, name='exp'),
-    path('', views.home, name='home'),
+    path('home', views.home, name='home'),
+    path('logout/', views.logoutUser, name="logout"),
+    path('', views.loly_login, name='loly_login'),
+    # path('', TemplateView.as_view(template_name='masving_brti_vl_weekly_statistics_tool_31-6_june_2021/top.html'), name='home'),
     # path('profilecovid', views.profilecovid, name='profilecovid'),
     # path('profilecovid19', views.profilecovid19, name='profilecovid19'),
     # path('profilecovid19t', views.profilecovid19t, name='profilecovid19t'),

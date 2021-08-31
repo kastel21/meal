@@ -15,6 +15,7 @@
         <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
         <!-- Your custom styles (optional) -->
         <link href="{% static 'css/style.css' %}" rel="stylesheet">
+        
 
         <link rel="apple-touch-icon" sizes="180x180" href="{% static 'icons/apple-touch-icon.png' %}">
         <link rel="icon" type="image/png" sizes="32x32" href="{% static 'icons/favicon-32x32.png' %}">
@@ -35,7 +36,7 @@
 
                 <!-- Brand -->
                 <a class="navbar-brand waves-effect" href="/">
-                    <strong class="blue-text"> Hydra System</strong>
+                    <strong class="blue-text">LoKas System</strong>
                 </a>
 
                 <!-- Collapse -->
@@ -62,19 +63,16 @@
                                 <i class="fa fa-calendar mr-3"></i>{% now "jS F Y H:i" %} 
                             </a>
                         </li> &nbsp; &nbsp; &nbsp;
-                        <!-- <li class="nav-item">
-                            <a href="{% if request.user.is_superuser %}{% url 'manage_session' %}{% else %}#{% endif %}" class="nav-link border border-light green-text rounded waves-effect">
-                                <i class="fa fa-cogs mr-3"></i>{{ current_session }}
-                            </a>
-                        </li> -->
+
+                        
                         <li class="nav-item">
                             <a href="#" class="nav-link border border-light rounded waves-effect blue-text">
-                                <i  class="fa fa-user mr-3"></i>{{ user|capfirst }}
+                                <i  class="fa fa-user mr-3"></i>{{user }}
                             </a>
                         </li>&nbsp; &nbsp; &nbsp;
 
                          <li class="nav-item">
-                            <a href="/accounts/logout/" class="nav-link border border-light rounded waves-effect red-text">
+                            <a href="/logout/" class="nav-link border border-light rounded waves-effect red-text">
                                 <i class="fa fa-unlock mr-3"></i>Logout
                             </a>
                         </li>

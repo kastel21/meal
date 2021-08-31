@@ -1,6 +1,9 @@
 from django.http import HttpResponse
-#from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required
 from .forms import *
+from django.contrib.auth import authenticate, logout, login
+from .decorators import *
+from django.contrib import messages
 from .models import *
 from django.shortcuts import get_object_or_404, redirect, render
 import csv
@@ -69,14 +72,40 @@ def index(request):
 
 
 def home(request):
-    context={}
-    return render(request, 'base.html', context)
+
+    context={'user':request.user}
+    print(context['user'], 'fghjk')
+    return render(request, 'landing.html', context)
 
 
+@unauthenticated_user
+def loly_login(request):
+    user = request.user
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password =request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        print(user)
+        if user is not None:
+            login(request, user)
+            return redirect('home')
+        else:
+            messages.info(request, 'Username OR password is incorrect')
+    
+    context = {'user':user}
+    return render(request, 'registration/login.html', context)
+
+# @allowed_users
+# def special(request):
+#     return HttpResponse("You are logged in !")
+
+def logoutUser(request):
+	logout(request)
+	return redirect('loly_login')
 
 
 #function to get current reporting week
-
+@login_required(login_url='loly_login')
 def getReportingWeek():
     #do calcs
 
@@ -133,7 +162,7 @@ def getReportingWeek():
 
 
 
-
+@login_required(login_url='loly_login')
 def labvltop(request):
     if request.method == 'POST':
         form = SpecimensrunbrtivlweeklyForm(request.POST)
@@ -147,7 +176,7 @@ def labvltop(request):
 
 
 
-
+@login_required(login_url='loly_login')
 def labvlrun(request):
     if request.method == 'POST':
         form = SpecimensrunbrtivlweeklyForm(request.POST)
@@ -243,6 +272,7 @@ def labvlrun(request):
     context = {'form': form}
     return render(request, 'masving_brti_vl_weekly_statistics_tool_31-6_june_2021/Specimensrun.html', context)
 
+@login_required(login_url='loly_login')
 def labvlrecieved(request):
     if request.method == 'POST':
         form = SpecimensrecievedbrtivlweeklyForm(request.POST)
@@ -331,6 +361,7 @@ def labvlrecieved(request):
     context = {'form': form}
     return render(request, 'masving_brti_vl_weekly_statistics_tool_31-6_june_2021/specimenreceived.html', context)
 
+@login_required(login_url='loly_login')
 def labvlfailure(request):
     if request.method == 'POST':
         form = ReasonsforfailurebrtivlweeklyForm(request.POST)
@@ -432,6 +463,7 @@ def labvlfailure(request):
     context = {'form': form}
     return render(request, 'masving_brti_vl_weekly_statistics_tool_31-6_june_2021/Reasonsforfailures.html', context)
 
+@login_required(login_url='loly_login')
 def labvlelectric(request):
     if request.method == 'POST':
         form = ElectricoutagebrtivlweeklyForm(request.POST)
@@ -467,6 +499,8 @@ def labvlelectric(request):
 
 #doesnt exist well it does but we removed it
 
+
+@login_required(login_url='loly_login')
 def labcov19top(request):
 
     #before save create or update the unique row called total to be sent over as an entry to brti cov 19 table
@@ -486,7 +520,7 @@ def labcov19top(request):
     context = {'form': form}
     return render(request, 'masvingo_brti_covid_19_weekly_statistics_tool_31-6_June_2021/top.html', context)
 
-
+@login_required(login_url='loly_login')
 def labcov19run(request):
         #before save create or update the unique row called total to be sent over as an entry to brti cov 19 table
     # updateTotal = Specimensruncovid19.objects.get(dayofweek="Total")
@@ -567,9 +601,10 @@ def labcov19run(request):
             form.save()
             #return render(request, 'success.html')
     form = Specimensruncovid19Form()
-    context = {'form': form}
+    context = {'form': form, 'user':request.user}
     return render(request, 'masvingo_brti_covid_19_weekly_statistics_tool_31-6_June_2021/Specimens_Run.html', context)
 
+@login_required(login_url='loly_login')
 def labcov19recieved(request):
     # updateTotal = Specimensreceivedcovid19.objects.get(dayofweek="Total")
     # for row in updateTotal.__dict__:
@@ -619,6 +654,7 @@ def labcov19recieved(request):
     context = {'form': form}
     return render(request, 'masvingo_brti_covid_19_weekly_statistics_tool_31-6_June_2021/Specimens_Received.html', context)
 
+@login_required(login_url='loly_login')
 def labcov19general(request):
     if request.method == 'POST':
         form = Generalcovid19Form(request.POST)
@@ -638,10 +674,7 @@ def labcov19general(request):
     context = {'form': form}
     return render(request, 'masvingo_brti_covid_19_weekly_statistics_tool_31-6_June_2021/general.html', context)
 
-
-
-
-
+@login_required(login_url='loly_login')
 def labcov19machine(request):
     if request.method == 'POST':
         form = machinedowntimereagentstockouttoolcovid19Form(request.POST)
@@ -739,6 +772,8 @@ def labeidtop5(request):
     context = {'form': form}
     return render(request, 'masvingo_brti_weekly_statistics_tool_june_2021/top.html', context)
 
+
+@login_required(login_url='loly_login')
 def labeidtop6(request):
     if request.method == 'POST':
         form = TopbrtiweeklyForm(request.POST)
@@ -864,6 +899,7 @@ def labeidrun(request):
     context = {'form': form}
     return render(request, 'masvingo_brti_weekly_statistics_tool_june_2021/Specimensrun.html', context)
 
+@login_required(login_url='loly_login')
 def labeidrecieved(request):
     if request.method == 'POST':
         form = SpecimensreceivedbrtiweeklyForm(request.POST)
@@ -937,6 +973,7 @@ def labeidrecieved(request):
     context = {'form': form}
     return render(request, 'masvingo_brti_weekly_statistics_tool_june_2021/specimenreceived.html', context)
 
+@login_required(login_url='loly_login')
 def labeidfailure(request):
     if request.method == 'POST':
         form = ReasonsforfailurebrtiweeklyForm(request.POST)
@@ -1036,6 +1073,7 @@ def labeidfailure(request):
     context = {'form': form}
     return render(request, 'masvingo_brti_weekly_statistics_tool_june_2021/Reasonsforfailures.html', context)
 
+@login_required(login_url='loly_login')
 def labeidelectric(request):
     if request.method == 'POST':
         form = ElectricoutagebrtiweeklyForm(request.POST)
@@ -1058,6 +1096,7 @@ def labeidelectric(request):
     context = {'form': form}
     return render(request, 'masvingo_brti_weekly_statistics_tool_june_2021/electricoutagestool.html', context)
 
+@login_required(login_url='loly_login')
 def export_csv(request):
 
     response=HttpResponse(content_type='application/ms-excel')
