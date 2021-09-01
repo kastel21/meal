@@ -269,9 +269,8 @@ def labvlrun(request):
             updateTotal.testsdoneabbottrun += form.cleaned_data.get('testsdoneabbottrun')
             updateTotal.testsdoneabbottrun += form.cleaned_data.get('testsdoneabbottrun')
 
-
-
             updateTotal.save()
+
             new_form = form.save(commit=False)
 
             new_form.lab =request.user.lab
@@ -280,6 +279,11 @@ def labvlrun(request):
 
             new_form.user=request.user
             new_form.save()
+
+
+            #return render(request, 'success.html')
+        else:
+            print(form.errors.as_data())
             #return render(request, 'success.html')
     form = SpecimensrunbrtivlweeklyForm()
     
@@ -369,6 +373,7 @@ def labvlrecieved(request):
             updateTotal.comments += form.cleaned_data.get('comments')
 
             updateTotal.save()
+
             new_form = form.save(commit=False)
 
             new_form.lab =request.user.lab
@@ -377,6 +382,11 @@ def labvlrecieved(request):
 
             new_form.user=request.user
             new_form.save()
+
+
+            #return render(request, 'success.html')
+        else:
+            print(form.errors.as_data())
             #return render(request, 'success.html')
     form = SpecimensrecievedbrtivlweeklyForm()
     context = {'form': form}
@@ -476,8 +486,6 @@ def labvlfailure(request):
 
             updateTotal.save()
 
-
-
             new_form = form.save(commit=False)
 
             new_form.lab =request.user.lab
@@ -486,6 +494,11 @@ def labvlfailure(request):
 
             new_form.user=request.user
             new_form.save()
+
+
+            #return render(request, 'success.html')
+        else:
+            print(form.errors.as_data())
             #return render(request, 'success.html')
     form = ReasonsforfailurebrtivlweeklyForm()
     context = {'form': form}
@@ -510,10 +523,6 @@ def labvlelectric(request):
 
             updateTotal.save()
 
-
-
-
-
             new_form = form.save(commit=False)
 
             new_form.lab =request.user.lab
@@ -522,6 +531,11 @@ def labvlelectric(request):
 
             new_form.user=request.user
             new_form.save()
+
+
+            #return render(request, 'success.html')
+        else:
+            print(form.errors.as_data())
             #return render(request, 'success.html')
     form = ElectricoutagebrtivlweeklyForm()
     context = {'form': form}
@@ -632,6 +646,7 @@ def labcov19run(request):
             # updateTotal.save()
 
             updateTotal.save()
+
             new_form = form.save(commit=False)
 
             new_form.lab =request.user.lab
@@ -640,7 +655,11 @@ def labcov19run(request):
 
             new_form.user=request.user
             new_form.save()
-            form.save()
+
+
+            #return render(request, 'success.html')
+        else:
+            print(form.errors.as_data())
             #return render(request, 'success.html')
     form = Specimensruncovid19Form()
     context = {'form': form, 'vl':False,'eid':False,'covid':True}
@@ -698,7 +717,11 @@ def labcov19recieved(request):
 
             new_form.user=request.user
             new_form.save()
+
+
             #return render(request, 'success.html')
+        else:
+            print(form.errors.as_data())
     form = Specimensreceivedcovid19Form()
     context = {'form': form}
     return render(request, 'masvingo_brti_covid_19_weekly_statistics_tool_31-6_June_2021/Specimens_Received.html', context)
@@ -770,7 +793,20 @@ def labcov19machine(request):
             # updateTotal.Requesttobrtifromthelaboratory = updateTotal.Requesttobrtifromthelaboratory + form.cleaned_data.get('Requesttobrtifromthelaboratory
             # updateTotal.numberofstaffwhohavebeenvaccinated = updateTotal.numberofstaffwhohavebeenvaccinated + form.cleaned_data.get('numberofstaffwhohavebeenvaccinated
             updateTotal.save()
-            form.save()
+
+            new_form = form.save(commit=False)
+
+            new_form.lab =request.user.lab
+            new_form.reportingweek = getReportingWeek()
+
+
+            new_form.user=request.user
+            new_form.save()
+
+
+            #return render(request, 'success.html')
+        else:
+            print(form.errors.as_data())
             #return render(request, 'success.html')
     form = machinedowntimereagentstockouttoolcovid19Form()
     context = {'form': form}
@@ -953,9 +989,6 @@ def labeidrun(request):
             
             updateTotal.save()
 
-
-
-
             new_form = form.save(commit=False)
 
             new_form.lab =request.user.lab
@@ -964,6 +997,11 @@ def labeidrun(request):
 
             new_form.user=request.user
             new_form.save()
+
+
+            #return render(request, 'success.html')
+        else:
+            print(form.errors.as_data())
             #return render(request, 'success.html')
     form = SpecimensrunbrtivlweeklyForm()
     context = {'form': form, 'vl':False,'eid':True,'covid':False}
@@ -1046,6 +1084,11 @@ def labeidrecieved(request):
 
             new_form.user=request.user
             new_form.save()
+
+
+            #return render(request, 'success.html')
+        else:
+            print(form.errors.as_data())
             #return render(request, 'success.html')
     form = SpecimensreceivedbrtiweeklyForm()
     context = {'form': form}
@@ -1141,10 +1184,6 @@ def labeidfailure(request):
            
             updateTotal.save()
 
-
-
-
-
             new_form = form.save(commit=False)
 
             new_form.lab =request.user.lab
@@ -1153,6 +1192,11 @@ def labeidfailure(request):
 
             new_form.user=request.user
             new_form.save()
+
+
+            #return render(request, 'success.html')
+        else:
+            print(form.errors.as_data())
             #return render(request, 'success.html')
     form = ReasonsforfailurebrtiweeklyForm()
     context = {'form': form}
@@ -1171,11 +1215,22 @@ def labeidelectric(request):
             updateTotal.litresoffueladdedtogeneratorperday += form.cleaned_data.get('litresoffueladdedtogeneratorperday')
             updateTotal.numberofhoursmachineswasnotbeingusedduetopowercutperday += form.cleaned_data.get('numberofhoursmachineswasnotbeingusedduetopowercutperday')
             updateTotal.totaltestsdoneperdayusinggenerator += form.cleaned_data.get('totaltestsdoneperdayusinggenerator')
+           
             updateTotal.save()
 
+            new_form = form.save(commit=False)
+
+            new_form.lab =request.user.lab
+            new_form.reportingweek = getReportingWeek()
 
 
-            form.save()
+            new_form.user=request.user
+            new_form.save()
+
+
+            #return render(request, 'success.html')
+        else:
+            print(form.errors.as_data())
             #return render(request, 'success.html')
     form = ElectricoutagebrtiweeklyForm()
     context = {'form': form}

@@ -145,10 +145,38 @@
 <br>
 </table>
 
+
+
+<br><br>
+
+<div style="display: none;">
+
+{{form.reportingweek}}
+{{form.dateofrecord}}
+{{form.user}}
+{{form.lab}}
+
+
+</div>
+
 <input  type="submit" class="button5" >
 <a  href="#" class="button5" >Next</a>
-
 </form>
+
 </body>
-</html>
+
+{%block js%}
+
+<script>
+
+
+$(':input[name$=reportingweek]').val('1');
+
+$(':input[name$=user]').val('totalruns');
+$(':input[name$=lab]').val('totalruns');
+
+</script>
+
+{%endblock js%}
+
 {% endblock %}
