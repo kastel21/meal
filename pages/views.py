@@ -105,7 +105,6 @@ def logoutUser(request):
 
 
 #function to get current reporting week
-@login_required(login_url='loly_login')
 def getReportingWeek():
     #do calcs
 
@@ -266,7 +265,14 @@ def labvlrun(request):
 
 
             updateTotal.save()
-            form.save()
+            new_form = form.save(commit=False)
+
+            new_form.lab =request.user.lab
+            new_form.reportingweek = getReportingWeek()
+
+
+            new_form.user=request.user
+            new_form.save()
             #return render(request, 'success.html')
     form = SpecimensrunbrtivlweeklyForm()
     context = {'form': form}
@@ -279,10 +285,90 @@ def labvlrecieved(request):
         if form.is_valid():
             updateTotal = specimensreceivedbrtivleid.objects.get(key="vl", lab=request.user.lab,reportingweek=getReportingWeek() )
 
-            updateTotal.totalncsfromaudit += form.cleaned_data.get('totalncsfromaudit')
+            updateTotal.samplescarriedoverpreviousweeknevertestedplasma += form.cleaned_data.get('samplescarriedoverpreviousweeknevertestedplasma')
+            updateTotal.samplescarriedoverpreviousweeknevertesteddbs += form.cleaned_data.get('samplescarriedoverpreviousweeknevertesteddbs')
+
+            updateTotal.samplescarriedoverpreviouspreviousfailedsamplesplasma += form.cleaned_data.get('samplescarriedoverpreviouspreviousfailedsamplesplasma')
+            updateTotal.samplescarriedoverpreviouspreviousfailedsamplesdbs += form.cleaned_data.get('samplescarriedoverpreviouspreviousfailedsamplesdbs')
 
 
-            form.save()
+            updateTotal.samplesreceivedcurrentweekplasma += form.cleaned_data.get('samplesreceivedcurrentweekplasma')
+            updateTotal.samplesreceivedcurrentweekdbs += form.cleaned_data.get('samplesreceivedcurrentweekdbs')
+
+            updateTotal.samplesrejectedcurrentweekplasma += form.cleaned_data.get('samplesrejectedcurrentweekplasma')
+            updateTotal.samplesrejectedcurrentweekdbs += form.cleaned_data.get('samplesrejectedcurrentweekdbs')
+
+            updateTotal.totalsamplesreceivedcurrentweekplasma += form.cleaned_data.get('totalsamplesreceivedcurrentweekplasma')
+            updateTotal.totalsamplesreceivedcurrentweekdbs += form.cleaned_data.get('totalsamplesreceivedcurrentweekdbs')
+
+            updateTotal.numberofsamplesenteredintolimsondayofarrivalplasma += form.cleaned_data.get('numberofsamplesenteredintolimsondayofarrivalplasma')
+            updateTotal.numberofsamplesenteredintolimsondayofarrivaldbs += form.cleaned_data.get('numberofsamplesenteredintolimsondayofarrivaldbs')
+
+            updateTotal.numberofsamplesenteredintolimsafterdayofarrivalplasma += form.cleaned_data.get('numberofsamplesenteredintolimsafterdayofarrivalplasma')
+            updateTotal.numberofsamplesenteredintolimsafterdayofarrivaldbs += form.cleaned_data.get('numberofsamplesenteredintolimsafterdayofarrivaldbs')
+
+            updateTotal.numberofhourslimswasfunctional += form.cleaned_data.get('numberofhourslimswasfunctional')
+            updateTotal.totalsamplescurrentandcarryoverplasma += form.cleaned_data.get('totalsamplescurrentandcarryoverplasma')
+
+            updateTotal.totalsamplescurrentandcarryoverdbs += form.cleaned_data.get('totalsamplescurrentandcarryoverdbs')
+            updateTotal.samplesrefferedplasma += form.cleaned_data.get('samplesrefferedplasma')
+
+            updateTotal.samplesreffereddbs += form.cleaned_data.get('samplesreffereddbs')
+            updateTotal.labsamplesrefferedto += form.cleaned_data.get('labsamplesrefferedto')
+
+            updateTotal.percentagerejectionrateplasma += form.cleaned_data.get('percentagerejectionrateplasma')
+            updateTotal.percentagerejectionratedbs += form.cleaned_data.get('percentagerejectionratedbs')
+
+            updateTotal.numberofresultsprintedfromlimsplasma += form.cleaned_data.get('numberofresultsprintedfromlimsplasma')
+            updateTotal.numberofresultsprintedfromlimsdbs += form.cleaned_data.get('numberofresultsprintedfromlimsdbs')
+
+            updateTotal.totalresultsdispatchedbylabplasma += form.cleaned_data.get('totalresultsdispatchedbylabplasma')
+            updateTotal.totalresultsdispatchedbylabdbs += form.cleaned_data.get('totalresultsdispatchedbylabdbs')
+
+            updateTotal.totalresultsdispatchedbylabviasmsplasma += form.cleaned_data.get('totalresultsdispatchedbylabviasmsplasma')
+            updateTotal.totalresultsdispatchedbylabviasmsdbs += form.cleaned_data.get('totalresultsdispatchedbylabviasmsdbs')
+
+            updateTotal.reasonsforrejectionssamplequalitycompromisedplasma += form.cleaned_data.get('reasonsforrejectionssamplequalitycompromisedplasma')
+            updateTotal.reasonsforrejectionssamplequalitycompromiseddbs += form.cleaned_data.get('reasonsforrejectionssamplequalitycompromiseddbs')
+
+            updateTotal.reasons6 += form.cleaned_data.get('reasons6')
+            updateTotal.reasons5 += form.cleaned_data.get('reasons5')
+
+            updateTotal.reasons2 += form.cleaned_data.get('reasons2')
+            updateTotal.reasons1 += form.cleaned_data.get('reasons1')
+
+            updateTotal.reasons4 += form.cleaned_data.get('reasons4')
+            updateTotal.reasons3 += form.cleaned_data.get('reasons3')
+
+            updateTotal.reasonsforrejectionssamplequalitycompromisedqdacheckplasma += form.cleaned_data.get('reasonsforrejectionssamplequalitycompromisedqdacheckplasma')
+            updateTotal.reasonsforrejectionssamplequalitycompromisedqdacheckdbs += form.cleaned_data.get('reasonsforrejectionssamplequalitycompromisedqdacheckdbs')
+
+            updateTotal.reasonsforsamplerefferalreagentorkitstockoutplasma += form.cleaned_data.get('reasonsforsamplerefferalreagentorkitstockoutplasma')
+            updateTotal.reasonsforsamplerefferalreagentorkitstockoutdbs += form.cleaned_data.get('reasonsforsamplerefferalreagentorkitstockoutdbs')
+
+            updateTotal.reasonsforsamplerefferalinstrumentmechanicalfailureplasma += form.cleaned_data.get('reasonsforsamplerefferalinstrumentmechanicalfailureplasma')
+            updateTotal.reasonsforsamplerefferalinstrumentmechanicalfailuredbs += form.cleaned_data.get('reasonsforsamplerefferalinstrumentmechanicalfailuredbs')
+
+            updateTotal.reasonsforsamplerefferalinsufficientinstrumentcapacityplasma += form.cleaned_data.get('reasonsforsamplerefferalinsufficientinstrumentcapacityplasma')
+            updateTotal.reasonsforsamplerefferalinsufficientinstrumentcapacitydbs += form.cleaned_data.get('reasonsforsamplerefferalinsufficientinstrumentcapacitydbs')
+
+            updateTotal.reasonsforsamplerefferalinsufficienthrcapacityplasma += form.cleaned_data.get('reasonsforsamplerefferalinsufficienthrcapacityplasma')
+            updateTotal.reasonsforsamplerefferalinsufficienthrcapacitydbs += form.cleaned_data.get('reasonsforsamplerefferalinsufficienthrcapacitydbs')
+
+            updateTotal.reasonsforsamplerefferaldqacheckplasma += form.cleaned_data.get('reasonsforsamplerefferaldqacheckplasma')
+            updateTotal.reasonsforsamplerefferaldqacheckdbs += form.cleaned_data.get('reasonsforsamplerefferaldqacheckdbs')
+
+            updateTotal.comments += form.cleaned_data.get('comments')
+
+            updateTotal.save()
+            new_form = form.save(commit=False)
+
+            new_form.lab =request.user.lab
+            new_form.reportingweek = getReportingWeek()
+
+
+            new_form.user=request.user
+            new_form.save()
             #return render(request, 'success.html')
     form = SpecimensrecievedbrtivlweeklyForm()
     context = {'form': form}
@@ -293,7 +379,105 @@ def labvlfailure(request):
     if request.method == 'POST':
         form = ReasonsforfailurebrtivlweeklyForm(request.POST)
         if form.is_valid():
-            form.save()
+            updateTotal = reasonsforfailurebrtivleidForm.objects.get(key="vl", lab=request.user.lab,reportingweek=getReportingWeek() )
+
+            updateTotal.rocheplasmanumberoffailedtestsduetosamplequalityissues += form.cleaned_data.get('rocheplasmanumberoffailedtestsduetosamplequalityissues')
+            updateTotal.rocheplasmanumberoffailedtestsduetoreagentqualityissues += form.cleaned_data.get('rocheplasmanumberoffailedtestsduetoreagentqualityissues')
+            updateTotal.rocheplasmanumberoffailedtestsduetoduetoqcfailure += form.cleaned_data.get('rocheplasmanumberoffailedtestsduetoduetoqcfailure')
+            updateTotal.rocheplasmanumberoffailedtestsduetopowerfailure += form.cleaned_data.get('rocheplasmanumberoffailedtestsduetopowerfailure')
+            updateTotal.rocheplasmanumberoffailedtestsduetomechanicalfailure += form.cleaned_data.get('rocheplasmanumberoffailedtestsduetomechanicalfailure')
+            updateTotal.rocheplasmanumberoffailedtestsduetoprocessingerror += form.cleaned_data.get('rocheplasmanumberoffailedtestsduetoprocessingerror')
+            updateTotal.rocheplasmanumberoffailedtestsduetoother += form.cleaned_data.get('rocheplasmanumberoffailedtestsduetoother')
+            updateTotal.rochedqacheckplasma += form.cleaned_data.get('rochedqacheckplasma')
+        
+
+            updateTotal.rochedbsnumberoffailedtestsduetosamplequalityissues += form.cleaned_data.get('rochedbsnumberoffailedtestsduetosamplequalityissues')
+            updateTotal.rochedbsnumberoffailedtestsduetoreagentqualityissues += form.cleaned_data.get('rochedbsnumberoffailedtestsduetoreagentqualityissues')
+            updateTotal.rochedbsnumberoffailedtestsduetoduetoqcfailure += form.cleaned_data.get('rochedbsnumberoffailedtestsduetoduetoqcfailure')
+            updateTotal.rochedbsnumberoffailedtestsduetopowerfailure += form.cleaned_data.get('rochedbsnumberoffailedtestsduetopowerfailure')
+            updateTotal.rochedbsnumberoffailedtestsduetomechanicalfailure += form.cleaned_data.get('rochedbsnumberoffailedtestsduetomechanicalfailure')
+            updateTotal.rochedbsnumberoffailedtestsduetoprocessingerror += form.cleaned_data.get('rochedbsnumberoffailedtestsduetoprocessingerror')
+            updateTotal.rochedbsnumberoffailedtestsduetoother += form.cleaned_data.get('rochedbsnumberoffailedtestsduetoother')
+            updateTotal.rochedqacheckdbs += form.cleaned_data.get('rochedqacheckdbs')
+
+
+            updateTotal.bmxplasmanumberoffailedtestsduetosamplequalityissues += form.cleaned_data.get('bmxplasmanumberoffailedtestsduetosamplequalityissues')
+            updateTotal.bmxplasmanumberoffailedtestsduetoreagentqualityissues += form.cleaned_data.get('bmxplasmanumberoffailedtestsduetoreagentqualityissues')
+            updateTotal.bmxplasmanumberoffailedtestsduetoduetoqcfailure += form.cleaned_data.get('bmxplasmanumberoffailedtestsduetoduetoqcfailure')
+            updateTotal.bmxplasmanumberoffailedtestsduetopowerfailure += form.cleaned_data.get('bmxplasmanumberoffailedtestsduetopowerfailure')
+
+
+            updateTotal.bmxplasmanumberoffailedtestsduetomechanicalfailure += form.cleaned_data.get('bmxplasmanumberoffailedtestsduetomechanicalfailure')
+            updateTotal.bmxplasmanumberoffailedtestsduetoprocessingerror += form.cleaned_data.get('bmxplasmanumberoffailedtestsduetoprocessingerror')
+            updateTotal.bmxplasmanumberoffailedtestsduetoother += form.cleaned_data.get('bmxplasmanumberoffailedtestsduetoother')
+            updateTotal.bmxdqacheckplasma += form.cleaned_data.get('bmxdqacheckplasma')
+
+
+            updateTotal.bmxdbsnumberoffailedtestsduetosamplequalityissues += form.cleaned_data.get('bmxdbsnumberoffailedtestsduetosamplequalityissues')
+            updateTotal.bmxdbsnumberoffailedtestsduetoreagentqualityissues += form.cleaned_data.get('bmxdbsnumberoffailedtestsduetoreagentqualityissues')
+            updateTotal.bmxdbsnumberoffailedtestsduetoduetoqcfailure += form.cleaned_data.get('bmxdbsnumberoffailedtestsduetoduetoqcfailure')
+            updateTotal.bmxdbsnumberoffailedtestsduetopowerfailure += form.cleaned_data.get('bmxdbsnumberoffailedtestsduetopowerfailure')
+            updateTotal.bmxdbsnumberoffailedtestsduetomechanicalfailure += form.cleaned_data.get('bmxdbsnumberoffailedtestsduetomechanicalfailure')
+            updateTotal.bmxdbsnumberoffailedtestsduetoprocessingerror += form.cleaned_data.get('bmxdbsnumberoffailedtestsduetoprocessingerror')
+
+
+
+
+            updateTotal.bmxdbsnumberoffailedtestsduetoother += form.cleaned_data.get('bmxdbsnumberoffailedtestsduetoother')
+            updateTotal.bmxdqacheckdbs += form.cleaned_data.get('bmxdqacheckdbs')
+            updateTotal.abbottplasmanumberoffailedtestsduetosamplequalityissues += form.cleaned_data.get('abbottplasmanumberoffailedtestsduetosamplequalityissues')
+            updateTotal.abbottplasmanumberoffailedtestsduetoreagentqualityissues += form.cleaned_data.get('abbottplasmanumberoffailedtestsduetoreagentqualityissues')
+            updateTotal.abbottplasmanumberoffailedtestsduetoduetoqcfailure += form.cleaned_data.get('abbottplasmanumberoffailedtestsduetoduetoqcfailure')
+            updateTotal.abbottplasmanumberoffailedtestsduetopowerfailure += form.cleaned_data.get('abbottplasmanumberoffailedtestsduetopowerfailure')
+            updateTotal.abbottplasmanumberoffailedtestsduetomechanicalfailure += form.cleaned_data.get('abbottplasmanumberoffailedtestsduetomechanicalfailure')
+            updateTotal.abbottplasmanumberoffailedtestsduetoprocessingerror += form.cleaned_data.get('abbottplasmanumberoffailedtestsduetoprocessingerror')
+            updateTotal.abbottplasmanumberoffailedtestsduetoother += form.cleaned_data.get('abbottplasmanumberoffailedtestsduetoother')
+            updateTotal.abbottdqacheckplasma += form.cleaned_data.get('abbottdqacheckplasma')
+            updateTotal.abbottdbsnumberoffailedtestsduetosamplequalityissues += form.cleaned_data.get('abbottdbsnumberoffailedtestsduetosamplequalityissues')
+            updateTotal.abbottdbsnumberoffailedtestsduetoreagentqualityissues += form.cleaned_data.get('abbottdbsnumberoffailedtestsduetoreagentqualityissues')
+            updateTotal.abbottdbsnumberoffailedtestsduetoduetoqcfailure += form.cleaned_data.get('abbottdbsnumberoffailedtestsduetoduetoqcfailure')
+            updateTotal.abbottdbsnumberoffailedtestsduetopowerfailure += form.cleaned_data.get('abbottdbsnumberoffailedtestsduetopowerfailure')
+
+
+
+            updateTotal.abbottdbsnumberoffailedtestsduetomechanicalfailure += form.cleaned_data.get('abbottdbsnumberoffailedtestsduetomechanicalfailure')
+            updateTotal.abbottdbsnumberoffailedtestsduetoprocessingerror += form.cleaned_data.get('abbottdbsnumberoffailedtestsduetoprocessingerror')
+            updateTotal.abbottdbsnumberoffailedtestsduetoother += form.cleaned_data.get('abbottdbsnumberoffailedtestsduetoother')
+            updateTotal.abbottdqacheckdbs += form.cleaned_data.get('abbottdqacheckdbs')
+
+
+            updateTotal.hologicpantherplasmanumberoffailedtestsduetosamplequalityissues += form.cleaned_data.get('hologicpantherplasmanumberoffailedtestsduetosamplequalityissues')
+            updateTotal.hologicpantherplasmanumberoffailedtestsduetoreagentqualityissues += form.cleaned_data.get('hologicpantherplasmanumberoffailedtestsduetoreagentqualityissues')
+            updateTotal.hologicpantherplasmanumberoffailedtestsduetoduetoqcfailure += form.cleaned_data.get('hologicpantherplasmanumberoffailedtestsduetoduetoqcfailure')
+            updateTotal.hologicpantherplasmanumberoffailedtestsduetopowerfailure += form.cleaned_data.get('hologicpantherplasmanumberoffailedtestsduetopowerfailure')
+            updateTotal.hologicpantherplasmanumberoffailedtestsduetomechanicalfailure += form.cleaned_data.get('hologicpantherplasmanumberoffailedtestsduetomechanicalfailure')
+            updateTotal.hologicpantherplasmanumberoffailedtestsduetoprocessingerror += form.cleaned_data.get('hologicpantherplasmanumberoffailedtestsduetoprocessingerror')
+            updateTotal.hologicpantherplasmanumberoffailedtestsduetoother += form.cleaned_data.get('hologicpantherplasmanumberoffailedtestsduetoother')
+            updateTotal.hologicpantherdqacheckplasma += form.cleaned_data.get('hologicpantherdqacheckplasma')
+            updateTotal.hologicpantherdbsnumberoffailedtestsduetosamplequalityissues += form.cleaned_data.get('hologicpantherdbsnumberoffailedtestsduetosamplequalityissues')
+            updateTotal.hologicpantherdbsnumberoffailedtestsduetoreagentqualityissues += form.cleaned_data.get('hologicpantherdbsnumberoffailedtestsduetoreagentqualityissues')
+
+
+            updateTotal.hologicpantherdbsnumberoffailedtestsduetoduetoqcfailure += form.cleaned_data.get('hologicpantherdbsnumberoffailedtestsduetoduetoqcfailure')
+            updateTotal.hologicpantherdbsnumberoffailedtestsduetopowerfailure += form.cleaned_data.get('hologicpantherdbsnumberoffailedtestsduetopowerfailure')
+            updateTotal.hologicpantherdbsnumberoffailedtestsduetomechanicalfailure += form.cleaned_data.get('hologicpantherdbsnumberoffailedtestsduetomechanicalfailure')
+            updateTotal.hologicpantherdbsnumberoffailedtestsduetoprocessingerror += form.cleaned_data.get('hologicpantherdbsnumberoffailedtestsduetoprocessingerror')
+            updateTotal.hologicpantherdbsnumberoffailedtestsduetoother += form.cleaned_data.get('hologicpantherdbsnumberoffailedtestsduetoother')
+            updateTotal.hologicpantherdqacheckdbs += form.cleaned_data.get('hologicpantherdqacheckdbs')
+
+
+            updateTotal.save()
+
+
+
+            new_form = form.save(commit=False)
+
+            new_form.lab =request.user.lab
+            new_form.reportingweek = getReportingWeek()
+
+
+            new_form.user=request.user
+            new_form.save()
             #return render(request, 'success.html')
     form = ReasonsforfailurebrtivlweeklyForm()
     context = {'form': form}
@@ -304,7 +488,32 @@ def labvlelectric(request):
     if request.method == 'POST':
         form = ElectricoutagebrtivlweeklyForm(request.POST)
         if form.is_valid():
-            form.save()
+            updateTotal = Electricoutagebrtivleid.objects.get(key="vl", lab=request.user.lab,reportingweek=getReportingWeek() )
+
+            updateTotal.reportingweek += form.cleaned_data.get('reportingweek')
+            updateTotal.numberofhourswithnoelectricityperday += form.cleaned_data.get('numberofhourswithnoelectricityperday')
+            updateTotal.numberofhoursgeneratorwasonperday += form.cleaned_data.get('numberofhoursgeneratorwasonperday')
+            updateTotal.litresoffueladdedtogeneratorperday += form.cleaned_data.get('litresoffueladdedtogeneratorperday')
+
+
+            updateTotal.numberofhoursmachineswasnotbeingusedduetopowercutperday += form.cleaned_data.get('numberofhoursmachineswasnotbeingusedduetopowercutperday')
+            updateTotal.totaltestsdoneperdayusinggenerator += form.cleaned_data.get('totaltestsdoneperdayusinggenerator')
+
+
+            updateTotal.save()
+
+
+
+
+
+            new_form = form.save(commit=False)
+
+            new_form.lab =request.user.lab
+            new_form.reportingweek = getReportingWeek()
+
+
+            new_form.user=request.user
+            new_form.save()
             #return render(request, 'success.html')
     form = ElectricoutagebrtivlweeklyForm()
     context = {'form': form}
@@ -314,6 +523,8 @@ def labvlelectric(request):
 
 #-------------------------lab cov 19-------------------------------------------------------------------------------------------------------------------
 
+
+#doesnt exist well it does but we removed it
 
 
 @login_required(login_url='loly_login')
@@ -326,6 +537,10 @@ def labcov19top(request):
             brticov19SpecimenRunrecord = covRecordsSpecimenRun(
 
             )
+
+
+
+
             form.save()
             #return render(request, 'success.html')
     form = SpecimensrunbrtivlweeklyForm()
@@ -408,12 +623,19 @@ def labcov19run(request):
            
             # updateTotal.save()
 
-            #updateTotal.save()
+            updateTotal.save()
+            new_form = form.save(commit=False)
 
+            new_form.lab =request.user.lab
+            new_form.reportingweek = getReportingWeek()
+
+
+            new_form.user=request.user
+            new_form.save()
             form.save()
             #return render(request, 'success.html')
     form = Specimensruncovid19Form()
-    context = {'form': form, 'user':request.user}
+    context = {'form': form}
     return render(request, 'masvingo_brti_covid_19_weekly_statistics_tool_31-6_June_2021/Specimens_Run.html', context)
 
 @login_required(login_url='loly_login')
@@ -426,7 +648,6 @@ def labcov19recieved(request):
         form = Specimensreceivedcovid19Form(request.POST)
         if form.is_valid():
             print('e=nter tge rhtiung')
-            updateTotal = specimensreceivedbrticovid19.objects.get(dayofweek="Total",lab='brti',reportingweek='1')
 
             updateTotal = specimensreceivedbrticovid19.objects.get(dayofweek="Total",lab='brti',reportingweek='1')
             updateTotal.samplescarriedoverpreviousweeks = updateTotal.samplescarriedoverpreviousweeks + form.cleaned_data.get('samplescarriedoverpreviousweeks')
@@ -460,7 +681,14 @@ def labcov19recieved(request):
 
             updateTotal.save()
 
-            form.save()
+            new_form = form.save(commit=False)
+
+            new_form.lab =request.user.lab
+            new_form.reportingweek = getReportingWeek()
+
+
+            new_form.user=request.user
+            new_form.save()
             #return render(request, 'success.html')
     form = Specimensreceivedcovid19Form()
     context = {'form': form}
@@ -471,17 +699,31 @@ def labcov19general(request):
     if request.method == 'POST':
         form = Generalcovid19Form(request.POST)
         if form.is_valid():
+            print('form is valid',request.user.lab)
             updateTotal = generalbrticovid19.objects.get(dayofweek="Total",lab=request.user.lab,reportingweek=getReportingWeek())
             updateTotal.commentsregardingtestingandchallengesfacedbythelaboratory = updateTotal.commentsregardingtestingandchallengesfacedbythelaboratory + form.cleaned_data.get('commentsregardingtestingandchallengesfacedbythelaboratory')
             updateTotal.numberofstaffwhotestedpositivetocovid19atvllab = updateTotal.numberofstaffwhotestedpositivetocovid19atvllab + form.cleaned_data.get('numberofstaffwhotestedpositivetocovid19atvllab')
             updateTotal.numberOfStaffwhotestedpositivetocovid19athubs = updateTotal.numberOfStaffwhotestedpositivetocovid19athubs + form.cleaned_data.get('numberOfStaffwhotestedpositivetocovid19athubs')
             updateTotal.numberofstaffwhohavebeenvaccinated = updateTotal.numberofstaffwhohavebeenvaccinated + form.cleaned_data.get('numberofstaffwhohavebeenvaccinated')
+            updateTotal.Requesttobrtifromthelaboratory = updateTotal.Requesttobrtifromthelaboratory + form.cleaned_data.get('Requesttobrtifromthelaboratory')
             updateTotal.Comments = updateTotal.Comments + form.cleaned_data.get('Comments')
-            # updateTotal.Requesttobrtifromthelaboratory = updateTotal.Requesttobrtifromthelaboratory + form.cleaned_data.get('Requesttobrtifromthelaboratory
-            # updateTotal.numberofstaffwhohavebeenvaccinated = updateTotal.numberofstaffwhohavebeenvaccinated + form.cleaned_data.get('numberofstaffwhohavebeenvaccinated
+            
+            
             updateTotal.save()
-            form.save()
+
+            new_form = form.save(commit=False)
+
+            new_form.lab =request.user.lab
+            new_form.reportingweek = getReportingWeek()
+
+
+            new_form.user=request.user
+            new_form.save()
+
+
             #return render(request, 'success.html')
+        else:
+            print(form.errors.as_data())
     form = Generalcovid19Form()
     context = {'form': form}
     return render(request, 'masvingo_brti_covid_19_weekly_statistics_tool_31-6_June_2021/general.html', context)
@@ -492,7 +734,7 @@ def labcov19machine(request):
         form = machinedowntimereagentstockouttoolcovid19Form(request.POST)
         if form.is_valid():
             updateTotal = machinedowntimereagentstockouttoolbrticovid19.objects.get(dayofweek="Total", lab=request.user.lab,reportingweek=getReportingWeek())
-            updateTotal.numberofmachinebreakdownsabbott = updateTotal.numberofmachinebreakdownsabbott + form.cleaned_data.get('numberofmachinebreakdownsabbott')
+            updateTotal.numberofmachinebreakdownsabbott += form.cleaned_data.get('numberofmachinebreakdownsabbott')
             updateTotal.numberofmachinebreakdownsbmx = updateTotal.numberofmachinebreakdownsbmx + form.cleaned_data.get('numberofmachinebreakdownsbmx')
             updateTotal.numberofmachinebreakdownsgenexpert = updateTotal.numberofmachinebreakdownsgenexpert + form.cleaned_data.get('numberofmachinebreakdownsgenexpert')
             updateTotal.numberofmachinebreakdownsquantstudio3 = updateTotal.numberofmachinebreakdownsquantstudio3 + form.cleaned_data.get('numberofmachinebreakdownsquantstudio3')
@@ -530,8 +772,8 @@ def labcov19machine(request):
 
 
 #-------------------------------------------lab eid-----------------------------------------------------------------------------------------
-@login_required(login_url='loly_login')
-def labeidtop(request):
+
+def labeidtop1(request):
     if request.method == 'POST':
         form = TopbrtiweeklyForm(request.POST)
         if form.is_valid():
@@ -541,13 +783,178 @@ def labeidtop(request):
     context = {'form': form}
     return render(request, 'masvingo_brti_weekly_statistics_tool_june_2021/top.html', context)
 
+def labeidtop2(request):
+    if request.method == 'POST':
+        form = TopbrtiweeklyForm(request.POST)
+        if form.is_valid():
+            form.save()
+            #return render(request, 'success.html')
+    form = TopbrtiweeklyForm()
+    context = {'form': form}
+    return render(request, 'masvingo_brti_weekly_statistics_tool_june_2021/top.html', context)
+
+
+
+
+def labeidtop3(request):
+    if request.method == 'POST':
+        form = TopbrtiweeklyForm(request.POST)
+        if form.is_valid():
+            form.save()
+            #return render(request, 'success.html')
+    form = TopbrtiweeklyForm()
+    context = {'form': form}
+    return render(request, 'masvingo_brti_weekly_statistics_tool_june_2021/top.html', context)
+
+def labeidtop4(request):
+    if request.method == 'POST':
+        form = TopbrtiweeklyForm(request.POST)
+        if form.is_valid():
+            form.save()
+            #return render(request, 'success.html')
+    form = TopbrtiweeklyForm()
+    context = {'form': form}
+    return render(request, 'masvingo_brti_weekly_statistics_tool_june_2021/top.html', context)
+
+def labeidtop5(request):
+    if request.method == 'POST':
+        form = TopbrtiweeklyForm(request.POST)
+        if form.is_valid():
+            form.save()
+            #return render(request, 'success.html')
+    form = TopbrtiweeklyForm()
+    context = {'form': form}
+    return render(request, 'masvingo_brti_weekly_statistics_tool_june_2021/top.html', context)
+
+
+@login_required(login_url='loly_login')
+def labeidtop6(request):
+    if request.method == 'POST':
+        form = TopbrtiweeklyForm(request.POST)
+        if form.is_valid():
+            form.save()
+            #return render(request, 'success.html')
+    form = TopbrtiweeklyForm()
+    context = {'form': form}
+    return render(request, 'masvingo_brti_weekly_statistics_tool_june_2021/top.html', context)
+
+
+def labeidtop7(request):
+    if request.method == 'POST':
+        form = TopbrtiweeklyForm(request.POST)
+        if form.is_valid():
+            form.save()
+            #return render(request, 'success.html')
+    form = TopbrtiweeklyForm()
+    context = {'form': form}
+    return render(request, 'masvingo_brti_weekly_statistics_tool_june_2021/top.html', context)
+
+
+
+
+
+
+
+
 def labeidrun(request):
     if request.method == 'POST':
         form = SpecimensrunbrtivlweeklyForm(request.POST)
         if form.is_valid():
 
+            updateTotal = specimensrunbrtivleid.objects.get(key="eid",dayofweek="Total", lab=request.user.lab,reportingweek=getReportingWeek())
+            updateTotal.testsdonerochenumberofsamplesreceivedthisweekplasma += form.cleaned_data.get('testsdonerochenumberofsamplesreceivedthisweekplasma')
+            updateTotal.testsdonerochenumberofsamplescarriedoverpreviousweeksplasma += form.cleaned_data.get('testsdonerochenumberofsamplescarriedoverpreviousweeksplasma')
+            updateTotal.testsdonerochefailedbuteligibaleforrepeatplasma += form.cleaned_data.get('testsdonerochefailedbuteligibaleforrepeatplasma')
+            updateTotal.testsdonerochefailedbutnoteligibaleforrepeatplasma += form.cleaned_data.get('testsdonerochefailedbutnoteligibaleforrepeatplasma')
 
-            form.save()
+
+            updateTotal.testsdonerocherepeatplasma += form.cleaned_data.get('testsdonerocherepeatplasma')
+            updateTotal.testsdonerochefailedafterrepeattestingplasma += form.cleaned_data.get('testsdonerochefailedafterrepeattestingplasma')
+            updateTotal.testsdonerochenumberofsamplesreceivedthisweekdbs += form.cleaned_data.get('testsdonerochenumberofsamplesreceivedthisweekdbs')
+            updateTotal.testsdonerochenumberofsamplescarriedoverpreviousweeksdbs += form.cleaned_data.get('testsdonerochenumberofsamplescarriedoverpreviousweeksdbs')
+            updateTotal.testsdonerochefailedbuteligibaleforrepeatdbs += form.cleaned_data.get('testsdonerochefailedbuteligibaleforrepeatdbs')
+
+
+            updateTotal.testsdonerochefailedbutnoteligibaleforrepeatdbs += form.cleaned_data.get('testsdonerochefailedbutnoteligibaleforrepeatdbs')
+            updateTotal.testsdonerocherepeatdbs += form.cleaned_data.get('testsdonerocherepeatdbs')
+            updateTotal.testsdonerochefailedafterrepeattestingdbs += form.cleaned_data.get('testsdonerochefailedafterrepeattestingdbs')
+            updateTotal.testsdonebmxnumberofsamplesreceivedthisweekplasma += form.cleaned_data.get('testsdonebmxnumberofsamplesreceivedthisweekplasma')
+            updateTotal.testsdonebmxnumberofsamplescarriedoverpreviousweeksplasma += form.cleaned_data.get('testsdonebmxnumberofsamplescarriedoverpreviousweeksplasma')
+
+            updateTotal.testsdonebmxfailedbuteligibaleforrepeatplasma += form.cleaned_data.get('testsdonebmxfailedbuteligibaleforrepeatplasma')
+            updateTotal.testsdonebmxfailedbutnoteligibaleforrepeatplasma += form.cleaned_data.get('testsdonebmxfailedbutnoteligibaleforrepeatplasma')
+            updateTotal.testsdonebmxrepeatplasma += form.cleaned_data.get('testsdonebmxrepeatplasma')
+            updateTotal.testsdonebmxfailedafterrepeattestingplasma += form.cleaned_data.get('testsdonebmxfailedafterrepeattestingplasma')
+            updateTotal.testsdonebmxnumberofsamplesreceivedthisweekdbs += form.cleaned_data.get('testsdonebmxnumberofsamplesreceivedthisweekdbs')
+            updateTotal.testsdonebmxnumberofsamplescarriedoverpreviousweeksdbs += form.cleaned_data.get('testsdonebmxnumberofsamplescarriedoverpreviousweeksdbs')
+            updateTotal.testsdonebmxfailedbuteligibaleforrepeatdbs += form.cleaned_data.get('testsdonebmxfailedbuteligibaleforrepeatdbs')
+
+            updateTotal.testsdonebmxfailedbutnoteligibaleforrepeatdbs += form.cleaned_data.get('testsdonebmxfailedbutnoteligibaleforrepeatdbs')
+            updateTotal.testsdonebmxrepeatdbs += form.cleaned_data.get('testsdonebmxrepeatdbs')
+            updateTotal.testsdonebmxfailedafterrepeattestingdbs += form.cleaned_data.get('testsdonebmxfailedafterrepeattestingdbs')
+            updateTotal.testsdoneabbottnumberofsamplesreceivedthisweekplasma += form.cleaned_data.get('testsdoneabbottnumberofsamplesreceivedthisweekplasma')
+            updateTotal.testsdoneabbottnumberofsamplescarriedoverpreviousweeksplasma += form.cleaned_data.get('testsdoneabbottnumberofsamplescarriedoverpreviousweeksplasma')
+            updateTotal.testsdoneabbottfailedbuteligibaleforrepeatplasma += form.cleaned_data.get('testsdoneabbottfailedbuteligibaleforrepeatplasma')
+            updateTotal.testsdoneabbottfailedbutnoteligibaleforrepeatplasma += form.cleaned_data.get('testsdoneabbottfailedbutnoteligibaleforrepeatplasma')
+
+            updateTotal.testsdoneabbottrepeatplasma += form.cleaned_data.get('testsdoneabbottrepeatplasma')
+            updateTotal.testsdoneabbottfailedafterrepeattestingplasma += form.cleaned_data.get('testsdoneabbottfailedafterrepeattestingplasma')
+            updateTotal.testsdoneabbottnumberofsamplesreceivedthisweekdbs += form.cleaned_data.get('testsdoneabbottnumberofsamplesreceivedthisweekdbs')
+            updateTotal.testsdoneabbottnumberofsamplescarriedoverpreviousweeksdbs += form.cleaned_data.get('testsdoneabbottnumberofsamplescarriedoverpreviousweeksdbs')
+            updateTotal.testsdoneabbottfailedbuteligibaleforrepeatdbs += form.cleaned_data.get('testsdoneabbottfailedbuteligibaleforrepeatdbs')
+            updateTotal.testsdoneabbottfailedbutnoteligibaleforrepeatdbs += form.cleaned_data.get('testsdoneabbottfailedbutnoteligibaleforrepeatdbs')
+            updateTotal.testsdoneabbottrepeatdbs += form.cleaned_data.get('testsdoneabbottrepeatdbs')
+
+            updateTotal.testsdoneabbottfailedafterrepeattestingdbs += form.cleaned_data.get('testsdoneabbottfailedafterrepeattestingdbs')
+            updateTotal.testsdonehologicpanthernumberofsamplesreceivedthisweekplasma += form.cleaned_data.get('testsdonehologicpanthernumberofsamplesreceivedthisweekplasma')
+            updateTotal.tests2 += form.cleaned_data.get('tests2')
+            updateTotal.testsdonehologicpantherfailedbuteligibaleforrepeatplasma += form.cleaned_data.get('testsdonehologicpantherfailedbuteligibaleforrepeatplasma')
+            updateTotal.testsdonehologicpantherfailedbutnoteligibaleforrepeatplasma += form.cleaned_data.get('testsdonehologicpantherfailedbutnoteligibaleforrepeatplasma')
+            updateTotal.testsdonehologicpantherrepeatplasma += form.cleaned_data.get('testsdonehologicpantherrepeatplasma')
+            updateTotal.testsdonehologicpantherfailedafterrepeattestingplasma += form.cleaned_data.get('testsdonehologicpantherfailedafterrepeattestingplasma')
+
+            updateTotal.testsdonehologicpanthernumberofsamplesreceivedthisweekdbs += form.cleaned_data.get('testsdonehologicpanthernumberofsamplesreceivedthisweekdbs')
+            updateTotal.tests1 += form.cleaned_data.get('tests1')
+            updateTotal.testsdonehologicpantherfailedbuteligibaleforrepeatdbs += form.cleaned_data.get('testsdonehologicpantherfailedbuteligibaleforrepeatdbs')
+            updateTotal.testsdonehologicpantherfailedbutnoteligibaleforrepeatdbs += form.cleaned_data.get('testsdonehologicpantherfailedbutnoteligibaleforrepeatdbs')
+            updateTotal.testsdonehologicpantherrepeatdbs += form.cleaned_data.get('testsdonehologicpantherrepeatdbs')
+            updateTotal.testsdonehologicpantherfailedafterrepeattestingdbs += form.cleaned_data.get('testsdonehologicpantherfailedafterrepeattestingdbs')
+
+            updateTotal.totaltestsdone += form.cleaned_data.get('totaltestsdone')
+            updateTotal.totalrepeats += form.cleaned_data.get('totalrepeats')
+            updateTotal.totalpatientsrun += form.cleaned_data.get('totalpatientsrun')
+            updateTotal.targetsweekly += form.cleaned_data.get('targetsweekly')
+            updateTotal.percentagetargetsachievements += form.cleaned_data.get('percentagetargetsachievements')
+            updateTotal.percentageerrorraterocheplasma += form.cleaned_data.get('percentageerrorraterocheplasma')
+            updateTotal.percentageerrorraterochedbs += form.cleaned_data.get('percentageerrorraterochedbs')
+
+            updateTotal.percentageerrorratebmxplasma += form.cleaned_data.get('percentageerrorratebmxplasma')
+            updateTotal.percentageerrorratebmxdbs += form.cleaned_data.get('percentageerrorratebmxdbs')
+            updateTotal.percentageerrorrateabbottplasma += form.cleaned_data.get('percentageerrorrateabbottplasma')
+            updateTotal.percentageerrorrateabbottdbs += form.cleaned_data.get('percentageerrorrateabbottdbs')
+            updateTotal.percentageerrorratehologicpantherplasma += form.cleaned_data.get('percentageerrorratehologicpantherplasma')
+            updateTotal.percentageerrorratehologicpantherdbs += form.cleaned_data.get('percentageerrorratehologicpantherdbs')
+            updateTotal.totalncsfromaudit += form.cleaned_data.get('totalncsfromaudit')
+            updateTotal.ncsnotyetclosed += form.cleaned_data.get('ncsnotyetclosed')
+
+            updateTotal.ncsclosedthisweek += form.cleaned_data.get('ncsclosedthisweek')
+            updateTotal.totalncsfromaudit1 += form.cleaned_data.get('totalncsfromaudit1')
+            updateTotal.ncsnotyetclosed1 += form.cleaned_data.get('ncsnotyetclosed1')
+            updateTotal.ncsclosedthisweek1 += form.cleaned_data.get('ncsclosedthisweek1')
+            
+            updateTotal.save()
+
+
+
+
+            new_form = form.save(commit=False)
+
+            new_form.lab =request.user.lab
+            new_form.reportingweek = getReportingWeek()
+
+
+            new_form.user=request.user
+            new_form.save()
             #return render(request, 'success.html')
     form = SpecimensrunbrtivlweeklyForm()
     context = {'form': form}
@@ -558,7 +965,77 @@ def labeidrecieved(request):
     if request.method == 'POST':
         form = SpecimensreceivedbrtiweeklyForm(request.POST)
         if form.is_valid():
-            form.save()
+
+            updateTotal = specimensreceivedbrtivleid.objects.get(key="eid",dayofweek="Total", lab=request.user.lab,reportingweek=getReportingWeek())
+            updateTotal.samplescarriedoverpreviousweeknevertestedplasma += form.cleaned_data.get('samplescarriedoverpreviousweeknevertestedplasma')
+            updateTotal.samplescarriedoverpreviousweeknevertesteddbs += form.cleaned_data.get('samplescarriedoverpreviousweeknevertesteddbs')
+            updateTotal.samplescarriedoverpreviouspreviousfailedsamplesplasma += form.cleaned_data.get('samplescarriedoverpreviouspreviousfailedsamplesplasma')
+            updateTotal.samplescarriedoverpreviouspreviousfailedsamplesdbs += form.cleaned_data.get('samplescarriedoverpreviouspreviousfailedsamplesdbs')
+
+            updateTotal.samplesreceivedcurrentweekplasma += form.cleaned_data.get('samplesreceivedcurrentweekplasma')
+            updateTotal.samplesreceivedcurrentweekdbs += form.cleaned_data.get('samplesreceivedcurrentweekdbs')
+            updateTotal.samplesrejectedcurrentweekplasma += form.cleaned_data.get('samplesrejectedcurrentweekplasma')
+            updateTotal.samplesrejectedcurrentweekdbs += form.cleaned_data.get('samplesrejectedcurrentweekdbs')
+
+            updateTotal.totalsamplesreceivedcurrentweekplasma += form.cleaned_data.get('totalsamplesreceivedcurrentweekplasma')
+            updateTotal.totalsamplesreceivedcurrentweekdbs += form.cleaned_data.get('totalsamplesreceivedcurrentweekdbs')
+            updateTotal.numberofsamplesenteredintolimsondayofarrivalplasma += form.cleaned_data.get('numberofsamplesenteredintolimsondayofarrivalplasma')
+            updateTotal.numberofsamplesenteredintolimsondayofarrivaldbs += form.cleaned_data.get('numberofsamplesenteredintolimsondayofarrivaldbs')
+            updateTotal.numberofsamplesenteredintolimsafterdayofarrivalplasma += form.cleaned_data.get('numberofsamplesenteredintolimsafterdayofarrivalplasma')
+
+            updateTotal.numberofsamplesenteredintolimsafterdayofarrivaldbs += form.cleaned_data.get('numberofsamplesenteredintolimsafterdayofarrivaldbs')
+            updateTotal.numberofhourslimswasfunctional += form.cleaned_data.get('numberofhourslimswasfunctional')
+            updateTotal.totalsamplescurrentandcarryoverplasma += form.cleaned_data.get('totalsamplescurrentandcarryoverplasma')
+            updateTotal.totalsamplescurrentandcarryoverdbs += form.cleaned_data.get('totalsamplescurrentandcarryoverdbs')
+            updateTotal.samplesrefferedplasma += form.cleaned_data.get('samplesrefferedplasma')
+
+            updateTotal.samplesreffereddbs += form.cleaned_data.get('samplesreffereddbs')
+            updateTotal.labsamplesrefferedto += form.cleaned_data.get('labsamplesrefferedto')
+            updateTotal.percentagerejectionrateplasma += form.cleaned_data.get('percentagerejectionrateplasma')
+            updateTotal.percentagerejectionratedbs += form.cleaned_data.get('percentagerejectionratedbs')
+            updateTotal.numberofresultsprintedfromlimsplasma += form.cleaned_data.get('numberofresultsprintedfromlimsplasma')
+            updateTotal.numberofresultsprintedfromlimsdbs += form.cleaned_data.get('numberofresultsprintedfromlimsdbs')
+
+            updateTotal.totalresultsdispatchedbylabplasma += form.cleaned_data.get('totalresultsdispatchedbylabplasma')
+            updateTotal.totalresultsdispatchedbylabdbs += form.cleaned_data.get('totalresultsdispatchedbylabdbs')
+            updateTotal.totalresultsdispatchedbylabviasmsplasma += form.cleaned_data.get('totalresultsdispatchedbylabviasmsplasma')
+            updateTotal.totalresultsdispatchedbylabviasmsdbs += form.cleaned_data.get('totalresultsdispatchedbylabviasmsdbs')
+            updateTotal.reasonsforrejectionssamplequalitycompromisedplasma += form.cleaned_data.get('reasonsforrejectionssamplequalitycompromisedplasma')
+
+            updateTotal.reasonsforrejectionssamplequalitycompromiseddbs += form.cleaned_data.get('reasonsforrejectionssamplequalitycompromiseddbs')
+            updateTotal.reasons6 += form.cleaned_data.get('reasons6')
+            updateTotal.reasons5 += form.cleaned_data.get('reasons5')
+            updateTotal.reasons2 += form.cleaned_data.get('reasons2')
+            updateTotal.reasons1 += form.cleaned_data.get('reasons1')
+
+            updateTotal.reasons4 += form.cleaned_data.get('reasons4')
+            updateTotal.reason3 += form.cleaned_data.get('reason3')
+            updateTotal.reasonsforrejectionssamplequalitycompromisedqdacheckplasma += form.cleaned_data.get('reasonsforrejectionssamplequalitycompromisedqdacheckplasma')
+            updateTotal.reasonsforrejectionssamplequalitycompromisedqdacheckdbs += form.cleaned_data.get('reasonsforrejectionssamplequalitycompromisedqdacheckdbs')
+            updateTotal.reasonsforsamplerefferalreagentorkitstockoutplasma += form.cleaned_data.get('reasonsforsamplerefferalreagentorkitstockoutplasma')
+
+            updateTotal.reasonsforsamplerefferalreagentorkitstockoutdbs += form.cleaned_data.get('reasonsforsamplerefferalreagentorkitstockoutdbs')
+            updateTotal.reasonsforsamplerefferalinstrumentmechanicalfailureplasma += form.cleaned_data.get('reasonsforsamplerefferalinstrumentmechanicalfailureplasma')
+            updateTotal.reasonsforsamplerefferalinstrumentmechanicalfailuredbs += form.cleaned_data.get('reasonsforsamplerefferalinstrumentmechanicalfailuredbs')
+            updateTotal.reasonsforsamplerefferalinsufficientinstrumentcapacityplasma += form.cleaned_data.get('reasonsforsamplerefferalinsufficientinstrumentcapacityplasma')
+            updateTotal.reasonsforsamplerefferalinsufficientinstrumentcapacitydbs += form.cleaned_data.get('reasonsforsamplerefferalinsufficientinstrumentcapacitydbs')
+
+            updateTotal.reasonsforsamplerefferalinsufficienthrcapacityplasma += form.cleaned_data.get('reasonsforsamplerefferalinsufficienthrcapacityplasma')
+            updateTotal.reasonsforsamplerefferalinsufficienthrcapacitydbs += form.cleaned_data.get('reasonsforsamplerefferalinsufficienthrcapacitydbs')
+            updateTotal.reasonsforsamplerefferaldqacheckplasma += form.cleaned_data.get('reasonsforsamplerefferaldqacheckplasma')
+            updateTotal.reasonsforsamplerefferaldqacheckdbs += form.cleaned_data.get('reasonsforsamplerefferaldqacheckdbs')
+            updateTotal.comments += form.cleaned_data.get('comments')
+
+            updateTotal.save()
+
+            new_form = form.save(commit=False)
+
+            new_form.lab =request.user.lab
+            new_form.reportingweek = getReportingWeek()
+
+
+            new_form.user=request.user
+            new_form.save()
             #return render(request, 'success.html')
     form = SpecimensreceivedbrtiweeklyForm()
     context = {'form': form}
@@ -569,7 +1046,103 @@ def labeidfailure(request):
     if request.method == 'POST':
         form = ReasonsforfailurebrtiweeklyForm(request.POST)
         if form.is_valid():
-            form.save()
+            updateTotal = reasonsforfailurebrtivleid.objects.get(key="eid",dayofweek="Total", lab=request.user.lab,reportingweek=getReportingWeek())
+            updateTotal.rocheplasmanumberoffailedtestsduetosamplequalityissues += form.cleaned_data.get('rocheplasmanumberoffailedtestsduetosamplequalityissues')
+            updateTotal.rocheplasmanumberoffailedtestsduetoreagentqualityissues += form.cleaned_data.get('rocheplasmanumberoffailedtestsduetoreagentqualityissues')
+            updateTotal.rocheplasmanumberoffailedtestsduetoduetoqcfailure += form.cleaned_data.get('rocheplasmanumberoffailedtestsduetoduetoqcfailure')
+            updateTotal.rocheplasmanumberoffailedtestsduetopowerfailure += form.cleaned_data.get('rocheplasmanumberoffailedtestsduetopowerfailure')
+            updateTotal.rocheplasmanumberoffailedtestsduetomechanicalfailure += form.cleaned_data.get('rocheplasmanumberoffailedtestsduetomechanicalfailure')
+            updateTotal.rocheplasmanumberoffailedtestsduetoprocessingerror += form.cleaned_data.get('rocheplasmanumberoffailedtestsduetoprocessingerror')
+            updateTotal.rocheplasmanumberoffailedtestsduetoother += form.cleaned_data.get('rocheplasmanumberoffailedtestsduetoother')
+
+
+
+            updateTotal.rochedqacheckplasma += form.cleaned_data.get('rochedqacheckplasma')
+            updateTotal.rochedbsnumberoffailedtestsduetosamplequalityissues += form.cleaned_data.get('rochedbsnumberoffailedtestsduetosamplequalityissues')
+            updateTotal.rochedbsnumberoffailedtestsduetoreagentqualityissues += form.cleaned_data.get('rochedbsnumberoffailedtestsduetoreagentqualityissues')
+            updateTotal.rochedbsnumberoffailedtestsduetoduetoqcfailure += form.cleaned_data.get('rochedbsnumberoffailedtestsduetoduetoqcfailure')
+            updateTotal.rochedbsnumberoffailedtestsduetopowerfailure += form.cleaned_data.get('rochedbsnumberoffailedtestsduetopowerfailure')
+            updateTotal.rochedbsnumberoffailedtestsduetomechanicalfailure += form.cleaned_data.get('rochedbsnumberoffailedtestsduetomechanicalfailure')
+            updateTotal.rochedbsnumberoffailedtestsduetoprocessingerror += form.cleaned_data.get('rochedbsnumberoffailedtestsduetoprocessingerror')
+
+            updateTotal.rochedbsnumberoffailedtestsduetoother += form.cleaned_data.get('rochedbsnumberoffailedtestsduetoother')
+            updateTotal.rochedqacheckdbs += form.cleaned_data.get('rochedqacheckdbs')
+
+            updateTotal.bmxplasmanumberoffailedtestsduetosamplequalityissues += form.cleaned_data.get('bmxplasmanumberoffailedtestsduetosamplequalityissues')
+            updateTotal.bmxplasmanumberoffailedtestsduetoreagentqualityissues += form.cleaned_data.get('bmxplasmanumberoffailedtestsduetoreagentqualityissues')
+            updateTotal.bmxplasmanumberoffailedtestsduetoduetoqcfailure += form.cleaned_data.get('bmxplasmanumberoffailedtestsduetoduetoqcfailure')
+
+            updateTotal.bmxplasmanumberoffailedtestsduetopowerfailure += form.cleaned_data.get('bmxplasmanumberoffailedtestsduetopowerfailure')
+            updateTotal.bmxplasmanumberoffailedtestsduetomechanicalfailure += form.cleaned_data.get('bmxplasmanumberoffailedtestsduetomechanicalfailure')
+            updateTotal.bmxplasmanumberoffailedtestsduetoprocessingerror += form.cleaned_data.get('bmxplasmanumberoffailedtestsduetoprocessingerror')
+            updateTotal.bmxplasmanumberoffailedtestsduetoother += form.cleaned_data.get('bmxplasmanumberoffailedtestsduetoother')
+            updateTotal.bmxdqacheckplasma += form.cleaned_data.get('bmxdqacheckplasma')
+            updateTotal.bmxdbsnumberoffailedtestsduetosamplequalityissues += form.cleaned_data.get('bmxdbsnumberoffailedtestsduetosamplequalityissues')
+
+            updateTotal.bmxdbsnumberoffailedtestsduetoreagentqualityissues += form.cleaned_data.get('bmxdbsnumberoffailedtestsduetoreagentqualityissues')
+            updateTotal.bmxdbsnumberoffailedtestsduetoduetoqcfailure += form.cleaned_data.get('bmxdbsnumberoffailedtestsduetoduetoqcfailure')
+            updateTotal.bmxdbsnumberoffailedtestsduetopowerfailure += form.cleaned_data.get('bmxdbsnumberoffailedtestsduetopowerfailure')
+            updateTotal.bmxdbsnumberoffailedtestsduetomechanicalfailure += form.cleaned_data.get('bmxdbsnumberoffailedtestsduetomechanicalfailure')
+            updateTotal.bmxdbsnumberoffailedtestsduetoprocessingerror += form.cleaned_data.get('bmxdbsnumberoffailedtestsduetoprocessingerror')
+            updateTotal.bmxdbsnumberoffailedtestsduetoother += form.cleaned_data.get('bmxdbsnumberoffailedtestsduetoother')
+            updateTotal.bmxdqacheckdbs += form.cleaned_data.get('bmxdqacheckdbs')
+
+            updateTotal.abbottplasmanumberoffailedtestsduetosamplequalityissues += form.cleaned_data.get('abbottplasmanumberoffailedtestsduetosamplequalityissues')
+            updateTotal.abbottplasmanumberoffailedtestsduetoreagentqualityissues += form.cleaned_data.get('abbottplasmanumberoffailedtestsduetoreagentqualityissues')
+            updateTotal.abbottplasmanumberoffailedtestsduetoduetoqcfailure += form.cleaned_data.get('abbottplasmanumberoffailedtestsduetoduetoqcfailure')
+            updateTotal.abbottplasmanumberoffailedtestsduetopowerfailure += form.cleaned_data.get('abbottplasmanumberoffailedtestsduetopowerfailure')
+            updateTotal.abbottplasmanumberoffailedtestsduetomechanicalfailure += form.cleaned_data.get('abbottplasmanumberoffailedtestsduetomechanicalfailure')
+            updateTotal.abbottplasmanumberoffailedtestsduetoprocessingerror += form.cleaned_data.get('abbottplasmanumberoffailedtestsduetoprocessingerror')
+            updateTotal.abbottplasmanumberoffailedtestsduetoother += form.cleaned_data.get('abbottplasmanumberoffailedtestsduetoother')
+
+            updateTotal.abbottdqacheckplasma += form.cleaned_data.get('abbottdqacheckplasma')
+            updateTotal.abbottdbsnumberoffailedtestsduetosamplequalityissues += form.cleaned_data.get('abbottdbsnumberoffailedtestsduetosamplequalityissues')
+            updateTotal.abbottdbsnumberoffailedtestsduetoreagentqualityissues += form.cleaned_data.get('abbottdbsnumberoffailedtestsduetoreagentqualityissues')
+            updateTotal.abbottdbsnumberoffailedtestsduetoduetoqcfailure += form.cleaned_data.get('abbottdbsnumberoffailedtestsduetoduetoqcfailure')
+            updateTotal.abbottdbsnumberoffailedtestsduetopowerfailure += form.cleaned_data.get('abbottdbsnumberoffailedtestsduetopowerfailure')
+            updateTotal.abbottdbsnumberoffailedtestsduetomechanicalfailure += form.cleaned_data.get('abbottdbsnumberoffailedtestsduetomechanicalfailure')
+            updateTotal.abbottdbsnumberoffailedtestsduetoprocessingerror += form.cleaned_data.get('abbottdbsnumberoffailedtestsduetoprocessingerror')
+
+
+
+            updateTotal.abbottdbsnumberoffailedtestsduetoother += form.cleaned_data.get('abbottdbsnumberoffailedtestsduetoother')
+            updateTotal.abbottdqacheckdbs += form.cleaned_data.get('abbottdqacheckdbs')
+            updateTotal.hologicpantherplasmanumberoffailedtestsduetosamplequalityissues += form.cleaned_data.get('hologicpantherplasmanumberoffailedtestsduetosamplequalityissues')
+            updateTotal.hpantherplasmanumberoffailedtestsduetoreagentqualityissues += form.cleaned_data.get('hpantherplasmanumberoffailedtestsduetoreagentqualityissues')
+            updateTotal.hologicpantherplasmanumberoffailedtestsduetoduetoqcfailure += form.cleaned_data.get('hologicpantherplasmanumberoffailedtestsduetoduetoqcfailure')
+
+
+
+            updateTotal.hologicpantherplasmanumberoffailedtestsduetopowerfailure += form.cleaned_data.get('hologicpantherplasmanumberoffailedtestsduetopowerfailure')
+            updateTotal.hologicpantherplasmanumberoffailedtestsduetomechanicalfailure += form.cleaned_data.get('hologicpantherplasmanumberoffailedtestsduetomechanicalfailure')
+            updateTotal.hologicpantherplasmanumberoffailedtestsduetoprocessingerror += form.cleaned_data.get('hologicpantherplasmanumberoffailedtestsduetoprocessingerror')
+            updateTotal.hologicpantherplasmanumberoffailedtestsduetoother += form.cleaned_data.get('hologicpantherplasmanumberoffailedtestsduetoother')
+            updateTotal.hologicpantherdqacheckplasma += form.cleaned_data.get('hologicpantherdqacheckplasma')
+            updateTotal.hologicpantherdbsnumberoffailedtestsduetosamplequalityissues += form.cleaned_data.get('hologicpantherdbsnumberoffailedtestsduetosamplequalityissues')
+
+            updateTotal.hologicpantherdbsnumberoffailedtestsduetoreagentqualityissues += form.cleaned_data.get('hologicpantherdbsnumberoffailedtestsduetoreagentqualityissues')
+            updateTotal.hologicpantherdbsnumberoffailedtestsduetoduetoqcfailure += form.cleaned_data.get('hologicpantherdbsnumberoffailedtestsduetoduetoqcfailure')
+            updateTotal.hologicpantherdbsnumberoffailedtestsduetopowerfailure += form.cleaned_data.get('hologicpantherdbsnumberoffailedtestsduetopowerfailure')
+            updateTotal.hologicpantherdbsnumberoffailedtestsduetomechanicalfailure += form.cleaned_data.get('hologicpantherdbsnumberoffailedtestsduetomechanicalfailure')
+            updateTotal.hologicpantherdbsnumberoffailedtestsduetoprocessingerror += form.cleaned_data.get('hologicpantherdbsnumberoffailedtestsduetoprocessingerror')
+            updateTotal.hologicpantherdbsnumberoffailedtestsduetoother += form.cleaned_data.get('hologicpantherdbsnumberoffailedtestsduetoother')
+            updateTotal.hologicpantherdqacheckdbs += form.cleaned_data.get('hologicpantherdqacheckdbs')
+
+           
+            updateTotal.save()
+
+
+
+
+
+            new_form = form.save(commit=False)
+
+            new_form.lab =request.user.lab
+            new_form.reportingweek = getReportingWeek()
+
+
+            new_form.user=request.user
+            new_form.save()
             #return render(request, 'success.html')
     form = ReasonsforfailurebrtiweeklyForm()
     context = {'form': form}
@@ -580,6 +1153,18 @@ def labeidelectric(request):
     if request.method == 'POST':
         form = ElectricoutagebrtiweeklyForm(request.POST)
         if form.is_valid():
+
+
+            updateTotal = Electricoutagebrtivleid.objects.get(key="eid",dayofweek="Total", lab=request.user.lab,reportingweek=getReportingWeek())
+            updateTotal.numberofhourswithnoelectricityperday += form.cleaned_data.get('numberofhourswithnoelectricityperday')
+            updateTotal.numberofhoursgeneratorwasonperday += form.cleaned_data.get('numberofhoursgeneratorwasonperday')
+            updateTotal.litresoffueladdedtogeneratorperday += form.cleaned_data.get('litresoffueladdedtogeneratorperday')
+            updateTotal.numberofhoursmachineswasnotbeingusedduetopowercutperday += form.cleaned_data.get('numberofhoursmachineswasnotbeingusedduetopowercutperday')
+            updateTotal.totaltestsdoneperdayusinggenerator += form.cleaned_data.get('totaltestsdoneperdayusinggenerator')
+            updateTotal.save()
+
+
+
             form.save()
             #return render(request, 'success.html')
     form = ElectricoutagebrtiweeklyForm()

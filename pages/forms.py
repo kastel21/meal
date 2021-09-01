@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit
+import datetime
 
 
 
@@ -1512,7 +1513,7 @@ class Specimensruncovid19Form(forms.ModelForm):
     ]
 
     dayofweek = forms.ChoiceField(choices=dayschoices, initial="none", label="Select Day please")    
-    #reportingweek = forms.CharField(label="Reporting week in the format  1:3-10")
+    reportingweek = forms.CharField(label="Reporting week in the format  1:3-10")
 
     #Roche
     testsdoneabbottrun = forms.IntegerField(label="run")
@@ -1739,6 +1740,8 @@ class Generalcovid19Form(forms.ModelForm):
     ]
 
     dayofweek = forms.ChoiceField(choices=dayschoices, initial="none", label="Select Day please") 
+    reportingweek = forms.CharField(initial='1')
+    dateofrecord = forms.CharField(initial=datetime.date.today())
 
 
     commentsregardingtestingandchallengesfacedbythelaboratory = forms.CharField( label="comments")
@@ -1747,6 +1750,9 @@ class Generalcovid19Form(forms.ModelForm):
     numberofstaffwhohavebeenvaccinated	= forms.IntegerField(label="number of staff who have been vaccinated")
     Comments =forms.CharField( label="comments")
     Requesttobrtifromthelaboratory	= forms.CharField(label="Request to brti from the laboratory")
+    user= forms.CharField(initial='123')
+    lab= forms.CharField(initial='123')
+
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -1760,3 +1766,4 @@ class Generalcovid19Form(forms.ModelForm):
     class Meta:
             model = Generalcovid19
             fields = '__all__'
+            exclude=('dateofentry',)
