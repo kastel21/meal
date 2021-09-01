@@ -7,21 +7,21 @@
 
  
         <a href="{% url 'labcov19run' %}" class="list-group-item
-        {% if active == 'LAB COVID 19' %} active {% endif %} waves-effect">
+        {% if covid %} active {% endif %} waves-effect">
         <i class="fa fa-pie-chart mr-3" aria-hidden="true"></i>LAB COVID 19</a>
 
 
 
     <a href="{% url 'labeidrun' %}" class="list-group-item 
-        {% if active == 'LAB' %} active {% endif %} waves-effect">
+        {% if eid %} active {% endif %} waves-effect">
         <i class="fa fa-pie-chart mr-3" aria-hidden="true"></i> LAB eid</a> 
 
 
 
 
 
-    <a href="labvltop" class="list-group-item 
-        {% if active == 'LAB BRTI VL WEEKLY STATISTICS TOOL' %} active {% endif %} waves-effect">
+    <a href="labvlrun" class="list-group-item 
+        {% if vl %} active {% endif %} waves-effect">
         <i class="fa fa-pie-chart mr-3" aria-hidden="true"></i>     
              LAB VL </a>
 

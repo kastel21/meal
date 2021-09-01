@@ -406,7 +406,8 @@ class specimensrunbrtivleidForm(forms.ModelForm):
     totalncsfromaudit1=forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=5000)
     ncsnotyetclosed1=forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=5000)
     ncsclosedthisweek1=forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=5000)
-
+    user= forms.CharField(initial='123')
+    lab= forms.CharField(initial='123')
 
 
 
@@ -538,6 +539,8 @@ class specimensreceivedbrtivleidForm(forms.ModelForm):
     reasonsforsamplerefferaldqacheckdbs= forms.IntegerField()
 
     comments=forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=5000)
+    user= forms.CharField(initial='123')
+    lab= forms.CharField(initial='123')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -656,7 +659,8 @@ class reasonsforfailurebrtivleidForm(forms.ModelForm):
     hologicpantherdbsnumberoffailedtestsduetoprocessingerror = forms.IntegerField(label="Processing Error")
     hologicpantherdbsnumberoffailedtestsduetoother = forms.IntegerField(label="Other Specify")
     hologicpantherdqacheckdbs = forms.IntegerField(label="DQA check")
-
+    user= forms.CharField(initial='123')
+    lab= forms.CharField(initial='123')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -780,7 +784,8 @@ class SpecimensrunbrtivlweeklyForm(forms.ModelForm):
 
     totalncsfromaudit=forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=300, label="Total NCs from Audit (exchange audits)")
     ncsnotyetclosed=forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=300, label="NCs not yet closed")
-
+    user= forms.CharField(initial='123')
+    lab= forms.CharField(initial='123')
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
@@ -907,7 +912,8 @@ class SpecimensrecievedbrtivlweeklyForm(forms.ModelForm):
     reasonsforsamplerefferaldqacheckdbs= forms.IntegerField(label="DBS")
 
     comments=forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), label="Please input any comments regarding sample carryover, samples received, samples rejected, rejection rate, TAT, machine breakdowns & down time, reagent stock out if applicable", max_length=5000)
-
+    user= forms.CharField(initial='123')
+    lab= forms.CharField(initial='123')
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
@@ -1015,7 +1021,8 @@ class ReasonsforfailurebrtivlweeklyForm(forms.ModelForm):
     hologicpantherdbsnumberoffailedtestsduetoprocessingerror = forms.IntegerField(label="Processing Error")
     hologicpantherdbsnumberoffailedtestsduetoother = forms.IntegerField(label="Other Specify")
     hologicpantherdqacheckdbs = forms.IntegerField(label="DQA check")
-
+    user= forms.CharField(initial='123')
+    lab= forms.CharField(initial='123')
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
@@ -1049,7 +1056,8 @@ class ElectricoutagebrtivlweeklyForm(forms.ModelForm):
     litresoffueladdedtogeneratorperday	= forms.IntegerField(label="Litres of Fuel added to generator per day")
     numberofhoursmachineswasnotbeingusedduetopowercutperday	= forms.IntegerField(label="Number of hours machine/s was not being used due to power cut per day")
     totaltestsdoneperdayusinggenerator	= forms.IntegerField(label="Total Tests done per day using generator")
-
+    user= forms.CharField(initial='123')
+    lab= forms.CharField(initial='123')
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
@@ -1164,7 +1172,8 @@ class Specimensrunbrtiweekly(forms.ModelForm):
 
     totalncsfromaudit=forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=5000, label="Total NCs from Audit (exchange audits)")
     ncsnotyetclosed=forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=5000, label="NCs not yet closed")
-
+    user= forms.CharField(initial='123')
+    lab= forms.CharField(initial='123')
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
@@ -1290,7 +1299,8 @@ class SpecimensreceivedbrtiweeklyForm(forms.ModelForm):
     reasonsforsamplerefferaldqacheckdbs= forms.IntegerField(label="DBS")
 
     comments=forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), label=" Comments: Please input any comments regarding sample carryover, samples received, samples rejected, rejection rate, TAT, machine breakdowns & down time, reagent stock out if applicable", max_length=5000)
-
+    user= forms.CharField(initial='123')
+    lab= forms.CharField(initial='123')
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
@@ -1401,7 +1411,8 @@ class ReasonsforfailurebrtiweeklyForm(forms.ModelForm):
     hologicpantherdbsnumberoffailedtestsduetoprocessingerror = forms.IntegerField(label="Processing Error")
     hologicpantherdbsnumberoffailedtestsduetoother = forms.IntegerField(label="Other Specify")
     hologicpantherdqacheckdbs = forms.IntegerField(label="DQA check")
-
+    user= forms.CharField(initial='123')
+    lab= forms.CharField(initial='123')
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
@@ -1435,7 +1446,8 @@ class ElectricoutagebrtiweeklyForm(forms.ModelForm):
     litresoffueladdedtogeneratorperday	= forms.IntegerField(label="Litres of Fuel added to generator per day")
     numberofhoursmachineswasnotbeingusedduetopowercutperday	= forms.IntegerField(label="Number of hours machine/s was not being used due to power cut per day")
     totaltestsdoneperdayusinggenerator	= forms.IntegerField(label="Total Tests done per day using generator")
-
+    user= forms.CharField(initial='123')
+    lab= forms.CharField(initial='123')
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
@@ -1486,7 +1498,8 @@ class Specimensreceivedcovid19Form(forms.ModelForm):
     numberofresultsprintedlims =	forms.IntegerField(label="Number of Results printed (LIMS)")
     totalresultsdispatchedbylab	=	forms.IntegerField(label="Total Results dispatched by Lab")
     comment= forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), label="Comment: [Please input any comment regarding  samples carryover; samples received; samples rejected; rejection rate; printing and dispatch of results and developments and policy changes if applicable]", max_length=5000)
-
+    user= forms.CharField(initial='123')
+    lab= forms.CharField(initial='123')
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
@@ -1563,7 +1576,8 @@ class Specimensruncovid19Form(forms.ModelForm):
     errorrateshologicpanther = forms.IntegerField(label="Hologic panther")
     errorratesrdtab = forms.IntegerField(label="RDT(Antibody")
     errorratesrdtag = forms.IntegerField(label="RDT(Antigen)")
-
+    user= forms.CharField(initial='123')
+    lab= forms.CharField(initial='123')
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
@@ -1615,7 +1629,8 @@ class machinedowntimereagentstockouttoolcovid19Form(forms.ModelForm):
     reagentstockoutquantstudio3 = forms.IntegerField(label="Quant Studio 3")
     reagentstockouthologicpanther = forms.IntegerField(label="Hologic Panther")
     reagentstockoutcomments = forms.CharField(label="comments", widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=5000, )
-
+    user= forms.CharField(initial='123')
+    lab= forms.CharField(initial='123')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -1671,7 +1686,8 @@ class machinecovid19Form(forms.ModelForm):
     reagentstockoutquantstudio3 = forms.IntegerField(label="Quant Studio 3")
     reagentstockouthologicpanther = forms.IntegerField(label="Hologic Panther")
     reagentstockoutcomments = forms.CharField(label="comments", widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=5000, )
-
+    user= forms.CharField(initial='123')
+    lab= forms.CharField(initial='123')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

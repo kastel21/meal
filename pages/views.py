@@ -13,6 +13,10 @@ from django.http import JsonResponse
 import sqlite3
 
 
+vl=False
+eid = False
+covid = False
+
 def exp(request):
     context = {}
     columns=[]
@@ -177,6 +181,9 @@ def labvltop(request):
 
 @login_required(login_url='loly_login')
 def labvlrun(request):
+    lv=True
+    covid=False
+    eid=False
     if request.method == 'POST':
         form = SpecimensrunbrtivlweeklyForm(request.POST)
         if form.is_valid():
@@ -275,7 +282,8 @@ def labvlrun(request):
             new_form.save()
             #return render(request, 'success.html')
     form = SpecimensrunbrtivlweeklyForm()
-    context = {'form': form}
+    
+    context = {'form': form, 'vl':True,'eid':False,'covid':False}
     return render(request, 'masving_brti_vl_weekly_statistics_tool_31-6_june_2021/Specimensrun.html', context)
 
 @login_required(login_url='loly_login')
@@ -635,7 +643,8 @@ def labcov19run(request):
             form.save()
             #return render(request, 'success.html')
     form = Specimensruncovid19Form()
-    context = {'form': form}
+    context = {'form': form, 'vl':False,'eid':False,'covid':True}
+
     return render(request, 'masvingo_brti_covid_19_weekly_statistics_tool_31-6_June_2021/Specimens_Run.html', context)
 
 @login_required(login_url='loly_login')
@@ -957,7 +966,8 @@ def labeidrun(request):
             new_form.save()
             #return render(request, 'success.html')
     form = SpecimensrunbrtivlweeklyForm()
-    context = {'form': form}
+    context = {'form': form, 'vl':False,'eid':True,'covid':False}
+
     return render(request, 'masvingo_brti_weekly_statistics_tool_june_2021/Specimensrun.html', context)
 
 @login_required(login_url='loly_login')
