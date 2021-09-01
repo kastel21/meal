@@ -54,7 +54,7 @@ class specimensreceivedbrticovid19Form(forms.ModelForm):
     totalsamplescurrentpluscarryover	 =	forms.IntegerField(label="Total Samples Current + Carryover")
     samplesreferred	=	forms.IntegerField(label="Samples Referred")
     samplesreferredtoname	=	forms.IntegerField(label="Samples Referred to (Name)")
-    rejectionratecurrentweek = forms.DecimalField(label="% Rejection Rate (Current Week)", decimal_places=5,  max_digits=5)
+    rejectionratecurrentweek = forms.DecimalField(label="% Rejection Rate (Current Week)", decimal_places=5,  max_digits=8)
     numberofresultsprintedlims =	forms.IntegerField(label="Number of Results printed (LIMS)")
     totalresultsdispatchedbylab	=	forms.IntegerField(label="Total Results dispatched by Lab")
     comment= forms.CharField(label="Comment: [Please input any comment regarding  samples carryover; samples received; samples rejected; rejection rate; printing and dispatch of results and developments and policy changes if applicable]", max_length=5000)
@@ -148,12 +148,12 @@ class specimensrunbrticovid19Form(forms.ModelForm):
 
     errorratesabbott = forms.IntegerField(label="Abbott")
 
-    errorratesbmx = forms.DecimalField(decimal_places=5,  max_digits=5, label="BMX")
-    errorratesgenexpert = forms.DecimalField(decimal_places=5,  max_digits=5, label="GeneXpert")
-    errorratesquantstudio3 = forms.DecimalField(decimal_places=5,  max_digits=5,label="Quant Studio3	")
-    errorrateshologicpanther = forms.DecimalField(decimal_places=5,  max_digits=5,label="Hologic Panther	")
-    errorratesrdtantibody = forms.DecimalField(decimal_places=5,  max_digits=5,label="RDT (Antibody)	")
-    errorratesrdtantigen = forms.DecimalField(decimal_places=5,  max_digits=5,label="RDT(Antigen)	")
+    errorratesbmx = forms.DecimalField(decimal_places=5,  max_digits=8, label="BMX")
+    errorratesgenexpert = forms.DecimalField(decimal_places=5,  max_digits=8, label="GeneXpert")
+    errorratesquantstudio3 = forms.DecimalField(decimal_places=5,  max_digits=8,label="Quant Studio3	")
+    errorrateshologicpanther = forms.DecimalField(decimal_places=5,  max_digits=8,label="Hologic Panther	")
+    errorratesrdtantibody = forms.DecimalField(decimal_places=5,  max_digits=8,label="RDT (Antibody)	")
+    errorratesrdtantigen = forms.DecimalField(decimal_places=5,  max_digits=8,label="RDT(Antigen)	")
 
 
     lab = forms.CharField()
@@ -386,29 +386,29 @@ class specimensrunbrtivleidForm(forms.ModelForm):
     totalrepeats = forms.IntegerField()
     totalpatientsrun = forms.IntegerField()
     targetsweekly = forms.IntegerField()
-    percentagetargetsachievements = forms.DecimalField(decimal_places=5,  max_digits=5)
+    percentagetargetsachievements = forms.DecimalField(decimal_places=5,  max_digits=8)
 
 
-    percentageerrorraterocheplasma = forms.DecimalField(decimal_places=5,  max_digits=5)
-    percentageerrorraterochedbs = forms.DecimalField(decimal_places=5,  max_digits=5)
+    percentageerrorraterocheplasma = forms.DecimalField(decimal_places=5,  max_digits=8)
+    percentageerrorraterochedbs = forms.DecimalField(decimal_places=5,  max_digits=8)
 
-    percentageerrorratebmxplasma = forms.DecimalField(decimal_places=5,  max_digits=5)
-    percentageerrorratebmxdbs = forms.DecimalField(decimal_places=5,  max_digits=5)
+    percentageerrorratebmxplasma = forms.DecimalField(decimal_places=5,  max_digits=8)
+    percentageerrorratebmxdbs = forms.DecimalField(decimal_places=5,  max_digits=8)
 
-    percentageerrorrateabbottplasma = forms.DecimalField(decimal_places=5,  max_digits=5)
-    percentageerrorrateabbottdbs = forms.DecimalField(decimal_places=5,  max_digits=5)
+    percentageerrorrateabbottplasma = forms.DecimalField(decimal_places=5,  max_digits=8)
+    percentageerrorrateabbottdbs = forms.DecimalField(decimal_places=5,  max_digits=8)
 
-    percentageerrorratehologicpantherplasma = forms.DecimalField(decimal_places=5,  max_digits=5)
-    percentageerrorratehologicpantherdbs = forms.DecimalField(decimal_places=5,  max_digits=5)
+    percentageerrorratehologicpantherplasma = forms.DecimalField(decimal_places=5,  max_digits=8)
+    percentageerrorratehologicpantherdbs = forms.DecimalField(decimal_places=5,  max_digits=8)
 
 
 
     totalncsfromaudit=forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=5000)
     ncsnotyetclosed=forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=5000)
     ncsclosedthisweek=forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=5000)
-    totalncsfromaudit1=forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=5000)
-    ncsnotyetclosed1=forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=5000)
-    ncsclosedthisweek1=forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=5000)
+    # totalncsfromaudit1=forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=5000)
+    # ncsnotyetclosed1=forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=5000)
+    # ncsclosedthisweek1=forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=5000)
     user= forms.CharField(initial='123')
     lab= forms.CharField(initial='123')
 
@@ -452,11 +452,11 @@ class specimensreceivedbrtivleidForm(forms.ModelForm):
     dayofweek = forms.ChoiceField(choices=labchoices, initial="none", label="Select laboratory please")
     #reportingweek = forms.CharField(label="Reporting week in the format  1:3-10")
 
-    samplescarriedoverpreviousweeknevertestedplasma = forms.IntegerField()
+    samplescarriedoverpreviousweeksnevertestedplasma = forms.IntegerField()
     samplescarriedoverpreviousweeknevertesteddbs = forms.IntegerField()
 
-    samplescarriedoverpreviouspreviousfailedsamplesplasma = forms.IntegerField()
-    samplescarriedoverpreviouspreviousfailedsamplesdbs = forms.IntegerField()
+    samplescarriedoverpreviousfailedsamplesplasma = forms.IntegerField()
+    samplescarriedoverpreviousfailedsamplesdbs = forms.IntegerField()
 
     samplesreceivedcurrentweekplasma = forms.IntegerField()
     samplesreceivedcurrentweekdbs = forms.IntegerField()
@@ -483,8 +483,8 @@ class specimensreceivedbrtivleidForm(forms.ModelForm):
 
     labsamplesrefferedto = forms.IntegerField()
 
-    percentagerejectionrateplasma = forms.DecimalField(decimal_places=5,  max_digits=5)
-    percentagerejectionratedbs = forms.DecimalField(decimal_places=5,  max_digits=5)
+    percentagerejectionrateplasma = forms.DecimalField(decimal_places=5,  max_digits=8)
+    percentagerejectionratedbs = forms.DecimalField(decimal_places=5,  max_digits=8)
 
     numberofresultsprintedfromlimsplasma = forms.IntegerField()
     numberofresultsprintedfromlimsdbs = forms.IntegerField()
@@ -751,8 +751,12 @@ class SpecimensrunbrtivlweeklyForm(forms.ModelForm):
     testsdoneabbottfailedafterrepeattestingdbs = forms.IntegerField(label="Failed After Repeat Testing")
 
 #Hologic Panther
+    
     testsdonehologicpanthernumberofsamplesreceivedthisweekplasma = forms.IntegerField(label="Run (Number of samples received this week)")
-    testsdonehologicpanthernumberofsamplescarriedoverpreviousweeksplasma = forms.IntegerField(label="Run (Number of Carry Over Samples from previous weeks)")
+    
+    #testsdonehologicpanthernumberofsamplescarriedoverpreviousweeksplasma = forms.IntegerField(label="Run (Number of Carry Over Samples from previous weeks)")
+    tests2= forms.IntegerField(label="Run (Number of Carry Over Samples from previous weeks)")
+
     testsdonehologicpantherfailedbuteligibaleforrepeatplasma= forms.IntegerField(label="Failed but eligible for repeat")
     testsdonehologicpantherfailedbutnoteligibaleforrepeatplasma= forms.IntegerField(label="Failed not eligible for repeat")
     testsdonehologicpantherrepeatplasma= forms.IntegerField(label="Repeat")
@@ -760,7 +764,9 @@ class SpecimensrunbrtivlweeklyForm(forms.ModelForm):
 
 
     testsdonehologicpanthernumberofsamplesreceivedthisweekdbs = forms.IntegerField(label="Run (Number of samples received this week)")
-    testsdonehologicpanthernumberofsamplescarriedoverpreviousweeksdbs = forms.IntegerField(label="Run (Number of Carry Over Samples from previous weeks)")
+    #testsdonehologicpanthernumberofsamplescarriedoverpreviousweeksdbs = forms.IntegerField(label="Run (Number of Carry Over Samples from previous weeks)")
+    tests1= forms.IntegerField(label="Run (Number of Carry Over Samples from previous weeks)")
+    
     testsdonehologicpantherfailedbuteligibaleforrepeatdbs= forms.IntegerField(label="Failed but eligible for repeat")
     testsdonehologicpantherfailedbutnoteligibaleforrepeatdbs= forms.IntegerField(label="Failed not eligible for repeat")
     testsdonehologicpantherrepeatdbs= forms.IntegerField(label="Repeat")
@@ -770,24 +776,26 @@ class SpecimensrunbrtivlweeklyForm(forms.ModelForm):
     totalrepeats = forms.IntegerField(label="Total Repeats")
     totalpatientsrun = forms.IntegerField(label="Total Patients Run")
     targetsweekly = forms.IntegerField(label="Target:Weekly")
-    percentagetargetsachievements = forms.DecimalField(label="%Target Achievement", decimal_places=5,  max_digits=5)
+    percentagetargetsachievements = forms.DecimalField(label="%Target Achievement", decimal_places=5,  max_digits=8)
 
 
-    percentageerrorraterocheplasma = forms.DecimalField(label="Plasma", decimal_places=5,  max_digits=5)
-    percentageerrorraterochedbs = forms.DecimalField(label="DBS", decimal_places=5,  max_digits=5)
+    percentageerrorraterocheplasma = forms.DecimalField(label="Plasma", decimal_places=5,  max_digits=8)
+    percentageerrorraterochedbs = forms.DecimalField(label="DBS", decimal_places=5,  max_digits=8)
 
-    percentageerrorratebmxplasma = forms.DecimalField(label="Plasma", decimal_places=5,  max_digits=5)
-    percentageerrorratebmxdbs = forms.DecimalField(label="DBS", decimal_places=5,  max_digits=5)
+    percentageerrorratebmxplasma = forms.DecimalField(label="Plasma", decimal_places=5,  max_digits=8)
+    percentageerrorratebmxdbs = forms.DecimalField(label="DBS", decimal_places=5,  max_digits=8)
 
-    percentageerrorrateabbottplasma = forms.DecimalField(label="Plasma", decimal_places=5,  max_digits=5)
-    percentageerrorrateabbottdbs = forms.DecimalField(label="DBS", decimal_places=5,  max_digits=5)
+    percentageerrorrateabbottplasma = forms.DecimalField(label="Plasma", decimal_places=5,  max_digits=8)
+    percentageerrorrateabbottdbs = forms.DecimalField(label="DBS", decimal_places=5,  max_digits=8)
 
-    percentageerrorratehologicpantherplasma = forms.DecimalField(label="Plasma", decimal_places=5,  max_digits=5)
-    percentageerrorratehologicpantherdbs = forms.DecimalField(label="DBS", decimal_places=5,  max_digits=5)
+    percentageerrorratehologicpantherplasma = forms.DecimalField(label="Plasma", decimal_places=5,  max_digits=8)
+    percentageerrorratehologicpantherdbs = forms.DecimalField(label="DBS", decimal_places=5,  max_digits=8)
 
 
-    totalncsfromaudit=forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=300, label="Total NCs from Audit (exchange audits)")
-    ncsnotyetclosed=forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=300, label="NCs not yet closed")
+    totalncsfromaudit=forms.IntegerField( label="Total NCs from Audit (exchange audits)")
+    ncsnotyetclosed=forms.IntegerField( label="NCs not yet closed")
+    ncsclosedthisweek=forms.IntegerField(label="Ncsclosed this week")
+
     user= forms.CharField(initial='123')
     lab= forms.CharField(initial='123')
     key= forms.CharField(initial='123')
@@ -823,12 +831,12 @@ class SpecimensrecievedbrtivlweeklyForm(forms.ModelForm):
     dateofrecord = forms.CharField()
 
 
-
-    samplescarriedoverpreviousweeknevertestedplasma = forms.IntegerField(label="Plasma")
+    
+    samplescarriedoverpreviousweeksnevertestedplasma = forms.IntegerField(label="Plasma")
     samplescarriedoverpreviousweeknevertesteddbs = forms.IntegerField(label="DBS")
 
-    samplescarriedoverpreviouspreviousfailedsamplesplasma = forms.IntegerField(label="Plasma")
-    samplescarriedoverpreviouspreviousfailedsamplesdbs = forms.IntegerField(label="DBS")
+    samplescarriedoverpreviousfailedsamplesplasma = forms.IntegerField(label="Plasma")
+    samplescarriedoverpreviousfailedsamplesdbs = forms.IntegerField(label="DBS")
 
 
     samplesreceivedcurrentweekplasma = forms.IntegerField(label="Plasma")
@@ -858,8 +866,8 @@ class SpecimensrecievedbrtivlweeklyForm(forms.ModelForm):
 
     labsamplesrefferedto = forms.IntegerField(label="Lab Samples Referred to")
 
-    percentagerejectionrateplasma = forms.DecimalField(label="Plasma", decimal_places=5,  max_digits=5)
-    percentagerejectionratedbs = forms.DecimalField(label="DBS", decimal_places=5,  max_digits=5)
+    percentagerejectionrateplasma = forms.DecimalField(label="Plasma", decimal_places=5,  max_digits=8)
+    percentagerejectionratedbs = forms.DecimalField(label="DBS", decimal_places=5,  max_digits=8)
 
 
     numberofresultsprintedfromlimsplasma = forms.IntegerField(label="Plasma")
@@ -1014,9 +1022,9 @@ class ReasonsforfailurebrtivlweeklyForm(forms.ModelForm):
     abbottdqacheckdbs = forms.IntegerField(label="DQA check")
 
 #Hologic Panther
-
+    #hologicpantherplasmanumberoffailedtestsduetoreagentqualityissues
     hologicpantherplasmanumberoffailedtestsduetosamplequalityissues = forms.IntegerField(label="# of failed tests due to sample quality issues")
-    hologicpantherplasmanumberoffailedtestsduetoreagentqualityissues = forms.IntegerField(label="# of failed tests due to reagent quality issues")
+    hpantherplasmanumberoffailedtestsduetoreagentqualityissues = forms.IntegerField(label="# of failed tests due to reagent quality issues")
     hologicpantherplasmanumberoffailedtestsduetoduetoqcfailure = forms.IntegerField(label="# of failed tests due to QC failure")
     hologicpantherplasmanumberoffailedtestsduetopowerfailure = forms.IntegerField(label="# of failed tests due to power failure")
     hologicpantherplasmanumberoffailedtestsduetomechanicalfailure = forms.IntegerField(label="# of failed tests due to mechanical failure")
@@ -1098,7 +1106,7 @@ class Specimensrunbrtiweekly(forms.ModelForm):
 
     dayofweek = forms.CharField(widget=forms.HiddenInput(), initial="none", label="Select date" )
     reportingweek = forms.CharField(label="Reporting week in the format  1:3-10")
-    dateofrecord = models.CharField()
+    dateofrecord = forms.CharField(initial="123")
 
 
 
@@ -1174,24 +1182,26 @@ class Specimensrunbrtiweekly(forms.ModelForm):
     totalrepeats = forms.IntegerField(label="Total Repeats")
     totalpatientsrun = forms.IntegerField(label="Total Patients Run")
     targetsweekly = forms.IntegerField(label="Target:Weekly")
-    percentagetargetsachievements = forms.DecimalField(label="%Target Achievement", decimal_places=5,  max_digits=5)
+    percentagetargetsachievements = forms.DecimalField(label="%Target Achievement", decimal_places=5,  max_digits=8)
 
 
-    percentageerrorraterocheplasma = forms.DecimalField(label="Plasma", decimal_places=5,  max_digits=5)
-    percentageerrorraterochedbs = forms.DecimalField(label="DBS", decimal_places=5,  max_digits=5)
+    percentageerrorraterocheplasma = forms.DecimalField(label="Plasma", decimal_places=5,  max_digits=8)
+    percentageerrorraterochedbs = forms.DecimalField(label="DBS", decimal_places=5,  max_digits=8)
 
-    percentageerrorratebmxplasma = forms.DecimalField(label="Plasma", decimal_places=5,  max_digits=5)
-    percentageerrorratebmxdbs = forms.DecimalField(label="DBS", decimal_places=5,  max_digits=5)
+    percentageerrorratebmxplasma = forms.DecimalField(label="Plasma", decimal_places=5,  max_digits=8)
+    percentageerrorratebmxdbs = forms.DecimalField(label="DBS", decimal_places=5,  max_digits=8)
 
-    percentageerrorrateabbottplasma = forms.DecimalField(label="Plasma", decimal_places=5,  max_digits=5)
-    percentageerrorrateabbottdbs = forms.DecimalField(label="DBS", decimal_places=5,  max_digits=5)
+    percentageerrorrateabbottplasma = forms.DecimalField(label="Plasma", decimal_places=5,  max_digits=8)
+    percentageerrorrateabbottdbs = forms.DecimalField(label="DBS", decimal_places=5,  max_digits=8)
 
-    percentageerrorratehologicpantherplasma = forms.DecimalField(label="Plasma", decimal_places=5,  max_digits=5)
-    percentageerrorratehologicpantherdbs = forms.DecimalField(label="DBS", decimal_places=5,  max_digits=5)
+    percentageerrorratehologicpantherplasma = forms.DecimalField(label="Plasma", decimal_places=5,  max_digits=8)
+    percentageerrorratehologicpantherdbs = forms.DecimalField(label="DBS", decimal_places=5,  max_digits=8)
 
 
-    totalncsfromaudit=forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=5000, label="Total NCs from Audit (exchange audits)")
-    ncsnotyetclosed=forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=5000, label="NCs not yet closed")
+    totalncsfromaudit=forms.IntegerField( label="Total NCs from Audit (exchange audits)")
+    ncsnotyetclosed=forms.IntegerField( label="NCs not yet closed")
+
+    ncsclosedthisweek=forms.IntegerField( label="Ncs closed this week")
     user= forms.CharField(initial='123')
     lab= forms.CharField(initial='123')
 
@@ -1252,16 +1262,16 @@ class SpecimensreceivedbrtiweeklyForm(forms.ModelForm):
 
     numberofhourslimswasfunctional	 = forms.IntegerField(label="# of hours LIMS was Functional")
 
-    totalsamplescurrentpluscarryoverplasma= forms.IntegerField(label="Plasma")
-    totalsamplescurrentpluscarryoverdbs= forms.IntegerField(label="DBS")
+    totalsamplescurrentandcarryoverplasma= forms.IntegerField(label="Plasma")
+    totalsamplescurrentandcarryoverdbs= forms.IntegerField(label="DBS")
 
     samplesrefferedplasma = forms.IntegerField(label="Plasma")
     samplesreffereddbs = forms.IntegerField(label="DBS")
 
     labsamplesrefferedto = forms.IntegerField(label="Lab Samples Referred to")
 
-    percentagerejectionrateplasma = forms.DecimalField(label="Plasma",decimal_places=5,  max_digits=5)
-    percentagerejectionratedbs = forms.DecimalField(label="DBS", decimal_places=5,  max_digits=5)
+    percentagerejectionrateplasma = forms.DecimalField(label="Plasma",decimal_places=5,  max_digits=8)
+    percentagerejectionratedbs = forms.DecimalField(label="DBS", decimal_places=5,  max_digits=8)
 
 
     numberofresultsprintedfromlimsplasma = forms.IntegerField(label="Plasma")
@@ -1279,7 +1289,7 @@ class SpecimensreceivedbrtiweeklyForm(forms.ModelForm):
 
 
     # reasonsforrejectionssamplequalitycompromisedsamplequalityinsufficientplasma = forms.IntegerField(label="Plasma")
-    reason6 = forms.IntegerField(label="Plasma")
+    reasons6 = forms.IntegerField(label="Plasma")
 
     #reasonsforrejectionssamplequalitycompromisedsamplequalityinsufficientdbs = forms.IntegerField(label="DBS")
     reasons5 = forms.IntegerField(label="DBS")
@@ -1420,7 +1430,7 @@ class ReasonsforfailurebrtiweeklyForm(forms.ModelForm):
 #Hologic Panther
 
     hologicpantherplasmanumberoffailedtestsduetosamplequalityissues = forms.IntegerField(label="# of failed tests due to sample quality issues")
-    hologicpantherplasmanumberoffailedtestsduetoreagentqualityissues = forms.IntegerField(label="# of failed tests due to reagent quality issues")
+    hpantherplasmanumberoffailedtestsduetoreagentqualityissues = forms.IntegerField(label="# of failed tests due to reagent quality issues")
     hologicpantherplasmanumberoffailedtestsduetoduetoqcfailure = forms.IntegerField(label="# of failed tests due to QC failure")
     hologicpantherplasmanumberoffailedtestsduetopowerfailure = forms.IntegerField(label="# of failed tests due to power failure")
     hologicpantherplasmanumberoffailedtestsduetomechanicalfailure = forms.IntegerField(label="# of failed tests due to mechanical failure")
@@ -1531,8 +1541,8 @@ class Specimensreceivedcovid19Form(forms.ModelForm):
     numberofsamplesenteredintolims =	forms.IntegerField(label="# of Samples entered into LIMS")
     totalsamplescurrentpluscarryover	 =	forms.IntegerField(label="Total Samples Current + Carryover")
     samplesreferred	=	forms.IntegerField(label="Samples Referred")
-    samplesReferredtoName = forms.CharField(max_length=500, label="Samples Referred to (Name)")
-    rejectionratecurrentweek = forms.DecimalField(label="% Rejection Rate (Current Week)", decimal_places=5,  max_digits=5)
+    samplesreferredtoname	=	forms.IntegerField(label="Samples Referred to (Name)")
+    rejectionratecurrentweek = forms.DecimalField(label="% Rejection Rate (Current Week)", decimal_places=5,  max_digits=8)
     numberofresultsprintedlims =	forms.IntegerField(label="Number of Results printed (LIMS)")
     totalresultsdispatchedbylab	=	forms.IntegerField(label="Total Results dispatched by Lab")
     comment= forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), label="Comment: [Please input any comment regarding  samples carryover; samples received; samples rejected; rejection rate; printing and dispatch of results and developments and policy changes if applicable]", max_length=5000)

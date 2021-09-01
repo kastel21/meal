@@ -25,17 +25,7 @@
     {% csrf_token %}
 
 	<h1 align="center">Reasons for failures</h1>
-	<label> Please choose a date: </label>
-<select id="">
-  <option value="Monday">Monday</option>
-  <option value="Tuesday">Tuesday</option>
-  <option value="Wednesday">Wednesday</option>
-  <option value="Thursday">Thursday</option>
-  <option value="Friday">Friday</option>
-  <option value="Saturday">Saturday</option>
-  <option value="Sunday">Sunday</option>
-  <option value="Sunday">Total</option>
-</select>
+	<label><th>{{form.dayofweek | as_crispy_field}}</th></label>
 <p></p>
 <p></p>
 <br><br>
@@ -117,6 +107,10 @@
   </tr>
 
   <tr>
+    <th>{{form.bmxplasmanumberoffailedtestsduetosamplequalityissues | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
     <th>{{form.bmxplasmanumberoffailedtestsduetoreagentqualityissues | as_crispy_field}}</th>
   </tr>
 
@@ -174,7 +168,7 @@
   </tr>
 
   <tr>
-    <th>{{form.hologicpantherdqacheckplasma | as_crispy_field}}</th>
+    <th>{{form.bmxdqacheckdbs | as_crispy_field}}</th>
   </tr>
 
   <tr>
@@ -204,7 +198,7 @@
   </tr>
 
   <tr>
-    <th>{{form.abbottdbsnumberoffailedtestsduetoother | as_crispy_field}}</th>
+    <th>{{form.abbottplasmanumberoffailedtestsduetoother | as_crispy_field}}</th>
   </tr>
 
   <tr>
@@ -251,7 +245,7 @@
   </tr>
 
   <tr>
-    <th>{{form.hologicpantherplasmanumberoffailedtestsduetoreagentqualityissues | as_crispy_field}}</th>
+    <th>{{form.hpantherplasmanumberoffailedtestsduetoreagentqualityissues | as_crispy_field}}</th>
   </tr>
 
   <tr>
@@ -318,10 +312,11 @@
 
 <div style="display: none;">
 
-{{form.reportingweek}}
-{{form.dateofrecord}}
-{{form.user}}
-{{form.lab}}
+  {{form.reportingweek}}
+	{{form.user}}
+	{{form.key}}
+	{{form.lab}}
+	{{form.dateofrecord}}
 
 
 </div>
@@ -338,9 +333,11 @@
 
 
 $(':input[name$=reportingweek]').val('1');
-
+$(':input[name$=key]').val('totalruns');
 $(':input[name$=user]').val('totalruns');
 $(':input[name$=lab]').val('totalruns');
+$(':input[name$=dateofrecord]').val('totalruns');
+
 
 </script>
 

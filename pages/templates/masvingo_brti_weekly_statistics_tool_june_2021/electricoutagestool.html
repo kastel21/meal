@@ -25,17 +25,7 @@
     {% csrf_token %}
 
   <h1 align="center">Electric Outages Tool</h1>
-  <label> Please choose a date: </label>
-<select id="">
-  <option value="Monday">Monday</option>
-  <option value="Tuesday">Tuesday</option>
-  <option value="Wednesday">Wednesday</option>
-  <option value="Thursday">Thursday</option>
-  <option value="Friday">Friday</option>
-  <option value="Saturday">Saturday</option>
-  <option value="Sunday">Sunday</option>
-  <option value="Sunday">Total</option>
-</select>
+  <label>   <th>{{form.dayofweek | as_crispy_field}}</th></label>
 <p></p>
 <p></p>
 <br><br>
@@ -71,10 +61,11 @@
 
 <div style="display: none;">
 
-{{form.reportingweek}}
-{{form.dateofrecord}}
-{{form.user}}
-{{form.lab}}
+  {{form.reportingweek}}
+	{{form.user}}
+	{{form.key}}
+	{{form.lab}}
+	{{form.dateofrecord}}
 
 
 </div>
@@ -89,11 +80,11 @@
 
 <script>
 
-
 $(':input[name$=reportingweek]').val('1');
-
+$(':input[name$=key]').val('totalruns');
 $(':input[name$=user]').val('totalruns');
 $(':input[name$=lab]').val('totalruns');
+$(':input[name$=dateofrecord]').val('totalruns');
 
 </script>
 

@@ -7,8 +7,6 @@ from django.contrib.auth.models import AbstractUser
 
 
 class CustomUser(AbstractUser):
-    Victoria_Falls= 'Victoria Falls'
-    Bindura = 'Bindura'
     labchoices=[
         ('NMRL','NMRL'),
         ('Mpilo','Mpilo'),
@@ -238,6 +236,7 @@ class specimensrunbrtivleid(models.Model):
     testsdonerochefailedbutnoteligibaleforrepeatplasma= models.IntegerField(default=0,)
     testsdonerocherepeatplasma= models.IntegerField(default=0,)
     testsdonerochefailedafterrepeattestingplasma = models.IntegerField(default=0,)
+    hpantherplasmanumberoffailedtestsduetoreagentqualityissues = models.IntegerField(default=0)
 
 
     testsdonerochenumberofsamplesreceivedthisweekdbs = models.IntegerField(default=0,)
@@ -323,12 +322,12 @@ class specimensrunbrtivleid(models.Model):
 
 
 
-    totalncsfromaudit=models.TextField(max_length=30,null=True)
-    ncsnotyetclosed=models.TextField(max_length=30,null=True)
-    ncsclosedthisweek=models.TextField(max_length=30,null=True)
-    totalncsfromaudit1=models.TextField(max_length=30,null=True)
-    ncsnotyetclosed1=models.TextField(max_length=30,null=True)
-    ncsclosedthisweek1=models.TextField(max_length=30,null=True)
+    totalncsfromaudit=models.IntegerField(default=0,null=True)
+    ncsnotyetclosed=models.IntegerField(default=0,null=True)
+    ncsclosedthisweek=models.IntegerField(default=0,null=True)
+    # totalncsfromaudit1=models.TextField(max_length=30,null=True)
+    # ncsnotyetclosed1=models.TextField(max_length=30,null=True)
+    # ncsclosedthisweek1=models.TextField(max_length=30,null=True)
     #user= models.TextField(max_length=25,default="root")
     lab= models.TextField(max_length=30,default="brti")
     key= models.TextField(max_length=5,default="vl")
@@ -358,11 +357,11 @@ class specimensreceivedbrtivleid(models.Model):
     dayofweek = models.TextField(max_length=30, choices=labchoices, default='NMRL')
     reportingweek = models.TextField(default='.',max_length=30,null=False)
 
-    samplescarriedoverpreviousweeknevertestedplasma = models.IntegerField(default=0,)
+    samplescarriedoverpreviousweeksnevertestedplasma = models.IntegerField(default=0,)
     samplescarriedoverpreviousweeknevertesteddbs = models.IntegerField(default=0,)
 
-    samplescarriedoverpreviouspreviousfailedsamplesplasma = models.IntegerField(default=0,)
-    samplescarriedoverpreviouspreviousfailedsamplesdbs = models.IntegerField(default=0,)
+    samplescarriedoverpreviousfailedsamplesplasma = models.IntegerField(default=0,)
+    samplescarriedoverpreviousfailedsamplesdbs = models.IntegerField(default=0,)
 
     samplesreceivedcurrentweekplasma = models.IntegerField(default=0,)
     samplesreceivedcurrentweekdbs = models.IntegerField(default=0,)
@@ -557,17 +556,25 @@ class reasonsforfailurebrtivleid(models.Model):
 
 class Electricoutagebrtivleid(models.Model):
 
-    dayschoices=[
-        ('Monday','Monday'),
-        ('Tuesday','Tuesday'),
-        ('Wednesday','Wednesday'),
-        ('Thursday','Thursday'),
-        ('Friday','Friday'),
-        ('Saturday','Saturday'),
-        ('Sunday','Sunday'),
+    labchoices=[
+        ('NMRL','NMRL'),
+        ('Mpilo','Mpilo'),
+        ('BRIDH','BRIDH'),
+        ('NTBRL','NTBRL'),
+        ('Gweru','Gweru'),
+        ('Chinhoyi','Chinhoyi'),
+        ('Masvingo','Masvingo'),
+        ('eid','eid'),
+        ('Victoria Falls', 'Victoria Falls'),
+        ('Bindura','Bindura'),
+        ('Kadoma','Kadoma'),
+        ('Marondera','Marondera'),
+        ('St Lukes', 'St Lukes'),
+        ('Gwanda','Gwanda'),
+        ('Total','Total'),
     ]
 
-    dayofweek = models.TextField(max_length=30, choices=dayschoices, default='Monday')
+    dayofweek = models.TextField(max_length=30, choices=labchoices, default='Monday')
     reportingweek = models.TextField(default='.',max_length=30,null=False)
 
 
@@ -615,11 +622,11 @@ class Specimensrecievedbrtivlweekly(models.Model):
     reportingweek = models.TextField(default='.',max_length=30,null=False)
     dateofrecord = models.DateField(auto_now=True)
 
-    samplescarriedoverpreviousweeknevertestedplasma = models.IntegerField(default=0,)
+    samplescarriedoverpreviousweeksnevertestedplasma = models.IntegerField(default=0,)
     samplescarriedoverpreviousweeknevertesteddbs = models.IntegerField(default=0,)
 
-    samplescarriedoverpreviouspreviousfailedsamplesplasma = models.IntegerField(default=0,)
-    samplescarriedoverpreviouspreviousfailedsamplesdbs = models.IntegerField(default=0,)
+    samplescarriedoverpreviousfailedsamplesplasma = models.IntegerField(default=0,)
+    samplescarriedoverpreviousfailedsamplesdbs = models.IntegerField(default=0,)
 
 
     samplesreceivedcurrentweekplasma = models.IntegerField(default=0,)
@@ -1069,8 +1076,10 @@ class Specimensrunbrtivlweekly(models.Model):
     percentageerrorratehologicpantherdbs = models.DecimalField(decimal_places=2,  max_digits=3)
 
 
-    totalncsfromaudit=models.TextField(max_length=30,null=True)
-    ncsnotyetclosed=models.TextField(max_length=30,null=True)
+    totalncsfromaudit=models.IntegerField(default=0,null=True)
+    ncsnotyetclosed=models.IntegerField(default=0,null=True)
+    ncsclosedthisweek=models.IntegerField( default=0)
+
     user= models.TextField(max_length=25,default="root")
     lab= models.TextField(max_length=30,default="brti")
     key= models.TextField(max_length=30,default="vl")
@@ -1383,11 +1392,11 @@ class Specimensreceivedcovid19(models.Model):
     numberofsamplesenteredintolims =	models.IntegerField(default=0,)
     totalsamplescurrentpluscarryover	 =	models.IntegerField(default=0,)
     samplesreferred	=	models.IntegerField(default=0,)
-    rejectionratecurrentweek = models.DecimalField(decimal_places=2,  max_digits=5)
+    rejectionratecurrentweek = models.DecimalField(decimal_places=2,  max_digits=8)
     numberofresultsprintedlims =	models.IntegerField(default=0,)
     totalresultsdispatchedbylab	=	models.IntegerField(default=0,)
     comment= models.TextField(default='.',max_length=300, null=True)
-    samplesReferredtoName = models.TextField(max_length=300, default="null")
+    samplesreferredtoname = models.IntegerField(default=0,)
 
     user= models.TextField(max_length=25,default="root")
     lab= models.TextField(max_length=30,default="brti")
@@ -1829,8 +1838,9 @@ class Specimensrunbrtiweekly(models.Model):
     percentageerrorratehologicpantherdbs = models.DecimalField(decimal_places=2,  max_digits=3)
 
 
-    totalncsfromaudit=models.TextField(max_length=30,null=True)
-    ncsnotyetclosed=models.TextField(max_length=30,null=True)
+    totalncsfromaudit=models.IntegerField(default=0)
+    ncsnotyetclosed=models.IntegerField(default=0)
+    ncsclosedthisweek=models.IntegerField(default=0)
 
     user= models.TextField(max_length=25,default="root")
     lab= models.TextField(max_length=30,default="brti")
@@ -1878,8 +1888,8 @@ class Specimensreceivedbrtiweekly(models.Model):
 
     numberofhourslimswasfunctional	 = models.IntegerField(default=0,)
 
-    totalsamplescurrentpluscarryoverplasma= models.IntegerField(default=0,)
-    totalsamplescurrentpluscarryoverdbs= models.IntegerField(default=0,)
+    totalsamplescurrentandcarryoverplasma= models.IntegerField(default=0,)
+    totalsamplescurrentandcarryoverdbs= models.IntegerField(default=0,)
 
     samplesrefferedplasma = models.IntegerField(default=0,)
     samplesreffereddbs = models.IntegerField(default=0,)
@@ -2112,3 +2122,24 @@ class Electricoutagebrtiweekly(models.Model):
 
 
 
+"""
+
+
+  <tr>
+  	<td rowspan="4"><b>Samples Carried Over</b></td>
+  	<td rowspan="2"><b>Previous weeks never (tested)</b></td>
+	<th>{{form.samplescarriedoverpreviousweeknevertestedplasma | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+	<th>{{form.samplescarriedoverpreviousweeknevertesteddbs | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+  	<td rowspan="2"><b>Previous Failed Samples</b></td>
+	<th>{{form.samplescarriedoverpreviouspreviousfailedsamplesplasma | as_crispy_field}}</th>
+  </tr>
+
+  
+
+"""

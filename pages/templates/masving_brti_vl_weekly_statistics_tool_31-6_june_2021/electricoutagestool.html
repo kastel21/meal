@@ -67,6 +67,7 @@
 {{form.dateofrecord}}
 {{form.user}}
 {{form.lab}}
+{{form.key}}
 
 
 </div>
@@ -83,7 +84,8 @@
 
 
 $(':input[name$=reportingweek]').val('1');
-
+$(':input[name$=dateofrecord]').val('1');
+$(':input[name$=key]').val('1');
 $(':input[name$=user]').val('totalruns');
 $(':input[name$=lab]').val('totalruns');
 

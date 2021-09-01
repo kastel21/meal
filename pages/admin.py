@@ -56,17 +56,23 @@ class CustomUserAdmin(UserAdmin):
 
 admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register(specimensreceivedbrticovid19)
-admin.site.register(Electricoutagebrtivlweekly)
+# admin.site.register(Electricoutagebrtivlweekly)
 admin.site.register(Reasonsforfailurebrtivlweekly)
-admin.site.register(Specimensruncovid19)
-admin.site.register(Specimensreceivedcovid19)
+# admin.site.register(Specimensruncovid19)
+# admin.site.register(Specimensreceivedcovid19)
 admin.site.register(specimensrunbrticovid19)
-admin.site.register(machinedowntimereagentstockouttoolcovid19)
+# admin.site.register(machinedowntimereagentstockouttoolcovid19)
 admin.site.register(machinedowntimereagentstockouttoolbrticovid19)
 
 admin.site.register(generalbrticovid19)
-admin.site.register(Generalcovid19)
+# admin.site.register(Generalcovid19)
 
 
 admin.site.register(specimensrunbrtivleid)
-admin.site.register(Specimensrunbrtiweekly)
+# admin.site.register(Specimensrunbrtiweekly)
+
+admin.site.register(specimensreceivedbrtivleid)
+
+admin.site.register(reasonsforfailurebrtivleid)
+
+admin.site.register(Electricoutagebrtivleid)

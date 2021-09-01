@@ -266,8 +266,7 @@ def labvlrun(request):
             updateTotal.ncsnotyetclosed += form.cleaned_data.get('ncsnotyetclosed')
             updateTotal.lab = request.user.lab
             updateTotal.key = "vl"
-            updateTotal.testsdoneabbottrun += form.cleaned_data.get('testsdoneabbottrun')
-            updateTotal.testsdoneabbottrun += form.cleaned_data.get('testsdoneabbottrun')
+            updateTotal.ncsclosedthisweek += form.cleaned_data.get('ncsclosedthisweek')
 
             updateTotal.save()
 
@@ -297,11 +296,11 @@ def labvlrecieved(request):
         if form.is_valid():
             updateTotal = specimensreceivedbrtivleid.objects.get(key="vl", lab=request.user.lab,reportingweek=getReportingWeek() )
 
-            updateTotal.samplescarriedoverpreviousweeknevertestedplasma += form.cleaned_data.get('samplescarriedoverpreviousweeknevertestedplasma')
+            updateTotal.samplescarriedoverpreviousweeksnevertestedplasma += form.cleaned_data.get('samplescarriedoverpreviousweeksnevertestedplasma')
             updateTotal.samplescarriedoverpreviousweeknevertesteddbs += form.cleaned_data.get('samplescarriedoverpreviousweeknevertesteddbs')
 
-            updateTotal.samplescarriedoverpreviouspreviousfailedsamplesplasma += form.cleaned_data.get('samplescarriedoverpreviouspreviousfailedsamplesplasma')
-            updateTotal.samplescarriedoverpreviouspreviousfailedsamplesdbs += form.cleaned_data.get('samplescarriedoverpreviouspreviousfailedsamplesdbs')
+            updateTotal.samplescarriedoverpreviousfailedsamplesplasma += form.cleaned_data.get('samplescarriedoverpreviousfailedsamplesplasma')
+            updateTotal.samplescarriedoverpreviousfailedsamplesdbs += form.cleaned_data.get('samplescarriedoverpreviousfailedsamplesdbs')
 
 
             updateTotal.samplesreceivedcurrentweekplasma += form.cleaned_data.get('samplesreceivedcurrentweekplasma')
@@ -350,7 +349,7 @@ def labvlrecieved(request):
             updateTotal.reasons1 += form.cleaned_data.get('reasons1')
 
             updateTotal.reasons4 += form.cleaned_data.get('reasons4')
-            updateTotal.reasons3 += form.cleaned_data.get('reasons3')
+            updateTotal.reason3 += form.cleaned_data.get('reasons3')
 
             updateTotal.reasonsforrejectionssamplequalitycompromisedqdacheckplasma += form.cleaned_data.get('reasonsforrejectionssamplequalitycompromisedqdacheckplasma')
             updateTotal.reasonsforrejectionssamplequalitycompromisedqdacheckdbs += form.cleaned_data.get('reasonsforrejectionssamplequalitycompromisedqdacheckdbs')
@@ -397,7 +396,7 @@ def labvlfailure(request):
     if request.method == 'POST':
         form = ReasonsforfailurebrtivlweeklyForm(request.POST)
         if form.is_valid():
-            updateTotal = reasonsforfailurebrtivleidForm.objects.get(key="vl", lab=request.user.lab,reportingweek=getReportingWeek() )
+            updateTotal = reasonsforfailurebrtivleid.objects.get(key="vl", lab=request.user.lab,reportingweek=getReportingWeek() )
 
             updateTotal.rocheplasmanumberoffailedtestsduetosamplequalityissues += form.cleaned_data.get('rocheplasmanumberoffailedtestsduetosamplequalityissues')
             updateTotal.rocheplasmanumberoffailedtestsduetoreagentqualityissues += form.cleaned_data.get('rocheplasmanumberoffailedtestsduetoreagentqualityissues')
@@ -465,7 +464,7 @@ def labvlfailure(request):
 
 
             updateTotal.hologicpantherplasmanumberoffailedtestsduetosamplequalityissues += form.cleaned_data.get('hologicpantherplasmanumberoffailedtestsduetosamplequalityissues')
-            updateTotal.hologicpantherplasmanumberoffailedtestsduetoreagentqualityissues += form.cleaned_data.get('hologicpantherplasmanumberoffailedtestsduetoreagentqualityissues')
+            updateTotal.hpantherplasmanumberoffailedtestsduetoreagentqualityissues += form.cleaned_data.get('hpantherplasmanumberoffailedtestsduetoreagentqualityissues')
             updateTotal.hologicpantherplasmanumberoffailedtestsduetoduetoqcfailure += form.cleaned_data.get('hologicpantherplasmanumberoffailedtestsduetoduetoqcfailure')
             updateTotal.hologicpantherplasmanumberoffailedtestsduetopowerfailure += form.cleaned_data.get('hologicpantherplasmanumberoffailedtestsduetopowerfailure')
             updateTotal.hologicpantherplasmanumberoffailedtestsduetomechanicalfailure += form.cleaned_data.get('hologicpantherplasmanumberoffailedtestsduetomechanicalfailure')
@@ -700,9 +699,8 @@ def labcov19recieved(request):
 
 #mostt likely to crush if we keep on joining comments 
             updateTotal.comment = updateTotal.comment + form.cleaned_data.get('comment')
-            updateTotal.samplesReferredtoName = updateTotal.samplesReferredtoName + form.cleaned_data.get('samplesReferredtoName')
-            updateTotal.errorratesabbott = updateTotal.errorratesabbott + form.cleaned_data.get('errorratesabbott')
-            updateTotal.errorratesabbott = updateTotal.errorratesabbott + form.cleaned_data.get('errorratesabbott')
+            updateTotal.samplesreferredtoname = updateTotal.samplesreferredtoname + form.cleaned_data.get('samplesreferredtoname')
+
 
 
 
@@ -763,8 +761,10 @@ def labcov19general(request):
 @login_required(login_url='loly_login')
 def labcov19machine(request):
     if request.method == 'POST':
+        print('tyuiop[')
         form = machinedowntimereagentstockouttoolcovid19Form(request.POST)
         if form.is_valid():
+            print('tyuiop[ valid')
             updateTotal = machinedowntimereagentstockouttoolbrticovid19.objects.get(dayofweek="Total", lab=request.user.lab,reportingweek=getReportingWeek())
             updateTotal.numberofmachinebreakdownsabbott += form.cleaned_data.get('numberofmachinebreakdownsabbott')
             updateTotal.numberofmachinebreakdownsbmx = updateTotal.numberofmachinebreakdownsbmx + form.cleaned_data.get('numberofmachinebreakdownsbmx')
@@ -983,9 +983,7 @@ def labeidrun(request):
             updateTotal.ncsnotyetclosed += form.cleaned_data.get('ncsnotyetclosed')
 
             updateTotal.ncsclosedthisweek += form.cleaned_data.get('ncsclosedthisweek')
-            updateTotal.totalncsfromaudit1 += form.cleaned_data.get('totalncsfromaudit1')
-            updateTotal.ncsnotyetclosed1 += form.cleaned_data.get('ncsnotyetclosed1')
-            updateTotal.ncsclosedthisweek1 += form.cleaned_data.get('ncsclosedthisweek1')
+
             
             updateTotal.save()
 
@@ -1015,10 +1013,10 @@ def labeidrecieved(request):
         if form.is_valid():
 
             updateTotal = specimensreceivedbrtivleid.objects.get(key="eid",dayofweek="Total", lab=request.user.lab,reportingweek=getReportingWeek())
-            updateTotal.samplescarriedoverpreviousweeknevertestedplasma += form.cleaned_data.get('samplescarriedoverpreviousweeknevertestedplasma')
-            updateTotal.samplescarriedoverpreviousweeknevertesteddbs += form.cleaned_data.get('samplescarriedoverpreviousweeknevertesteddbs')
-            updateTotal.samplescarriedoverpreviouspreviousfailedsamplesplasma += form.cleaned_data.get('samplescarriedoverpreviouspreviousfailedsamplesplasma')
-            updateTotal.samplescarriedoverpreviouspreviousfailedsamplesdbs += form.cleaned_data.get('samplescarriedoverpreviouspreviousfailedsamplesdbs')
+            updateTotal.samplescarriedoverpreviousweeksnevertestedplasma += form.cleaned_data.get('samplescarriedoverpreviousweeksnevertestedplasma')
+            updateTotal.samplescarriedoverpreviousweeknevertesteddbs += form.cleaned_data.get('samplescarriedoverpreviousweeksnevertesteddbs')
+            updateTotal.samplescarriedoverpreviousfailedsamplesplasma += form.cleaned_data.get('samplescarriedoverpreviousfailedsamplesplasma')
+            updateTotal.samplescarriedoverpreviousfailedsamplesdbs += form.cleaned_data.get('samplescarriedoverpreviousfailedsamplesdbs')
 
             updateTotal.samplesreceivedcurrentweekplasma += form.cleaned_data.get('samplesreceivedcurrentweekplasma')
             updateTotal.samplesreceivedcurrentweekdbs += form.cleaned_data.get('samplesreceivedcurrentweekdbs')
@@ -1057,7 +1055,7 @@ def labeidrecieved(request):
             updateTotal.reasons1 += form.cleaned_data.get('reasons1')
 
             updateTotal.reasons4 += form.cleaned_data.get('reasons4')
-            updateTotal.reason3 += form.cleaned_data.get('reason3')
+            updateTotal.reason3 += form.cleaned_data.get('reasons3')
             updateTotal.reasonsforrejectionssamplequalitycompromisedqdacheckplasma += form.cleaned_data.get('reasonsforrejectionssamplequalitycompromisedqdacheckplasma')
             updateTotal.reasonsforrejectionssamplequalitycompromisedqdacheckdbs += form.cleaned_data.get('reasonsforrejectionssamplequalitycompromisedqdacheckdbs')
             updateTotal.reasonsforsamplerefferalreagentorkitstockoutplasma += form.cleaned_data.get('reasonsforsamplerefferalreagentorkitstockoutplasma')
@@ -1209,7 +1207,7 @@ def labeidelectric(request):
         if form.is_valid():
 
 
-            updateTotal = Electricoutagebrtivleid.objects.get(key="eid",dayofweek="Total", lab=request.user.lab,reportingweek=getReportingWeek())
+            updateTotal = Electricoutagebrtivleid.objects.get(key="eid",dayofweek="Monday", lab=request.user.lab,reportingweek=getReportingWeek())
             updateTotal.numberofhourswithnoelectricityperday += form.cleaned_data.get('numberofhourswithnoelectricityperday')
             updateTotal.numberofhoursgeneratorwasonperday += form.cleaned_data.get('numberofhoursgeneratorwasonperday')
             updateTotal.litresoffueladdedtogeneratorperday += form.cleaned_data.get('litresoffueladdedtogeneratorperday')

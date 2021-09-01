@@ -26,17 +26,10 @@
     {% csrf_token %}
 
 	<h1 align="center">Specimens Run</h1>
-	<label> Please choose a date: </label>
-<select id="">
-  <option value="Monday">Monday</option>
-  <option value="Tuesday">Tuesday</option>
-  <option value="Wednesday">Wednesday</option>
-  <option value="Thursday">Thursday</option>
-  <option value="Friday">Friday</option>
-  <option value="Saturday">Saturday</option>
-  <option value="Sunday">Sunday</option>
-  <option value="Sunday">Total</option>
-</select>
+	<label> <th>
+    {{form.dayofweek | as_crispy_field}}
+  </th>  </label>
+
 <p></p>
 <p></p>
 <br><br>
@@ -47,7 +40,7 @@
   </tr>
 
   <tr>
-  	<td rowspan="54"><b>Tests Done</b></td>
+  	<td rowspan="57"><b>Tests Done</b></td>
   	<td rowspan="12"><b>Roche</b></td>
   	<td rowspan="6"><b>Plasma</b></td>
     <th>{{form.testsdonerochenumberofsamplesreceivedthisweekplasma | as_crispy_field}}</th>
@@ -211,15 +204,19 @@
   </tr>
 
   <tr>
-    <td rowspan="14"><b>Hologic Panther</b></td>
+    <td rowspan="17"><b>Hologic Panther</b></td>
   </tr>
 
   <tr>
-    <td rowspan="7"><b>Plasma</b></td>
+    <td rowspan="8"><b>Plasma</b></td>
   </tr>
 
   <tr>
     <th>{{form.testsdonehologicpanthernumberofsamplesreceivedthisweekplasma | as_crispy_field}}</th>
+  </tr>
+
+  <tr>
+    <th>{{form.tests2 | as_crispy_field}}</th>
   </tr>
 
   <tr>
@@ -243,9 +240,14 @@
   </tr>
 
   <tr>
-    <td rowspan="6"><b>DBS<b></td>
+    <td rowspan="8"><b>DBS<b></td>
     <th>{{form.testsdonehologicpanthernumberofsamplesreceivedthisweekdbs | as_crispy_field}}</th>
   </tr>
+
+  <tr>
+    <th>{{form.tests1 | as_crispy_field}}</th>
+  </tr>
+
 
   <tr>
     <th>{{form.testsdonehologicpanthernumberofsamplescarriedoverpreviousweeksdbs | as_crispy_field}}</th>
@@ -347,6 +349,10 @@
     <th colspan="4">{{form.ncsnotyetclosed | as_crispy_field}}</th>
   </tr>
 
+  <tr>
+    <th colspan="4">{{form.ncsclosedthisweek | as_crispy_field}}</th>
+  </tr>
+
 </table>
 <br><br>
 
@@ -355,9 +361,10 @@
 <div style="display: none;">
 
 {{form.reportingweek}}
-{{form.dateofrecord}}
 {{form.user}}
+{{form.key}}
 {{form.lab}}
+{{form.dateofrecord}}
 
 
 </div>
@@ -374,9 +381,10 @@
 
 
 $(':input[name$=reportingweek]').val('1');
-
+$(':input[name$=key]').val('totalruns');
 $(':input[name$=user]').val('totalruns');
 $(':input[name$=lab]').val('totalruns');
+$(':input[name$=dateofrecord]').val('totalruns');
 
 </script>
 

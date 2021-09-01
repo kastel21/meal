@@ -38,12 +38,12 @@
     <td colspan="4"><b>Laboratory</b></td>
   </tr>
 
+
   <tr>
   	<td rowspan="16"><b>Roche</b></td>
   	<td rowspan="8"><b>Plasma</b></td>
     <th>{{form.rocheplasmanumberoffailedtestsduetosamplequalityissues | as_crispy_field}}</th>
   </tr>
-
   <tr>
     <th>{{form.rocheplasmanumberoffailedtestsduetoreagentqualityissues | as_crispy_field}}</th>
   </tr>
@@ -71,7 +71,6 @@
   <tr>
     <th>{{form.rochedqacheckplasma | as_crispy_field}}</th>
   </tr>
-
   <tr>
     <td rowspan="8"><b>DBS<b></td>
     <th>{{form.rochedbsnumberoffailedtestsduetosamplequalityissues | as_crispy_field}}</th>
@@ -93,6 +92,7 @@
     <th>{{form.rochedbsnumberoffailedtestsduetomechanicalfailure | as_crispy_field}}</th>
   </tr>
 
+  
   <tr>
     <th>{{form.rochedbsnumberoffailedtestsduetoprocessingerror | as_crispy_field}}</th>
   </tr>
@@ -126,7 +126,6 @@
   <tr>
     <th>{{form.bmxplasmanumberoffailedtestsduetomechanicalfailure | as_crispy_field}}</th>
   </tr>
-
   <tr>
     <th>{{form.bmxplasmanumberoffailedtestsduetoprocessingerror | as_crispy_field}}</th>
   </tr>
@@ -143,6 +142,7 @@
     <td rowspan="8"><b>DBS<b></td>
     <th>{{form.bmxdbsnumberoffailedtestsduetosamplequalityissues | as_crispy_field}}</th>
   </tr>
+
 
   <tr>
     <th>{{form.bmxdbsnumberoffailedtestsduetoreagentqualityissues | as_crispy_field}}</th>
@@ -177,7 +177,6 @@
     <td rowspan="8"><b>Plasma</b></td>
     <th>{{form.abbottplasmanumberoffailedtestsduetosamplequalityissues | as_crispy_field}}</th>
   </tr>
-
   <tr>
     <th>{{form.abbottplasmanumberoffailedtestsduetoreagentqualityissues | as_crispy_field}}</th>
   </tr>
@@ -189,7 +188,6 @@
   <tr>
     <th>{{form.abbottplasmanumberoffailedtestsduetopowerfailure | as_crispy_field}}</th>
   </tr>
-
   <tr>
     <th>{{form.abbottplasmanumberoffailedtestsduetomechanicalfailure | as_crispy_field}}</th>
   </tr>
@@ -206,7 +204,7 @@
     <th>{{form.abbottdqacheckplasma | as_crispy_field}}</th>
   </tr>
 
-    <tr>
+  <tr>
     <td rowspan="8"><b>DBS<b></td>
     <th>{{form.abbottdbsnumberoffailedtestsduetosamplequalityissues | as_crispy_field}}</th>
   </tr>
@@ -219,6 +217,7 @@
     <th>{{form.abbottdbsnumberoffailedtestsduetoduetoqcfailure | as_crispy_field}}</th>
   </tr>
 
+
   <tr>
     <th>{{form.abbottdbsnumberoffailedtestsduetopowerfailure | as_crispy_field}}</th>
   </tr>
@@ -230,7 +229,6 @@
   <tr>
     <th>{{form.abbottdbsnumberoffailedtestsduetoprocessingerror | as_crispy_field}}</th>
   </tr>
-
   <tr>
     <th>{{form.abbottdbsnumberoffailedtestsduetoother | as_crispy_field}}</th>
   </tr>
@@ -244,9 +242,8 @@
     <td rowspan="8"><b>Plasma</b></td>
     <th>{{form.hologicpantherplasmanumberoffailedtestsduetosamplequalityissues | as_crispy_field}}</th>
   </tr>
-
   <tr>
-    <th>{{form.hologicpantherplasmanumberoffailedtestsduetoreagentqualityissues | as_crispy_field}}</th>
+    <th>{{form.hpantherplasmanumberoffailedtestsduetoreagentqualityissues | as_crispy_field}}</th>
   </tr>
 
   <tr>
@@ -256,6 +253,7 @@
   <tr>
     <th>{{form.hologicpantherplasmanumberoffailedtestsduetopowerfailure | as_crispy_field}}</th>
   </tr>
+
 
   <tr>
     <th>{{form.hologicpantherplasmanumberoffailedtestsduetomechanicalfailure | as_crispy_field}}</th>
@@ -272,8 +270,7 @@
   <tr>
     <th>{{form.hologicpantherdqacheckplasma | as_crispy_field}}</th>
   </tr>
-
-    <tr>
+  <tr>
     <td rowspan="8"><b>DBS<b></td>
       <th>{{form.hologicpantherdbsnumberoffailedtestsduetosamplequalityissues | as_crispy_field}}</th>
   </tr>
@@ -316,6 +313,7 @@
 {{form.dateofrecord}}
 {{form.user}}
 {{form.lab}}
+{{form.key}}
 
 
 </div>
@@ -332,7 +330,8 @@
 
 
 $(':input[name$=reportingweek]').val('1');
-
+$(':input[name$=dateofrecord]').val('1');
+$(':input[name$=key]').val('1');
 $(':input[name$=user]').val('totalruns');
 $(':input[name$=lab]').val('totalruns');
 
@@ -341,3 +340,6 @@ $(':input[name$=lab]').val('totalruns');
 {%endblock js%}
 
 {% endblock %}
+
+
+

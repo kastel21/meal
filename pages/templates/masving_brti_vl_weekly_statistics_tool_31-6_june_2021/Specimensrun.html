@@ -216,7 +216,7 @@
   </tr>
 
   <tr>
-    <th>{{form.testsdonehologicpanthernumberofsamplescarriedoverpreviousweeksplasma | as_crispy_field}}</th>
+    <th>{{form.tests2 | as_crispy_field}}</th>
   </tr>
 
   <tr>
@@ -241,7 +241,7 @@
   </tr>
 
   <tr>
-    <th>{{form.testsdonehologicpanthernumberofsamplescarriedoverpreviousweeksdbs | as_crispy_field}}</th>
+    <th>{{form.tests1 | as_crispy_field}}</th>
   </tr>
 
   <tr>
@@ -340,16 +340,20 @@
     <th colspan="4">{{form.ncsnotyetclosed | as_crispy_field}}</th>
   </tr>
 
+  <tr>
+    <th colspan="4">{{form.ncsclosedthisweek | as_crispy_field}}</th>
+  </tr>
 </table>
 
 <br><br>
 
 <div style="display: none;">
 
-{{form.reportingweek}}
-{{form.dateofrecord}}
-{{form.user}}
-{{form.lab}}
+  {{form.reportingweek}}
+	{{form.user}}
+	{{form.key}}
+	{{form.lab}}
+	{{form.dateofrecord}}
 
 
 </div>
@@ -366,9 +370,10 @@
 
 
 $(':input[name$=reportingweek]').val('1');
-
+$(':input[name$=key]').val('totalruns');
 $(':input[name$=user]').val('totalruns');
 $(':input[name$=lab]').val('totalruns');
+$(':input[name$=dateofrecord]').val('totalruns');
 
 </script>
 
