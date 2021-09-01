@@ -27,7 +27,7 @@ urlpatterns = [
     path('labeidfailure', views.labeidfailure, name='labeidfailure'),
     path('labeidrecieved', views.labeidrecieved, name='labeidrecieved'),
     path('labeidrun', views.labeidrun, name='labeidrun'),
-    path('labeidtop', views.labeidtop1, name='labeidtop1'),
+    path('labeidtop1', views.labeidtop1, name='labeidtop1'),
 
     #lab vl
     path('labvltop', views.labvltop, name='labvltop'),

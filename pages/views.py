@@ -105,7 +105,6 @@ def logoutUser(request):
 
 
 #function to get current reporting week
-@login_required(login_url='loly_login')
 def getReportingWeek():
     #do calcs
 
@@ -266,7 +265,14 @@ def labvlrun(request):
 
 
             updateTotal.save()
-            form.save()
+            new_form = form.save(commit=False)
+
+            new_form.lab =request.user.lab
+            new_form.reportingweek = getReportingWeek()
+
+
+            new_form.user=request.user
+            new_form.save()
             #return render(request, 'success.html')
     form = SpecimensrunbrtivlweeklyForm()
     context = {'form': form}
@@ -355,7 +361,14 @@ def labvlrecieved(request):
             updateTotal.comments += form.cleaned_data.get('comments')
 
             updateTotal.save()
-            form.save()
+            new_form = form.save(commit=False)
+
+            new_form.lab =request.user.lab
+            new_form.reportingweek = getReportingWeek()
+
+
+            new_form.user=request.user
+            new_form.save()
             #return render(request, 'success.html')
     form = SpecimensrecievedbrtivlweeklyForm()
     context = {'form': form}
@@ -457,7 +470,14 @@ def labvlfailure(request):
 
 
 
-            form.save()
+            new_form = form.save(commit=False)
+
+            new_form.lab =request.user.lab
+            new_form.reportingweek = getReportingWeek()
+
+
+            new_form.user=request.user
+            new_form.save()
             #return render(request, 'success.html')
     form = ReasonsforfailurebrtivlweeklyForm()
     context = {'form': form}
@@ -486,7 +506,14 @@ def labvlelectric(request):
 
 
 
-            form.save()
+            new_form = form.save(commit=False)
+
+            new_form.lab =request.user.lab
+            new_form.reportingweek = getReportingWeek()
+
+
+            new_form.user=request.user
+            new_form.save()
             #return render(request, 'success.html')
     form = ElectricoutagebrtivlweeklyForm()
     context = {'form': form}
@@ -596,12 +623,19 @@ def labcov19run(request):
            
             # updateTotal.save()
 
-            #updateTotal.save()
+            updateTotal.save()
+            new_form = form.save(commit=False)
 
+            new_form.lab =request.user.lab
+            new_form.reportingweek = getReportingWeek()
+
+
+            new_form.user=request.user
+            new_form.save()
             form.save()
             #return render(request, 'success.html')
     form = Specimensruncovid19Form()
-    context = {'form': form, 'user':request.user}
+    context = {'form': form}
     return render(request, 'masvingo_brti_covid_19_weekly_statistics_tool_31-6_June_2021/Specimens_Run.html', context)
 
 @login_required(login_url='loly_login')
@@ -614,7 +648,6 @@ def labcov19recieved(request):
         form = Specimensreceivedcovid19Form(request.POST)
         if form.is_valid():
             print('e=nter tge rhtiung')
-            updateTotal = specimensreceivedbrticovid19.objects.get(dayofweek="Total",lab='brti',reportingweek='1')
 
             updateTotal = specimensreceivedbrticovid19.objects.get(dayofweek="Total",lab='brti',reportingweek='1')
             updateTotal.samplescarriedoverpreviousweeks = updateTotal.samplescarriedoverpreviousweeks + form.cleaned_data.get('samplescarriedoverpreviousweeks')
@@ -648,7 +681,14 @@ def labcov19recieved(request):
 
             updateTotal.save()
 
-            form.save()
+            new_form = form.save(commit=False)
+
+            new_form.lab =request.user.lab
+            new_form.reportingweek = getReportingWeek()
+
+
+            new_form.user=request.user
+            new_form.save()
             #return render(request, 'success.html')
     form = Specimensreceivedcovid19Form()
     context = {'form': form}
@@ -659,17 +699,31 @@ def labcov19general(request):
     if request.method == 'POST':
         form = Generalcovid19Form(request.POST)
         if form.is_valid():
+            print('form is valid',request.user.lab)
             updateTotal = generalbrticovid19.objects.get(dayofweek="Total",lab=request.user.lab,reportingweek=getReportingWeek())
             updateTotal.commentsregardingtestingandchallengesfacedbythelaboratory = updateTotal.commentsregardingtestingandchallengesfacedbythelaboratory + form.cleaned_data.get('commentsregardingtestingandchallengesfacedbythelaboratory')
             updateTotal.numberofstaffwhotestedpositivetocovid19atvllab = updateTotal.numberofstaffwhotestedpositivetocovid19atvllab + form.cleaned_data.get('numberofstaffwhotestedpositivetocovid19atvllab')
             updateTotal.numberOfStaffwhotestedpositivetocovid19athubs = updateTotal.numberOfStaffwhotestedpositivetocovid19athubs + form.cleaned_data.get('numberOfStaffwhotestedpositivetocovid19athubs')
             updateTotal.numberofstaffwhohavebeenvaccinated = updateTotal.numberofstaffwhohavebeenvaccinated + form.cleaned_data.get('numberofstaffwhohavebeenvaccinated')
+            updateTotal.Requesttobrtifromthelaboratory = updateTotal.Requesttobrtifromthelaboratory + form.cleaned_data.get('Requesttobrtifromthelaboratory')
             updateTotal.Comments = updateTotal.Comments + form.cleaned_data.get('Comments')
-            # updateTotal.Requesttobrtifromthelaboratory = updateTotal.Requesttobrtifromthelaboratory + form.cleaned_data.get('Requesttobrtifromthelaboratory
-            # updateTotal.numberofstaffwhohavebeenvaccinated = updateTotal.numberofstaffwhohavebeenvaccinated + form.cleaned_data.get('numberofstaffwhohavebeenvaccinated
+            
+            
             updateTotal.save()
-            form.save()
+
+            new_form = form.save(commit=False)
+
+            new_form.lab =request.user.lab
+            new_form.reportingweek = getReportingWeek()
+
+
+            new_form.user=request.user
+            new_form.save()
+
+
             #return render(request, 'success.html')
+        else:
+            print(form.errors.as_data())
     form = Generalcovid19Form()
     context = {'form': form}
     return render(request, 'masvingo_brti_covid_19_weekly_statistics_tool_31-6_June_2021/general.html', context)
@@ -893,7 +947,14 @@ def labeidrun(request):
 
 
 
-            form.save()
+            new_form = form.save(commit=False)
+
+            new_form.lab =request.user.lab
+            new_form.reportingweek = getReportingWeek()
+
+
+            new_form.user=request.user
+            new_form.save()
             #return render(request, 'success.html')
     form = SpecimensrunbrtivlweeklyForm()
     context = {'form': form}
@@ -967,7 +1028,14 @@ def labeidrecieved(request):
 
             updateTotal.save()
 
-            form.save()
+            new_form = form.save(commit=False)
+
+            new_form.lab =request.user.lab
+            new_form.reportingweek = getReportingWeek()
+
+
+            new_form.user=request.user
+            new_form.save()
             #return render(request, 'success.html')
     form = SpecimensreceivedbrtiweeklyForm()
     context = {'form': form}
@@ -1067,7 +1135,14 @@ def labeidfailure(request):
 
 
 
-            form.save()
+            new_form = form.save(commit=False)
+
+            new_form.lab =request.user.lab
+            new_form.reportingweek = getReportingWeek()
+
+
+            new_form.user=request.user
+            new_form.save()
             #return render(request, 'success.html')
     form = ReasonsforfailurebrtiweeklyForm()
     context = {'form': form}
