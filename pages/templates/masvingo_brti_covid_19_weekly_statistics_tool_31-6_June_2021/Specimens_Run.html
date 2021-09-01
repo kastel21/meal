@@ -204,12 +204,37 @@
     </tr>
 
 </table>
+<br><br>
+
+<div style="display: none;">
+
+{{form.reportingweek}}
+{{form.dateofrecord}}
+{{form.user}}
+{{form.lab}}
+
+
+</div>
+
 <input  type="submit" class="button5" >
 <a  href="{% url 'labcov19recieved' %}" class="button5" >Next</a>
 </form>
-<br><br>
+
 </body>
+
 {%block js%}
+
+<script>
+
+
+$(':input[name$=reportingweek]').val('1');
+
+$(':input[name$=user]').val('totalruns');
+$(':input[name$=lab]').val('totalruns');
+
+</script>
+
+
 <script>
  var num=0;
  var totalruns =0;

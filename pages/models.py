@@ -710,7 +710,7 @@ class Specimensrecievedbrtivlweekly(models.Model):
     reasonsforsamplerefferaldqacheckdbs= models.IntegerField(default=0,)
     user= models.TextField(max_length=25,default="root")
     lab= models.TextField(max_length=30,default="brti")
-    key= models.TextField(max_length=30,default="vl")
+    key= models.TextField(max_length=5,default="vl")
 
     comments=models.TextField("Please input any comments regarding sample carryover, samples received, samples rejected, rejection rate, TAT, machine breakdowns & down time, reagent stock out if applicable", max_length=30, null=True)
 
@@ -808,7 +808,6 @@ class Top3brtivlweekly(models.Model):
     user= models.TextField(max_length=25,default="root")
     lab= models.TextField(max_length=30,default="brti")
     key= models.TextField(max_length=30,default="vl")
-
 
 class Top4brtivlweekly(models.Model):
     reportingweek = models.TextField(default='.',max_length=30,null=False)
@@ -1269,7 +1268,6 @@ class Topagesexdissagregationofallspecimensreceivedcovid19(models.Model):
     machinereasons3bmx = models.TextField(default='.',max_length=30)
     user= models.TextField(max_length=25,default="root")
     lab= models.TextField(max_length=30,default="brti")
-    key= models.TextField(max_length=30,default="vl")
 
 class Top3covid19(models.Model):
     reportingweek = models.TextField(default='.',max_length=30,null=False)
@@ -1285,7 +1283,6 @@ class Top3covid19(models.Model):
 
     user= models.TextField(max_length=25,default="root")
     lab= models.TextField(max_length=30,default="brti")
-    key= models.TextField(max_length=30,default="vl")
 
 class machinedowntimereagentstockouttoolcovid19(models.Model):
     dayschoices=[
@@ -1534,7 +1531,7 @@ class Topagesexdissagregationofallspecimensreceivedbrtiweekly(models.Model):
 
     user= models.TextField(max_length=25,default="root")
     lab= models.TextField(max_length=30,default="brti")
-    key= models.TextField(max_length=30,default="vl")
+    key= models.TextField(max_length=30,default="eid")
 
 
 class Top3brtiweekly(models.Model):
