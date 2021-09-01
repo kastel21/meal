@@ -9,11 +9,23 @@ from django.contrib.auth.models import AbstractUser
 class CustomUser(AbstractUser):
     Victoria_Falls= 'Victoria Falls'
     Bindura = 'Bindura'
-    status_choices =[
-            (Victoria_Falls, 'Victoria_Falls'),
-            (Bindura,'Bindura')
-            ]
-    lab = models.CharField(max_length=200, choices=status_choices,  blank=True)
+    labchoices=[
+        ('NMRL','NMRL'),
+        ('Mpilo','Mpilo'),
+        ('BRIDH','BRIDH'),
+        ('NTBRL','NTBRL'),
+        ('Gweru','Gweru'),
+        ('Chinhoyi','Chinhoyi'),
+        ('Masvingo','Masvingo'),
+        ('eid','eid'),
+        ('Victoria Falls', 'Victoria Falls'),
+        ('Bindura','Bindura'),
+        ('Kadoma','Kadoma'),
+        ('Marondera','Marondera'),
+        ('St Lukes', 'St Lukes'),
+        ('Gwanda','Gwanda'),
+    ]
+    lab = models.CharField(max_length=200, choices=labchoices,  blank=True)
 
 
 # ------------------------------------------------------------------------------------------------------------------------------
@@ -578,7 +590,7 @@ class Electricoutagebrtivleid(models.Model):
 
 
 
-# -------------------------eid-----------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -698,6 +710,7 @@ class Specimensrecievedbrtivlweekly(models.Model):
     reasonsforsamplerefferaldqacheckdbs= models.IntegerField(default=0,)
     user= models.TextField(max_length=25,default="root")
     lab= models.TextField(max_length=30,default="brti")
+    key= models.TextField(max_length=30,default="vl")
 
     comments=models.TextField("Please input any comments regarding sample carryover, samples received, samples rejected, rejection rate, TAT, machine breakdowns & down time, reagent stock out if applicable", max_length=30, null=True)
 
@@ -775,6 +788,7 @@ class Topagesexdissagregationofallspecimensreceivedbrtivlweekly(models.Model):
     agetotaltotals = models.TextField(default='.',max_length=30,null=False)
     user= models.TextField(max_length=25,default="root")
     lab= models.TextField(max_length=30,default="brti")
+    key= models.TextField(max_length=30,default="vl")
 
 class Top3brtivlweekly(models.Model):
     reportingweek = models.TextField(default='.',max_length=30,null=False)
@@ -793,6 +807,8 @@ class Top3brtivlweekly(models.Model):
     tatmedianresultshubtoclinicdbsdays = models.TextField(default='.',max_length=30,null=False)
     user= models.TextField(max_length=25,default="root")
     lab= models.TextField(max_length=30,default="brti")
+    key= models.TextField(max_length=30,default="vl")
+
 
 class Top4brtivlweekly(models.Model):
     reportingweek = models.TextField(default='.',max_length=30,null=False)
@@ -809,6 +825,7 @@ class Top4brtivlweekly(models.Model):
     machinereasonsbmx = models.TextField(default='.',max_length=30,null=False)
     user= models.TextField(max_length=25,default="root")
     lab= models.TextField(max_length=30,default="brti")
+    key= models.TextField(max_length=30,default="vl")
 
 
 class Top5brtivlweekly(models.Model):
@@ -832,6 +849,7 @@ class Top5brtivlweekly(models.Model):
     machinetimetakenfordowntimetoberesolvedbmx = models.TextField(default='.',max_length=30,null=False)
     user= models.TextField(max_length=25,default="root")
     lab= models.TextField(max_length=30,default="brti")
+    key= models.TextField(max_length=30,default="vl")
 
 
 
@@ -853,6 +871,7 @@ class Top6brtivlweekly(models.Model):
     machinereasonsbmx = models.TextField(default='.',max_length=30,null=False)
     user= models.TextField(max_length=25,default="root")
     lab= models.TextField(max_length=30,default="brti")
+    key= models.TextField(max_length=30,default="vl")
 
 class Top7brtivlweekly(models.Model):
     reportingweek = models.TextField(default='.',max_length=30,null=False)
@@ -936,6 +955,7 @@ class Top7brtivlweekly(models.Model):
 
     user= models.TextField(max_length=25,default="root")
     lab= models.TextField(max_length=30,default="brti")
+    key= models.TextField(max_length=30,default="vl")
 
 
 
@@ -1268,26 +1288,19 @@ class Top3covid19(models.Model):
     key= models.TextField(max_length=30,default="vl")
 
 class machinedowntimereagentstockouttoolcovid19(models.Model):
-    labchoices=[
-        ('NMRL','NMRL'),
-        ('Mpilo','Mpilo'),
-        ('BRIDH','BRIDH'),
-        ('NTBRL','NTBRL'),
-        ('Gweru','Gweru'),
-        ('Chinhoyi','Chinhoyi'),
-        ('Masvingo','Masvingo'),
-        ('eid','eid'),
-        ('Victoria Falls', 'Victoria Falls'),
-        ('Bindura','Bindura'),
-        ('Kadoma','Kadoma'),
-        ('Marondera','Marondera'),
-        ('St Lukes', 'St Lukes'),
-        ('Gwanda','Gwanda'),
-        ('Total','Total'),
+    dayschoices=[
+        ('Monday','Monday'),
+        ('Tuesday','Tuesday'),
+        ('Wednesday','Wednesday'),
+        ('Thursday','Thursday'),
+        ('Friday','Friday'),
+        ('Saturday','Saturday'),
+        ('Sunday','Sunday'),
     ]
 
-    dayofweek = models.TextField(max_length=30, choices=labchoices, default='NMRL')
+    dayofweek = models.TextField(max_length=30, choices=dayschoices, default='Monday')
     reportingweek = models.TextField(default='.',max_length=30,null=False)
+    dateofrecord = models.DateField(auto_now=True)
 
     numberofmachinebreakdownsabbott = models.IntegerField(default=0,)
     numberofmachinebreakdownsbmx = models.IntegerField(default=0,)
@@ -1355,7 +1368,7 @@ class Specimensreceivedcovid19(models.Model):
 
     dayofweek = models.TextField(max_length=30, choices=dayschoices, default='Monday')
     reportingweek = models.TextField(default='.',max_length=30,null=False)
-    dateofrecord = models.DateField(auto_now=True)
+    dateofrecord = models.CharField(default=".",max_length=200)
 
     samplescarriedoverpreviousweeks	= models.IntegerField(default=0,)
 
@@ -1400,7 +1413,7 @@ class Specimensruncovid19(models.Model):
 
     dayofweek = models.TextField(max_length=30, choices=dayschoices, default='Monday')
     reportingweek = models.TextField(default='.',max_length=30,null=False)
-    dateofrecord = models.DateField(auto_now=True)
+    dateofrecord = models.CharField(default='.',max_length=200)
 
     testsdoneabbottrun = models.IntegerField(default=0,)
     testsdoneabbottfailedbuteligibaleforrepeat= models.IntegerField(default=0,)
@@ -1712,6 +1725,7 @@ class Top7brtiweekly(models.Model):
 
 # -----------------------eid---------------------------------------
 class Specimensrunbrtiweekly(models.Model):
+
     dayschoices=[
         ('Monday','Monday'),
         ('Tuesday','Tuesday'),
@@ -1724,7 +1738,7 @@ class Specimensrunbrtiweekly(models.Model):
 
     dayofweek = models.TextField(max_length=30, choices=dayschoices, default='Monday')
     reportingweek = models.TextField(default='.',max_length=30,null=False)
-    dateofrecord = models.DateField(auto_now=True)
+    dateofrecord = models.CharField(default='.',max_length=200)
 
 
 
@@ -1840,7 +1854,7 @@ class Specimensreceivedbrtiweekly(models.Model):
 
     dayofweek = models.TextField(max_length=30, choices=dayschoices, default='Monday')
     reportingweek = models.TextField(default='.',max_length=30,null=False)
-    dateofrecord = models.DateField(auto_now=True)
+    dateofrecord = models.CharField(default='.',max_length=200)
 
     samplescarriedoverpreviousweeksnevertestedplasma = models.IntegerField(default=0,)
     samplescarriedoverpreviousweeksnevertesteddbs = models.IntegerField(default=0,)
@@ -1957,7 +1971,7 @@ class Reasonsforfailurebrtiweekly(models.Model):
 
     dayofweek = models.TextField(max_length=30, choices=dayschoices, default='Monday')
     reportingweek = models.TextField(default='.',max_length=30,null=False)
-    dateofrecord = models.DateField(auto_now=True)
+    dateofrecord = models.CharField(default='.',max_length=200)
 
 #roche
     rocheplasmanumberoffailedtestsduetosamplequalityissues = models.IntegerField(default=0,)
@@ -2061,7 +2075,7 @@ class Electricoutagebrtiweekly(models.Model):
 
     dayofweek = models.TextField(max_length=30, choices=dayschoices, default='Monday')
     reportingweek = models.TextField(default='.',max_length=30,null=False)
-    dateofrecord = models.DateField(auto_now=True)
+    dateofrecord = models.CharField(default=".",max_length=200)
 
 
     numberofhourswithnoelectricityperday	= models.IntegerField(default=0,)

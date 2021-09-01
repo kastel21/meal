@@ -35,7 +35,7 @@ class specimensreceivedbrticovid19Form(forms.ModelForm):
     ]
 
     dayofweek = forms.ChoiceField(choices=labchoices, initial="none", label="Select laboratory please" )
-    #reportingweek = forms.CharField(label="Reporting week in the format  1:3-10")
+    reportingweek = forms.CharField(label="Reporting week in the format  1:3-10")
 
     samplescarriedoverpreviousweeks	= forms.IntegerField(label="Samples Carried Over (Previous Weeks(s))")
 
@@ -58,6 +58,7 @@ class specimensreceivedbrticovid19Form(forms.ModelForm):
     numberofresultsprintedlims =	forms.IntegerField(label="Number of Results printed (LIMS)")
     totalresultsdispatchedbylab	=	forms.IntegerField(label="Total Results dispatched by Lab")
     comment= forms.CharField(label="Comment: [Please input any comment regarding  samples carryover; samples received; samples rejected; rejection rate; printing and dispatch of results and developments and policy changes if applicable]", max_length=5000)
+    lab= models.TextField(max_length=30,default="brti")
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -93,7 +94,7 @@ class specimensrunbrticovid19Form(forms.ModelForm):
     ]
 
     dayofweek = forms.ChoiceField(choices=labchoices, initial="none", label="Select laboratory please" )
-    #reportingweek = forms.CharField(label="Reporting week in the format  1:3-10")
+    reportingweek = forms.CharField(label="Reporting week in the format  1:3-10")
 
     testsdoneabbottrun = forms.IntegerField(label="Run")
     testsdoneabbottfailedbuteligibleforrepeat = forms.IntegerField(label="Failed but eligible for repeat	")
@@ -155,6 +156,8 @@ class specimensrunbrticovid19Form(forms.ModelForm):
     errorratesrdtantigen = forms.DecimalField(decimal_places=5,  max_digits=5,label="RDT(Antigen)	")
 
 
+    lab = forms.CharField()
+    user = forms.CharField()
 
 
 
@@ -695,7 +698,8 @@ class SpecimensrunbrtivlweeklyForm(forms.ModelForm):
     ]
 
     dayofweek = forms.ChoiceField(choices=dayschoices, initial="none", label="Select Day please")
-    #reportingweek = forms.CharField(label="Reporting week in the format  1:3-10")
+    reportingweek = forms.CharField(label="Reporting week in the format  1:3-10")
+    dateofrecord = forms.CharField()
 
 
 
@@ -786,6 +790,9 @@ class SpecimensrunbrtivlweeklyForm(forms.ModelForm):
     ncsnotyetclosed=forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=300, label="NCs not yet closed")
     user= forms.CharField(initial='123')
     lab= forms.CharField(initial='123')
+    key= forms.CharField(initial='123')
+
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
@@ -812,7 +819,8 @@ class SpecimensrecievedbrtivlweeklyForm(forms.ModelForm):
     ]
 
     dayofweek = forms.ChoiceField(choices=dayschoices, initial="none", label="Select Day please")
-    #reportingweek = forms.CharField(label="Reporting week in the format  1:3-10")
+    reportingweek = forms.CharField(label="Reporting week in the format  1:3-10")
+    dateofrecord = forms.CharField()
 
 
 
@@ -914,6 +922,9 @@ class SpecimensrecievedbrtivlweeklyForm(forms.ModelForm):
     comments=forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), label="Please input any comments regarding sample carryover, samples received, samples rejected, rejection rate, TAT, machine breakdowns & down time, reagent stock out if applicable", max_length=5000)
     user= forms.CharField(initial='123')
     lab= forms.CharField(initial='123')
+    key= forms.CharField(initial='123')
+
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
@@ -940,7 +951,7 @@ class ReasonsforfailurebrtivlweeklyForm(forms.ModelForm):
     ]
 
     dayofweek = forms.ChoiceField(choices=dayschoices, initial="none", label="Select Day please")
-    #reportingweek = forms.CharField(label="Reporting week in the format  1:3-10")
+    reportingweek = forms.CharField(label="Reporting week in the format  1:3-10")
 
 
 #roche
@@ -1023,6 +1034,9 @@ class ReasonsforfailurebrtivlweeklyForm(forms.ModelForm):
     hologicpantherdqacheckdbs = forms.IntegerField(label="DQA check")
     user= forms.CharField(initial='123')
     lab= forms.CharField(initial='123')
+    key= forms.CharField(initial='123')
+
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
@@ -1047,7 +1061,8 @@ class ElectricoutagebrtivlweeklyForm(forms.ModelForm):
         ('Sunday','Sunday'),
     ]
 
-    dayofweek = forms.ChoiceField(choices=dayschoices, initial="none", label="Select Day please")    #reportingweek = forms.CharField(label="Reporting week in the format  1:3-10")
+    dayofweek = forms.ChoiceField(choices=dayschoices, initial="none", label="Select Day please")    
+    reportingweek = forms.CharField(label="Reporting week in the format  1:3-10")
 
 
 
@@ -1056,8 +1071,12 @@ class ElectricoutagebrtivlweeklyForm(forms.ModelForm):
     litresoffueladdedtogeneratorperday	= forms.IntegerField(label="Litres of Fuel added to generator per day")
     numberofhoursmachineswasnotbeingusedduetopowercutperday	= forms.IntegerField(label="Number of hours machine/s was not being used due to power cut per day")
     totaltestsdoneperdayusinggenerator	= forms.IntegerField(label="Total Tests done per day using generator")
+
     user= forms.CharField(initial='123')
     lab= forms.CharField(initial='123')
+    key= forms.CharField(initial='123')
+
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
@@ -1076,9 +1095,10 @@ class ElectricoutagebrtivlweeklyForm(forms.ModelForm):
 
 
 class Specimensrunbrtiweekly(forms.ModelForm):
-    dayofweek = forms.CharField(widget=forms.HiddenInput(), initial="none", label="Select date" )
-    #reportingweek = forms.CharField(label="Reporting week in the format  1:3-10")
 
+    dayofweek = forms.CharField(widget=forms.HiddenInput(), initial="none", label="Select date" )
+    reportingweek = forms.CharField(label="Reporting week in the format  1:3-10")
+    dateofrecord = models.CharField()
 
 
 
@@ -1174,6 +1194,8 @@ class Specimensrunbrtiweekly(forms.ModelForm):
     ncsnotyetclosed=forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=5000, label="NCs not yet closed")
     user= forms.CharField(initial='123')
     lab= forms.CharField(initial='123')
+
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
@@ -1202,7 +1224,7 @@ class SpecimensreceivedbrtiweeklyForm(forms.ModelForm):
 
     dayofweek = forms.ChoiceField(choices=dayschoices, initial="none", label="Select Day please")
 
-    #reportingweek = forms.CharField(label="Reporting week in the format  1:3-10")
+    reportingweek = forms.CharField(label="Reporting week in the format  1:3-10")
 
 
     samplescarriedoverpreviousweeksnevertestedplasma = forms.IntegerField(label="Plasma")
@@ -1301,6 +1323,8 @@ class SpecimensreceivedbrtiweeklyForm(forms.ModelForm):
     comments=forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), label=" Comments: Please input any comments regarding sample carryover, samples received, samples rejected, rejection rate, TAT, machine breakdowns & down time, reagent stock out if applicable", max_length=5000)
     user= forms.CharField(initial='123')
     lab= forms.CharField(initial='123')
+
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
@@ -1329,8 +1353,9 @@ class ReasonsforfailurebrtiweeklyForm(forms.ModelForm):
 
     dayofweek = forms.ChoiceField(choices=dayschoices, initial="none", label="Select Day please")
 
-    dayofweek = forms.CharField(widget=forms.HiddenInput(), initial="none", label="Select date" )
-    #reportingweek = forms.CharField(label="Reporting week in the format  1:3-10")
+    #dayofweek = forms.CharField(widget=forms.HiddenInput(), initial="none", label="Select date" )
+    reportingweek = forms.CharField(label="Reporting week in the format  1:3-10")
+    dateofrecord = forms.CharField()
 
 #roche
     rocheplasmanumberoffailedtestsduetosamplequalityissues = forms.IntegerField(label="# of failed tests due to sample quality issues")
@@ -1413,6 +1438,10 @@ class ReasonsforfailurebrtiweeklyForm(forms.ModelForm):
     hologicpantherdqacheckdbs = forms.IntegerField(label="DQA check")
     user= forms.CharField(initial='123')
     lab= forms.CharField(initial='123')
+    key= forms.CharField(initial='vl')
+
+
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
@@ -1438,6 +1467,7 @@ class ElectricoutagebrtiweeklyForm(forms.ModelForm):
     ]
 
     dayofweek = forms.ChoiceField(choices=dayschoices, initial="none", label="Select Day please")    #reportingweek = forms.CharField(label="Reporting week in the format  1:3-10")
+    dateofrecord = models.CharField()
 
 
 
@@ -1448,6 +1478,12 @@ class ElectricoutagebrtiweeklyForm(forms.ModelForm):
     totaltestsdoneperdayusinggenerator	= forms.IntegerField(label="Total Tests done per day using generator")
     user= forms.CharField(initial='123')
     lab= forms.CharField(initial='123')
+
+    key= forms.CharField(initial='eid')
+
+
+
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
@@ -1476,6 +1512,8 @@ class Specimensreceivedcovid19Form(forms.ModelForm):
     ]
 
     dayofweek = forms.ChoiceField(choices=dayschoices, initial="none", label="Select Day please")    #reportingweek = forms.CharField(label="Reporting week in the format  1:3-10")
+    dateofrecord = models.CharField()
+    reportingweek = forms.CharField(label="Reporting week in the format  1:3-10")
 
     samplescarriedoverpreviousweeks	= forms.IntegerField(label="Samples Carried Over (Previous Weeks(s))")
     samplesreceivedcurrentweeknasopharyngealswab = forms.IntegerField(label="Nasopharyngeal Swab")
@@ -1527,6 +1565,7 @@ class Specimensruncovid19Form(forms.ModelForm):
 
     dayofweek = forms.ChoiceField(choices=dayschoices, initial="none", label="Select Day please")    
     reportingweek = forms.CharField(label="Reporting week in the format  1:3-10")
+    dateofrecord = models.CharField()
 
     #Roche
     testsdoneabbottrun = forms.IntegerField(label="run")
@@ -1576,8 +1615,11 @@ class Specimensruncovid19Form(forms.ModelForm):
     errorrateshologicpanther = forms.IntegerField(label="Hologic panther")
     errorratesrdtab = forms.IntegerField(label="RDT(Antibody")
     errorratesrdtag = forms.IntegerField(label="RDT(Antigen)")
+
     user= forms.CharField(initial='123')
     lab= forms.CharField(initial='123')
+
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
@@ -1606,6 +1648,8 @@ class machinedowntimereagentstockouttoolcovid19Form(forms.ModelForm):
     ]
 
     dayofweek = forms.ChoiceField(choices=dayschoices, initial="none", label="Select Day please")    #reportingweek = forms.CharField(label="Reporting week in the format  1:3-10")
+    dateofrecord = forms.DateField()
+    reportingweek = forms.CharField()
 
     numberofmachinebreakdownsabbott = forms.IntegerField(label="Abbott")
     numberofmachinebreakdownsbmx = forms.IntegerField(label="BMX")
