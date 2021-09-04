@@ -581,7 +581,7 @@ def labcov19run(request):
         if form.is_valid():
             print('hello there mate')
             #get the object for brti cov19 and disect the form object and assign or update the total entry and save
-            updateTotal = specimensrunbrticovid19.objects.get(dayofweek="Total", lab='brti',reportingweek=getReportingWeek() )
+            updateTotal = specimensrunbrticovid19.objects.get(dayofweek="Total", lab=request.user.lab,reportingweek=getReportingWeek() )
             
 
             
@@ -1234,79 +1234,836 @@ def labeidelectric(request):
     context = {'form': form}
     return render(request, 'masvingo_brti_weekly_statistics_tool_june_2021/electricoutagestool.html', context)
 
+
+from .panjabi import *
+from openpyxl import *
+
+def populateVleidSheets(labs):
+    workbook = load_workbook(filename="C:\\Users\\kaste\\OneDrive\\Desktop\\meals postgres\\meal\\pages\\vleid.xlsx")
+    #lst = workbook.sheetnames
+
+
+    # ws = workbook[workbook.sheetnames[int(reporting_week)]]
+    # sheet = workbook.active
+    #generalcovidlst=getCovidGeneralList()
+
+    vleidsreceivedlist =getVlSpecimenRunList()
+    for lab in labs:
+        for week in ['1','2','3','4']:
+            ws = workbook[workbook.sheetnames[int(week)-1]]
+            sheet = workbook.active
+
+            getRecord(week,lab,'vl','specimenrun',ws= sheet,lst=getVlSpecimenRunList())
+            getRecord(week,lab,'eid','specimenrun',ws= sheet,lst=getVlSpecimenRunList())
+
+            getRecord(week,lab,'vl','specimenreceived',ws= sheet,lst=vleidsreceivedlist)
+            getRecord(week,lab,'eid','specimenreceived',ws= sheet,lst=vleidsreceivedlist)
+
+
+            getRecord(week,lab,'vl','reasons',ws= sheet,lst=getCovidMachineList())
+            getRecord(week,lab,'eid','reasons',ws= sheet,lst=getCovidMachineList())
+
+            getRecord(week,lab,'vl','machine',ws= sheet,lst=generalcovidlst)
+            # getRecord(week,lab,'covid','general2',ws= sheet,lst=generalcovidlst)
+            # getRecord(week,lab,'covid','general3',ws= sheet,lst=generalcovidlst)
+
+
+
+    workbook.save(filename="hello_eid.xlsx")
+
+
+
+def populateCovidSheets(labs):
+    workbook = load_workbook(filename="C:\\Users\\kaste\\OneDrive\\Desktop\\meals postgres\\meal\\pages\\covid.xlsx")
+    #lst = workbook.sheetnames
+
+
+    # ws = workbook[workbook.sheetnames[int(reporting_week)]]
+    # sheet = workbook.active
+    generalcovidlst=getCovidGeneralList()
+
+    for lab in labs:
+        for week in ['1','2','3','4']:
+            ws = workbook[workbook.sheetnames[int(week)-1]]
+            sheet = workbook.active
+            getRecord(week,lab,'covid','specimenrun',ws= sheet,lst=getCovidSpecimenRunList())
+
+            getRecord(week,lab,'covid','specimenreceived',ws= sheet,lst=getCovidSpecimenReceiveList())
+            getRecord(week,lab,'covid','machine',ws= sheet,lst=getCovidMachineList())
+            getRecord(week,lab,'covid','general1',ws= sheet,lst=generalcovidlst)
+            getRecord(week,lab,'covid','general2',ws= sheet,lst=generalcovidlst)
+            getRecord(week,lab,'covid','general3',ws= sheet,lst=generalcovidlst)
+
+
+
+    workbook.save(filename="hello_world.xlsx")
+
+
+
+
+
+
 @login_required(login_url='loly_login')
 def export_csv(request):
+    
 
     response=HttpResponse(content_type='application/ms-excel')
     response['Content-Disposition']='attachment; filename=users' + '.xls'
-
-    wb = xlwt.Workbook(encoding='utf-8')
-    ws = wb.add_sheet('Users Data') # this will make a sheet named Users Data
-
-    # Sheet header, first row
-    row_num = 0
-
-    font_style = xlwt.XFStyle()
-    font_style.font.bold = True
-
-    columns = ['Day of the week','Number of hours with no electricity per day','Number of hours generator was on per day', 'number of hours generator was on per day', 'litres of fuel added to generator per day', 'number of hours machine was not being used due to power cut per day', 'total tests done per day using generator']
-
-    for col_num in range(len(columns)):
-        ws.write(row_num, col_num, columns[col_num], font_style) # at 0 row 0 column
-
-     # Sheet body, remaining rows
-    font_style = xlwt.XFStyle()
-
-    # rows = Electric_outage_brti_vl_weekly.objects.all().values_list('day_of_week', 'number_of_hours_with_no_electricity_per_day','number_of_hours_generator_was_on_per_day', 'litres_of_fuel_added_to_generator_per_day', 'number_of_hours_machines_was_not_being_used_due_to_power_cut_per_day', 'total_tests_done_per_day_using_generator')
-    # for row in rows:
-    #     row_num += 1
-    #     for col_num in range(len(row)):
-    #         ws.write(row_num, col_num, row[col_num], font_style)
-    #         ws.write(13, col_num, 5, font_style)
+    #covid.xlsx
+    labscovid=[
+        'NMRL',
+        'NTBRL',
+        'Mutare',
+        'Wilkins',
+        'BRIDH',
+        'Gweru',
+        'Chinhoyi',
+        'Masvingo',
+        'Victoria Falls', 
+        'Bindura',
+        'Kadoma',
+        'Marondera',
+        'St Lukes',
+        'Gwanda']
 
 
-    wb.save(response)
+    labsvleid=[
+        'NMRL',
+        'Mpilo',
+        'Mutare',
+        'BRIDH',
+        'Gweru',
+        'Chinhoyi',
+        'Masvingo',
+        'Victoria Falls', 
+        'Bindura',
+        'Kadoma',
+        'Marondera',
+        'St Lukes',
+        'Gwanda']
 
-    # ro = Reasons_for_failure_brti_vl_weekly.objects.all().values_list('roche_plasma_number_of_failed_tests_due_to_sample_quality_issues', 'number_of_hours_with_no_electricity_per_day','number_of_hours_generator_was_on_per_day', 'litres_of_fuel_added_to_generator_per_day', 'number_of_hours_machines_was_not_being_used_due_to_power_cut_per_day', 'total_tests_done_per_day_using_generator')
-    # for row in ro:
-    #     row_num += 1
-    #     for col_num in range(len(row)):
-    #         ws.write(row_num, col_num, row[col_num], font_style)
-
-    # wb.save(response)
-
-    # writer=csv.writer(response)
-    # writer.writerow(['Day of the week','Number of hours with no electricity per day','Number of hours generator was on per day'])
-
-    # electric=Electric_outage_brti_vl_weekly.objects.all()
-
-    # for electric in Electric_outage_brti_vl_weekly.objects.all().values_list('day_of_week', 'number_of_hours_with_no_electricity_per_day','number_of_hours_generator_was_on_per_day'):
-    #     writer.writerow(electric)
-
-
-    # for reasons in Reasons_for_failure_brti_vl_weekly.objects.all().values_list('roche_plasma_number_of_failed_tests_due_to_sample_quality_issues', 'roche_plasma_number_of_failed_tests_due_to_reagent_quality_issues'):
-
-    #         writer.writerow(reasons)
+    populateVleidSheets(labsvleid)
 
 
+
+
+
+
+
+    # workbook = load_workbook(filename="C:\\Users\\kaste\\OneDrive\\Desktop\\meals postgres\\meal\\pages\\covid.xlsx")
+    # #lst = workbook.sheetnames
+    # ws = workbook[workbook.sheetnames[0]]
+    # sheet = workbook.active
+
+
+    # getRecord(getReportingWeek(),request.user.lab,'covid','specimenrun',workbook=workbook ,ws= sheet,lst=getCovidSpecimenRunList())
+
+    # getRecord(getReportingWeek(),request.user.lab,'covid','specimenreceived',workbook=workbook ,ws= sheet,lst=getCovidSpecimenReceiveList())
+    # getRecord(getReportingWeek(),request.user.lab,'covid','machine',workbook=workbook ,ws= sheet,lst=getCovidMachineList())
+    # getRecord(getReportingWeek(),request.user.lab,'covid','general1',workbook=workbook ,ws= sheet,lst=getCovidGeneralList())
+    # getRecord(getReportingWeek(),request.user.lab,'covid','general2',workbook=workbook ,ws= sheet,lst=getCovidGeneralList())
+    # getRecord(getReportingWeek(),request.user.lab,'covid','general3',workbook=workbook ,ws= sheet,lst=getCovidGeneralList())
 
     return response
-
-# @method_decorator([login_required], name='dispatch')
-# class RecordAddView(CreateView):
-
-#     model = Record
-#     form_class = RecordAddForm
-#     template_name = 'templates/add_record.html'
+    #return covidlist
 
 
-#     def form_valid(self, form):
-#         print("===============try try=====================================",self.request.user)
+#   1st lab nmrl positions from 0 to 17
+#   2st lab nmrl positions from 18 to 35
 
-#         #form.cleaned_data.get('owner = str(self.request.user)
-#         obj = form.cleaned_data.get('save(commit=False)
-#         obj.owner = str(self.request.user)
-#         obj.save()
-#         #form.save()
-#         return redirect('127.0.0.1:8000')
+
+def getRecord(reporting_week,lab,stats,table,ws,lst):
+
+
+    
+    if stats =='covid':
+        if table == 'specimenrun':
+            start = 0
+            end = 0
+            res = getPositions(lab,stats,table)
+            try:
+                record = specimensrunbrticovid19.objects.get(lab=lab,reportingweek=reporting_week)
+                pos=0
+                for key in record.__dict__:
+                    if key =='_state':
+                        pass
+                    elif key =='id':
+                        pass
+                    elif key == 'dayofweek':
+                        pass
+                    elif key =='reportingweek':
+                        pass
+                    elif key == 'lab':
+                        pass
+                    else:
+                        try:
+                            ws[lst[res][pos]]=record.__dict__[key]
+                            #print('assigning '+str(record.__dict__[key]),'to '+str(lst[res][pos])+' index '+str(pos))
+                            pos +=1
+                        except IndexError as e:
+                            print(e)
+                            break
+            except:
+                print('record for lab: '+lab+' week: '+reporting_week+'not found')
+        elif table == 'specimenreceived':
+            start = 0
+            end = 0           
+            res = getPositions(lab,stats,table)
+            try:
+                record = specimensreceivedbrticovid19.objects.get(lab=lab,reportingweek=reporting_week)
+                #usr_names = [str(elem) for elem in list(record.values_list())]
+
+                #print( print (dir(record))
+                pos=0
+                for key in record.__dict__:
+                    if key =='_state':
+                        pass
+                    elif key =='id':
+                        pass
+                    elif key == 'dayofweek':
+                        pass
+                    elif key =='reportingweek':
+                        pass
+                    elif key == 'lab':
+                        pass
+                    else:
+                        try:
+                            ws[lst[res][pos]]=record.__dict__[key]
+                            print('assigning '+str(record.__dict__[key]),'to '+str(lst[res][pos])+' index '+str(pos))
+                            pos +=1
+                        except IndexError as e:
+                            print(e)
+                            break
+                
+            except:
+                print('record for lab: '+lab+' week: '+reporting_week+'not found')
+
+
+
+        elif table == 'general1':
+            start = 0
+            end = 0           
+            res = getPositions(lab,stats,'general1')
+            try:
+                record = generalbrticovid19.objects.get(lab=lab,reportingweek=reporting_week)
+                #usr_names = [str(elem) for elem in list(record.values_list())]
+                print(record.__dict__)
+
+                lst1=lst[0:14]
+
+                #print( print (dir(record))
+                pos=0
+                for key in record.__dict__:
+                    if key =='_state':
+                        pass
+                    elif key =='id':
+                        pass
+                    elif key == 'dayofweek':
+                        pass
+                    elif key =='reportingweek':
+                        pass
+                    elif key == 'lab':
+                        pass
+
+                    elif key=='commentsoninteruptions':
+                        try:
+                            ws[lst1[res][pos]]=record.__dict__[key]
+                            print('assigning '+str(record.__dict__[key]),'to '+str(lst[res][pos])+' index '+str(pos))
+                            pos +=1
+                            break
+                        except IndexError as e:
+                            print(e)
+                            break
+
+            except:
+                print('record for lab: '+lab+' week: '+reporting_week+'not found')
+        elif table == 'general2':
+            start = 0
+            end = 0           
+            res = getPositions(lab,stats,'general2') 
+            try:
+                record = generalbrticovid19.objects.get(lab=lab,reportingweek=reporting_week)
+                #usr_names = [str(elem) for elem in list(record.values_list())]
+                lst1=lst[15:29]
+                #print( print (dir(record))
+                pos=0
+                for key in record.__dict__:
+                    if key =='_state':
+                        pass
+                    elif key =='id':
+                        pass
+                    elif key == 'dayofweek':
+                        pass
+                    elif key =='reportingweek':
+                        pass
+                    elif key == 'lab':
+                        pass
+                    elif key=='numberofstaffwhotestedpositivetocovid19atvllab':
+                        try:
+                            ws[lst1[res][0]]=record.__dict__[key]
+                            print('assigning '+str(record.__dict__[key]),'to '+str(lst[res][pos])+' index '+str(pos))
+                            pos +=1
+                        except IndexError as e:
+                            print(e)
+                    elif key=='numberOfStaffwhotestedpositivetocovid19athubs':
+                        try:
+                            ws[lst1[res][1]]=record.__dict__[key]
+                            print('assigning '+str(record.__dict__[key]),'to '+str(lst[res][pos])+' index '+str(pos))
+                            pos +=1
+                        except IndexError as e:
+                            print(e)
+                    elif key=='numberofstaffwhohavebeenvaccinated':
+                        try:
+                            ws[lst1[res][2]]=record.__dict__[key]
+                            print('assigning '+str(record.__dict__[key]),'to '+str(lst[res][pos])+' index '+str(pos))
+                            pos +=1
+                            
+                        except IndexError as e:
+                            print(e)
+                    elif key=='Comments':
+                        try:
+                            ws[lst1[res][3]]=record.__dict__[key]
+                            print('assigning '+str(record.__dict__[key]),'to '+str(lst[res][pos])+' index '+str(pos))
+                            pos +=1
+                            break
+                        except IndexError as e:
+                            print(e)
+            except:
+                print('record for lab: '+lab+' week: '+reporting_week+'not found')                            
+        elif table == 'general3':
+            start = 0
+            end = 0           
+            res = getPositions(lab,stats,'general3')
+            lst1=lst[30:]
+            try:
+                record = generalbrticovid19.objects.get(lab=lab,reportingweek=reporting_week)
+                #usr_names = [str(elem) for elem in list(record.values_list())]
+
+                #print( print (dir(record))
+                pos=0
+                for key in record.__dict__:
+                    if key =='_state':
+                        pass
+                    elif key =='id':
+                        pass
+                    elif key == 'dayofweek':
+                        pass
+                    elif key =='reportingweek':
+                        pass
+                    elif key == 'lab':
+                        pass
+                    elif key =='Requesttobrtifromthelaboratory':
+                        try:
+                            ws[lst1[10][0]]=record.__dict__[key]
+                            print('assigning '+str(record.__dict__[key]),'to '+str(lst1[res][pos])+' index '+str(pos))
+                            pos +=1
+                            break
+                        except IndexError as e:
+                            print(e)
+                            break
+            except:
+                print('record for lab: '+lab+' week: '+reporting_week+'not found')
+
+        elif table == 'machine':
+            start = 0
+            end = 0           
+            res = getPositions(lab,stats,table)
+            try:
+                record = machinedowntimereagentstockouttoolbrticovid19.objects.get(lab=lab,reportingweek=reporting_week)
+                #usr_names = [str(elem) for elem in list(record.values_list())]
+
+                #print( print (dir(record))
+                pos=0
+                for key in record.__dict__:
+                    if key =='_state':
+                        pass
+                    elif key =='id':
+                        pass
+                    elif key == 'dayofweek':
+                        pass
+                    elif key =='reportingweek':
+                        pass
+                    elif key == 'lab':
+                        pass
+                    else:
+                        try:
+                            ws[lst[res][pos]]=record.__dict__[key]
+                            print('assigning '+str(record.__dict__[key]),'to '+str(lst[res][pos])+' index '+str(pos))
+                            pos +=1
+                        except IndexError as e:
+                            print(e)
+                            break
+            except:
+                print('record for lab: '+lab+' week: '+reporting_week+'not found')
+
+    # if stats =='vl':
+    #     if table == 'specimenrun':
+    #         start = 0
+    #         end = 0
+    #         res = getPositions(lab,stats,table)
+    #         record = specimensrunbrticovid19.objects.get(lab=lab,reportingweek=reporting_week)
+    #         pos=0
+    #         for key in record.__dict__:
+    #             if key =='_state':
+    #                 pass
+    #             elif key =='id':
+    #                 pass
+    #             elif key == 'dayofweek':
+    #                 pass
+    #             elif key =='reportingweek':
+    #                 pass
+    #             elif key == 'lab':
+    #                 pass
+    #             else:
+    #                 try:
+    #                     ws[lst[res][pos]]=record.__dict__[key]
+    #                     print('assigning '+str(record.__dict__[key]),'to '+str(lst[res][pos])+' index '+str(pos))
+    #                     pos +=1
+    #                 except IndexError as e:
+    #                     print(e)
+    #     elif table == 'specimenreceived':
+    #         start = 0
+    #         end = 0           
+    #         res = getPositions(lab,stats,table)
+
+    #         record = specimensreceivedbrticovid19.objects.get(lab=lab,reportingweek=reporting_week)
+    #         #usr_names = [str(elem) for elem in list(record.values_list())]
+
+    #         #print( print (dir(record))
+    #         pos=0
+    #         for key in record.__dict__:
+    #             if key =='_state':
+    #                 pass
+    #             elif key =='id':
+    #                 pass
+    #             elif key == 'dayofweek':
+    #                 pass
+    #             elif key =='reportingweek':
+    #                 pass
+    #             elif key == 'lab':
+    #                 pass
+    #             else:
+    #                 ws[lst[pos+res[0]]]=record.__dict__[key]
+    #                 print('assigning '+str(record.__dict__[key]),'to '+str(lst[pos+res[0]]))
+    #                 pos +=1
+
+    #     elif table == 'general':
+    #         start = 0
+    #         end = 0           
+    #         res = getPositions(lab,stats,table)
+
+    #         record = specimensreceivedbrticovid19.objects.get(lab=lab,reportingweek=reporting_week)
+    #         #usr_names = [str(elem) for elem in list(record.values_list())]
+
+    #         #print( print (dir(record))
+    #         pos=0
+    #         for key in record.__dict__:
+    #             if key =='_state':
+    #                 pass
+    #             elif key =='id':
+    #                 pass
+    #             elif key == 'dayofweek':
+    #                 pass
+    #             elif key =='reportingweek':
+    #                 pass
+    #             elif key == 'lab':
+    #                 pass
+    #             else:
+    #                 ws[lst[pos+res]]=record.__dict__[key]
+    #                 #print('assigning '+str(record.__dict__[key]),'to '+str(lst[pos+res[0]]))
+    #                 pos +=1
+
+    #     elif table == 'machine':
+    #         start = 0
+    #         end = 0           
+    #         res = getPositions(lab,stats,table)
+
+    #         record = specimensreceivedbrticovid19.objects.get(lab=lab,reportingweek=reporting_week)
+    #         #usr_names = [str(elem) for elem in list(record.values_list())]
+
+    #         #print( print (dir(record))
+    #         pos=0
+    #         for key in record.__dict__:
+    #             if key =='_state':
+    #                 pass
+    #             elif key =='id':
+    #                 pass
+    #             elif key == 'dayofweek':
+    #                 pass
+    #             elif key =='reportingweek':
+    #                 pass
+    #             elif key == 'lab':
+    #                 pass
+    #             else:
+    #                 ws[lst[pos+res]]=record.__dict__[key]
+    #                 print('assigning '+str(record.__dict__[key]),'to '+str(lst[pos+res[0]]))
+    #                 pos +=1
+
+
+
+
+
+#***************************vleid******************************************************************************************************
+
+
+    if stats =='vl':
+        if table == 'specimenrun':
+                    start = 0
+                    end = 0
+                    res = getPositions1(lab,stats,table)
+                    if res == -1:
+                        return 0
+                    try:
+                        record = specimensrunbrtivleid.objects.get(lab=lab,reportingweek=reporting_week, key='vl')
+                        print(record.__dict__)
+                        pos=0
+                        for key in record.__dict__:
+                            if key =='_state':
+                                pass
+                            elif key =='id':
+                                pass
+                            elif key == 'dayofweek':
+                                pass
+                            elif key =='reportingweek':
+                                pass
+                            elif key == 'lab':
+                                pass
+                            else:
+                                try:
+                                    ws[lst[res][pos]]=record.__dict__[key]
+                                    #print('assigning '+str(record.__dict__[key]),'to '+str(lst[res][pos])+' index '+str(pos))
+                                    pos +=1
+                                except IndexError as e:
+                                    print(e)
+                                    break
+                    except:
+                        print('record for lab: '+lab+' week: '+reporting_week+'not found')
+        elif table == 'specimenreceived':
+                    start = 0
+                    end = 0           
+                    res = getPositions(lab,stats,table)
+                    try:
+                        record = specimensreceivedbrticovid19.objects.get(lab=lab,reportingweek=reporting_week)
+                        #usr_names = [str(elem) for elem in list(record.values_list())]
+
+                        #print( print (dir(record))
+                        pos=0
+                        for key in record.__dict__:
+                            if key =='_state':
+                                pass
+                            elif key =='id':
+                                pass
+                            elif key == 'dayofweek':
+                                pass
+                            elif key =='reportingweek':
+                                pass
+                            elif key == 'lab':
+                                pass
+                            else:
+                                try:
+                                    ws[lst[res][pos]]=record.__dict__[key]
+                                    print('assigning '+str(record.__dict__[key]),'to '+str(lst[res][pos])+' index '+str(pos))
+                                    pos +=1
+                                except IndexError as e:
+                                    print(e)
+                                    break
+                        
+                    except:
+                        print('record for lab: '+lab+' week: '+reporting_week+'not found')
+
+
+
+        elif table == 'general1':
+                    start = 0
+                    end = 0           
+                    res = getPositions(lab,stats,'general1')
+                    try:
+                        record = generalbrticovid19.objects.get(lab=lab,reportingweek=reporting_week)
+                        #usr_names = [str(elem) for elem in list(record.values_list())]
+                        print(record.__dict__)
+
+                        lst1=lst[0:14]
+
+                        #print( print (dir(record))
+                        pos=0
+                        for key in record.__dict__:
+                            if key =='_state':
+                                pass
+                            elif key =='id':
+                                pass
+                            elif key == 'dayofweek':
+                                pass
+                            elif key =='reportingweek':
+                                pass
+                            elif key == 'lab':
+                                pass
+
+                            elif key=='commentsoninteruptions':
+                                try:
+                                    ws[lst1[res][pos]]=record.__dict__[key]
+                                    print('assigning '+str(record.__dict__[key]),'to '+str(lst[res][pos])+' index '+str(pos))
+                                    pos +=1
+                                    break
+                                except IndexError as e:
+                                    print(e)
+                                    break
+
+                    except:
+                        print('record for lab: '+lab+' week: '+reporting_week+'not found')
+        elif table == 'general2':
+                    start = 0
+                    end = 0           
+                    res = getPositions(lab,stats,'general2') 
+                    try:
+                        record = generalbrticovid19.objects.get(lab=lab,reportingweek=reporting_week)
+                        #usr_names = [str(elem) for elem in list(record.values_list())]
+                        lst1=lst[15:29]
+                        #print( print (dir(record))
+                        pos=0
+                        for key in record.__dict__:
+                            if key =='_state':
+                                pass
+                            elif key =='id':
+                                pass
+                            elif key == 'dayofweek':
+                                pass
+                            elif key =='reportingweek':
+                                pass
+                            elif key == 'lab':
+                                pass
+                            elif key=='numberofstaffwhotestedpositivetocovid19atvllab':
+                                try:
+                                    ws[lst1[res][0]]=record.__dict__[key]
+                                    print('assigning '+str(record.__dict__[key]),'to '+str(lst[res][pos])+' index '+str(pos))
+                                    pos +=1
+                                except IndexError as e:
+                                    print(e)
+                            elif key=='numberOfStaffwhotestedpositivetocovid19athubs':
+                                try:
+                                    ws[lst1[res][1]]=record.__dict__[key]
+                                    print('assigning '+str(record.__dict__[key]),'to '+str(lst[res][pos])+' index '+str(pos))
+                                    pos +=1
+                                except IndexError as e:
+                                    print(e)
+                            elif key=='numberofstaffwhohavebeenvaccinated':
+                                try:
+                                    ws[lst1[res][2]]=record.__dict__[key]
+                                    print('assigning '+str(record.__dict__[key]),'to '+str(lst[res][pos])+' index '+str(pos))
+                                    pos +=1
+                                    
+                                except IndexError as e:
+                                    print(e)
+                            elif key=='Comments':
+                                try:
+                                    ws[lst1[res][3]]=record.__dict__[key]
+                                    print('assigning '+str(record.__dict__[key]),'to '+str(lst[res][pos])+' index '+str(pos))
+                                    pos +=1
+                                    break
+                                except IndexError as e:
+                                    print(e)
+                    except:
+                        print('record for lab: '+lab+' week: '+reporting_week+'not found')                            
+        elif table == 'general3':
+                    start = 0
+                    end = 0           
+                    res = getPositions(lab,stats,'general3')
+                    lst1=lst[30:]
+                    try:
+                        record = generalbrticovid19.objects.get(lab=lab,reportingweek=reporting_week)
+                        #usr_names = [str(elem) for elem in list(record.values_list())]
+
+                        #print( print (dir(record))
+                        pos=0
+                        for key in record.__dict__:
+                            if key =='_state':
+                                pass
+                            elif key =='id':
+                                pass
+                            elif key == 'dayofweek':
+                                pass
+                            elif key =='reportingweek':
+                                pass
+                            elif key == 'lab':
+                                pass
+                            elif key =='Requesttobrtifromthelaboratory':
+                                try:
+                                    ws[lst1[10][0]]=record.__dict__[key]
+                                    print('assigning '+str(record.__dict__[key]),'to '+str(lst1[res][pos])+' index '+str(pos))
+                                    pos +=1
+                                    break
+                                except IndexError as e:
+                                    print(e)
+                                    break
+                    except:
+                        print('record for lab: '+lab+' week: '+reporting_week+'not found')
+
+        elif table == 'machine':
+                    start = 0
+                    end = 0           
+                    res = getPositions(lab,stats,table)
+                    try:
+                        record = machinedowntimereagentstockouttoolbrticovid19.objects.get(lab=lab,reportingweek=reporting_week)
+                        #usr_names = [str(elem) for elem in list(record.values_list())]
+
+                        #print( print (dir(record))
+                        pos=0
+                        for key in record.__dict__:
+                            if key =='_state':
+                                pass
+                            elif key =='id':
+                                pass
+                            elif key == 'dayofweek':
+                                pass
+                            elif key =='reportingweek':
+                                pass
+                            elif key == 'lab':
+                                pass
+                            else:
+                                try:
+                                    ws[lst[res][pos]]=record.__dict__[key]
+                                    print('assigning '+str(record.__dict__[key]),'to '+str(lst[res][pos])+' index '+str(pos))
+                                    pos +=1
+                                except IndexError as e:
+                                    print(e)
+                                    break
+                    except:
+                        print('record for lab: '+lab+' week: '+reporting_week+'not found')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+
+
+
+def getPositions(lab,stats,table):
+       
+            if lab == 'NMRL' :
+                return 0
+
+            if lab == 'NTBRL' :
+                return 1
+
+            if lab == 'Mutare' :
+                return 2
+
+            if lab == 'Wilkins' :
+                return 3
+            if lab == 'BRIDH'  :
+                return 4
+            if lab == 'Gweru'  :
+                return 5
+            if lab == 'Chinhoyi'  :
+                return 6
+            if lab == 'Masvingo'  :
+                return 7
+
+            if lab == 'Beitbridge'  :
+                return 8
+
+            if lab == 'Victoria Falls'  :
+                return 9
+
+            if lab == 'Bindura'  :
+                return 10
+
+
+            if lab == 'Kadoma'  :
+                return 11
+            if lab == 'Marondera'  :
+                return 11
+
+            if lab == 'St Lukes'  :
+                return 13
+
+            if lab == 'Gwanda'  :
+                return 14
+
+
+
+
+def getPositions1(lab,stats,table):
+            if lab == 'NMRL' :
+                return 0
+       
+            if lab == 'Mpilo' :
+                return 1
+
+            if lab == 'Mutare' :
+                return 2
+
+            if lab == 'BRIDH' :
+                return 3
+
+            if lab == 'Gweru'  :
+                return 4
+            if lab == 'Chinhoyi'  :
+                return 5
+            if lab == 'Masvingo'  :
+                return 6
+
+            if lab == 'Victoria Falls'  :
+                return 7
+
+            if lab == 'Bindura'  :
+                return 8
+
+
+            if lab == 'Kadoma'  :
+                return 9
+            if lab == 'Marondera'  :
+                return 10
+
+            if lab == 'St Lukes'  :
+                return 11
+
+            if lab == 'Gwanda'  :
+                return 12
+
+            return -1
+
+def getPositions2(lab,stats,table):
+            if lab == 'NMRL' :
+                return 13
+       
+            if lab == 'Mpilo' :
+                return 14
+
+            if lab == 'Mutare' :
+                return 15
+
+
+            if lab == 'Chinhoyi'  :
+                return 16
+            if lab == 'Masvingo'  :
+                return 17
+            return -1
+
+  
+
+
+
+
 

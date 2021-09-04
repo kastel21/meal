@@ -203,16 +203,20 @@ class generalbrticovid19(models.Model):
     dayofweek = models.TextField(max_length=30, default='brti')
     reportingweek = models.TextField(default='.',max_length=30,null=False)
 
-    commentsregardingtestingandchallengesfacedbythelaboratory = models.TextField(default='.',max_length=30, null=True)
+    commentsregardingtestingandchallengesfacedbythelaboratory = models.TextField(default='.',max_length=3000, null=True)
 
     numberofstaffwhotestedpositivetocovid19atvllab	= models.IntegerField(default=0,)
     numberOfStaffwhotestedpositivetocovid19athubs= models.IntegerField(default=0,)
 
     numberofstaffwhohavebeenvaccinated	= models.IntegerField(default=0,)
-    Comments =models.TextField( max_length=30, null=True, default='null')
-    Requesttobrtifromthelaboratory	= models.TextField(default='.',max_length=30, null=True)
-    #user= models.TextField(max_length=25,default="root")
+    Comments =models.TextField( max_length=3000, null=True, default='null')
+    Requesttobrtifromthelaboratory	= models.TextField(default='.',max_length=3000, null=True)
+    commentsoninteruptions= models.TextField(max_length=3000,default=".")
     lab= models.TextField(max_length=30,default="brti")
+
+
+
+
 
 
 
@@ -547,7 +551,7 @@ class reasonsforfailurebrtivleid(models.Model):
     hologicpantherdbsnumberoffailedtestsduetoprocessingerror = models.IntegerField(default=0,)
     hologicpantherdbsnumberoffailedtestsduetoother = models.IntegerField(default=0,)
     hologicpantherdqacheckdbs = models.IntegerField(default=0,)
-    # #user= models.TextField(max_length=25,default="root")
+    comments= models.TextField(max_length=5000,default=".")
     lab= models.TextField(max_length=30,default="brti")
     key= models.TextField(max_length=5,default="vl")
 
@@ -584,6 +588,7 @@ class Electricoutagebrtivleid(models.Model):
     litresoffueladdedtogeneratorperday	= models.IntegerField(default=0,)
     numberofhoursmachineswasnotbeingusedduetopowercutperday	= models.IntegerField(default=0,)
     totaltestsdoneperdayusinggenerator	= models.IntegerField(default=0,)
+    comments= models.TextField(max_length=5000,default=".")
 
     #user= models.TextField(max_length=25,default="root")
     lab= models.TextField(max_length=30,default="brti")
@@ -591,9 +596,102 @@ class Electricoutagebrtivleid(models.Model):
 
 
 
+class machinedowntimereagentstockouttoolbrtivleid(models.Model):
+    labchoices=[
+        ('NMRL','NMRL'),
+        ('Mpilo','Mpilo'),
+        ('BRIDH','BRIDH'),
+        ('NTBRL','NTBRL'),
+        ('Gweru','Gweru'),
+        ('Chinhoyi','Chinhoyi'),
+        ('Masvingo','Masvingo'),
+        ('eid','eid'),
+        ('Victoria Falls', 'Victoria Falls'),
+        ('Bindura','Bindura'),
+        ('Kadoma','Kadoma'),
+        ('Marondera','Marondera'),
+        ('St Lukes', 'St Lukes'),
+        ('Gwanda','Gwanda'),
+        ('Total','Total'),
+    ]
+
+    dayofweek = models.TextField(max_length=30, choices=labchoices, default='NMRL')
+    reportingweek = models.TextField(default='.',max_length=30,null=False)
+
+    numberofmachinebreakdownsabbott = models.IntegerField(default=0,)
+    numberofmachinebreakdownsbmx = models.IntegerField(default=0,)
+    numberofmachinebreakdownsgenexpert = models.IntegerField(default=0,)
+    numberofmachinebreakdownsquantstudio3 = models.IntegerField(default=0,)
+    numberofmachinebreakdownshologicpanther = models.IntegerField(default=0,)
+    numberofmachinebreakdownscomments = models.TextField()
+
+    machinedowntimedaysabbott = models.IntegerField(default=0,)
+    machinedowntimedaysbmx = models.IntegerField(default=0,)
+    machinedowntimedaysgenexpert = models.IntegerField(default=0,)
+    machinedowntimedaysquantstudio3 = models.IntegerField(default=0,)
+    machinedowntimedayshologicpanther = models.IntegerField(default=0,)
+    machinedowntimedayscomments = models.TextField()
+
+    reagentstockoutabbort = models.IntegerField(default=0,)
+    reagentstockoutbms = models.IntegerField(default=0,)
+    reagentstockoutgenexpert = models.IntegerField(default=0,)
+    reagentstockoutquantstudio3 = models.IntegerField(default=0,)
+    reagentstockouthologicpanther = models.IntegerField(default=0,)
+    reagentstockoutcomments = models.TextField()
+    lab= models.TextField(max_length=30,default="brti")
+
+class Topagesexdissagregationofallspecimensreceivedvleidweekly(models.Model):
+    reportingweek = models.TextField(default='.',max_length=30,null=False)
+    dateofrecord = models.DateField(auto_now=True)
+
+    agemalelessthan15 = models.TextField(default='.',max_length=30,null=False)
+    agefemalenonpbfwlessthan15 = models.TextField(default='.',max_length=30,null=False)
+    agefemalepbfwlessthan15 = models.TextField(default='.',max_length=30,null=False)
+    ageunknownlessthan15 = models.TextField(default='.',max_length=30,null=False)
+    agetotallessthan15 = models.TextField(default='.',max_length=30,null=False)
 
 
+    agemale15to19 = models.TextField(default='.',max_length=30,null=False)
+    agefemalenonpbfw15to19 = models.TextField(default='.',max_length=30,null=False)
+    agefemalepbfw15to19 = models.TextField(default='.',max_length=30,null=False)
+    ageunknown15to19 = models.TextField(default='.',max_length=30,null=False)
+    agetotal15to19 = models.TextField(default='.',max_length=30,null=False)
 
+    agemale20to24 = models.TextField(default='.',max_length=30,null=False)
+    agefemalenonpbfw20to24 = models.TextField(default='.',max_length=30,null=False)
+    agefemalepbfw20to24 = models.TextField(default='.',max_length=30,null=False)
+    ageunknown20to24 = models.TextField(default='.',max_length=30,null=False)
+    agetotal20to24 = models.TextField(default='.',max_length=30,null=False)
+
+
+    agemale25to49 = models.TextField(default='.',max_length=30,null=False)
+    agefemalenonpbfw25to49 = models.TextField(default='.',max_length=30,null=False)
+    agefemalepbfw25to49 = models.TextField(default='.',max_length=30,null=False)
+    ageunknown25to49 = models.TextField(default='.',max_length=30,null=False)
+    agetotal25to49 = models.TextField(default='.',max_length=30,null=False)
+
+    agemale50plus = models.TextField(default='.',max_length=30,null=False)
+    agefemalenonpbfw50plus = models.TextField(default='.',max_length=30,null=False)
+    agefemalepbfw50plus = models.TextField(default='.',max_length=30,null=False)
+    ageunknown50plus = models.TextField(default='.',max_length=30,null=False)
+    agetotal50plus = models.TextField(default='.',max_length=30,null=False)
+
+
+    agemaleunknown = models.TextField(default='.',max_length=30,null=False)
+    agefemalenonpbfwunknown = models.TextField(default='.',max_length=30,null=False)
+    agefemalepbfwunknown = models.TextField(default='.',max_length=30,null=False)
+    ageunknownunknown = models.TextField(default='.',max_length=30,null=False)
+    agetotalunknown = models.TextField(default='.',max_length=30,null=False)
+
+
+    agemaletotals = models.TextField(default='.',max_length=30,null=False)
+    agefemalenonpbfwtotals = models.TextField(default='.',max_length=30,null=False)
+    agefemalepbfwtotals = models.TextField(default='.',max_length=30,null=False)
+    ageunknowntotals= models.TextField(default='.',max_length=30,null=False)
+    agetotaltotals = models.TextField(default='.',max_length=30,null=False)
+    user= models.TextField(max_length=25,default="root")
+    lab= models.TextField(max_length=30,default="brti")
+    key= models.TextField(max_length=30,default="vl")
 
 
 
@@ -1351,9 +1449,12 @@ class Generalcovid19(models.Model):
     commentsregardingtestingandchallengesfacedbythelaboratory = models.TextField(default='.',max_length=30, null=True)
     numberofstaffwhotestedpositivetocovid19atvllab	= models.IntegerField(default=0,)
     numberOfStaffwhotestedpositivetocovid19athubs= models.IntegerField(default=0,)
-    numberofstaffwhohavebeenvaccinated	= models.IntegerField(default=0,)
     Comments =models.TextField( max_length=3000, null=True, default='null')
     Requesttobrtifromthelaboratory	= models.TextField(default='.',max_length=3000, null=True)
+
+    numberofstaffwhohavebeenvaccinated	= models.IntegerField(default=0,)
+    commentsoninteruptions= models.TextField(max_length=3000,default=".")
+
     user= models.TextField(max_length=25,default="root")
     lab= models.TextField(max_length=30,default="brti")
 

@@ -270,6 +270,8 @@ class generalbrticovid19Form(forms.ModelForm):
     numberofstaffwhohavebeenvaccinated	= forms.IntegerField()
     Comments =forms.CharField( max_length=5000)
     Requesttobrtifromthelaboratory	= forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":20}), max_length=5000)
+    commentsoninteruptions= models.TextField(max_length=3000,default=".")
+
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -1814,12 +1816,14 @@ class Generalcovid19Form(forms.ModelForm):
     dateofrecord = forms.CharField(initial=datetime.date.today())
 
 
-    commentsregardingtestingandchallengesfacedbythelaboratory = forms.CharField( label="comments")
+    commentsregardingtestingandchallengesfacedbythelaboratory = forms.CharField( label="General comments regarding testing and challenges  (interruptions) faced by the laboratory")
     numberofstaffwhotestedpositivetocovid19atvllab	= forms.IntegerField(label="number of staff who tested positive at vl lab")
     numberOfStaffwhotestedpositivetocovid19athubs= forms.IntegerField(label="number Of Staff who tested positive to covid19 at hubs")
     numberofstaffwhohavebeenvaccinated	= forms.IntegerField(label="number of staff who have been vaccinated")
-    Comments =forms.CharField( label="comments")
+    Comments =forms.CharField( label="Comment (Please specify the occupation of the person  who has tested postive.Riders are also included )")
     Requesttobrtifromthelaboratory	= forms.CharField(label="Request to brti from the laboratory")
+    commentsoninteruptions= forms.CharField(label="comments Request to BRTI from the laboratory   ")
+
     user= forms.CharField(initial='123')
     lab= forms.CharField(initial='123')
 
