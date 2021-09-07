@@ -13,61 +13,125 @@ from django.http import JsonResponse
 import sqlite3
 
 
-vl=False
-eid = False
-covid = False
 
+@login_required(login_url='loly_login')
 def exp(request):
-    context = {}
-    columns=[]
-    record=[]
 
-    try:
-        sqliteConnection = sqlite3.connect('db.sqlite3')
-        cursorC = sqliteConnection.cursor()
-        cursorR = sqliteConnection.cursor()
-        print("Database success")
+    labsvleid=[
+        'NMRL',
+        'Mpilo',
+        'Mutare',
+        'BRIDH',
+        'Gweru',
+        'Chinhoyi',
+        'Masvingo',
+        'Victoria Falls', 
+        'Bindura',
+        'Kadoma',
+        'Marondera',
+        'St Lukes',
+        'Gwanda']
+
+    populateVleidSheets(labsvleid)
 
 
-        f = open("tables.txt",'r')
-        tables=f.readlines()
-        i=0
-        for table in tables:
-            # sql_select_Query = "select name from sqlite_master where type='table' and name like 'pages_%';"
-            sql_select_Query = "PRAGMA table_info( "+table.strip()+" );"
-            cursorC.execute(sql_select_Query)
-            columns.append(cursorC.fetchall())
-            #print(columns)
+    from openpyxl.writer.excel import save_virtual_workbook
+    workbook = load_workbook(filename="hello_eid.xlsx")
+    data =save_virtual_workbook(workbook)
 
-            sql_select_Query1 = "select * from "+table+";"
-            cursorR.execute(sql_select_Query1)
-            record.append(cursorR.fetchall())
-            #print(record)
 
-            i=i+1
 
-            context={'columns': columns,
-                    'record':record
-            }
+    response=HttpResponse(content=data,content_type='application/ms-excel')
+    response['Content-Disposition']='attachment; filename=eid' + '.xlsx'
 
-            # f=open('columns.txt', 'w')
+
+
+
+    # workbook = load_workbook(filename="C:\\Users\\kaste\\OneDrive\\Desktop\\meals postgres\\meal\\pages\\covid.xlsx")
+    # #lst = workbook.sheetnames
+    # ws = workbook[workbook.sheetnames[0]]
+    # sheet = workbook.active
+
+
+    # getRecord(getReportingWeek(),request.user.lab,'covid','specimenrun',workbook=workbook ,ws= sheet,lst=getCovidSpecimenRunList())
+
+    # getRecord(getReportingWeek(),request.user.lab,'covid','specimenreceived',workbook=workbook ,ws= sheet,lst=getCovidSpecimenReceiveList())
+    # getRecord(getReportingWeek(),request.user.lab,'covid','machine',workbook=workbook ,ws= sheet,lst=getCovidMachineList())
+    # getRecord(getReportingWeek(),request.user.lab,'covid','general1',workbook=workbook ,ws= sheet,lst=getCovidGeneralList())
+    # getRecord(getReportingWeek(),request.user.lab,'covid','general2',workbook=workbook ,ws= sheet,lst=getCovidGeneralList())
+    # getRecord(getReportingWeek(),request.user.lab,'covid','general3',workbook=workbook ,ws= sheet,lst=getCovidGeneralList())
+
+    return response
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    # context = {}
+    # columns=[]
+    # record=[]
+
+    # try:
+    #     sqliteConnection = sqlite3.connect('db.sqlite3')
+    #     cursorC = sqliteConnection.cursor()
+    #     cursorR = sqliteConnection.cursor()
+    #     print("Database success")
+
+
+    #     f = open("tables.txt",'r')
+    #     tables=f.readlines()
+    #     i=0
+    #     for table in tables:
+    #         # sql_select_Query = "select name from sqlite_master where type='table' and name like 'pages_%';"
+    #         sql_select_Query = "PRAGMA table_info( "+table.strip()+" );"
+    #         cursorC.execute(sql_select_Query)
+    #         columns.append(cursorC.fetchall())
+    #         #print(columns)
+
+    #         sql_select_Query1 = "select * from "+table+";"
+    #         cursorR.execute(sql_select_Query1)
+    #         record.append(cursorR.fetchall())
+    #         #print(record)
+
+    #         i=i+1
+
+    #         context={'columns': columns,
+    #                 'record':record
+    #         }
+
+    #         # f=open('columns.txt', 'w')
             
-            # for table in record:
-            #     f.write(str(table) + '\n')
+    #         # for table in record:
+    #         #     f.write(str(table) + '\n')
 
-            # f.close()
+    #         # f.close()
 
-    except sqlite3.Error as error:
-        print("ndatadza sha", error)
+    # except sqlite3.Error as error:
+    #     print("ndatadza sha", error)
 
-    # finally:
-    #     if sqliteConnection:
-    #         sqliteConnection.close()
-    #         print("ndavhara")
-    #     cursor.close()
+    # # finally:
+    # #     if sqliteConnection:
+    # #         sqliteConnection.close()
+    # #         print("ndavhara")
+    # #     cursor.close()
 
 
-    return render(request, 'excel_home.html', context)
 
 
 def index(request):
@@ -79,7 +143,13 @@ def home(request):
 
     context={'user':request.user}
     print(context['user'], 'fghjk')
+
+
+
+
     return render(request, 'landing.html', context)
+
+
 
 
 @unauthenticated_user
@@ -173,7 +243,7 @@ def labvltop(request):
             form.save()
             #return render(request, 'success.html')
     form = SpecimensrunbrtivlweeklyForm()
-    context = {'form': form}
+    context = {'form': form , 'vl':True,'eid':False,'covid':False}
     return render(request, 'masving_brti_vl_weekly_statistics_tool_31-6_june_2021/top.html', context)
 
 
@@ -388,7 +458,7 @@ def labvlrecieved(request):
             print(form.errors.as_data())
             #return render(request, 'success.html')
     form = SpecimensrecievedbrtivlweeklyForm()
-    context = {'form': form}
+    context = {'form': form , 'vl':True,'eid':False,'covid':False}
     return render(request, 'masving_brti_vl_weekly_statistics_tool_31-6_june_2021/specimenreceived.html', context)
 
 @login_required(login_url='loly_login')
@@ -500,7 +570,7 @@ def labvlfailure(request):
             print(form.errors.as_data())
             #return render(request, 'success.html')
     form = ReasonsforfailurebrtivlweeklyForm()
-    context = {'form': form}
+    context = {'form': form , 'vl':True,'eid':False,'covid':False}
     return render(request, 'masving_brti_vl_weekly_statistics_tool_31-6_june_2021/Reasonsforfailures.html', context)
 
 @login_required(login_url='loly_login')
@@ -537,7 +607,7 @@ def labvlelectric(request):
             print(form.errors.as_data())
             #return render(request, 'success.html')
     form = ElectricoutagebrtivlweeklyForm()
-    context = {'form': form}
+    context = {'form': form , 'vl':True,'eid':False,'covid':False}
     return render(request, 'masving_brti_vl_weekly_statistics_tool_31-6_june_2021/electricoutagestool.html', context)
 
 
@@ -555,9 +625,7 @@ def labcov19top(request):
     if request.method == 'POST':
         form = SpecimensrunbrtivlweeklyForm(request.POST)
         if form.is_valid():
-            brticov19SpecimenRunrecord = covRecordsSpecimenRun(
-
-            )
+            brticov19SpecimenRunrecord = covRecordsSpecimenRun()
 
 
 
@@ -565,7 +633,7 @@ def labcov19top(request):
             form.save()
             #return render(request, 'success.html')
     form = SpecimensrunbrtivlweeklyForm()
-    context = {'form': form}
+    context = {'form': form , 'vl':False,'eid':False,'covid':True}
     return render(request, 'masvingo_brti_covid_19_weekly_statistics_tool_31-6_June_2021/top.html', context)
 
 @login_required(login_url='loly_login')
@@ -721,7 +789,7 @@ def labcov19recieved(request):
         else:
             print(form.errors.as_data())
     form = Specimensreceivedcovid19Form()
-    context = {'form': form}
+    context = {'form': form , 'vl':False,'eid':False,'covid':True}
     return render(request, 'masvingo_brti_covid_19_weekly_statistics_tool_31-6_June_2021/Specimens_Received.html', context)
 
 @login_required(login_url='loly_login')
@@ -755,7 +823,7 @@ def labcov19general(request):
         else:
             print(form.errors.as_data())
     form = Generalcovid19Form()
-    context = {'form': form}
+    context = {'form': form , 'vl':False,'eid':False,'covid':True}
     return render(request, 'masvingo_brti_covid_19_weekly_statistics_tool_31-6_June_2021/general.html', context)
 
 @login_required(login_url='loly_login')
@@ -809,7 +877,7 @@ def labcov19machine(request):
             print(form.errors.as_data())
             #return render(request, 'success.html')
     form = machinedowntimereagentstockouttoolcovid19Form()
-    context = {'form': form}
+    context = {'form': form , 'vl':False,'eid':False,'covid':True}
     return render(request, 'masvingo_brti_covid_19_weekly_statistics_tool_31-6_June_2021/Machine_Downtime_&_Reagent_stock_out_tool.html', context)
 
 
@@ -825,7 +893,7 @@ def labeidtop1(request):
             form.save()
             #return render(request, 'success.html')
     form = TopbrtiweeklyForm()
-    context = {'form': form}
+    context = {'form': form , 'vl':True,'eid':False,'covid':False}
     return render(request, 'masvingo_brti_weekly_statistics_tool_june_2021/top.html', context)
 
 def labeidtop2(request):
@@ -835,7 +903,7 @@ def labeidtop2(request):
             form.save()
             #return render(request, 'success.html')
     form = TopbrtiweeklyForm()
-    context = {'form': form}
+    context = {'form': form , 'vl':True,'eid':False,'covid':False}
     return render(request, 'masvingo_brti_weekly_statistics_tool_june_2021/top.html', context)
 
 
@@ -848,7 +916,7 @@ def labeidtop3(request):
             form.save()
             #return render(request, 'success.html')
     form = TopbrtiweeklyForm()
-    context = {'form': form}
+    context = {'form': form , 'vl':True,'eid':False,'covid':False}
     return render(request, 'masvingo_brti_weekly_statistics_tool_june_2021/top.html', context)
 
 def labeidtop4(request):
@@ -858,7 +926,7 @@ def labeidtop4(request):
             form.save()
             #return render(request, 'success.html')
     form = TopbrtiweeklyForm()
-    context = {'form': form}
+    context = {'form': form , 'vl':True,'eid':False,'covid':False}
     return render(request, 'masvingo_brti_weekly_statistics_tool_june_2021/top.html', context)
 
 def labeidtop5(request):
@@ -868,7 +936,7 @@ def labeidtop5(request):
             form.save()
             #return render(request, 'success.html')
     form = TopbrtiweeklyForm()
-    context = {'form': form}
+    context = {'form': form , 'vl':True,'eid':False,'covid':False}
     return render(request, 'masvingo_brti_weekly_statistics_tool_june_2021/top.html', context)
 
 
@@ -880,7 +948,7 @@ def labeidtop6(request):
             form.save()
             #return render(request, 'success.html')
     form = TopbrtiweeklyForm()
-    context = {'form': form}
+    context = {'form': form , 'vl':True,'eid':False,'covid':False}
     return render(request, 'masvingo_brti_weekly_statistics_tool_june_2021/top.html', context)
 
 
@@ -891,7 +959,7 @@ def labeidtop7(request):
             form.save()
             #return render(request, 'success.html')
     form = TopbrtiweeklyForm()
-    context = {'form': form}
+    context = {'form': form , 'vl':True,'eid':False,'covid':False}
     return render(request, 'masvingo_brti_weekly_statistics_tool_june_2021/top.html', context)
 
 
@@ -903,7 +971,7 @@ def labeidtop7(request):
 
 def labeidrun(request):
     if request.method == 'POST':
-        form = SpecimensrunbrtivlweeklyForm(request.POST)
+        form = SpecimensrunbrtiweeklyForm(request.POST)
         if form.is_valid():
 
             updateTotal = specimensrunbrtivleid.objects.get(key="eid",dayofweek="Total", lab=request.user.lab,reportingweek=getReportingWeek())
@@ -1001,7 +1069,7 @@ def labeidrun(request):
         else:
             print(form.errors.as_data())
             #return render(request, 'success.html')
-    form = SpecimensrunbrtivlweeklyForm()
+    form = SpecimensrunbrtiweeklyForm()
     context = {'form': form, 'vl':False,'eid':True,'covid':False}
 
     return render(request, 'masvingo_brti_weekly_statistics_tool_june_2021/Specimensrun.html', context)
@@ -1089,7 +1157,7 @@ def labeidrecieved(request):
             print(form.errors.as_data())
             #return render(request, 'success.html')
     form = SpecimensreceivedbrtiweeklyForm()
-    context = {'form': form}
+    context = {'form': form , 'vl':False,'eid':True,'covid':False}
     return render(request, 'masvingo_brti_weekly_statistics_tool_june_2021/specimenreceived.html', context)
 
 @login_required(login_url='loly_login')
@@ -1197,7 +1265,7 @@ def labeidfailure(request):
             print(form.errors.as_data())
             #return render(request, 'success.html')
     form = ReasonsforfailurebrtiweeklyForm()
-    context = {'form': form}
+    context = {'form': form , 'vl':False,'eid':True,'covid':False}
     return render(request, 'masvingo_brti_weekly_statistics_tool_june_2021/Reasonsforfailures.html', context)
 
 @login_required(login_url='loly_login')
@@ -1231,7 +1299,7 @@ def labeidelectric(request):
             print(form.errors.as_data())
             #return render(request, 'success.html')
     form = ElectricoutagebrtiweeklyForm()
-    context = {'form': form}
+    context = {'form': form , 'vl':False,'eid':True,'covid':False}
     return render(request, 'masvingo_brti_weekly_statistics_tool_june_2021/electricoutagestool.html', context)
 
 
@@ -1239,7 +1307,7 @@ from .panjabi import *
 from openpyxl import *
 
 def populateVleidSheets(labs):
-    workbook = load_workbook(filename="C:\\Users\\kaste\\OneDrive\\Desktop\\meals postgres\\meal\\pages\\vleid.xlsx")
+    workbook = load_workbook(filename="vleid.xlsx")
     #lst = workbook.sheetnames
 
 
@@ -1263,7 +1331,7 @@ def populateVleidSheets(labs):
             getRecord(week,lab,'vl','reasons',ws= sheet,lst=getCovidMachineList())
             getRecord(week,lab,'eid','reasons',ws= sheet,lst=getCovidMachineList())
 
-            getRecord(week,lab,'vl','machine',ws= sheet,lst=generalcovidlst)
+            getRecord(week,lab,'vl','machine',ws= sheet,lst=getCovidGeneralList())
             # getRecord(week,lab,'covid','general2',ws= sheet,lst=generalcovidlst)
             # getRecord(week,lab,'covid','general3',ws= sheet,lst=generalcovidlst)
 
@@ -1274,7 +1342,7 @@ def populateVleidSheets(labs):
 
 
 def populateCovidSheets(labs):
-    workbook = load_workbook(filename="C:\\Users\\kaste\\OneDrive\\Desktop\\meals postgres\\meal\\pages\\covid.xlsx")
+    workbook = load_workbook(filename="covid.xlsx")
     #lst = workbook.sheetnames
 
 
@@ -1305,10 +1373,9 @@ def populateCovidSheets(labs):
 
 @login_required(login_url='loly_login')
 def export_csv(request):
-    
+ 
 
-    response=HttpResponse(content_type='application/ms-excel')
-    response['Content-Disposition']='attachment; filename=users' + '.xls'
+
     #covid.xlsx
     labscovid=[
         'NMRL',
@@ -1326,26 +1393,19 @@ def export_csv(request):
         'St Lukes',
         'Gwanda']
 
+    populateCovidSheets(labscovid)
 
-    labsvleid=[
-        'NMRL',
-        'Mpilo',
-        'Mutare',
-        'BRIDH',
-        'Gweru',
-        'Chinhoyi',
-        'Masvingo',
-        'Victoria Falls', 
-        'Bindura',
-        'Kadoma',
-        'Marondera',
-        'St Lukes',
-        'Gwanda']
+    # populateVleidSheets(labsvleid)
 
-    populateVleidSheets(labsvleid)
+
+    from openpyxl.writer.excel import save_virtual_workbook
+    workbook = load_workbook(filename="hello_world.xlsx")
+    data =save_virtual_workbook(workbook)
 
 
 
+    response=HttpResponse(content=data,content_type='application/ms-excel')
+    response['Content-Disposition']='attachment; filename=covid' + '.xlsx'
 
 
 

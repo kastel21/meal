@@ -1104,7 +1104,7 @@ class ElectricoutagebrtivlweeklyForm(forms.ModelForm):
 #masvingbrtiweeklystatisticstool31-6june2021
 
 
-class Specimensrunbrtiweekly(forms.ModelForm):
+class SpecimensrunbrtiweeklyForm(forms.ModelForm):
 
     dayofweek = forms.CharField(widget=forms.HiddenInput(), initial="none", label="Select date" )
     reportingweek = forms.CharField(label="Reporting week in the format  1:3-10")
